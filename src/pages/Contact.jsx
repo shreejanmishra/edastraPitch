@@ -6,33 +6,11 @@ const Contact = () => {
     <div className="min-h-screen pt-20 pb-16 bg-black">
       <div className="section-container">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 mt-8 text-primary">
-          Get In Touch
+          Interested in learning more? Let's connect!
         </h1>
-        
-        {/* Display the actual slide images */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">The Ask</h3>
-            <img
-              src="/images/page_18_img_1.png"
-              alt="The Ask"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
-            />
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">Contact Information</h3>
-            <img
-              src="/images/page_19_img_1.png"
-              alt="Contact"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
-            />
-          </div>
-        </div>
+      
 
         <div className="max-w-2xl mx-auto text-center mt-12">
-          <p className="text-xl text-gray-300 mb-8">
-            Interested in learning more? Let's connect!
-          </p>
           <div className="space-y-4 text-lg">
             <p className="flex items-center justify-center">
               <svg
@@ -48,7 +26,7 @@ const Contact = () => {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              <span className="text-gray-300">contact@company.com</span>
+              <span className="text-gray-300"><a href="mailto:ankita31.agnel@gmail.com">ankita31.agnel@gmail.com</a> | <a href="mailto:shrmis1998@gmail.com">shrmis1998@gmail.com</a></span>
             </p>
             <p className="flex items-center justify-center">
               <svg
@@ -64,7 +42,7 @@ const Contact = () => {
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                 />
               </svg>
-              <span className="text-gray-300">+1 (XXX) XXX-XXXX</span>
+              <span className="text-gray-300"><a href="tel:+91 9152991509">+91 9152991509</a> | <a href="tel:+91 9672026985">+91 9672026985</a> | <a href="tel:+91 9757232991">+91 9757232991</a></span>
             </p>
           </div>
         </div>
