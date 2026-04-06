@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Economics — Edastra VR</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  
+:root {
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'DM Mono', monospace;
+  --ice: #EAF4FB;
+  --sky: #C8E6F7;
+  --mid: #7BC4E8;
+  --deep: #2A7FB5;
+  --navy: #103A5A;
+  --white: #FAFCFF;
+  --rule: rgba(42,127,181,0.15);
+  --txt: #103A5A;
+  --muted: #5A8FAD;
+  --color-text-primary: #103A5A;
+  --color-text-secondary: #5A8FAD;
+  --color-text-tertiary: #7BC4E8;
+  --color-background-primary: #FAFCFF;
+  --color-background-secondary: #EAF4FB;
+  --color-border-secondary: #C8E6F7;
+  --color-border-tertiary: rgba(42,127,181,0.15);
+  --color-text-success: #1D8A50;
+  --color-text-danger: #D85A30;
+  --color-text-warning: #EF9F27;
+  --color-text-info: #2A7FB5;
+  --color-background-success: #E6F5F0;
+  --color-background-warning: #FFF3E0;
+  --color-background-info: #E8F0FA;
+  --color-border-info: #C8E6F7;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+}
+
+
+  html, body {
+    width: 1440px;
+    min-height: 900px;
+    background: var(--white);
+    font-family:'Outfit',sans-serif;
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .slide {
+    width: 1440px;
+    min-height: 900px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle background texture */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 900px 500px at 75% 20%, rgba(37,99,235,0.03) 0%, transparent 70%),
+      radial-gradient(ellipse 600px 400px at 10% 80%, rgba(22,163,74,0.025) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* ─── NAV TABS ─── */
+  .nav {
+    display: flex;
+    align-items: center;
+    border-bottom: 1.5px solid var(--border);
+    padding: 0 56px;
+    gap: 0;
+    background: var(--white);
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-tab {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: 18px 28px;
+    cursor: pointer;
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -1.5px;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-tab.active {
+    color: var(--text-primary);
+    border-bottom-color: var(--text-primary);
+  }
+
+  .nav-tab:hover:not(.active) { color: var(--text-secondary); }
+
+  /* ─── MAIN CONTENT ─── */
+  .content {
+    flex: 1;
+    padding: 44px 56px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── HEADER ─── */
+  .header { display: flex; flex-direction: column; gap: 10px; }
+
+  .eyebrow {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .eyebrow-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent-green);
+  }
+
+  .eyebrow-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent-green);
+  }
+
+  h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.13;
+    letter-spacing: -0.02em;
+    max-width: 620px;
+  }
+
+  .subtext {
+    font-size: 14.5px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 680px;
+    margin-top: 2px;
+  }
+
+  .subtext strong { color: var(--text-primary); font-weight: 500; }
+
+  /* ─── METRICS ─── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .metric-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px 20px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .metric-card.traditional::after { background: #E2A0A0; }
+  .metric-card.ai::after { background: var(--accent-green); }
+  .metric-card.time::after { background: var(--accent-blue); }
+  .metric-card.scale::after { background: var(--accent-amber); }
+
+  .metric-tag {
+    font-family: 'Sora', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .metric-value {
+    font-family: 'Sora', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--text-primary);
+  }
+
+  .metric-card.ai .metric-value { color: var(--accent-green); }
+  .metric-card.time .metric-value { color: var(--accent-blue); }
+  .metric-card.scale .metric-value { color: var(--accent-amber); }
+
+  .metric-label {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .metric-sub {
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+
+  /* ─── LOWER SECTION ─── */
+  .lower {
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    gap: 24px;
+    flex: 1;
+  }
+
+  /* ─── CHART ─── */
+  .chart-wrapper {
+    background: var(--off-white);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 24px 24px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .chart-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .chart-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 170px;
+    padding: 0 8px;
+    position: relative;
+  }
+
+  /* gridlines */
+  .chart-bars::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      to top,
+      var(--border-light) 0px, var(--border-light) 1px,
+      transparent 1px, transparent calc(170px / 5)
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bar-group {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 5px 5px 0 0;
+    min-height: 4px;
+    transition: opacity 0.2s;
+  }
+
+  .bar.traditional { background: var(--chart-traditional); }
+  .bar.ai { background: var(--chart-ai); }
+  .bar.savings { background: var(--chart-savings); }
+
+  .chart-labels {
+    display: flex;
+    gap: 10px;
+    padding: 8px 8px 0;
+    border-top: 1px solid var(--border-light);
+    margin-top: 6px;
+  }
+
+  .chart-label {
+    flex: 1;
+    font-size: 9.5px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ─── INFO BLOCKS ─── */
+  .info-blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .info-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 20px 18px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .info-card-header {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .info-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .info-icon.purple { background: #EDE9FE; }
+  .info-icon.blue { background: var(--accent-blue-light); }
+  .info-icon.green { background: var(--accent-green-light); }
+
+  .info-card-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    list-style: none;
+  }
+
+  .info-list li {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .info-list li::before {
+    content: '·';
+    position: absolute;
+    left: 3px;
+    color: var(--text-tertiary);
+    font-size: 16px;
+    line-height: 1.1;
+  }
+
+  .info-list li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .info-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-tab">Device Ladder</div>
+    <div class="nav-tab">WebXR Solution</div>
+    <div class="nav-tab active">Content Economics</div>
+    <div class="nav-tab">Infra Savings</div>
+    <div class="nav-tab">Go-to-Market</div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-text">Cut VR content cost 60–70% with AI tooling</span>
+      </div>
+      <h1>AI makes 3D content<br>nearly as cheap as 2D.</h1>
+      <p class="subtext">
+        Traditional VR content costs <strong>₹15,000–25,000 per module.</strong> With the right AI pipeline, Edastra can bring this to
+        <strong>₹5,000–8,000</strong> — making the 100-module library cost <strong>₹5–8L, not ₹20L.</strong>
+      </p>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metrics">
+      <div class="metric-card traditional">
+        <span class="metric-tag">Traditional cost</span>
+        <span class="metric-value">₹20,000</span>
+        <span class="metric-label">Per VR module</span>
+        <span class="metric-sub">Unity dev + 3D artist + animator</span>
+      </div>
+      <div class="metric-card ai">
+        <span class="metric-tag">AI-assisted cost</span>
+        <span class="metric-value">₹6,000</span>
+        <span class="metric-label">Per VR module</span>
+        <span class="metric-sub">70% cost reduction — same quality</span>
+      </div>
+      <div class="metric-card time">
+        <span class="metric-tag">Production time</span>
+        <span class="metric-value">3 days</span>
+        <span class="metric-label">With AI pipeline</span>
+        <span class="metric-sub">vs 2–3 weeks traditional</span>
+      </div>
+      <div class="metric-card scale">
+        <span class="metric-tag">Year 1 VR target</span>
+        <span class="metric-value">100 <span style="font-size:20px">modules</span></span>
+        <span class="metric-label">Full library</span>
+        <span class="metric-sub">₹6L total vs ₹20L traditional</span>
+      </div>
+    </div>
+
+    <!-- LOWER -->
+    <div class="lower">
+
+      <!-- CHART -->
+      <div class="chart-wrapper">
+        <div class="chart-header">
+          <span class="chart-title">Cost breakdown by pipeline stage</span>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--chart-traditional)"></div>
+              Traditional
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--chart-ai)"></div>
+              AI-assisted
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--chart-savings)"></div>
+              Savings
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-area">
+          <div class="chart-bars">
+            <!-- 3D asset creation: Trad ₹8000, AI ₹500, Savings ₹7500 -->
+            <div class="bar-group">
+              <div class="bar traditional" style="height:159px"></div>
+              <div class="bar ai" style="height:10px"></div>
+              <div class="bar savings" style="height:149px"></div>
+            </div>
+            <!-- Developer time: Trad ₹6000, AI ₹1200, Savings ₹4800 -->
+            <div class="bar-group">
+              <div class="bar traditional" style="height:119px"></div>
+              <div class="bar ai" style="height:24px"></div>
+              <div class="bar savings" style="height:95px"></div>
+            </div>
+            <!-- Animation & rigging: Trad ₹4000, AI ₹800, Savings ₹3200 -->
+            <div class="bar-group">
+              <div class="bar traditional" style="height:80px"></div>
+              <div class="bar ai" style="height:16px"></div>
+              <div class="bar savings" style="height:64px"></div>
+            </div>
+            <!-- Audio narration: Trad ₹1500, AI ₹200, Savings ₹1300 -->
+            <div class="bar-group">
+              <div class="bar traditional" style="height:30px"></div>
+              <div class="bar ai" style="height:4px"></div>
+              <div class="bar savings" style="height:26px"></div>
+            </div>
+            <!-- QA & testing: Trad ₹2000, AI ₹600, Savings ₹1400 -->
+            <div class="bar-group">
+              <div class="bar traditional" style="height:40px"></div>
+              <div class="bar ai" style="height:12px"></div>
+              <div class="bar savings" style="height:28px"></div>
+            </div>
+          </div>
+          <div class="chart-labels">
+            <div class="chart-label">3D asset<br>creation</div>
+            <div class="chart-label">Developer<br>time</div>
+            <div class="chart-label">Animation<br>&amp; rigging</div>
+            <div class="chart-label">Audio<br>narration</div>
+            <div class="chart-label">QA &amp;<br>testing</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO BLOCKS -->
+      <div class="info-blocks">
+
+        <!-- Block 1 -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-icon purple">🧊</div>
+            <span class="info-card-title">AI 3D Asset Generation</span>
+          </div>
+          <ul class="info-list">
+            <li><strong>Meshy</strong> — text/image → 3D model in minutes. Human cell, DNA helix, or volcano from a text prompt.</li>
+            <li><strong>Luma AI</strong> — real object photos → 3D NeRF model. Scan a real classroom object, place it in VR.</li>
+            <li><strong>Shap-E</strong> <span class="info-badge">OpenAI</span> — open-source 3D generation. Free to run, unlimited models.</li>
+            <li>Cost: <strong>₹0–500 per model</strong> vs ₹2,000–5,000 for a 3D artist.</li>
+          </ul>
+        </div>
+
+        <!-- Block 2 -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-icon blue">🔁</div>
+            <span class="info-card-title">Reuse 2D Animation Assets</span>
+          </div>
+          <ul class="info-list">
+            <li>Edastra's existing 2D animation pipeline produces sprites, textures, and character rigs that import directly into Unity as billboards or sprites in 3D space.</li>
+            <li>A <strong>"hybrid VR" approach</strong> — AI-generated 3D environment + 2D characters from existing pipeline. Looks great, costs 2D.</li>
+            <li>First 50 VR modules can be built <strong>entirely from existing 2D content</strong> — zero new asset cost.</li>
+          </ul>
+        </div>
+
+        <!-- Block 3 -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-icon green">⚡</div>
+            <span class="info-card-title">A-Frame / Three.js over Unity</span>
+          </div>
+          <ul class="info-list">
+            <li>Unity developer = ₹1–1.5L/mo. A-Frame/Three.js web developer = <strong>₹60–80K/mo</strong>. Same VR output, 40% lower salary.</li>
+            <li>WebXR with A-Frame uses HTML & JS — your existing frontend developers can build VR modules. <strong>No game engine expertise needed.</strong></li>
+            <li>Open source, <strong>no royalty fees</strong> vs Unity's revenue share above $200K/yr.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

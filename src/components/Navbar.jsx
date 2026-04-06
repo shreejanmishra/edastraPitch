@@ -49,10 +49,7 @@ const Navbar = () => {
                   to={link.to}
                   className={`transition-colors font-audio-cassette ${
                     location.pathname === link.to ||
-                    (link.to === "/our-approach" &&
-                      location.pathname.startsWith("/our-approach")) ||
-                    (link.to === "/team" &&
-                      location.pathname.startsWith("/team"))
+                    (link.to !== "/" && location.pathname.startsWith(link.to))
                       ? "text-primary font-semibold"
                       : "text-white hover:text-primary"
                   }`}

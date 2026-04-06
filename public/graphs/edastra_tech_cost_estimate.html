@@ -1,0 +1,439 @@
+
+<style>
+:root {
+  --font-sans: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #555;
+  --color-text-tertiary: #888;
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f5f5f4;
+  --color-border-secondary: #ddd;
+  --color-border-tertiary: #eee;
+  --border-radius-md: 8px;
+}
+body { margin: 0; padding: 0; background: #fff; }
+.w{padding:1rem 0 2rem;font-family:var(--font-sans);}
+.tab-row{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap;padding:0 1rem;}
+.tab{padding:6px 16px;border-radius:99px;font-size:12px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);transition:all .15s;}
+.tab.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:transparent;}
+.panel{display:none;}
+.panel.active{display:block;}
+.kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.5rem;}
+.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem 1rem;}
+.kpi-l{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px;}
+.kpi-v{font-size:20px;font-weight:500;color:var(--color-text-primary);}
+.kpi-s{font-size:11px;color:var(--color-text-tertiary);margin-top:2px;}
+.sec{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.07em;margin:1.5rem 0 .75rem;}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:1.5rem;}
+.tbl th{background:var(--color-background-secondary);font-size:11px;font-weight:500;color:var(--color-text-secondary);padding:8px 10px;text-align:left;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap;}
+.tbl td{padding:8px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);vertical-align:middle;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:var(--color-background-secondary);}
+.tbl .sub{font-size:11px;color:var(--color-text-secondary);display:block;}
+.tbl .tot td{font-weight:500;border-top:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);}
+.pill{display:inline-block;font-size:10px;padding:2px 7px;border-radius:99px;font-weight:500;}
+.p-lo{background:#EAF3DE;color:#27500A;}
+.p-mid{background:#FAEEDA;color:#633806;}
+.p-hi{background:#FCEBEB;color:#791F1F;}
+.p-blue{background:#E6F1FB;color:#0C447C;}
+.bar-wrap{display:flex;align-items:center;gap:8px;}
+.bar-track{width:80px;height:6px;background:var(--color-background-secondary);border-radius:99px;flex-shrink:0;}
+.bar-fill{height:6px;border-radius:99px;}
+.ins{border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:12px;line-height:1.6;margin-bottom:1rem;}
+.i-g{background:#EAF3DE;color:#27500A;}
+.i-y{background:#FAEEDA;color:#633806;}
+.i-b{background:#E6F1FB;color:#0C447C;}
+.i-r{background:#FCEBEB;color:#791F1F;}
+.chart-w{position:relative;width:100%;margin-bottom:1.25rem;}
+.h260{height:260px;}.h220{height:220px;}.h180{height:180px;}
+.leg{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--color-text-secondary);margin-bottom:8px;}
+.leg span{display:flex;align-items:center;gap:4px;}
+.ld{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;}
+.ask-btn{width:100%;padding:9px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-primary);font-size:13px;cursor:pointer;margin-top:8px;}
+.ask-btn:hover{background:var(--color-background-secondary);}
+</style>
+
+<div class="w">
+<div class="tab-row">
+  <button class="tab active" onclick="sw('overview',this)">Overview</button>
+  <button class="tab" onclick="sw('infra',this)">Infra & cloud</button>
+  <button class="tab" onclick="sw('services',this)">Services & APIs</button>
+  <button class="tab" onclick="sw('team',this)">People & tools</button>
+  <button class="tab" onclick="sw('phases',this)">Phase by phase</button>
+</div>
+
+<!-- ══ OVERVIEW ══ -->
+<div class="panel active" id="panel-overview">
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-l">Year 1 total tech cost</div>
+      <div class="kpi-v">₹95–130L</div>
+      <div class="kpi-s">Infra + services + tools</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">Monthly burn (infra only)</div>
+      <div class="kpi-v">₹3–6L</div>
+      <div class="kpi-s">0–200k users · India only</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">Biggest single line item</div>
+      <div class="kpi-v">Video CDN</div>
+      <div class="kpi-s">₹20–35L/yr at scale</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">Cost per user/month</div>
+      <div class="kpi-v">₹1.5–4</div>
+      <div class="kpi-s">Drops below ₹1 at 500k+</div>
+    </div>
+  </div>
+
+  <div class="ins i-b">
+    All estimates in Indian Rupees per year unless stated. Prices based on AWS India (Mumbai) + Cloudflare + market rates as of early 2026. These are rough operating estimates — not build costs. Build costs (engineering salaries) are in the Team tab.
+  </div>
+
+  <div class="sec">Total annual tech cost by category</div>
+  <div class="leg">
+    <span><span class="ld" style="background:#378ADD"></span>Infra & cloud</span>
+    <span><span class="ld" style="background:#1D9E75"></span>Video CDN</span>
+    <span><span class="ld" style="background:#EF9F27"></span>Third-party APIs</span>
+    <span><span class="ld" style="background:#534AB7"></span>AI tools</span>
+    <span><span class="ld" style="background:#888780"></span>Dev tools & monitoring</span>
+  </div>
+  <div class="chart-w h260"><canvas id="c-overview"></canvas></div>
+
+  <div class="tbl">
+    <thead><tr><th>Category</th><th>Year 1 (0–200k users)</th><th>Year 2 (200k–1Mn)</th><th>Year 3 (1Mn–3Mn)</th><th>Scales with</th></tr></thead>
+    <tbody>
+      <tr><td>Infra & cloud (compute + DB)</td><td><span class="pill p-lo">₹18–28L</span></td><td><span class="pill p-mid">₹45–70L</span></td><td><span class="pill p-hi">₹120–180L</span></td><td>Users + content volume</td></tr>
+      <tr><td>Video CDN & streaming</td><td><span class="pill p-lo">₹12–20L</span></td><td><span class="pill p-mid">₹35–60L</span></td><td><span class="pill p-hi">₹90–150L</span></td><td>Video views + bitrate</td></tr>
+      <tr><td>AI tools (content gen)</td><td><span class="pill p-mid">₹14–22L</span></td><td><span class="pill p-mid">₹20–32L</span></td><td><span class="pill p-mid">₹28–40L</span></td><td>Videos produced/yr</td></tr>
+      <tr><td>Third-party APIs</td><td><span class="pill p-lo">₹8–14L</span></td><td><span class="pill p-mid">₹18–28L</span></td><td><span class="pill p-mid">₹35–55L</span></td><td>MAU + transactions</td></tr>
+      <tr><td>Dev tools & monitoring</td><td><span class="pill p-lo">₹6–10L</span></td><td><span class="pill p-lo">₹8–14L</span></td><td><span class="pill p-mid">₹12–20L</span></td><td>Team size + services</td></tr>
+      <tr class="tot"><td>Total</td><td>₹58–94L</td><td>₹126–204L</td><td>₹285–445L</td><td></td></tr>
+    </tbody>
+  </div>
+
+  <div class="ins i-g">
+    <strong>Key leverage point:</strong> Video CDN is your biggest variable cost. At 200k users watching 3 videos/week at 8 min each, you stream ~200TB/month. At ₹6–8/GB on AWS CloudFront India, that's ₹12–16L/month. Switching to Cloudflare R2 + Stream cuts this by 40–60% — one of the highest-ROI infrastructure decisions you can make early.
+  </div>
+  <button class="ask-btn" onclick="sendPrompt('How do I reduce Edastra video CDN costs using Cloudflare R2 and Stream? ↗')">Reduce CDN costs with Cloudflare ↗</button>
+</div>
+
+<!-- ══ INFRA & CLOUD ══ -->
+<div class="panel" id="panel-infra">
+  <div class="sec">AWS / GCP compute, database & storage costs (India region)</div>
+  <div class="tbl">
+    <thead><tr><th>Component</th><th>Service</th><th>Spec (Year 1)</th><th>Monthly est.</th><th>Annual est.</th><th>Tier</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>App servers (K8s)<span class="sub">API gateway + 6 microservices</span></td>
+        <td>AWS EKS</td><td>4× t3.medium nodes</td>
+        <td>₹28,000</td><td>₹3.4L</td>
+        <td><span class="pill p-lo">Low</span></td>
+      </tr>
+      <tr>
+        <td>PostgreSQL<span class="sub">Core relational DB</span></td>
+        <td>AWS RDS</td><td>db.t3.medium · 100GB SSD</td>
+        <td>₹18,000</td><td>₹2.2L</td>
+        <td><span class="pill p-lo">Low</span></td>
+      </tr>
+      <tr>
+        <td>Redis cache<span class="sub">Sessions · feed · leaderboard</span></td>
+        <td>AWS ElastiCache</td><td>cache.t3.small · 2 nodes</td>
+        <td>₹9,000</td><td>₹1.1L</td>
+        <td><span class="pill p-lo">Low</span></td>
+      </tr>
+      <tr>
+        <td>Vector DB<span class="sub">Content search · recommendations</span></td>
+        <td>Pinecone / Qdrant</td><td>Starter pod · 1M vectors</td>
+        <td>₹5,800</td><td>₹0.7L</td>
+        <td><span class="pill p-lo">Low</span></td>
+      </tr>
+      <tr>
+        <td>Object storage<span class="sub">Videos · VR assets · exports</span></td>
+        <td>AWS S3</td><td>10TB storage · 50TB egress</td>
+        <td>₹22,000</td><td>₹2.6L</td>
+        <td><span class="pill p-lo">Low</span></td>
+      </tr>
+      <tr>
+        <td>Video CDN<span class="sub">HLS streaming · adaptive bitrate</span></td>
+        <td>Cloudflare Stream</td><td>200k users · 3 vids/wk</td>
+        <td>₹95,000</td><td>₹11.4L</td>
+        <td><span class="pill p-mid">Medium</span></td>
+      </tr>
+      <tr>
+        <td>Load balancer<span class="sub">ALB + WAF</span></td>
+        <td>AWS ALB</td><td>Standard · 50M req/mo</td>
+        <td>₹6,500</td><td>₹0.8L</td>
+        <td><span class="pill p-lo">Low</span></td>
+      </tr>
+      <tr>
+        <td>Networking & data transfer<span class="sub">Inter-service + egress</span></td>
+        <td>AWS</td><td>~5TB/mo inter-AZ</td>
+        <td>₹12,000</td><td>₹1.4L</td>
+        <td><span class="pill p-lo">Low</span></td>
+      </tr>
+      <tr>
+        <td>Secrets & KMS<span class="sub">Encryption keys · Vault</span></td>
+        <td>AWS KMS</td><td>Standard usage</td>
+        <td>₹2,000</td><td>₹0.2L</td>
+        <td><span class="pill p-lo">Low</span></td>
+      </tr>
+      <tr class="tot">
+        <td colspan="3">Total infrastructure (Year 1 · 0–200k users)</td>
+        <td>₹1.98L/mo</td><td>₹23.8L/yr</td><td></td>
+      </tr>
+    </tbody>
+  </div>
+
+  <div class="ins i-y">
+    <strong>Year 2 scaling (200k → 1Mn users):</strong> App servers scale to 12–16 nodes (₹85k/mo), RDS upgrades to db.r6g.large (₹55k/mo), CDN cost triples to ₹2.8L/mo. Total infra crosses ₹6–8L/month. Cloudflare Stream pricing is consumption-based — budget ₹0.75 per 1,000 minutes delivered.
+  </div>
+
+  <div class="sec">VR infrastructure (2028 launch — additional cost)</div>
+  <div class="tbl">
+    <thead><tr><th>Component</th><th>Service</th><th>Spec</th><th>Annual est.</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>VR asset storage<span class="sub">3D scenes · textures · audio</span></td><td>AWS S3</td><td>+50TB assets</td><td>₹6L</td><td>One-time ramp then stable</td></tr>
+      <tr><td>VR streaming CDN<span class="sub">High-bitrate scene delivery</span></td><td>Cloudflare</td><td>2x bitrate vs 2D</td><td>₹18–28L extra</td><td>VR = ~4Mbps vs 2D ~1.5Mbps</td></tr>
+      <tr><td>WebRTC / real-time<span class="sub">Multiplayer VR sessions</span></td><td>Agora / Daily</td><td>500k min/mo</td><td>₹4–8L</td><td>Only if collaborative VR</td></tr>
+      <tr class="tot"><td colspan="3">Additional VR infra (Year 3)</td><td>₹28–42L/yr</td><td>On top of base infra</td></tr>
+    </tbody>
+  </div>
+</div>
+
+<!-- ══ SERVICES & APIs ══ -->
+<div class="panel" id="panel-services">
+  <div class="sec">Third-party services & API costs</div>
+  <div class="tbl">
+    <thead><tr><th>Service</th><th>Provider</th><th>What it does</th><th>Pricing model</th><th>Year 1 est.</th><th>Year 2 est.</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>AI animation / voice gen<span class="sub">Content production pipeline</span></td>
+        <td>ElevenLabs + Runway</td><td>Voice · video gen</td>
+        <td>₹1,200–2,000 / video</td>
+        <td>₹14–20L</td><td>₹20–30L</td>
+      </tr>
+      <tr>
+        <td>LLM API<span class="sub">Personalisation · Q&A · search</span></td>
+        <td>OpenAI / Claude API</td><td>Adaptive learning</td>
+        <td>Per token · ~₹0.008/1k</td>
+        <td>₹3–6L</td><td>₹8–14L</td>
+      </tr>
+      <tr>
+        <td>Payment gateway<span class="sub">Subscriptions · school payments</span></td>
+        <td>Razorpay</td><td>INR payments · sub billing</td>
+        <td>2% per transaction</td>
+        <td>₹1–3L</td><td>₹5–12L</td>
+      </tr>
+      <tr>
+        <td>Payment gateway — MEA<span class="sub">UAE · KSA · Kenya</span></td>
+        <td>Stripe / Checkout.com</td><td>AED / USD payments</td>
+        <td>1.5–2.9% per txn</td>
+        <td>—</td><td>₹3–8L</td>
+      </tr>
+      <tr>
+        <td>Push notifications<span class="sub">FCM · APNs · web push</span></td>
+        <td>Firebase / OneSignal</td><td>Engagement alerts</td>
+        <td>Free → ₹3L/yr at scale</td>
+        <td>₹0.5L</td><td>₹2–4L</td>
+      </tr>
+      <tr>
+        <td>SMS / OTP<span class="sub">Login · parental consent</span></td>
+        <td>MSG91 / Twilio</td><td>OTP delivery</td>
+        <td>₹0.15–0.25 / SMS</td>
+        <td>₹1–2L</td><td>₹3–6L</td>
+      </tr>
+      <tr>
+        <td>Email service<span class="sub">Transactional · newsletters</span></td>
+        <td>AWS SES / Sendgrid</td><td>Receipts · onboarding</td>
+        <td>₹0.01 / email</td>
+        <td>₹0.3L</td><td>₹1L</td>
+      </tr>
+      <tr>
+        <td>Analytics & A/B testing<span class="sub">User behaviour · funnels</span></td>
+        <td>Mixpanel + Firebase</td><td>Engagement · conversion</td>
+        <td>Free → ₹8L/yr at scale</td>
+        <td>₹1L</td><td>₹4–8L</td>
+      </tr>
+      <tr>
+        <td>Ad network<span class="sub">Revenue-generating ads</span></td>
+        <td>Google AdMob</td><td>In-app ad serving</td>
+        <td>Revenue share (30%)</td>
+        <td>Net positive</td><td>Net positive</td>
+      </tr>
+      <tr>
+        <td>App store fees<span class="sub">iOS + Android distribution</span></td>
+        <td>Apple + Google</td><td>30% on subscriptions yr1</td>
+        <td>30% → 15% yr2</td>
+        <td>₹1–3L</td><td>₹6–15L</td>
+      </tr>
+      <tr class="tot">
+        <td colspan="4">Total third-party APIs (excl. app store)</td>
+        <td>₹21–35L</td><td>₹46–83L</td><td></td>
+      </tr>
+    </tbody>
+  </div>
+
+  <div class="ins i-r">
+    <strong>App store fees are the hidden cost:</strong> Apple and Google take 30% of all in-app subscription revenue in Year 1, dropping to 15% from Year 2 onwards. At ₹5 Cr ARR, that's ₹75L–1.5 Cr going to Apple/Google annually. Factor this into your ARPU model — net subscription ARPU after store fees is ₹770–935 vs headline ₹1,100.
+  </div>
+</div>
+
+<!-- ══ TEAM & TOOLS ══ -->
+<div class="panel" id="panel-team">
+  <div class="sec">Engineering team salaries (annual, India market rate 2026)</div>
+  <div class="tbl">
+    <thead><tr><th>Role</th><th>Count</th><th>Monthly salary</th><th>Annual cost</th><th>Phase hired</th></tr></thead>
+    <tbody>
+      <tr><td>Tech Architect / Lead<span class="sub">System design · infra decisions</span></td><td>1</td><td>₹1.5–2L</td><td>₹18–24L</td><td><span class="pill p-blue">Pre-seed M1</span></td></tr>
+      <tr><td>Backend engineers<span class="sub">Microservices · APIs · DB</span></td><td>2</td><td>₹80K–1.2L each</td><td>₹19–29L</td><td><span class="pill p-blue">Pre-seed M1</span></td></tr>
+      <tr><td>Mobile engineers<span class="sub">iOS + Android</span></td><td>2</td><td>₹80K–1.2L each</td><td>₹19–29L</td><td><span class="pill p-blue">Pre-seed M2</span></td></tr>
+      <tr><td>Frontend / web engineer<span class="sub">React · Next.js · admin panel</span></td><td>1</td><td>₹70K–1L</td><td>₹8.4–12L</td><td><span class="pill p-blue">Pre-seed M3</span></td></tr>
+      <tr><td>DevOps / SRE<span class="sub">K8s · CI/CD · monitoring</span></td><td>1</td><td>₹90K–1.3L</td><td>₹10.8–15.6L</td><td><span class="pill p-blue">Pre-seed M3</span></td></tr>
+      <tr><td>AI/ML engineer<span class="sub">Personalisation · content pipeline</span></td><td>1</td><td>₹1.2–1.8L</td><td>₹14.4–21.6L</td><td><span class="pill p-mid">M6 (post-traction)</span></td></tr>
+      <tr><td>VR developer<span class="sub">Unity / Unreal · PoC modules</span></td><td>1</td><td>₹1–1.5L</td><td>₹12–18L</td><td><span class="pill p-mid">M6 (PoC phase)</span></td></tr>
+      <tr class="tot"><td colspan="2">Total engineering (9 people)</td><td></td><td>₹1.02–1.49 Cr/yr</td><td></td></tr>
+    </tbody>
+  </div>
+
+  <div class="sec">Developer tools & monitoring (annual SaaS)</div>
+  <div class="tbl">
+    <thead><tr><th>Tool</th><th>Purpose</th><th>Plan</th><th>Annual cost</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub Teams</td><td>Code · CI/CD · Actions</td><td>$4/user × 9</td><td>₹3.6L</td></tr>
+      <tr><td>Datadog</td><td>APM · logs · infra monitoring</td><td>Pro · 10 hosts</td><td>₹6–10L</td></tr>
+      <tr><td>Sentry</td><td>Error tracking · crash reports</td><td>Team plan</td><td>₹1.5L</td></tr>
+      <tr><td>Figma</td><td>UI/UX design · prototypes</td><td>Professional</td><td>₹1.2L</td></tr>
+      <tr><td>Jira + Confluence</td><td>Project mgmt · docs</td><td>Standard · 10 users</td><td>₹1L</td></tr>
+      <tr><td>Postman</td><td>API testing</td><td>Team plan</td><td>₹0.6L</td></tr>
+      <tr><td>PagerDuty</td><td>On-call alerting</td><td>Professional</td><td>₹1.5L</td></tr>
+      <tr><td>1Password Teams</td><td>Secrets · password mgmt</td><td>Team plan</td><td>₹0.5L</td></tr>
+      <tr class="tot"><td colspan="3">Total dev tools</td><td>₹15.9–20.4L/yr</td></tr>
+    </tbody>
+  </div>
+
+  <div class="ins i-g">
+    <strong>Engineering team = your biggest tech cost by far.</strong> 9 engineers at ₹1–1.5 Cr/yr dwarfs all infra costs. The ₹6 Cr "Team & Operations" allocation in the fund model covers this for 4–6 years — or 2 years at full team plus a 50% headcount expansion. Hire backend + mobile first (Month 1), defer AI/ML and VR engineers until Month 6 when you have traction data to actually train on.
+  </div>
+</div>
+
+<!-- ══ PHASE BY PHASE ══ -->
+<div class="panel" id="panel-phases">
+  <div class="sec">Tech cost by phase — what you spend and when</div>
+  <div class="tbl">
+    <thead><tr><th>Phase</th><th>Period</th><th>Infra</th><th>APIs & tools</th><th>Engineering</th><th>Total tech</th><th>% of total burn</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Build</td><td>M1–M3</td>
+        <td>₹5–8L</td><td>₹3–5L</td><td>₹25–35L</td>
+        <td><strong>₹33–48L</strong></td>
+        <td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:60%;background:#378ADD"></div></div>~50%</div></td>
+      </tr>
+      <tr>
+        <td>Pilot</td><td>M4–M6</td>
+        <td>₹8–14L</td><td>₹8–12L</td><td>₹28–40L</td>
+        <td><strong>₹44–66L</strong></td>
+        <td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:65%;background:#1D9E75"></div></div>~55%</div></td>
+      </tr>
+      <tr>
+        <td>Revenue</td><td>M7–M9</td>
+        <td>₹14–22L</td><td>₹12–18L</td><td>₹30–42L</td>
+        <td><strong>₹56–82L</strong></td>
+        <td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:70%;background:#EF9F27"></div></div>~60%</div></td>
+      </tr>
+      <tr>
+        <td>PMF signal</td><td>M10–M12</td>
+        <td>₹22–35L</td><td>₹18–26L</td><td>₹32–45L</td>
+        <td><strong>₹72–106L</strong></td>
+        <td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:75%;background:#534AB7"></div></div>~65%</div></td>
+      </tr>
+      <tr>
+        <td>Scale</td><td>M13–M15</td>
+        <td>₹35–55L</td><td>₹24–36L</td><td>₹35–50L</td>
+        <td><strong>₹94–141L</strong></td>
+        <td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:85%;background:#D85A30"></div></div>~75%</div></td>
+      </tr>
+      <tr>
+        <td>Series A prep</td><td>M16–M18</td>
+        <td>₹40–65L</td><td>₹28–42L</td><td>₹38–55L</td>
+        <td><strong>₹106–162L</strong></td>
+        <td><div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:90%;background:#888780"></div></div>~80%</div></td>
+      </tr>
+      <tr class="tot">
+        <td colspan="2">18-month total</td>
+        <td>₹124–199L</td><td>₹93–139L</td><td>₹188–267L</td>
+        <td>₹405–605L</td><td>~₹4–6 Cr of ₹20 Cr raise</td>
+      </tr>
+    </tbody>
+  </div>
+
+  <div class="two">
+    <div>
+      <div class="leg">
+        <span><span class="ld" style="background:#378ADD"></span>Infra & cloud</span>
+        <span><span class="ld" style="background:#EF9F27"></span>APIs & tools</span>
+        <span><span class="ld" style="background:#534AB7"></span>Engineering</span>
+      </div>
+      <div class="chart-w h220"><canvas id="c-phases"></canvas></div>
+    </div>
+    <div>
+      <div class="ins i-y" style="margin-bottom:10px">
+        <strong>18-month tech spend = ₹4–6 Cr</strong> out of ₹20 Cr raise. Engineering salaries dominate (₹1.9–2.7 Cr). Infra is surprisingly affordable pre-scale — AWS + Cloudflare for 200k users costs less than one mid-level engineer.
+      </div>
+      <div class="ins i-g" style="margin-bottom:10px">
+        <strong>The CDN inflection point:</strong> At 500k users watching 3 videos/week, video delivery crosses ₹1.5L/month. This is when switching from AWS CloudFront to Cloudflare Stream saves ₹8–12L/year. Set a calendar reminder for Month 9.
+      </div>
+      <div class="ins i-r" style="margin-bottom:0">
+        <strong>VR adds ₹28–42L/yr extra</strong> from 2028. Budget this in the Series A deployment — not pre-seed. The PoC modules (2 × demo scenes) cost ~₹3–5L in cloud costs, not ₹28L.
+      </div>
+    </div>
+  </div>
+  <button class="ask-btn" onclick="sendPrompt('Add tech costs as a new sheet in the Edastra Excel financial model ↗')">Add to Excel model ↗</button>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function sw(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const years=['Year 1\n(0–200k)','Year 2\n(200k–1Mn)','Year 3\n(1Mn–3Mn)'];
+new Chart(document.getElementById('c-overview'),{
+  type:'bar',
+  data:{labels:years,datasets:[
+    {label:'Infra & cloud', data:[23,58,150],backgroundColor:'#378ADD',stack:'s',borderRadius:3},
+    {label:'Video CDN',     data:[16,48,120],backgroundColor:'#1D9E75',stack:'s',borderRadius:3},
+    {label:'Third-party APIs',data:[28,65,90],backgroundColor:'#EF9F27',stack:'s',borderRadius:3},
+    {label:'AI tools',      data:[18,26,34],backgroundColor:'#534AB7',stack:'s',borderRadius:3},
+    {label:'Dev tools',     data:[18,11,16],backgroundColor:'#888780',stack:'s',borderRadius:3},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{
+      x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11}}},
+      y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11},callback:v=>'₹'+v+'L'}}
+    }
+  }
+});
+
+const phases=['M1–3','M4–6','M7–9','M10–12','M13–15','M16–18'];
+new Chart(document.getElementById('c-phases'),{
+  type:'bar',
+  data:{labels:phases,datasets:[
+    {label:'Infra & cloud', data:[6,11,18,28,45,52],backgroundColor:'#378ADD',stack:'s',borderRadius:3},
+    {label:'APIs & tools',  data:[4,10,15,22,30,35],backgroundColor:'#EF9F27',stack:'s',borderRadius:3},
+    {label:'Engineering',   data:[30,34,36,38,42,46],backgroundColor:'#534AB7',stack:'s',borderRadius:3},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{
+      x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11}}},
+      y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11},callback:v=>'₹'+v+'L'}}
+    }
+  }
+});
+</script>

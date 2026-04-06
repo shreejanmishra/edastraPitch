@@ -4,8 +4,8 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './pages/Hero'
 import OurApproach from './pages/OurApproach'
-import Product from './pages/Product'
-import Financials from './pages/Financials'
+import ProductSection from './pages/ProductSection'
+import FinancialsSection from './pages/FinancialsSection'
 import TeamSection from './pages/TeamSection'
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="/our-approach/*" element={<OurApproach />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/financials" element={<Financials />} />
+            <Route path="/product/*" element={<ProductSection />} />
+            <Route path="/financials/*" element={<FinancialsSection />} />
             <Route path="/team/*" element={<TeamSection />} />
           </Routes>
         </main>

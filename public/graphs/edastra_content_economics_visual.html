@@ -1,0 +1,497 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'DM Mono', monospace;
+  --ice: #EAF4FB;
+  --sky: #C8E6F7;
+  --mid: #7BC4E8;
+  --deep: #2A7FB5;
+  --navy: #103A5A;
+  --white: #FAFCFF;
+  --rule: rgba(42,127,181,0.15);
+  --txt: #103A5A;
+  --muted: #5A8FAD;
+  --color-text-primary: #103A5A;
+  --color-text-secondary: #5A8FAD;
+  --color-text-tertiary: #7BC4E8;
+  --color-background-primary: #FAFCFF;
+  --color-background-secondary: #EAF4FB;
+  --color-border-secondary: #C8E6F7;
+  --color-border-tertiary: rgba(42,127,181,0.15);
+  --color-text-success: #1D8A50;
+  --color-text-danger: #D85A30;
+  --color-text-warning: #EF9F27;
+  --color-text-info: #2A7FB5;
+  --color-background-success: #E6F5F0;
+  --color-background-warning: #FFF3E0;
+  --color-background-info: #E8F0FA;
+  --color-border-info: #C8E6F7;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+}
+
+
+*{box-sizing:border-box;margin:0;padding:0;}
+.d{font-family:'Inter',sans-serif;background:#0F0F0F;color:#F0EDE8;min-height:100vh;}
+.nav{display:flex;background:#0F0F0F;border-bottom:1px solid #1E1E1E;position:sticky;top:0;z-index:20;overflow-x:auto;}
+.nt{flex-shrink:0;padding:11px 18px;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#5A8FAD;cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;white-space:nowrap;transition:all .2s;}
+.nt.on{color:#E8C547;border-bottom-color:#E8C547;}
+.nt:hover:not(.on){color:#999;}
+.sl{display:none;padding:2rem 1.75rem 3rem;animation:fi .25s ease;}
+.sl.on{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#E8C547;margin-bottom:.4rem;}
+.title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1.1;color:#F0EDE8;margin-bottom:.35rem;}
+.sub{font-size:13px;color:#5A8FAD;margin-bottom:1.5rem;line-height:1.6;}
+.bar{width:44px;height:3px;background:#E8C547;margin-bottom:1.5rem;}
+
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.75rem;}
+.kpi{background:#161616;border:1px solid #1E1E1E;border-radius: 12px;padding:.875rem 1rem;text-align:center;}
+.kpi.hi{border-color:#E8C547;background:rgba(232,197,71,0.06);}
+.kpi-n{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1;margin-bottom:4px;}
+.kpi-l{font-size:11px;font-weight:500;margin-bottom:3px;}
+.kpi-s{font-size:10px;color:#444;line-height:1.4;}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.75rem;}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.75rem;}
+
+.pipe-card{border-radius:12px;overflow:hidden;border:1px solid #1E1E1E;}
+.pipe-head{padding:.875rem 1.1rem;display:flex;justify-content:space-between;align-items:center;}
+.pipe-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;}
+.pipe-cost{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;}
+.pipe-body{padding:.75rem 1.1rem 1rem;background:#0F0F0F;}
+.pipe-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #103A5A;}
+.pipe-row:last-child{border:none;}
+.pipe-k{color:#5A8FAD;}
+.pipe-v{font-weight:500;}
+.pill{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;font-weight:500;margin-top:8px;}
+
+.ins{border-radius:8px;padding:.875rem 1rem;font-size:12px;line-height:1.65;margin-bottom:1rem;}
+.ins-g{background:rgba(29,138,80,0.07);border-left:2px solid #1D8A50;color:rgba(240,237,232,0.85);}
+.ins-y{background:rgba(232,197,71,0.07);border-left:2px solid #E8C547;color:rgba(240,237,232,0.85);}
+.ins-b{background:rgba(59,130,246,0.07);border-left:2px solid #3B82F6;color:rgba(240,237,232,0.85);}
+.ins-r{background:rgba(216,90,48,0.07);border-left:2px solid #D85A30;color:rgba(240,237,232,0.85);}
+
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:1.5rem;}
+.tbl th{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#444;padding:8px 10px;text-align:left;border-bottom:1px solid #1E1E1E;white-space:nowrap;}
+.tbl td{padding:9px 10px;border-bottom:1px solid #161616;color:rgba(240,237,232,0.8);}
+.tbl tr:last-child td{border:none;}
+.tbl tr:hover td{background:#161616;}
+.tbl .tot td{border-top:1px solid #E8C547;font-weight:500;color:#E8C547;}
+
+.chart-w{position:relative;width:100%;margin-bottom:1.5rem;}
+.h260{height:260px;}.h220{height:220px;}.h200{height:200px;}.h180{height:180px;}
+
+.leg{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:#5A8FAD;margin-bottom:8px;}
+.leg span{display:flex;align-items:center;gap:5px;}
+.ld{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.5rem;}
+.tc{background:#161616;border:1px solid #1E1E1E;border-radius: 12px;padding:.875rem 1rem;}
+.tc.gold{border-color:#E8C547;background:rgba(232,197,71,0.05);}
+.tc-role{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#F0EDE8;margin-bottom:3px;}
+.tc-tasks{font-size:10px;color:#444;margin-bottom:8px;line-height:1.5;}
+.tc-sal{font-size:16px;font-weight:500;color:#E8C547;}
+.tc-count{font-size:10px;color:#5A8FAD;margin-top:2px;}
+
+.cap-r{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.cap-l{font-size:11px;color:#5A8FAD;min-width:170px;}
+.cap-t{flex:1;height:7px;background:#103A5A;border-radius:99px;overflow:hidden;}
+.cap-f{height:7px;border-radius:99px;}
+.cap-v{font-size:11px;min-width:90px;text-align:right;}
+
+.val-row{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;padding:10px;background:#161616;border-radius:8px;margin-bottom:8px;align-items:center;border:1px solid #1E1E1E;}
+.val-sc{font-size:12px;font-weight:500;color:#F0EDE8;}
+.val-n{font-size:11px;color:#5A8FAD;text-align:center;}
+.val-c{font-size:11px;font-weight:500;color:#E8C547;text-align:center;}
+.val-v{font-size:10px;padding:2px 7px;border-radius:99px;text-align:center;font-weight:500;}
+.badge-g{background:rgba(29,138,80,0.15);color:#1D8A50;}
+.badge-y{background:rgba(232,197,71,0.15);color:#E8C547;}
+.badge-r{background:rgba(216,90,48,0.15);color:#D85A30;}
+
+.callout{border-radius: 12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem;}
+.callout-l{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
+.callout-t{font-size:14px;line-height:1.7;font-weight:500;}
+</style>
+
+<div class="d">
+<nav class="nav">
+  <button class="nt on"  onclick="sw('cost',this)">Per-video cost</button>
+  <button class="nt"     onclick="sw('pipeline',this)">AI vs human</button>
+  <button class="nt"     onclick="sw('team',this)">Team & budget</button>
+  <button class="nt"     onclick="sw('capacity',this)">Capacity</button>
+  <button class="nt"     onclick="sw('moat',this)">Content moat</button>
+  <button class="nt"     onclick="sw('validation',this)">₹5 Cr check</button>
+</nav>
+
+<!-- ══ SLIDE 1: PER VIDEO COST ══ -->
+<div class="sl on" id="sl-cost">
+  <div class="eyebrow">8-minute video · production data</div>
+  <div class="title">What one video<br>actually costs.</div>
+  <div class="sub">Based on Edastra's own production data. AI-assisted pipeline vs human-only.</div>
+  <div class="bar"></div>
+
+  <div class="kpi-row">
+    <div class="kpi hi">
+      <div class="kpi-n" style="color:#E8C547">₹1,870</div>
+      <div class="kpi-l" style="color:#F5E48B">AI pipeline — best case</div>
+      <div class="kpi-s">6 hrs · ₹70/hr labour + ₹1,200 tools</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#1D8A50">₹3,070</div>
+      <div class="kpi-l" style="color:#15755A">AI pipeline — worst case</div>
+      <div class="kpi-s">12 hrs · ₹120/hr + ₹2,000 tools + retakes</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#D85A30">₹3,920</div>
+      <div class="kpi-l" style="color:#FECACA">Human pipeline</div>
+      <div class="kpi-s">16 hrs avg · ₹165/hr + ₹1,200 tools</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#93C5FD">50%</div>
+      <div class="kpi-l" style="color:#BFDBFE">AI cost saving</div>
+      <div class="kpi-s">vs pure human pipeline</div>
+    </div>
+  </div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#E8C547"></span>Labour cost</span>
+    <span><span class="ld" style="background:#3B82F6"></span>AI tools & software</span>
+    <span><span class="ld" style="background:#5A8FAD"></span>Editing tools (amortised)</span>
+  </div>
+  <div class="chart-w h260"><canvas id="c-cost"></canvas></div>
+
+  <div class="tbl">
+    <thead><tr><th>Component</th><th>AI best</th><th>AI worst</th><th>Human</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Production hours</td><td>6 hrs</td><td>12 hrs</td><td>12–20 hrs</td><td style="color:#444">Edastra production data</td></tr>
+      <tr><td>Labour rate</td><td style="color:#1D8A50">₹70/hr</td><td style="color:#1D8A50">₹120/hr</td><td style="color:#D85A30">₹160–170/hr</td><td style="color:#444">Edastra team data</td></tr>
+      <tr><td>Labour subtotal</td><td>₹420</td><td>₹1,440</td><td>₹2,720</td><td style="color:#444">Calculated</td></tr>
+      <tr><td>AI tools & software</td><td>₹1,200</td><td>₹2,000</td><td>₹1,200</td><td style="color:#444">Edastra cost data</td></tr>
+      <tr><td>Editing (amortised)</td><td>₹110</td><td>₹110</td><td>₹110</td><td style="color:#444">₹29L ÷ 260 vids/yr</td></tr>
+      <tr class="tot"><td>Total per video</td><td>₹1,730</td><td>₹3,550</td><td>₹4,030</td><td></td></tr>
+    </tbody>
+  </div>
+</div>
+
+<!-- ══ SLIDE 2: AI VS HUMAN ══ -->
+<div class="sl" id="sl-pipeline">
+  <div class="eyebrow">Pipeline comparison</div>
+  <div class="title">AI doesn't just save time.<br>It saves 50% of cost.</div>
+  <div class="sub">Two pipelines. Same 8-minute video. Completely different cost structure.</div>
+  <div class="bar"></div>
+
+  <div class="two">
+    <div class="pipe-card">
+      <div class="pipe-head" style="background:rgba(29,138,80,0.1);">
+        <div class="pipe-name" style="color:#1D8A50">AI-assisted pipeline</div>
+        <div class="pipe-cost" style="color:#1D8A50">₹1,870–3,070</div>
+      </div>
+      <div class="pipe-body">
+        <div class="pipe-row"><span class="pipe-k">Production time</span><span class="pipe-v">6–12 hrs / video</span></div>
+        <div class="pipe-row"><span class="pipe-k">Labour rate</span><span class="pipe-v" style="color:#1D8A50">₹70–120 / hr</span></div>
+        <div class="pipe-row"><span class="pipe-k">Labour total</span><span class="pipe-v">₹420–1,440</span></div>
+        <div class="pipe-row"><span class="pipe-k">AI tools & software</span><span class="pipe-v">₹1,200–2,000 / video</span></div>
+        <div class="pipe-row"><span class="pipe-k">Editing tools</span><span class="pipe-v">~₹110 / video</span></div>
+        <div class="pipe-row"><span class="pipe-k">Output per week</span><span class="pipe-v" style="color:#1D8A50">5–8 videos</span></div>
+        <span class="pill" style="background:rgba(29,138,80,0.15);color:#1D8A50">Recommended</span>
+      </div>
+    </div>
+    <div class="pipe-card">
+      <div class="pipe-head" style="background:rgba(216,90,48,0.08);">
+        <div class="pipe-name" style="color:#D85A30">Human-only pipeline</div>
+        <div class="pipe-cost" style="color:#D85A30">₹3,760–4,030</div>
+      </div>
+      <div class="pipe-body">
+        <div class="pipe-row"><span class="pipe-k">Production time</span><span class="pipe-v">12–20 hrs / video</span></div>
+        <div class="pipe-row"><span class="pipe-k">Labour rate</span><span class="pipe-v" style="color:#D85A30">₹160–170 / hr</span></div>
+        <div class="pipe-row"><span class="pipe-k">Labour total</span><span class="pipe-v">₹2,240–3,400</span></div>
+        <div class="pipe-row"><span class="pipe-k">AI tools & software</span><span class="pipe-v">₹1,200 (base)</span></div>
+        <div class="pipe-row"><span class="pipe-k">Editing tools</span><span class="pipe-v">~₹110 / video</span></div>
+        <div class="pipe-row"><span class="pipe-k">Output per week</span><span class="pipe-v" style="color:#D85A30">2–3 videos</span></div>
+        <span class="pill" style="background:rgba(216,90,48,0.15);color:#D85A30">2x cost · 2x slower</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#E8C547"></span>AI pipeline cost</span>
+    <span><span class="ld" style="background:#D85A30"></span>Human pipeline cost</span>
+  </div>
+  <div class="chart-w h220"><canvas id="c-pipe"></canvas></div>
+
+  <div class="ins ins-y">
+    <strong style="color:#E8C547">Time is the real multiplier.</strong> AI pipeline produces 5–8 videos/week vs 2–3 for human-only. At the same team size and budget, Edastra produces <strong style="color:#F5E48B">2.5–3x more content per rupee</strong>. That content volume is the library moat — not any single video.
+  </div>
+</div>
+
+<!-- ══ SLIDE 3: TEAM & BUDGET ══ -->
+<div class="sl" id="sl-team">
+  <div class="eyebrow">Animation department · 6 people</div>
+  <div class="title">₹29 Lakh builds a<br>full production team.</div>
+  <div class="sub">Complete animation department annual cost. Confirmed from Edastra's own team structure.</div>
+  <div class="bar"></div>
+
+  <div class="team-grid">
+    <div class="tc">
+      <div class="tc-role">Modeller</div>
+      <div class="tc-tasks">Modelling · Texturing</div>
+      <div class="tc-sal">₹30K / mo</div>
+      <div class="tc-count">1 person · ₹3.6L / yr</div>
+    </div>
+    <div class="tc">
+      <div class="tc-role">Animation Generalist</div>
+      <div class="tc-tasks">Rigging · Animation · Camera</div>
+      <div class="tc-sal">₹25K / mo</div>
+      <div class="tc-count">1 person · ₹3L / yr</div>
+    </div>
+    <div class="tc">
+      <div class="tc-role">Lighting Artist</div>
+      <div class="tc-tasks">Lighting · Rendering</div>
+      <div class="tc-sal">₹20K / mo</div>
+      <div class="tc-count">1 person · ₹2.4L / yr</div>
+    </div>
+    <div class="tc">
+      <div class="tc-role">Lead Animator</div>
+      <div class="tc-tasks">Direction · QC · Pipeline</div>
+      <div class="tc-sal">₹30K / mo</div>
+      <div class="tc-count">1 person · ₹3.6L / yr</div>
+    </div>
+    <div class="tc">
+      <div class="tc-role">Animation Interns</div>
+      <div class="tc-tasks">Support · Retakes · Cleanup</div>
+      <div class="tc-sal">₹20K / mo each</div>
+      <div class="tc-count">2 people · ₹4.8L / yr</div>
+    </div>
+    <div class="tc gold">
+      <div class="tc-role" style="color:#E8C547">Annual total</div>
+      <div class="tc-tasks" style="color:#999">Salaries + tools + infra</div>
+      <div class="tc-sal">₹29L / yr</div>
+      <div class="tc-count">₹23L salaries + ₹4L infra + ₹2L tools</div>
+    </div>
+  </div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#E8C547"></span>Salaries (₹23L)</span>
+    <span><span class="ld" style="background:#3B82F6"></span>Infrastructure & AI (₹4L)</span>
+    <span><span class="ld" style="background:#7BC4E8"></span>Creative tools (₹2L)</span>
+  </div>
+  <div class="chart-w h200"><canvas id="c-team"></canvas></div>
+
+  <div class="ins ins-b">
+    <strong style="color:#93C5FD">Industry context:</strong> A traditional animation studio in India charges ₹1,000–3,000 per minute of content. Edastra's 6-person in-house team produces at ₹230–300/min — building content IP at a fraction of outsourced cost while retaining full ownership.
+  </div>
+</div>
+
+<!-- ══ SLIDE 4: CAPACITY ══ -->
+<div class="sl" id="sl-capacity">
+  <div class="eyebrow">Annual output · AI pipeline</div>
+  <div class="title">320 videos. 35–53 hours<br>of content. Per year.</div>
+  <div class="sub">What the 6-person team can produce at ₹29L annual budget using the AI-assisted pipeline.</div>
+  <div class="bar"></div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-n" style="color:#E8C547">5–8</div>
+      <div class="kpi-l" style="color:#F5E48B">Videos / week</div>
+      <div class="kpi-s">AI pipeline · 6-person team</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#1D8A50">~320</div>
+      <div class="kpi-l" style="color:#15755A">Videos / year</div>
+      <div class="kpi-s">50 working weeks × 6.4 avg</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#93C5FD">43 hrs</div>
+      <div class="kpi-l" style="color:#BFDBFE">Content hours / yr</div>
+      <div class="kpi-s">At 8 min per video</div>
+    </div>
+    <div class="kpi hi">
+      <div class="kpi-n" style="color:#E8C547">₹230–300</div>
+      <div class="kpi-l" style="color:#F5E48B">Cost per minute</div>
+      <div class="kpi-s">vs ₹1k–3k industry rate</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:1.5rem;">
+    <div class="cap-r">
+      <div class="cap-l">Grade 6 · 3 subjects</div>
+      <div class="cap-t"><div class="cap-f" style="width:39%;background:#3B82F6;"></div></div>
+      <div class="cap-v" style="color:#93C5FD">~100 videos · 31%</div>
+    </div>
+    <div class="cap-r">
+      <div class="cap-l">Grade 7 · 3 subjects</div>
+      <div class="cap-t"><div class="cap-f" style="width:39%;background:#7BC4E8;"></div></div>
+      <div class="cap-v" style="color:#EDE9F6">~100 videos · 31%</div>
+    </div>
+    <div class="cap-r">
+      <div class="cap-l">Grade 8 · 3 subjects</div>
+      <div class="cap-t"><div class="cap-f" style="width:31%;background:#1D8A50;"></div></div>
+      <div class="cap-v" style="color:#1D8A50">~80 videos · 25%</div>
+    </div>
+    <div class="cap-r">
+      <div class="cap-l">Buffer / retakes / QC</div>
+      <div class="cap-t"><div class="cap-f" style="width:16%;background:#F59E0B;"></div></div>
+      <div class="cap-v" style="color:#EF9F27">~40 videos · 13%</div>
+    </div>
+    <div class="cap-r">
+      <div class="cap-l" style="color:#E8C547;font-weight:500;">Total Year 1</div>
+      <div class="cap-t"><div class="cap-f" style="width:100%;background:#E8C547;"></div></div>
+      <div class="cap-v" style="color:#E8C547;font-weight:500;">~320 videos</div>
+    </div>
+  </div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#3B82F6"></span>Grade 6</span>
+    <span><span class="ld" style="background:#7BC4E8"></span>Grade 7</span>
+    <span><span class="ld" style="background:#1D8A50"></span>Grade 8</span>
+    <span><span class="ld" style="background:#F59E0B"></span>Buffer/QC</span>
+  </div>
+  <div class="chart-w h220"><canvas id="c-cap"></canvas></div>
+</div>
+
+<!-- ══ SLIDE 5: CONTENT MOAT ══ -->
+<div class="sl" id="sl-moat">
+  <div class="eyebrow">Structural advantage</div>
+  <div class="title">₹230/min vs ₹3,000/min.<br>That is the moat.</div>
+  <div class="sub">Not a cost advantage. A structural production moat no competitor can replicate without the same AI toolstack, team, and 18 months of production time.</div>
+  <div class="bar"></div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#E8C547"></span>Edastra AI pipeline</span>
+    <span><span class="ld" style="background:#D85A30"></span>Traditional studio (high)</span>
+    <span><span class="ld" style="background:#F59E0B"></span>Traditional studio (low)</span>
+    <span><span class="ld" style="background:#3B82F6"></span>Edastra target model</span>
+  </div>
+  <div class="chart-w h260"><canvas id="c-moat"></canvas></div>
+
+  <div class="three">
+    <div class="ins ins-y" style="margin-bottom:0">
+      <strong style="color:#E8C547">4–10x cost advantage.</strong> At ₹230–300/min, Edastra produces animation content at 4–10x lower cost than traditional studios charging ₹1,000–3,000/min.
+    </div>
+    <div class="ins ins-g" style="margin-bottom:0">
+      <strong style="color:#1D8A50">Replication barrier.</strong> A competitor starting today needs 18 months + ₹5 Cr minimum to build an equivalent library. The head start is permanent in practical terms.
+    </div>
+    <div class="ins ins-b" style="margin-bottom:0">
+      <strong style="color:#93C5FD">IP ownership.</strong> In-house production = full IP ownership. Outsourced studios retain rights or charge licensing premiums. Edastra owns every frame.
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 6: ₹5 CR VALIDATION ══ -->
+<div class="sl" id="sl-validation">
+  <div class="eyebrow">Fund allocation check</div>
+  <div class="title">Does ₹5 Cr for content<br>make sense?</div>
+  <div class="sub">Only if you're building a full library — not just Grades 6–8. Here's the math that makes it defensible.</div>
+  <div class="bar"></div>
+
+  <div style="margin-bottom:1.5rem;">
+    <div style="display:grid;grid-template-columns:1fr auto auto auto;gap:8px;padding:8px 10px;font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:#444;border-bottom:1px solid #1E1E1E;">
+      <div>Scenario</div><div style="text-align:center">Annual cost</div><div style="text-align:center">₹5 Cr covers</div><div style="text-align:center">Verdict</div>
+    </div>
+    <div class="val-row">
+      <div class="val-sc">AI pipeline · Year 1 (Gr 6–8 only · 320 vids)</div>
+      <div class="val-n">₹68L / yr</div>
+      <div class="val-c">7.4 years</div>
+      <div class="val-v badge-y">Over-allocated</div>
+    </div>
+    <div class="val-row">
+      <div class="val-sc">AI pipeline with retakes (320 vids)</div>
+      <div class="val-n">₹98L / yr</div>
+      <div class="val-c">5.1 years</div>
+      <div class="val-v badge-y">Over-allocated</div>
+    </div>
+    <div class="val-row">
+      <div class="val-sc">Human pipeline (320 vids)</div>
+      <div class="val-n">₹125L / yr</div>
+      <div class="val-c">4 years</div>
+      <div class="val-v badge-y">Still over</div>
+    </div>
+    <div class="val-row" style="border-color:#E8C547;background:rgba(232,197,71,0.05);">
+      <div class="val-sc" style="color:#E8C547;font-weight:600;">Scale: Gr 6–10 · 5 subjects · ~1,500 vids</div>
+      <div class="val-n" style="color:#E8C547">₹318L / yr</div>
+      <div class="val-c" style="color:#E8C547">1.6 years</div>
+      <div class="val-v badge-g">Justified ✓</div>
+    </div>
+  </div>
+
+  <div class="callout" style="background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.3);">
+    <div class="callout-l" style="color:#E8C547">The VC answer — use exactly this</div>
+    <div class="callout-t" style="color:rgba(240,237,232,0.9);font-size:13px;font-weight:400;">"We allocate ₹5 Cr to build a 2-year content IP library across Grades 6–10, 5 core subjects — approximately 1,500 videos at ₹2,100–3,000 each using our AI-assisted pipeline. No competitor can replicate this library for under ₹5 Cr and 18 months of production time. This is a content moat, not a cost line."</div>
+  </div>
+
+  <div class="ins ins-g">
+    <strong style="color:#1D8A50">The benchmark that wins rooms:</strong> Traditional studios charge ₹1,000–3,000/min. Edastra AI pipeline = ₹230–300/min. That is a <strong style="color:#1D8A50">10–13x cost advantage</strong>. At that rate, ₹5 Cr builds what would cost ₹35–65 Cr to outsource. That is the asset you are creating — not a marketing expense.
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function sw(id,btn){
+  document.querySelectorAll('.sl').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nt').forEach(b=>b.classList.remove('on'));
+  document.getElementById('sl-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+
+const defs={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  scales:{x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5A8FAD',font:{size:11}}},
+          y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5A8FAD',font:{size:11}}}}};
+
+new Chart(document.getElementById('c-cost'),{type:'bar',
+  data:{labels:['AI best case','AI mid case','AI worst case','Human pipeline'],
+    datasets:[
+      {label:'Labour',     data:[420,700,1440,2720],backgroundColor:'#E8C547',borderRadius:4,stack:'s'},
+      {label:'AI tools',   data:[1200,1600,2000,1200],backgroundColor:'#3B82F6',borderRadius:4,stack:'s'},
+      {label:'Editing',    data:[110,110,110,110],backgroundColor:'#5A8FAD',borderRadius:4,stack:'s'},
+    ]},
+  options:{...defs,scales:{x:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5A8FAD',font:{size:11}}},
+    y:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5A8FAD',font:{size:11},callback:v=>'₹'+v}}}}
+});
+
+new Chart(document.getElementById('c-pipe'),{type:'bar',
+  data:{labels:['AI\nbest','AI\nmid','AI\nworst','Human\nlow','Human\nhigh'],
+    datasets:[{data:[1730,2410,3550,3550,4030],
+      backgroundColor:['#E8C547','#E8C547','rgba(232,197,71,0.5)','rgba(216,90,48,0.5)','#D85A30'],
+      borderRadius:5}]},
+  options:{...defs,scales:{x:{grid:{display:false},ticks:{color:'#5A8FAD',font:{size:11}}},
+    y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5A8FAD',font:{size:11},callback:v=>'₹'+v}}}}
+});
+
+new Chart(document.getElementById('c-team'),{type:'doughnut',
+  data:{labels:['Modeller ₹3.6L','Generalist ₹3L','Lighting ₹2.4L','Lead ₹3.6L','Interns ₹4.8L','Infra ₹4L','Tools ₹2L'],
+    datasets:[{data:[3.6,3,2.4,3.6,4.8,4,2],
+      backgroundColor:['#E8C547','#F59E0B','#EF9F27','#2A7FB5','#A87E2E','#3B82F6','#7BC4E8'],
+      borderWidth:0,hoverBorderWidth:2,hoverBorderColor:'#F0EDE8'}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    cutout:'65%',layout:{padding:10}}
+});
+
+new Chart(document.getElementById('c-cap'),{type:'bar',
+  data:{labels:['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'],
+    datasets:[
+      {label:'G6', data:[12,12,12,10,10,8,8,6,4,4,2,2], backgroundColor:'#3B82F6',stack:'s',borderRadius:3},
+      {label:'G7', data:[0,2,4,8,10,10,10,10,10,8,8,8], backgroundColor:'#7BC4E8',stack:'s',borderRadius:3},
+      {label:'G8', data:[0,0,0,0,2,4,6,8,8,10,10,10],   backgroundColor:'#1D8A50',stack:'s',borderRadius:3},
+      {label:'QC', data:[2,2,2,2,2,4,4,4,4,4,4,4],       backgroundColor:'#F59E0B',stack:'s',borderRadius:3},
+    ]},
+  options:{...defs,scales:{
+    x:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5A8FAD',font:{size:11}}},
+    y:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5A8FAD',font:{size:11},callback:v=>v+' vids'}}}}
+});
+
+new Chart(document.getElementById('c-moat'),{type:'bar',
+  data:{labels:['Edastra AI\n(₹/min)','Edastra target\nmodel','Traditional\nstudio (low)','Traditional\nstudio (high)'],
+    datasets:[{data:[265,300,1000,3000],
+      backgroundColor:['#E8C547','rgba(232,197,71,0.4)','rgba(245,158,11,0.5)','#D85A30'],
+      borderRadius:5}]},
+  options:{...defs,scales:{x:{grid:{display:false},ticks:{color:'#5A8FAD',font:{size:11}}},
+    y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5A8FAD',font:{size:11},callback:v=>'₹'+v+'/min'}}}}
+});
+</script>

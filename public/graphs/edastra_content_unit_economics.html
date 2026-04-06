@@ -1,0 +1,421 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'DM Mono', monospace;
+  --ice: #EAF4FB;
+  --sky: #C8E6F7;
+  --mid: #7BC4E8;
+  --deep: #2A7FB5;
+  --navy: #103A5A;
+  --white: #FAFCFF;
+  --rule: rgba(42,127,181,0.15);
+  --txt: #103A5A;
+  --muted: #5A8FAD;
+  --color-text-primary: #103A5A;
+  --color-text-secondary: #5A8FAD;
+  --color-text-tertiary: #7BC4E8;
+  --color-background-primary: #FAFCFF;
+  --color-background-secondary: #EAF4FB;
+  --color-border-secondary: #C8E6F7;
+  --color-border-tertiary: rgba(42,127,181,0.15);
+  --color-text-success: #1D8A50;
+  --color-text-danger: #D85A30;
+  --color-text-warning: #EF9F27;
+  --color-text-info: #2A7FB5;
+  --color-background-success: #E6F5F0;
+  --color-background-warning: #FFF3E0;
+  --color-background-info: #E8F0FA;
+  --color-border-info: #C8E6F7;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+}
+
+.deck { font-family:'Outfit',sans-serif; background: var(--navy); color: var(--cream); }
+.tab-row { display: flex; border-bottom: 1px solid rgba(42,127,181,0.2); }
+.tnav { flex: 1; padding: 10px 0; text-align: center; font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(245,240,232,0.4); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+.tnav.active { color: var(--gold); border-bottom-color: var(--gold); }
+.panel { display: none; padding: 1.75rem 1.75rem 2rem; animation: fi 0.25s ease; }
+.panel.active { display: block; }
+@keyframes fi { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+
+.eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+.ptitle { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--cream); margin-bottom: 3px; }
+.psub { font-size: 12px; color: rgba(245,240,232,0.45); margin-bottom: 1.25rem; }
+.gline { width: 36px; height: 2px; background: var(--gold); margin-bottom: 1.25rem; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.stat { background: rgba(245,240,232,0.04); border:1px solid rgba(245,240,232,0.1); border-radius: 8px; padding: 0.75rem 1rem; }
+.stat-label { font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(245,240,232,0.4); margin-bottom: 4px; }
+.stat-val { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--gold); line-height: 1.1; }
+.stat-sub { font-size: 10px; color: rgba(245,240,232,0.35); margin-top: 2px; }
+
+.tbl { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 1.25rem; }
+.tbl th { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(245,240,232,0.4); padding: 8px 10px; text-align: left; border-bottom: 1px solid rgba(245,240,232,0.08); white-space: nowrap; }
+.tbl td { padding: 8px 10px; border-bottom:1px solid rgba(245,240,232,0.06); color: rgba(245,240,232,0.85); vertical-align: middle; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: rgba(245,240,232,0.04); }
+.tbl .total td { border-top: 1px solid rgba(42,127,181,0.3); font-weight: 600; color: var(--gold-light); }
+
+.pill { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: 500; }
+.p-green  { background: rgba(29,138,80,0.2); color: #1D8A50; }
+.p-amber  { background: rgba(217,119,6,0.2); color: #EF9F27; }
+.p-red    { background: rgba(216,90,48,0.2); color: #D85A30; }
+.p-blue   { background: rgba(123,196,232,0.2); color: #7BC4E8; }
+.p-gold   { background: rgba(42,127,181,0.2); color: var(--gold-light); }
+
+.bar-wrap { width: 80px; height: 5px; background: rgba(245,240,232,0.1); border-radius: 99px; display: inline-block; vertical-align: middle; }
+.bar-fill { height: 5px; border-radius: 99px; }
+
+.insight { border-radius: 6px; padding: 0.75rem 1rem; font-size: 12px; line-height: 1.6; margin-bottom: 1rem; }
+.i-gold   { background: rgba(42,127,181,0.1); border-left: 2px solid var(--gold); color: rgba(245,240,232,0.8); }
+.i-green  { background: rgba(29,138,80,0.1); border-left: 2px solid #059669; color: rgba(245,240,232,0.8); }
+.i-red    { background: rgba(216,90,48,0.1); border-left: 2px solid #DC2626; color: rgba(245,240,232,0.8); }
+.i-blue   { background: rgba(123,196,232,0.1); border-left: 2px solid var(--teal); color: rgba(245,240,232,0.8); }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+.scenario-card { background: rgba(245,240,232,0.04); border:1px solid rgba(245,240,232,0.1); border-radius: 12px; padding: 1rem 1.1rem; }
+.sc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom:1px solid rgba(245,240,232,0.08); }
+.sc-name { font-size: 13px; font-weight: 500; color: var(--cream); }
+.sc-cost { font-family: 'DM Serif Display', serif; font-size: 18px; }
+.sc-row { display: flex; justify-content: space-between; font-size: 11px; color: rgba(245,240,232,0.55); padding: 3px 0; }
+.sc-row strong { color: rgba(245,240,232,0.85); }
+
+.team-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-bottom: 1.25rem; }
+.team-card { background: rgba(245,240,232,0.04); border:1px solid rgba(245,240,232,0.08); border-radius: 8px; padding: 0.75rem; }
+.team-role { font-size: 12px; font-weight: 500; color: var(--cream); margin-bottom: 2px; }
+.team-tasks { font-size: 10px; color: rgba(245,240,232,0.45); margin-bottom: 6px; line-height: 1.5; }
+.team-sal { font-size: 13px; font-weight: 500; color: var(--gold-light); }
+.team-count { font-size: 10px; color: rgba(245,240,232,0.4); }
+
+.capacity-bar { margin-bottom: 1.25rem; }
+.cap-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.cap-label { font-size: 11px; color: rgba(245,240,232,0.6); min-width: 140px; }
+.cap-track { flex: 1; height: 8px; background: rgba(245,240,232,0.08); border-radius: 99px; overflow: hidden; }
+.cap-fill { height: 8px; border-radius: 99px; }
+.cap-val { font-size: 11px; color: var(--gold-light); min-width: 60px; text-align: right; }
+
+.chart-wrap { position: relative; width: 100%; height: 240px; margin-bottom: 0.75rem; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 1rem; }
+.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(245,240,232,0.5); }
+.leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+</style>
+
+<div class="deck">
+<div class="tab-row">
+  <div class="tnav active" onclick="sw('unit',this)">Per-video cost</div>
+  <div class="tnav" onclick="sw('team',this)">Team & roles</div>
+  <div class="tnav" onclick="sw('capacity',this)">Annual capacity</div>
+  <div class="tnav" onclick="sw('validation',this)">₹5 Cr validation</div>
+</div>
+
+<!-- ══ TAB 1: PER VIDEO ══ -->
+<div class="panel active" id="panel-unit">
+  <div class="eyebrow">Content unit economics · 8-min video</div>
+  <div class="ptitle">Per-Video Cost Breakdown</div>
+  <div class="psub">Based on your production data · Human vs AI pipeline comparison</div>
+  <div class="gline"></div>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="stat-label">AI pipeline cost</div>
+      <div class="stat-val">₹1,870–2,370</div>
+      <div class="stat-sub">Labour + tools per video</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Human pipeline cost</div>
+      <div class="stat-val">₹3,760–3,920</div>
+      <div class="stat-sub">Labour + tools per video</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">AI time saving</div>
+      <div class="stat-val">40–50%</div>
+      <div class="stat-sub">6–12 hrs vs 12–20 hrs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">AI cost saving</div>
+      <div class="stat-val">~50%</div>
+      <div class="stat-sub">vs pure human pipeline</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="scenario-card">
+      <div class="sc-head">
+        <div class="sc-name">AI-assisted pipeline</div>
+        <div class="sc-cost" style="color:#1D8A50">₹1,870–2,370</div>
+      </div>
+      <div class="sc-row"><span>Production time</span><strong>6–12 hrs / video</strong></div>
+      <div class="sc-row"><span>Labour cost (team)</span><strong>₹70–120 / hr × 8 hrs avg</strong></div>
+      <div class="sc-row"><span>Labour total</span><strong>₹560–960</strong></div>
+      <div class="sc-row"><span>AI tools + software</span><strong>₹1,200–2,000 / video</strong></div>
+      <div class="sc-row"><span>Editing tools share</span><strong>~₹110 / video (₹29L / 260 vids)</strong></div>
+      <div class="sc-row"><span>Total per 8-min video</span><strong style="color:#1D8A50">₹1,870–3,070</strong></div>
+      <div style="margin-top:8px"><span class="pill p-green">Recommended pipeline</span></div>
+    </div>
+    <div class="scenario-card">
+      <div class="sc-head">
+        <div class="sc-name">Human-only pipeline</div>
+        <div class="sc-cost" style="color:#D85A30">₹3,760–3,920</div>
+      </div>
+      <div class="sc-row"><span>Production time</span><strong>12–20 hrs / video</strong></div>
+      <div class="sc-row"><span>Labour cost (team)</span><strong>₹160–170 / hr × 16 hrs avg</strong></div>
+      <div class="sc-row"><span>Labour total</span><strong>₹2,560–2,720</strong></div>
+      <div class="sc-row"><span>AI tools + software</span><strong>₹1,200 (min tools only)</strong></div>
+      <div class="sc-row"><span>Total per 8-min video</span><strong style="color:#D85A30">₹3,760–3,920</strong></div>
+      <div style="margin-top:8px"><span class="pill p-red">2x cost vs AI pipeline</span></div>
+    </div>
+  </div>
+
+  <div class="insight i-gold">
+    <strong style="color:var(--gold)">VC-ready framing:</strong> At ₹1,870–2,370 per 8-min video using AI pipeline, Edastra produces curriculum content at roughly <strong style="color:var(--gold-light)">₹230–300 per minute</strong> — vs industry benchmark of ₹1,000–3,000/min for traditional animation studios. That's a 4–10x cost advantage driven by the AI-assisted production stack. This is your content moat, not just a cost line.
+  </div>
+
+  <table class="tbl">
+    <thead><tr><th>Cost component</th><th>AI pipeline</th><th>Human pipeline</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Labour (per hr)</td><td><span class="pill p-green">₹70–120</span></td><td><span class="pill p-red">₹160–170</span></td><td>Your data</td></tr>
+      <tr><td>Hours per 8-min video</td><td>6–12 hrs</td><td>12–20 hrs</td><td>Your data</td></tr>
+      <tr><td>Labour subtotal</td><td>₹560–960</td><td>₹2,560–2,720</td><td>Calculated</td></tr>
+      <tr><td>AI tools & software</td><td>₹1,200–2,000</td><td>₹1,200 (base)</td><td>Your data</td></tr>
+      <tr><td>Editing tools (amortised)</td><td>₹110</td><td>₹110</td><td>₹29L / 260 vids/yr</td></tr>
+      <tr class="total"><td>Total per video</td><td>₹1,870–3,070</td><td>₹3,760–3,920</td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ TAB 2: TEAM ══ -->
+<div class="panel" id="panel-team">
+  <div class="eyebrow">Animation team · from your role breakdown</div>
+  <div class="ptitle">Team Structure & Salaries</div>
+  <div class="psub">Core production team · ₹29L annual budget (animation dept only)</div>
+  <div class="gline"></div>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-role">Modeller</div>
+      <div class="team-tasks">Modelling · Texturing</div>
+      <div class="team-sal">₹30K/mo</div>
+      <div class="team-count">1 person</div>
+    </div>
+    <div class="team-card">
+      <div class="team-role">Animation Generalist</div>
+      <div class="team-tasks">Rigging · Animation · Camera</div>
+      <div class="team-sal">₹25K/mo</div>
+      <div class="team-count">1 person</div>
+    </div>
+    <div class="team-card">
+      <div class="team-role">Lighting Artist</div>
+      <div class="team-tasks">Lighting · Rendering</div>
+      <div class="team-sal">₹20K/mo</div>
+      <div class="team-count">1 person</div>
+    </div>
+    <div class="team-card">
+      <div class="team-role">Lead Animator</div>
+      <div class="team-tasks">Direction · Quality control · Pipeline</div>
+      <div class="team-sal">₹30K/mo</div>
+      <div class="team-count">1 person</div>
+    </div>
+    <div class="team-card">
+      <div class="team-role">Animation Interns</div>
+      <div class="team-tasks">Support animation · Retakes · Cleanup</div>
+      <div class="team-sal">₹20K/mo each</div>
+      <div class="team-count">2 persons</div>
+    </div>
+    <div class="team-card" style="border-color:rgba(42,127,181,0.3)">
+      <div class="team-role" style="color:var(--gold)">Annual total</div>
+      <div class="team-tasks">6 people · content dept only</div>
+      <div class="team-sal" style="color:var(--gold)">₹23L/yr</div>
+      <div class="team-count">+ ₹4L infra + ₹2L tools = ₹29L</div>
+    </div>
+  </div>
+
+  <div class="insight i-blue">
+    <strong style="color:#7BC4E8">Important gap flagged:</strong> Your animation team of 6 costs ₹23L/yr in salaries. But your Fund Allocation has ₹6 Cr for "Team & Operations" across the full company. The animation team is only one department — you need to show the full founding team salary stack (tech, product, partnerships, ops) separately to validate the ₹6 Cr number. Right now only the content team is costed.
+  </div>
+
+  <table class="tbl">
+    <thead><tr><th>Department</th><th>Headcount</th><th>Annual cost</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Animation / Content</td><td>6</td><td>₹23L (salaries) + ₹6L tools</td><td><span class="pill p-green">Costed ✓</span></td></tr>
+      <tr><td>Engineering (app + backend)</td><td>3 (est.)</td><td>₹90–120L</td><td><span class="pill p-amber">Needs costing</span></td></tr>
+      <tr><td>Product / UI/UX</td><td>1</td><td>₹24–36L</td><td><span class="pill p-amber">Needs costing</span></td></tr>
+      <tr><td>Partnerships / Growth</td><td>1–2</td><td>₹24–36L</td><td><span class="pill p-amber">Needs costing</span></td></tr>
+      <tr><td>Founders (stipend, pre-revenue)</td><td>3 co-founders</td><td>₹30–60L</td><td><span class="pill p-amber">Needs costing</span></td></tr>
+      <tr class="total"><td>Total (estimated)</td><td>~15</td><td>₹2.0–2.6 Cr / yr</td><td><span class="pill p-gold">₹6 Cr covers 24–36 mo ✓</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ TAB 3: CAPACITY ══ -->
+<div class="panel" id="panel-capacity">
+  <div class="eyebrow">Production capacity · AI-assisted pipeline</div>
+  <div class="ptitle">Annual Content Output</div>
+  <div class="psub">How many videos your team can produce at ₹29L annual budget</div>
+  <div class="gline"></div>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="stat-label">Videos/week (AI)</div>
+      <div class="stat-val">5–8</div>
+      <div class="stat-sub">6 person team, AI pipeline</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Videos/year</div>
+      <div class="stat-val">260–400</div>
+      <div class="stat-sub">At 5–8/week × 50 weeks</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Total content hours</div>
+      <div class="stat-val">35–53 hrs</div>
+      <div class="stat-sub">At 8 min per video</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Cost per min of content</div>
+      <div class="stat-val">₹230–300</div>
+      <div class="stat-sub">vs ₹1k–3k industry rate</div>
+    </div>
+  </div>
+
+  <div class="capacity-bar">
+    <div class="cap-row">
+      <div class="cap-label">Grade 6 content (3 subjects)</div>
+      <div class="cap-track"><div class="cap-fill" style="width:40%;background:#0891B2"></div></div>
+      <div class="cap-val">~100 videos</div>
+    </div>
+    <div class="cap-row">
+      <div class="cap-label">Grade 7 content (3 subjects)</div>
+      <div class="cap-track"><div class="cap-fill" style="width:40%;background:#059669"></div></div>
+      <div class="cap-val">~100 videos</div>
+    </div>
+    <div class="cap-row">
+      <div class="cap-label">Grade 8 content (3 subjects)</div>
+      <div class="cap-track"><div class="cap-fill" style="width:30%;background:#7C3AED"></div></div>
+      <div class="cap-val">~80 videos</div>
+    </div>
+    <div class="cap-row">
+      <div class="cap-label">Buffer / retakes / QC</div>
+      <div class="cap-track"><div class="cap-fill" style="width:20%;background:#D97706"></div></div>
+      <div class="cap-val">~40 videos</div>
+    </div>
+    <div class="cap-row">
+      <div class="cap-label" style="color:var(--gold)">Total Year 1 capacity</div>
+      <div class="cap-track"><div class="cap-fill" style="width:100%;background:var(--gold)"></div></div>
+      <div class="cap-val" style="color:var(--gold)">~320 videos</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#0891B2"></div>Grade 6</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#059669"></div>Grade 7</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#7C3AED"></div>Grade 8</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#D97706"></div>Buffer / QC</div>
+  </div>
+  <div class="chart-wrap"><canvas id="capChart"></canvas></div>
+
+  <div class="insight i-green">
+    <strong style="color:#1D8A50">Capacity vs allocation check:</strong> 320 videos × ₹2,120 avg cost (AI pipeline midpoint) = <strong style="color:#1D8A50">₹67.8L for Year 1 content production</strong>. Your ₹5 Cr content allocation covers ~7 years of production at this rate — or 6 grades × 5 subjects each. That's a large library, which is your moat. Present it as "content IP stockpile" not just "content spend."
+  </div>
+</div>
+
+<!-- ══ TAB 4: VALIDATION ══ -->
+<div class="panel" id="panel-validation">
+  <div class="eyebrow">Pre-seed allocation check</div>
+  <div class="ptitle">Does ₹5 Cr Content Allocation Hold?</div>
+  <div class="psub">Cross-referencing your unit economics against the fund ask</div>
+  <div class="gline"></div>
+
+  <table class="tbl">
+    <thead><tr><th>Scenario</th><th>Videos / yr</th><th>Cost / video</th><th>Annual cost</th><th>₹5 Cr covers</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>AI pipeline (efficient)</td><td>320</td><td>₹1,870</td><td>₹59.8L</td>
+        <td><span class="pill p-green">8.4 years</span></td>
+        <td><span class="pill p-amber">Over-allocated</span></td>
+      </tr>
+      <tr>
+        <td>AI pipeline (with retakes)</td><td>320</td><td>₹3,070</td><td>₹98.2L</td>
+        <td><span class="pill p-green">5.1 years</span></td>
+        <td><span class="pill p-amber">Over-allocated</span></td>
+      </tr>
+      <tr>
+        <td>Human pipeline</td><td>320</td><td>₹3,920</td><td>₹125.4L</td>
+        <td><span class="pill p-blue">4 years</span></td>
+        <td><span class="pill p-amber">Still over-allocated</span></td>
+      </tr>
+      <tr>
+        <td>Scale: 6 grades × 5 subjects</td><td>1,500</td><td>₹2,120 avg</td><td>₹318L</td>
+        <td><span class="pill p-gold">1.6 years</span></td>
+        <td><span class="pill p-green">Justified at scale</span></td>
+      </tr>
+      <tr class="total">
+        <td>Recommended framing</td><td>320 yr1 → 1,500 yr2</td><td>₹2,120</td><td>₹68L yr1 → ₹318L yr2</td>
+        <td><span class="pill p-gold">2-yr content library</span></td>
+        <td><span class="pill p-green">VC-defensible ✓</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight i-red">
+    <strong style="color:#D85A30">Key issue to fix:</strong> At AI pipeline costs, ₹5 Cr is <em>too much</em> for content if you're only doing Grades 6–8 at pre-seed. A VC will ask why you need ₹5 Cr if the math shows ₹68L covers Year 1. You need to either (a) reduce content allocation to ₹1.5–2 Cr and reallocate to team, or (b) justify ₹5 Cr by committing to a full 6-grade × 5-subject library — which is a strong moat argument.
+  </div>
+
+  <div class="insight i-gold">
+    <strong style="color:var(--gold)">The right VC answer:</strong> "We're allocating ₹5 Cr to content because we're building a 2-year content IP library across Grades 6–10, 5 core subjects — approximately 1,500 videos at ₹2,100–3,000 each using our AI-assisted production pipeline. This gives us a content moat no new entrant can replicate for under ₹3–5 Cr and 18 months of production time." That turns a cost line into a defensible asset.
+  </div>
+
+  <div class="insight i-green">
+    <strong style="color:#1D8A50">Benchmark that wins rooms:</strong> Traditional animation studios charge ₹1,000–3,000 per minute. At ₹230–300/min, Edastra's AI-assisted pipeline produces equivalent content at <strong style="color:#1D8A50">10–13x lower cost</strong>. That's not just capital efficiency — it's a structural production advantage that competitors cannot replicate without the same AI toolstack and team.
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function sw(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tnav').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'capacity') drawCapChart();
+}
+
+let capChartDrawn = false;
+function drawCapChart() {
+  if (capChartDrawn) return;
+  capChartDrawn = true;
+  const months = ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'];
+  const g6  = [12,12,12,10,10,8,8,6,4,4,2,2];
+  const g7  = [0,2,4,8,10,10,10,10,10,8,8,8];
+  const g8  = [0,0,0,0,2,4,6,8,8,10,10,10];
+  const buf = [2,2,2,2,2,4,4,4,4,4,4,4];
+
+  new Chart(document.getElementById('capChart'), {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [
+        { label:'Grade 6', data:g6,  backgroundColor:'#0891B2', stack:'s', borderRadius:3 },
+        { label:'Grade 7', data:g7,  backgroundColor:'#059669', stack:'s', borderRadius:3 },
+        { label:'Grade 8', data:g8,  backgroundColor:'#7C3AED', stack:'s', borderRadius:3 },
+        { label:'Buffer',  data:buf, backgroundColor:'#D97706', stack:'s', borderRadius:3 },
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{
+        footer: items => `Total: ${items.reduce((s,i)=>s+i.parsed.y,0)} videos/mo`
+      }}},
+      scales:{
+        x:{ stacked:true, grid:{color:'rgba(245,240,232,0.05)'}, ticks:{color:'rgba(245,240,232,0.4)',font:{size:10}} },
+        y:{ stacked:true, grid:{color:'rgba(245,240,232,0.07)'}, ticks:{color:'rgba(245,240,232,0.4)',font:{size:10}, callback:v=>v+' vids' }}
+      }
+    }
+  });
+}
+</script>
