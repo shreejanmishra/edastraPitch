@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const Traction = () => {
   return (
-    <div className="min-h-screen pt-20 bg-[#F5F2DE] flex flex-col">
+    <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
       <div className="section-container flex-grow">
         {/* Slide image */}
         <div className="mb-12">
@@ -41,22 +40,7 @@ const Traction = () => {
         </div>
       </div>
 
-      <div className="w-full px-4 sm:px-6 lg:px-8 pb-8 mt-8">
-        <div className="flex justify-between">
-          <Link
-            to="/our-approach/ecosystem"
-            className="px-6 py-3 bg-dark-lighter border border-primary/20 text-white rounded-lg hover:bg-dark-light hover:border-primary/40 transition-all"
-          >
-            ← Previous
-          </Link>
-          <Link
-            to="/product"
-            className="px-6 py-3 bg-primary text-black rounded-lg hover:bg-primary-light transition-all font-semibold"
-          >
-            Next →
-          </Link>
-        </div>
-      </div>
+      
     </div>
   )
 }

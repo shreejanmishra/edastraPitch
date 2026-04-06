@@ -57,7 +57,7 @@
   }
   
   body {
-    @apply text-black bg-[#F5F2DE];
+    @apply text-black bg-[#FAFCFF];
     font-family: 'Roboto', sans-serif;
   }
   
