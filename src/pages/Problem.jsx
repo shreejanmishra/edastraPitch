@@ -2,24 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Problem = () => {
-  const problems = [
-    {
-      title: 'Challenge 1',
-      description: 'Description of the first major problem your target market faces.',
-    },
-    {
-      title: 'Challenge 2',
-      description: 'Description of the second major problem your target market faces.',
-    },
-    {
-      title: 'Challenge 3',
-      description: 'Description of the third major problem your target market faces.',
-    },
-  ]
+
 
   return (
-    <div className="min-h-screen pt-20 pb-16 bg-black">
-      <div className="section-container">      
+    <div className="min-h-screen pt-20 bg-[#F5F2DE] flex flex-col">
+      <div className="section-container flex-grow">      
         {/* Display the actual slide image */}
         <div className="mb-12">
           <img
@@ -28,32 +15,18 @@ const Problem = () => {
             className="max-w-full mx-auto rounded-lg shadow-2xl shadow-primary/10 border border-primary/20"
           />
         </div>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
-          {problems.map((problem, index) => (
-            <div
-              key={index}
-              className="bg-dark-lighter border border-primary/20 p-8 rounded-xl shadow-lg hover:shadow-primary/20 hover:border-primary/40 transition-all"
-            >
-              <h3 className="text-2xl font-bold text-primary mb-4">
-                {problem.title}
-              </h3>
-              <p className="text-gray-300 leading-relaxed">
-                {problem.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex justify-between mt-12">
+      <div className="w-full px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="flex justify-between">
           <Link
             to="/"
             className="px-6 py-3 bg-dark-lighter border border-primary/20 text-white rounded-lg hover:bg-dark-light hover:border-primary/40 transition-all"
           >
-            ← Previous
+            ← Home
           </Link>
           <Link
-            to="/solution"
+            to="/our-approach/solution"
             className="px-6 py-3 bg-primary text-black rounded-lg hover:bg-primary-light transition-all font-semibold"
           >
             Next →

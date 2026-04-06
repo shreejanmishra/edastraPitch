@@ -21,8 +21,8 @@ const Market = () => {
   ]
 
   return (
-    <div className="min-h-screen pt-20 pb-16 bg-black">
-      <div className="section-container">
+    <div className="min-h-screen pt-20 bg-[#F5F2DE] flex flex-col">
+      <div className="section-container flex-grow">
        
         {/* Display the actual slide images */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -58,16 +58,18 @@ const Market = () => {
             </div>
           ))}
         </div>
+      </div>
 
-        <div className="flex justify-between mt-12">
+      <div className="w-full px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="flex justify-between">
           <Link
-            to="/solution"
+            to="/our-approach/solution"
             className="px-6 py-3 bg-dark-lighter border border-primary/20 text-white rounded-lg hover:bg-dark-light hover:border-primary/40 transition-all"
           >
             ← Previous
           </Link>
           <Link
-            to="/product"
+            to="/our-approach/business-model"
             className="px-6 py-3 bg-primary text-black rounded-lg hover:bg-primary-light transition-all font-semibold"
           >
             Next →

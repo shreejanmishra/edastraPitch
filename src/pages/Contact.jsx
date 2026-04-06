@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Contact = () => {
   return (
-    <div className="min-h-screen pt-20 bg-black flex flex-col">
+    <div className="min-h-screen pt-20 bg-[#F5F2DE] flex flex-col">
       <div className="section-container flex-grow flex flex-col justify-center">
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-12 text-primary">
@@ -52,7 +52,7 @@ const Contact = () => {
       <div className="w-full px-4 sm:px-6 lg:px-8 pb-8">
         <div className="flex justify-between">
           <Link
-            to="/financials"
+            to="/team/members"
             className="px-6 py-3 bg-dark-lighter border border-primary/20 text-white rounded-lg hover:bg-dark-light hover:border-primary/40 transition-all"
           >
             ← Previous

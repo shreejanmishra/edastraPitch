@@ -2,13 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Thesead';
+  src: url('/fonts/Thesead/Thesead.ttf') format('truetype'),
+       url('/fonts/Thesead/Thesead.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'J Audio Cassette';
+  src: url('/fonts/JAudioCassette/J Audio Cassette.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto/Roboto-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost/Jost-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/Jost/Jost-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    @apply font-sans text-white bg-black;
+    @apply text-black bg-[#F5F2DE];
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jost', sans-serif;
   }
 }
 
@@ -22,6 +76,23 @@
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-center mb-12 text-white;
+    @apply text-3xl md:text-4xl font-bold text-center mb-12 text-black;
+    font-family: 'Jost', sans-serif;
+  }
+  
+  .font-thesead {
+    font-family: 'Thesead', sans-serif;
+  }
+  
+  .font-audio-cassette {
+    font-family: 'J Audio Cassette', sans-serif;
+  }
+  
+  .font-roboto {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .font-jost {
+    font-family: 'Jost', sans-serif;
   }
 }

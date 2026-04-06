@@ -40,11 +40,11 @@ const Team = () => {
     },
   ]
   return (
-    <div className="min-h-screen pt-20 pb-16 bg-black">
-      <div className="section-container">
+    <div className="min-h-screen pt-20 bg-[#F5F2DE] flex flex-col">
+      <div className="section-container flex-grow">
      
         {/* Display the actual slide images */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        {/* <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">Team Members</h3>
             <img
@@ -61,7 +61,7 @@ const Team = () => {
               className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="grid md:grid-cols-3 gap-8 mt-12">
           {coFounders.map((member, index) => (
@@ -91,16 +91,18 @@ const Team = () => {
             </div>
           ))}
         </div>
+      </div>
 
-        <div className="flex justify-between mt-12">
+      <div className="w-full px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="flex justify-between">
           <Link
-            to="/traction"
+            to="/financials"
             className="px-6 py-3 bg-dark-lighter border border-primary/20 text-white rounded-lg hover:bg-dark-light hover:border-primary/40 transition-all"
           >
             ← Previous
           </Link>
           <Link
-            to="/financials"
+            to="/team/contact"
             className="px-6 py-3 bg-primary text-black rounded-lg hover:bg-primary-light transition-all font-semibold"
           >
             Next →
