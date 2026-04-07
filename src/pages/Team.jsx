@@ -12,7 +12,7 @@ const Team = () => {
       name: "Nav Sharma",
       role: "Creative Director & Co-Founder",
       bio: "Media and storytelling specialist with expertise in digital video production and content platforms. Experienced in crafting compelling visual narratives and building high-quality media pipelines, with a focus on creating immersive edutainment experiences at scale.",
-      image: null, // Placeholder - to be replaced later
+      image: "/images/creativeDirector.jpg",
     },
     {
       name: "Shreejan Mishra",
@@ -41,7 +41,7 @@ const Team = () => {
     {
       name: "Rajat Shah",
       role: "Finance & Compliance Partner",
-      image: null, // Placeholder - to be replaced later
+      image: "/images/financial.jpg",
     },
   ];
 

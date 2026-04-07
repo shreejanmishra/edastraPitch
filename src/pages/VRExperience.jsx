@@ -1,5 +1,5 @@
-import React from 'react'
-import AutoFrame from '../components/AutoFrame'
+import React from "react";
+import AutoFrame from "../components/AutoFrame";
 
 const VRExperience = () => {
   return (
@@ -7,16 +7,20 @@ const VRExperience = () => {
       <div className="section-container flex-grow">
         {/* Slide images */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">VR at Edastra</h3>
+          {/* <div>
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              VR at Edastra
+            </h3>
             <img
               src="/images/page_10_img_1.png"
               alt="VR at Edastra — Devices & Cost"
               className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
-          </div>
+          </div> */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">VR Scalability</h3>
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              VR Scalability
+            </h3>
             <img
               src="/images/page_11_img_1.png"
               alt="VR at Edastra — Scalability"
@@ -28,7 +32,9 @@ const VRExperience = () => {
         {/* Interactive Graphs */}
         <div className="space-y-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">VR Experience Overview</h3>
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              VR Experience Overview
+            </h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
               <AutoFrame
                 src="/graphs/edastra_vr_slide.html"
@@ -51,10 +57,8 @@ const VRExperience = () => {
           </div>
         </div>
       </div>
-
-      
     </div>
-  )
-}
+  );
+};
 
-export default VRExperience
+export default VRExperience;

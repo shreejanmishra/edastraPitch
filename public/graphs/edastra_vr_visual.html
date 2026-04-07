@@ -36,26 +36,26 @@
 
 
 *{box-sizing:border-box;margin:0;padding:0;}
-.d{font-family:'Outfit',sans-serif;background:#050810;color: var(--navy);min-height:100vh;}
-.nav{display:flex;background:#050810;border-bottom:1px solid #0D1020;position:sticky;top:0;z-index:20;overflow-x:auto;}
-.nt{flex-shrink:0;padding:11px 16px;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#1E2440;cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;white-space:nowrap;transition:all .2s;}
-.nt.on{color:#6C8FFF;border-bottom-color:#6C8FFF;}
-.nt:hover:not(.on){color:#3A4870;}
+.d{font-family:'Outfit',sans-serif;background:var(--white);color: var(--navy);min-height:100vh;}
+.nav{display:flex;background:var(--white);border-bottom:1px solid var(--sky);position:sticky;top:0;z-index:20;overflow-x:auto;}
+.nt{flex-shrink:0;padding:12px 18px;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;border-top:none;border-left:none;border-right:none;background:none;white-space:nowrap;transition:all .2s; font-family: 'DM Mono', monospace;}
+.nt.on{color:var(--deep);border-bottom-color:var(--deep);}
+.nt:hover:not(.on){color:var(--navy);}
 .sl{display:none;padding:2rem 1.75rem 3rem;animation:fi .25s ease;}
 .sl.on{display:block;}
 @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-.ey{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#6C8FFF;margin-bottom:.4rem;}
-.ti{font-size:26px;font-weight:700;line-height:1.1;color: var(--navy);margin-bottom:.35rem;}
-.sb{font-size:13px;color:#2A3050;margin-bottom:1.5rem;line-height:1.6;}
-.bar{width:44px;height:3px;background:#6C8FFF;margin-bottom:1.5rem;}
+.ey{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:1.5rem; font-family:'DM Mono',monospace;}
+.ti{font-size:clamp(32px,5vw,48px);font-weight:300;line-height:1.1;color: var(--navy);margin-bottom:.5rem; font-family: 'Cormorant Garamond', serif;}
+.sb{font-size:14px;font-weight:300;color:var(--muted);margin-bottom:2rem;line-height:1.7;}
+.bar{display:none;}
 
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.75rem;}
 .kpi{background: var(--white);border:1px solid #C8E6F7;border-radius: 12px;padding:.875rem 1rem;text-align:center;}
-.kpi.hi{border-color:#6C8FFF;background:rgba(108,143,255,0.06);}
+.kpi.hi{border-color:#2A7FB5;background:rgba(42,127,181,0.06);}
 .kpi-n{font-size:24px;font-weight:700;line-height:1;margin-bottom:4px;}
 .kpi-l{font-size:11px;font-weight:500;margin-bottom:3px;}
-.kpi-s{font-size:10px;color:#2A3050;line-height:1.4;}
+.kpi-s{font-size:10px;color:var(--muted);line-height:1.4;}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem;}
@@ -63,10 +63,10 @@
 .card-title{font-size:12px;font-weight:600;color: var(--navy);margin-bottom:.6rem;}
 .li{list-style:none;display:flex;flex-direction:column;gap:5px;}
 .li li{font-size:11px;color:rgba(16,58,90,0.6);display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
-.li li::before{content:'';width:5px;height:5px;border-radius:50%;background:#6C8FFF;flex-shrink:0;margin-top:5px;}
+.li li::before{content:'';width:5px;height:5px;border-radius:50%;background:#2A7FB5;flex-shrink:0;margin-top:5px;}
 
 .ins{border-radius:8px;padding:.875rem 1rem;font-size:12px;line-height:1.65;margin-bottom:1rem;}
-.ins-b{background:rgba(108,143,255,0.08);border-left:2px solid #6C8FFF;color:rgba(16,58,90,0.85);}
+.ins-b{background:rgba(42,127,181,0.08);border-left:2px solid #2A7FB5;color:rgba(16,58,90,0.85);}
 .ins-g{background:rgba(29,138,80,0.07);border-left:2px solid #1D8A50;color:rgba(16,58,90,0.85);}
 .ins-y{background:rgba(239,159,39,0.07);border-left:2px solid #EF9F27;color:rgba(16,58,90,0.85);}
 .ins-r{background:rgba(216,90,48,0.07);border-left:2px solid #D85A30;color:rgba(16,58,90,0.85);}
@@ -74,12 +74,12 @@
 .chart-w{position:relative;width:100%;margin-bottom:1.25rem;}
 .h260{height:260px;}.h220{height:220px;}.h200{height:200px;}
 
-.leg{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:#2A3050;margin-bottom:8px;}
+.leg{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--muted);margin-bottom:8px;}
 .leg span{display:flex;align-items:center;gap:5px;}
 .ld{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
 
 .phase-strip{display:flex;gap:0;border-radius: 12px;overflow:hidden;margin-bottom:1.5rem;}
-.ph{flex:1;padding:.875rem 1rem;border-right:1px solid #050810;}
+.ph{flex:1;padding:.875rem 1rem;border-right:1px solid var(--white);}
 .ph:last-child{border-right:none;}
 .ph-dot{width:8px;height:8px;border-radius:50%;margin-bottom:6px;}
 .ph-per{font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px;}
@@ -132,8 +132,8 @@
 
   <div class="kpi-row">
     <div class="kpi hi">
-      <div class="kpi-n" style="color:#6C8FFF">2028</div>
-      <div class="kpi-l" style="color:#A5BAFF">VR launch year</div>
+      <div class="kpi-n" style="color:#2A7FB5">2028</div>
+      <div class="kpi-l" style="color:#7BC4E8">VR launch year</div>
       <div class="kpi-s">Tier 1 metros · B2C · App-based</div>
     </div>
     <div class="kpi">
@@ -161,12 +161,12 @@
       <div class="ph-detail">VR section already built into the product. Not a roadmap item — a live UI tab.</div>
       <div class="ph-metric" style="color:#1D8A50;">De-risked ✓</div>
     </div>
-    <div class="ph" style="background:rgba(108,143,255,0.08);">
-      <div class="ph-dot" style="background:#6C8FFF;"></div>
-      <div class="ph-per" style="color:#6C8FFF;">Pre-seed (2026–27)</div>
+    <div class="ph" style="background:rgba(42,127,181,0.08);">
+      <div class="ph-dot" style="background:#2A7FB5;"></div>
+      <div class="ph-per" style="color:#2A7FB5;">Pre-seed (2026–27)</div>
       <div class="ph-title">PoC modules</div>
       <div class="ph-detail">2 proof-of-concept VR lessons. Validate learning efficacy before full build.</div>
-      <div class="ph-metric" style="color:#6C8FFF;">₹3–5L cloud cost</div>
+      <div class="ph-metric" style="color:#2A7FB5;">₹3–5L cloud cost</div>
     </div>
     <div class="ph" style="background:rgba(239,159,39,0.06);">
       <div class="ph-dot" style="background:#EF9F27;"></div>
@@ -191,9 +191,9 @@
     </div>
   </div>
 
-  <div class="callout" style="background:rgba(108,143,255,0.07);border:1px solid rgba(108,143,255,0.2);">
-    <div class="callout-l" style="color:#6C8FFF">Why VR changes the ARPU equation</div>
-    <div class="callout-t" style="color:rgba(16,58,90,0.9);font-size:13px;font-weight:400;">A student who upgrades from the core app (₹250 ARPU) to VR (₹900 ARPU) generates 3.6x more revenue with <strong style="color:#A5BAFF">zero re-acquisition cost</strong>. The CAC was already paid. VR is pure upsell on an existing cohort — the most capital-efficient revenue expansion possible.</div>
+  <div class="callout" style="background:rgba(42,127,181,0.07);border:1px solid rgba(42,127,181,0.2);">
+    <div class="callout-l" style="color:#2A7FB5">Why VR changes the ARPU equation</div>
+    <div class="callout-t" style="color:rgba(16,58,90,0.9);font-size:13px;font-weight:400;">A student who upgrades from the core app (₹250 ARPU) to VR (₹900 ARPU) generates 3.6x more revenue with <strong style="color:#7BC4E8">zero re-acquisition cost</strong>. The CAC was already paid. VR is pure upsell on an existing cohort — the most capital-efficient revenue expansion possible.</div>
   </div>
 </div>
 
@@ -206,7 +206,7 @@
 
   <div class="three">
     <div class="card">
-      <div class="card-title" style="color:#6C8FFF">Science modules</div>
+      <div class="card-title" style="color:#2A7FB5">Science modules</div>
       <ul class="li">
         <li>Walk inside a human cell · watch mitosis happen</li>
         <li>Stand on the surface of Mars · measure gravity</li>
@@ -249,8 +249,8 @@
       </div>
       <div class="cap-r">
         <div class="cap-l">Interactive simulation</div>
-        <div class="cap-t"><div class="cap-f" style="width:50%;background:#6C8FFF"></div></div>
-        <div class="cap-v" style="color:#6C8FFF">~50%</div>
+        <div class="cap-t"><div class="cap-f" style="width:50%;background:#2A7FB5"></div></div>
+        <div class="cap-v" style="color:#2A7FB5">~50%</div>
       </div>
       <div class="cap-r">
         <div class="cap-l">VR immersive experience</div>
@@ -264,7 +264,7 @@
     <div>
       <div style="font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(16,58,90,0.3);margin-bottom:.75rem;">Tech stack</div>
       <div class="card" style="margin-bottom:10px;">
-        <div class="card-title" style="color:#6C8FFF">Content engine</div>
+        <div class="card-title" style="color:#2A7FB5">Content engine</div>
         <ul class="li">
           <li>Unity 3D / Unreal Engine 5</li>
           <li>AI-assisted 3D asset generation (Meshy, Luma AI)</li>
@@ -293,17 +293,17 @@
   <div class="bar"></div>
 
   <div class="device-grid">
-    <div class="dev-card" style="background:rgba(108,143,255,0.07);border-color:rgba(108,143,255,0.35);">
+    <div class="dev-card" style="background:rgba(42,127,181,0.07);border-color:rgba(42,127,181,0.35);">
       <div class="dev-head">
-        <div class="dev-name" style="color:#6C8FFF">Meta Quest 3S</div>
-        <div class="dev-price" style="color:#6C8FFF">~₹35,000</div>
+        <div class="dev-name" style="color:#2A7FB5">Meta Quest 3S</div>
+        <div class="dev-price" style="color:#2A7FB5">~₹35,000</div>
       </div>
       <div class="dev-row"><span class="dev-k">Target</span><span class="dev-v">Tier 1 families · 2028</span></div>
       <div class="dev-row"><span class="dev-k">Resolution</span><span class="dev-v">2064×2208 per eye</span></div>
       <div class="dev-row"><span class="dev-k">6DoF tracking</span><span class="dev-v">Full spatial movement</span></div>
       <div class="dev-row"><span class="dev-k">Battery</span><span class="dev-v">2.2 hrs active use</span></div>
       <div class="dev-row"><span class="dev-k">Price trajectory</span><span class="dev-v" style="color:#1D8A50">~₹20k by 2027</span></div>
-      <div style="font-size:10px;margin-top:8px;color:rgba(108,143,255,0.7);">Best-in-class experience · Edastra native app</div>
+      <div style="font-size:10px;margin-top:8px;color:rgba(42,127,181,0.7);">Best-in-class experience · Edastra native app</div>
     </div>
     <div class="dev-card" style="background:rgba(239,159,39,0.05);border-color:rgba(239,159,39,0.25);">
       <div class="dev-head">
@@ -336,7 +336,7 @@
   </div>
 
   <div class="ins ins-b">
-    <strong style="color:#6C8FFF">The Jio angle:</strong> Jio has been signalling interest in affordable XR hardware for the Indian market. If Jio launches a ₹5,000–10,000 headset in 2028–29, Edastra is positioned as the content layer on India's largest distribution network. Frame this as optionality in the pitch, not a dependency.
+    <strong style="color:#2A7FB5">The Jio angle:</strong> Jio has been signalling interest in affordable XR hardware for the Indian market. If Jio launches a ₹5,000–10,000 headset in 2028–29, Edastra is positioned as the content layer on India's largest distribution network. Frame this as optionality in the pitch, not a dependency.
   </div>
 </div>
 
@@ -354,8 +354,8 @@
       <div class="kpi-s">Already built · Home tab visible</div>
     </div>
     <div class="kpi">
-      <div class="kpi-n" style="color:#6C8FFF">2 modules</div>
-      <div class="kpi-l" style="color:#A5BAFF">Pre-seed PoC</div>
+      <div class="kpi-n" style="color:#2A7FB5">2 modules</div>
+      <div class="kpi-l" style="color:#7BC4E8">Pre-seed PoC</div>
       <div class="kpi-s">M6 · ₹3–5L cloud cost</div>
     </div>
     <div class="kpi">
@@ -364,15 +364,15 @@
       <div class="kpi-s">2027 · 3 subjects · full library</div>
     </div>
     <div class="kpi hi">
-      <div class="kpi-n" style="color:#6C8FFF">Jan 2028</div>
-      <div class="kpi-l" style="color:#A5BAFF">Public launch</div>
+      <div class="kpi-n" style="color:#2A7FB5">Jan 2028</div>
+      <div class="kpi-l" style="color:#7BC4E8">Public launch</div>
       <div class="kpi-s">Mumbai · Delhi · Bengaluru</div>
     </div>
   </div>
 
   <div class="leg">
     <span><span class="ld" style="background:#1D8A50"></span>Done</span>
-    <span><span class="ld" style="background:#6C8FFF"></span>Pre-seed</span>
+    <span><span class="ld" style="background:#2A7FB5"></span>Pre-seed</span>
     <span><span class="ld" style="background:#EF9F27"></span>Series A</span>
     <span><span class="ld" style="background:#D85A30"></span>Live product</span>
     <span><span class="ld" style="background:#7BC4E8"></span>Scale</span>
@@ -391,7 +391,7 @@
       </ul>
     </div>
     <div class="card">
-      <div class="card-title" style="color:#6C8FFF">Phase 2 · Series A (2027)</div>
+      <div class="card-title" style="color:#2A7FB5">Phase 2 · Series A (2027)</div>
       <ul class="li">
         <li>1 VR developer hired (Unity/Unreal specialist)</li>
         <li>Full Grade 6–8 VR curriculum · 3 subjects each</li>
@@ -422,8 +422,8 @@
 
   <div class="kpi-row">
     <div class="kpi">
-      <div class="kpi-n" style="color:#6C8FFF">₹3–5L</div>
-      <div class="kpi-l" style="color:#A5BAFF">PoC cost (pre-seed)</div>
+      <div class="kpi-n" style="color:#2A7FB5">₹3–5L</div>
+      <div class="kpi-l" style="color:#7BC4E8">PoC cost (pre-seed)</div>
       <div class="kpi-s">2 demo modules · cloud only</div>
     </div>
     <div class="kpi">
@@ -437,14 +437,14 @@
       <div class="kpi-s">CDN + storage at 0.3Mn users</div>
     </div>
     <div class="kpi hi">
-      <div class="kpi-n" style="color:#6C8FFF">₹900</div>
-      <div class="kpi-l" style="color:#A5BAFF">VR ARPU/yr</div>
+      <div class="kpi-n" style="color:#2A7FB5">₹900</div>
+      <div class="kpi-l" style="color:#7BC4E8">VR ARPU/yr</div>
       <div class="kpi-s">Payback in &lt; 1 year at scale</div>
     </div>
   </div>
 
   <div class="leg">
-    <span><span class="ld" style="background:#6C8FFF"></span>Content production</span>
+    <span><span class="ld" style="background:#2A7FB5"></span>Content production</span>
     <span><span class="ld" style="background:#EF9F27"></span>Engineering</span>
     <span><span class="ld" style="background:#1D8A50"></span>Cloud & CDN</span>
     <span><span class="ld" style="background:#7BC4E8"></span>Device partnerships</span>
@@ -453,7 +453,7 @@
 
   <div class="two">
     <div class="ins ins-b" style="margin-bottom:0">
-      <strong style="color:#6C8FFF">VR content cost vs 2D:</strong> A 5-min VR module costs ₹15,000–25,000 to produce (AI-assisted Unity pipeline). An equivalent 2D video costs ₹1,870–3,070. VR is 5–8x more expensive per minute. At 100 modules × ₹20,000 avg = ₹20L production cost. Not prohibitive — and the content IP is permanent.
+      <strong style="color:#2A7FB5">VR content cost vs 2D:</strong> A 5-min VR module costs ₹15,000–25,000 to produce (AI-assisted Unity pipeline). An equivalent 2D video costs ₹1,870–3,070. VR is 5–8x more expensive per minute. At 100 modules × ₹20,000 avg = ₹20L production cost. Not prohibitive — and the content IP is permanent.
     </div>
     <div class="ins ins-g" style="margin-bottom:0">
       <strong style="color:#1D8A50">Revenue model check:</strong> At ₹900/yr ARPU and 0.3Mn VR users, Year 1 VR revenue = ₹270 Cr. Annual VR operating cost = ₹28–42L. Net VR contribution margin = ~85%. VR is the highest-margin product in the portfolio — even higher than subscription.
@@ -479,16 +479,16 @@
       <div class="f-quote" style="color: var(--navy);">"VR is already in our live product today — the UI tab is built. Pre-seed funds 2 proof-of-concept modules to validate learning efficacy. Series A funds the full library. 2028 is the commercial launch, not the start of development."</div>
       <div class="f-why" style="color:#1D8A50;">Investor hears: De-risked · proof-first · capital-efficient · Series A has a clear deployment plan.</div>
     </div>
-    <div class="framing-block" style="background:rgba(108,143,255,0.07);border:1px solid rgba(108,143,255,0.2);">
-      <div class="f-label" style="color:#6C8FFF">The upsell story</div>
+    <div class="framing-block" style="background:rgba(42,127,181,0.07);border:1px solid rgba(42,127,181,0.2);">
+      <div class="f-label" style="color:#2A7FB5">The upsell story</div>
       <div class="f-quote" style="color: var(--navy);">"A student acquired at ₹180 CAC on the core app generates ₹250 ARPU. When they upgrade to VR, their ARPU becomes ₹900 — with zero re-acquisition cost. VR is a 3.6x revenue multiplier on an already-paid cohort."</div>
-      <div class="f-why" style="color:#6C8FFF;">This is the number that excites investors — upsell on paid cohorts with no CAC is pure margin expansion.</div>
+      <div class="f-why" style="color:#2A7FB5;">This is the number that excites investors — upsell on paid cohorts with no CAC is pure margin expansion.</div>
     </div>
   </div>
 
   <div class="three">
     <div class="card">
-      <div class="card-title" style="color:#6C8FFF">3 questions VCs will ask</div>
+      <div class="card-title" style="color:#2A7FB5">3 questions VCs will ask</div>
       <ul class="li">
         <li>Why will families buy a ₹35k headset?</li>
         <li>What if device adoption is slower than projected?</li>
@@ -515,8 +515,8 @@
     </div>
   </div>
 
-  <div class="callout" style="background:rgba(108,143,255,0.07);border:1px solid rgba(108,143,255,0.25);">
-    <div class="callout-l" style="color:#6C8FFF">The sentence that frames VR in every meeting</div>
+  <div class="callout" style="background:rgba(42,127,181,0.07);border:1px solid rgba(42,127,181,0.25);">
+    <div class="callout-l" style="color:#2A7FB5">The sentence that frames VR in every meeting</div>
     <div class="callout-t" style="color:rgba(16,58,90,0.9);font-size:13px;font-weight:400;">"VR is not our pre-seed ask — it is our Series A deployment plan. The UI is already live, the PoC validates efficacy, and every student we acquire on the core app is a future VR subscriber at 3.6x ARPU with no re-acquisition cost."</div>
   </div>
 </div>
@@ -535,14 +535,14 @@ new Chart(document.getElementById('c-roadmap'),{
   data:{
     labels:['2026\nUI live','2026 M6\nPoC (2 modules)','Q1 2027\nSeries A raise','2027\nFull build','Q1 2028\nTier 1 launch','2029\nNationwide','2030\nMEA VR','2031\n5Mn VR users'],
     datasets:[
-      {type:'bar',label:'VR users (k)',data:[0,0,0,0,300,1000,2500,5000],backgroundColor:'rgba(108,143,255,0.6)',borderRadius:4,yAxisID:'y',order:2},
+      {type:'bar',label:'VR users (k)',data:[0,0,0,0,300,1000,2500,5000],backgroundColor:'rgba(42,127,181,0.6)',borderRadius:4,yAxisID:'y',order:2},
       {type:'line',label:'ARPU ₹',data:[0,0,0,0,900,920,950,1100],borderColor:'#EF9F27',backgroundColor:'transparent',pointBackgroundColor:'#EF9F27',pointRadius:5,tension:0.3,borderWidth:2,yAxisID:'y2',order:1},
     ]
   },
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{
-      x:{grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#1E2440',font:{size:10}}},
-      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#1E2440',font:{size:10},callback:v=>v+'k users'},title:{display:true,text:'VR users',color:'#6C8FFF',font:{size:9}}},
+      x:{grid:{color:'rgba(42,127,181,0.15)'},ticks:{color:'var(--muted)',font:{size:10}}},
+      y:{grid:{color:'rgba(42,127,181,0.15)'},ticks:{color:'var(--muted)',font:{size:10},callback:v=>v+'k users'},title:{display:true,text:'VR users',color:'#2A7FB5',font:{size:9}}},
       y2:{position:'right',grid:{display:false},ticks:{color:'#EF9F27',font:{size:10},callback:v=>'₹'+v},title:{display:true,text:'ARPU/yr',color:'#EF9F27',font:{size:9}}}
     }
   }
@@ -553,7 +553,7 @@ new Chart(document.getElementById('c-costs'),{
   data:{
     labels:['Pre-seed\nPoC','Series A\nbuild','2028\nYear 1 ops','2029\nYear 2 ops','2030\nYear 3 ops'],
     datasets:[
-      {label:'Content',data:[2,20,8,10,14],backgroundColor:'#6C8FFF',stack:'s',borderRadius:3},
+      {label:'Content',data:[2,20,8,10,14],backgroundColor:'#2A7FB5',stack:'s',borderRadius:3},
       {label:'Engineering',data:[1,30,18,22,26],backgroundColor:'#EF9F27',stack:'s',borderRadius:3},
       {label:'Cloud/CDN',data:[2,5,18,28,42],backgroundColor:'#1D8A50',stack:'s',borderRadius:3},
       {label:'Partnerships',data:[0,8,4,6,8],backgroundColor:'#7BC4E8',stack:'s',borderRadius:3},
@@ -561,8 +561,8 @@ new Chart(document.getElementById('c-costs'),{
   },
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{
-      x:{stacked:true,grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#1E2440',font:{size:10}}},
-      y:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#1E2440',font:{size:10},callback:v=>'₹'+v+'L'}}
+      x:{stacked:true,grid:{color:'rgba(42,127,181,0.15)'},ticks:{color:'var(--muted)',font:{size:10}}},
+      y:{stacked:true,grid:{color:'rgba(42,127,181,0.15)'},ticks:{color:'var(--muted)',font:{size:10},callback:v=>'₹'+v+'L'}}
     }
   }
 });

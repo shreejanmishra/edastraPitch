@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edastra Chart</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
@@ -33,78 +38,86 @@
   --border-radius-md: 12px;
   --border-radius-lg: 20px;
 }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--white); font-family: 'Outfit', sans-serif; color: var(--txt); overflow-x: hidden; }
+
+
+
+
 
 
 *{box-sizing:border-box;margin:0;padding:0;}
-.deck{font-family:'Outfit',sans-serif;background:#0D1B2A;color:#F5F0E8;padding:0;}
-.nav{display:flex;border-bottom:1px solid rgba(42,127,181,0.2);background:#0D1B2A;position:sticky;top:0;z-index:10;}
-.ntab{flex:1;padding:11px 0;text-align:center;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,0.4);cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;transition:all .2s;}
-.ntab.active{color:#2A7FB5;border-bottom-color:#2A7FB5;}
-.ntab:hover:not(.active){color:rgba(245,240,232,0.7);}
+.deck{font-family:'Outfit',sans-serif;background:var(--white);color:var(--txt);padding:0;}
+.nav{display:flex;border-bottom:1px solid var(--sky);background:var(--white);position:sticky;top:0;z-index:10;}
+.ntab{flex:1;padding:11px 0;text-align:center;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;transition:all .2s;}
+.ntab.active{color:var(--deep);border-bottom-color:var(--deep);}
+.ntab:hover:not(.active){color:var(--navy);}
 .panel{display:none;padding:1.75rem;animation:fi .25s ease;}
 .panel.active{display:block;}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
-.eyebrow{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#2A7FB5;margin-bottom:5px;}
-.ptitle{font-family:'DM Serif Display',serif;font-size:22px;color:#F5F0E8;margin-bottom:3px;}
-.psub{font-size:12px;color:rgba(245,240,232,0.45);margin-bottom:1.25rem;}
-.gline{width:36px;height:2px;background:#2A7FB5;margin-bottom:1.25rem;}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--deep);margin-bottom:5px;}
+.ptitle{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--navy);margin-bottom:3px;}
+.psub{font-size:12px;color:var(--muted);margin-bottom:1.25rem;}
+.gline{width:36px;height:2px;background:var(--deep);margin-bottom:1.25rem;}
 
 .hero-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
-.hero-card{background:rgba(245,240,232,0.04);border:.5px solid rgba(245,240,232,0.12);border-radius: 12px;padding:1rem 1.1rem;text-align:center;}
-.hero-card.gold{border-color:rgba(42,127,181,0.4);background:rgba(42,127,181,0.07);}
-.hero-num{font-family:'DM Serif Display',serif;font-size:28px;line-height:1;margin-bottom:4px;}
-.hero-label{font-size:11px;font-weight:500;margin-bottom:4px;}
-.hero-note{font-size:10px;color:rgba(245,240,232,0.45);line-height:1.4;}
+.hero-card{background:var(--white);border:1px solid var(--sky);border-radius:12px;padding:1rem 1.1rem;text-align:center;box-shadow:0 2px 8px rgba(42,127,181,0.06);}
+.hero-card.gold{border-color:var(--deep);background:rgba(42,127,181,0.07);}
+.hero-num{font-family:'Cormorant Garamond',serif;font-size:28px;line-height:1;margin-bottom:4px;}
+.hero-label{font-size:11px;font-weight:500;margin-bottom:4px;color:var(--navy);}
+.hero-note{font-size:10px;color:var(--muted);line-height:1.4;}
 
 .insight{border-radius:6px;padding:.75rem 1rem;font-size:12px;line-height:1.6;margin-bottom:1rem;}
-.i-gold{background:rgba(42,127,181,0.1);border-left:2px solid #2A7FB5;color:rgba(245,240,232,0.85);}
-.i-green{background:rgba(29,138,80,0.1);border-left:2px solid #059669;color:rgba(245,240,232,0.85);}
-.i-blue{background:rgba(123,196,232,0.1);border-left:2px solid #0891B2;color:rgba(245,240,232,0.85);}
-.i-red{background:rgba(216,90,48,0.1);border-left:2px solid #DC2626;color:rgba(245,240,232,0.85);}
+.i-gold{background:rgba(42,127,181,0.08);border-left:2px solid var(--deep);color:var(--navy);}
+.i-green{background:rgba(29,138,80,0.08);border-left:2px solid #059669;color:var(--navy);}
+.i-blue{background:rgba(123,196,232,0.08);border-left:2px solid #0891B2;color:var(--navy);}
+.i-red{background:rgba(216,90,48,0.08);border-left:2px solid #DC2626;color:var(--navy);}
 
 .chart-wrap{position:relative;width:100%;margin-bottom:1.25rem;}
 .h240{height:240px;}.h200{height:200px;}.h180{height:180px;}
 
-.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:rgba(245,240,232,0.5);margin-bottom:8px;}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--muted);margin-bottom:8px;}
 .leg-item{display:flex;align-items:center;gap:5px;}
 .leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;}
 .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
 
-.proof-card{background:rgba(245,240,232,0.04);border:.5px solid rgba(245,240,232,0.1);border-radius: 12px;padding:1rem 1.1rem;}
+.proof-card{background:var(--white);border:1px solid var(--sky);border-radius:12px;padding:1rem 1.1rem;box-shadow:0 2px 8px rgba(42,127,181,0.06);}
 .proof-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;}
-.proof-signal{font-size:13px;font-weight:500;color:#F5F0E8;}
+.proof-signal{font-size:13px;font-weight:500;color:var(--navy);}
 .proof-tag{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:500;white-space:nowrap;}
 .tag-high{background:rgba(29,138,80,0.25);color:#1D8A50;}
 .tag-med{background:rgba(217,119,6,0.25);color:#EF9F27;}
-.proof-proves{font-size:11px;color:rgba(245,240,232,0.6);line-height:1.5;margin-bottom:.5rem;}
-.proof-bench{font-size:10px;color:rgba(42,127,181,0.8);font-style:italic;}
+.proof-proves{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:.5rem;}
+.proof-bench{font-size:10px;color:var(--mid);font-style:italic;}
 
 .milestone-row{display:flex;align-items:stretch;gap:0;margin-bottom:1.5rem;overflow-x:auto;}
-.ms-item{flex:1;min-width:120px;border:.5px solid rgba(245,240,232,0.08);border-right:none;padding:.75rem .875rem;position:relative;}
-.ms-item:last-child{border-right:.5px solid rgba(245,240,232,0.08);}
-.ms-item.done{background:rgba(29,138,80,0.08);}
-.ms-item.active-ms{background:rgba(42,127,181,0.08);border-color:rgba(42,127,181,0.35);}
-.ms-item.future{background:rgba(245,240,232,0.02);}
+.ms-item{flex:1;min-width:120px;border:1px solid var(--sky);border-right:none;padding:.75rem .875rem;position:relative;}
+.ms-item:last-child{border-right:1px solid var(--sky);}
+.ms-item.done{background:rgba(29,138,80,0.06);}
+.ms-item.active-ms{background:rgba(42,127,181,0.06);border-color:var(--deep);}
+.ms-item.future{background:var(--ice);}
 .ms-label{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
-.ms-title{font-size:11px;font-weight:500;color:#F5F0E8;margin-bottom:4px;}
-.ms-detail{font-size:10px;color:rgba(245,240,232,0.45);line-height:1.4;}
+.ms-title{font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+.ms-detail{font-size:10px;color:var(--muted);line-height:1.4;}
 .ms-marker{width:8px;height:8px;border-radius:50%;margin-bottom:6px;}
 
 .narrative-block{border-radius:8px;padding:1rem 1.1rem;margin-bottom:10px;}
 .narr-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
-.narr-quote{font-size:13px;line-height:1.7;font-style:italic;}
+.narr-quote{font-size:13px;line-height:1.7;font-style:italic;color:var(--navy);}
 .narr-verdict{font-size:11px;margin-top:8px;opacity:.8;}
 
 .cap-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.cap-label{font-size:11px;color:rgba(245,240,232,0.6);min-width:160px;}
-.cap-track{flex:1;height:7px;background:rgba(245,240,232,0.08);border-radius:99px;overflow:hidden;}
+.cap-label{font-size:11px;color:var(--muted);min-width:160px;}
+.cap-track{flex:1;height:7px;background:var(--ice);border-radius:99px;overflow:hidden;}
 .cap-fill{height:7px;border-radius:99px;}
-.cap-val{font-size:11px;min-width:80px;text-align:right;}
-</style>
+.cap-val{font-size:11px;min-width:80px;text-align:right;color:var(--navy);}
 
+</style>
+</head>
+<body>
 <div class="deck">
 <nav class="nav">
   <button class="ntab active" onclick="sw('headline',this)">Headline numbers</button>
@@ -128,17 +141,17 @@
     </div>
     <div class="hero-card">
       <div class="hero-num" style="color:#1D8A50">540+</div>
-      <div class="hero-label" style="color:#15755A">Feedback submissions</div>
+      <div class="hero-label" style="color:#1D8A50">Feedback submissions</div>
       <div class="hero-note">3.3% active rate — 2–6x industry average.</div>
     </div>
     <div class="hero-card">
       <div class="hero-num" style="color:#7BC4E8">1</div>
-      <div class="hero-label" style="color:#C8E6F7">School pilot live</div>
+      <div class="hero-label" style="color:var(--mid)">School pilot live</div>
       <div class="hero-note">B2B partnership model validated pre-funding.</div>
     </div>
     <div class="hero-card">
       <div class="hero-num" style="color:#D85A30">₹0</div>
-      <div class="hero-label" style="color:#FECACA">Paid CAC</div>
+      <div class="hero-label" style="color:#D85A30">Paid CAC</div>
       <div class="hero-note">First 16k users cost nothing. Validates ₹180 model.</div>
     </div>
   </div>
@@ -174,8 +187,8 @@
         </div>
         <div class="cap-row">
           <div class="cap-label">Industry avg (beta)</div>
-          <div class="cap-track"><div class="cap-fill" style="width:15%;background:rgba(245,240,232,0.3)"></div></div>
-          <div class="cap-val" style="color:rgba(245,240,232,0.4)">0.5–1.5%</div>
+          <div class="cap-track"><div class="cap-fill" style="width:15%;background:rgba(90,143,173,0.5)"></div></div>
+          <div class="cap-val" style="color:var(--muted)">0.5–1.5%</div>
         </div>
         <div class="cap-row">
           <div class="cap-label">School pilots live</div>
@@ -185,7 +198,7 @@
         <div class="cap-row">
           <div class="cap-label">Paid CAC spend</div>
           <div class="cap-track"><div class="cap-fill" style="width:0%;background:#D85A30"></div></div>
-          <div class="cap-val" style="color:rgba(245,240,232,0.3)">₹0</div>
+          <div class="cap-val" style="color:rgba(90,143,173,0.5)">₹0</div>
         </div>
       </div>
       <div class="insight i-green" style="margin-bottom:0">
@@ -243,10 +256,10 @@
       <div class="proof-proves">VR is not a future promise — it is a live UI section. Technical foundation exists. 2028 launch is de-risked.</div>
       <div class="proof-bench">Most EdTech VR is a 2028+ slide. Edastra has a VR UI built today.</div>
     </div>
-    <div class="proof-card" style="border-color:rgba(42,127,181,0.35);background:rgba(42,127,181,0.07)">
+    <div class="proof-card" style="border-color:var(--deep);background:rgba(42,127,181,0.07)">
       <div class="proof-head">
         <div class="proof-signal">₹0 acquisition cost</div>
-        <div class="proof-tag" style="background:rgba(42,127,181,0.25);color:#2A7FB5">Moat signal</div>
+        <div class="proof-tag" style="background:rgba(42,127,181,0.15);color:var(--deep)">Moat signal</div>
       </div>
       <div class="proof-proves">16,231 users acquired at zero paid spend. Validates the ₹180 CAC thesis entirely — before spending a rupee on acquisition.</div>
       <div class="proof-bench">Pure digital EdTech CAC: ₹1,000–3,000. Edastra beta CAC: ₹0.</div>
@@ -261,7 +274,7 @@
     <div>
       <div class="legend">
         <div class="leg-item"><div class="leg-dot" style="background:#2A7FB5"></div>Edastra (3.3%)</div>
-        <div class="leg-item"><div class="leg-dot" style="background:rgba(245,240,232,0.3)"></div>Industry avg (1.0%)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(90,143,173,0.5)"></div>Industry avg (1.0%)</div>
       </div>
       <div class="chart-wrap h200"><canvas id="c-engage"></canvas></div>
     </div>
@@ -297,26 +310,26 @@
       <div class="ms-detail">20k users · 3 more pilots · CAC confirmed ₹180</div>
     </div>
     <div class="ms-item future">
-      <div class="ms-marker" style="background:rgba(245,240,232,0.3)"></div>
-      <div class="ms-label" style="color:rgba(245,240,232,0.4)">M4–M6</div>
+      <div class="ms-marker" style="background:rgba(90,143,173,0.5)"></div>
+      <div class="ms-label" style="color:var(--muted)">M4–M6</div>
       <div class="ms-title">10 partnerships</div>
       <div class="ms-detail">100k users · first revenue · ₹10–25L MRR</div>
     </div>
     <div class="ms-item future">
-      <div class="ms-marker" style="background:rgba(245,240,232,0.3)"></div>
-      <div class="ms-label" style="color:rgba(245,240,232,0.4)">M7–M9</div>
+      <div class="ms-marker" style="background:rgba(90,143,173,0.5)"></div>
+      <div class="ms-label" style="color:var(--muted)">M7–M9</div>
       <div class="ms-title">Sub paywall live</div>
       <div class="ms-detail">300k users · 8% sub conv · ₹1 Cr MRR</div>
     </div>
     <div class="ms-item future">
-      <div class="ms-marker" style="background:rgba(245,240,232,0.3)"></div>
-      <div class="ms-label" style="color:rgba(245,240,232,0.4)">M10–M12</div>
+      <div class="ms-marker" style="background:rgba(90,143,173,0.5)"></div>
+      <div class="ms-label" style="color:var(--muted)">M10–M12</div>
       <div class="ms-title">Exam data cycle 1</div>
       <div class="ms-detail">750k users · ₹2 Cr MRR · Series A deck</div>
     </div>
     <div class="ms-item future">
-      <div class="ms-marker" style="background:rgba(245,240,232,0.3)"></div>
-      <div class="ms-label" style="color:rgba(245,240,232,0.4)">M13–M15</div>
+      <div class="ms-marker" style="background:rgba(90,143,173,0.5)"></div>
+      <div class="ms-label" style="color:var(--muted)">M13–M15</div>
       <div class="ms-title">1Mn milestone</div>
       <div class="ms-detail">₹5 Cr ARR · VR PoC demo · Series A in process</div>
     </div>
@@ -348,13 +361,13 @@
 
   <div class="narrative-block" style="background:rgba(216,90,48,0.08);border:.5px solid rgba(216,90,48,0.25);">
     <div class="narr-label" style="color:#D85A30">Without traction (old)</div>
-    <div class="narr-quote" style="color:rgba(245,240,232,0.7)">"We are building an EdTech platform. We plan to get 200k users in Year 1 and achieve PMF by 2027. We are asking for ₹20 Cr."</div>
+    <div class="narr-quote" style="color:var(--muted)">"We are building an EdTech platform. We plan to get 200k users in Year 1 and achieve PMF by 2027. We are asking for ₹20 Cr."</div>
     <div class="narr-verdict" style="color:#D85A30">Weak. Every pre-seed says this. No differentiation. Investor has heard it 100 times. Standard 40–60% valuation discount applied.</div>
   </div>
 
   <div class="narrative-block" style="background:rgba(29,138,80,0.08);border:.5px solid rgba(29,138,80,0.3);">
     <div class="narr-label" style="color:#1D8A50">With traction (new)</div>
-    <div class="narr-quote" style="color:#F5F0E8">"We have 16,231 beta users, a 3.3% engagement rate that is 2–6x the industry average, one school pilot running, and a VR section already built — all pre-funding, zero paid marketing. We are raising ₹20 Cr to scale what is already working."</div>
+    <div class="narr-quote" style="color:var(--navy)">"We have 16,231 beta users, a 3.3% engagement rate that is 2–6x the industry average, one school pilot running, and a VR section already built — all pre-funding, zero paid marketing. We are raising ₹20 Cr to scale what is already working."</div>
     <div class="narr-verdict" style="color:#1D8A50">Strong. Specific. Proves execution. Frames raise as scaling, not building. Removes the standard pre-seed risk discount.</div>
   </div>
 
@@ -366,15 +379,15 @@
   <div class="three-col">
     <div class="proof-card">
       <div style="font-size:11px;font-weight:600;color:#2A7FB5;margin-bottom:6px;letter-spacing:.05em">WHAT CHANGES</div>
-      <div style="font-size:12px;color:rgba(245,240,232,0.7);line-height:1.6;">The ask changes from "fund a concept" to "scale what works." That is the difference between a 3–5x valuation discount and none.</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">The ask changes from "fund a concept" to "scale what works." That is the difference between a 3–5x valuation discount and none.</div>
     </div>
     <div class="proof-card">
       <div style="font-size:11px;font-weight:600;color:#1D8A50;margin-bottom:6px;letter-spacing:.05em">CAC STORY</div>
-      <div style="font-size:12px;color:rgba(245,240,232,0.7);line-height:1.6;">₹180 CAC is no longer an assumption — it is proven. First 16k users cost ₹0. That is the strongest possible CAC validation.</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">₹180 CAC is no longer an assumption — it is proven. First 16k users cost ₹0. That is the strongest possible CAC validation.</div>
     </div>
     <div class="proof-card">
       <div style="font-size:11px;font-weight:600;color:#7BC4E8;margin-bottom:6px;letter-spacing:.05em">SERIES A PATH</div>
-      <div style="font-size:12px;color:rgba(245,240,232,0.7);line-height:1.6;">Starting from 16k users means milestones arrive 2 months early. Series A trigger moves M18 → M16. Two months more negotiating leverage.</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Starting from 16k users means milestones arrive 2 months early. Series A trigger moves M18 → M16. Two months more negotiating leverage.</div>
     </div>
   </div>
 
@@ -405,8 +418,8 @@ new Chart(document.getElementById('c-weekly'),{
   ]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{
-      x:{grid:{color:'rgba(245,240,232,0.05)'},ticks:{color:'rgba(245,240,232,0.4)',font:{size:10}}},
-      y:{grid:{color:'rgba(245,240,232,0.07)'},ticks:{color:'rgba(245,240,232,0.4)',font:{size:10}},title:{display:true,text:'Visits',color:'#2A7FB5',font:{size:10}}},
+      x:{grid:{color:'rgba(42,127,181,0.08)'},ticks:{color:'var(--muted)',font:{size:10}}},
+      y:{grid:{color:'rgba(42,127,181,0.1)'},ticks:{color:'var(--muted)',font:{size:10}},title:{display:true,text:'Visits',color:'#2A7FB5',font:{size:10}}},
       y2:{position:'right',grid:{display:false},ticks:{color:'#1D8A50',font:{size:10}},title:{display:true,text:'Feedback',color:'#1D8A50',font:{size:10}}}
     }
   }
@@ -416,12 +429,12 @@ new Chart(document.getElementById('c-engage'),{
   type:'bar',
   data:{labels:['Edastra beta','Top-tier beta\n(1.5%)','Industry avg\n(1.0%)','Typical\n(0.5%)'],
     datasets:[{data:[3.3,1.5,1.0,0.5],
-      backgroundColor:['#2A7FB5','rgba(245,240,232,0.25)','rgba(245,240,232,0.18)','rgba(245,240,232,0.12)'],
+      backgroundColor:['#2A7FB5','rgba(200,230,247,0.8)','rgba(200,230,247,0.6)','rgba(200,230,247,0.4)'],
       borderRadius:4}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{
-      x:{grid:{display:false},ticks:{color:'rgba(245,240,232,0.5)',font:{size:11}}},
-      y:{grid:{color:'rgba(245,240,232,0.07)'},ticks:{color:'rgba(245,240,232,0.4)',font:{size:10},callback:v=>v+'%'},max:4}
+      x:{grid:{display:false},ticks:{color:'var(--muted)',font:{size:11}}},
+      y:{grid:{color:'rgba(42,127,181,0.1)'},ticks:{color:'var(--muted)',font:{size:10},callback:v=>v+'%'},max:4}
     }
   }
 });
@@ -434,8 +447,8 @@ new Chart(document.getElementById('c-cac'),{
       borderRadius:4}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{
-      x:{grid:{display:false},ticks:{color:'rgba(245,240,232,0.5)',font:{size:10}}},
-      y:{grid:{color:'rgba(245,240,232,0.07)'},ticks:{color:'rgba(245,240,232,0.4)',font:{size:10},callback:v=>'₹'+v}}
+      x:{grid:{display:false},ticks:{color:'var(--muted)',font:{size:10}}},
+      y:{grid:{color:'rgba(42,127,181,0.1)'},ticks:{color:'var(--muted)',font:{size:10},callback:v=>'₹'+v}}
     }
   }
 });
@@ -451,10 +464,12 @@ new Chart(document.getElementById('c-milestone'),{
   ]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{
-      x:{grid:{color:'rgba(245,240,232,0.05)'},ticks:{color:'rgba(245,240,232,0.5)',font:{size:11}}},
-      y:{grid:{color:'rgba(245,240,232,0.07)'},ticks:{color:'rgba(245,240,232,0.4)',font:{size:10},callback:v=>v+'k users'},title:{display:true,text:'Users (k)',color:'#2A7FB5',font:{size:10}}},
+      x:{grid:{color:'rgba(42,127,181,0.08)'},ticks:{color:'var(--muted)',font:{size:11}}},
+      y:{grid:{color:'rgba(42,127,181,0.1)'},ticks:{color:'var(--muted)',font:{size:10},callback:v=>v+'k users'},title:{display:true,text:'Users (k)',color:'#2A7FB5',font:{size:10}}},
       y2:{position:'right',grid:{display:false},ticks:{color:'#1D8A50',font:{size:10},callback:v=>'₹'+v+'L'},title:{display:true,text:'MRR (₹L)',color:'#1D8A50',font:{size:10}}}
     }
   }
 });
 </script>
+</body>
+</html>
