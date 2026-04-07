@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import AutoFrame from '../components/AutoFrame'
 
 const FinancialOutlook = () => {
   return (
@@ -10,12 +11,12 @@ const FinancialOutlook = () => {
             Financial Model Dashboard
           </h3>
           <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl w-full max-w-6xl mx-auto">
-            <iframe
-              src="/graphs/edastra_financial_model_dashboard.html"
-              title="Financial Model Dashboard"
-              className="w-full min-h-[650px] bg-white"
-              frameBorder="0"
-            />
+            <AutoFrame
+                src="/graphs/edastra_financial_model_dashboard.html"
+                title="Financial Model Dashboard"
+                className="bg-white"
+                frameBorder="0"
+              />
           </div>
         </div>
       </div>

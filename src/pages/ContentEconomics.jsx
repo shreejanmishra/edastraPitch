@@ -1,4 +1,5 @@
 import React from 'react'
+import AutoFrame from '../components/AutoFrame'
 
 const ContentEconomics = () => {
   return (
@@ -9,7 +10,7 @@ const ContentEconomics = () => {
           <img
             src="/images/page_15_img_1.png"
             alt="Content Production Structural Advantage"
-            className="max-w-full mx-auto rounded-lg shadow-2xl shadow-primary/10 border border-primary/20"
+            className="max-w-full mx-auto rounded-lg border border-primary/20 shadow-xl"
           />
         </div>
 
@@ -18,10 +19,10 @@ const ContentEconomics = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">Content Economics Visual</h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_content_economics_visual.html"
                 title="Content Economics Visual"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
@@ -29,10 +30,10 @@ const ContentEconomics = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">Content Unit Economics</h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_content_unit_economics.html"
                 title="Content Unit Economics"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
@@ -40,10 +41,10 @@ const ContentEconomics = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">Content Unit Economics (Detailed)</h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_content_unit_economics-2.html"
                 title="Content Unit Economics Detailed"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
@@ -51,10 +52,10 @@ const ContentEconomics = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">VR Content Economics</h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/vr_content_economics_slide.html"
                 title="VR Content Economics Slide"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>

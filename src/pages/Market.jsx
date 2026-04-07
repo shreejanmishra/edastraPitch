@@ -31,7 +31,7 @@ const Market = () => {
             <img
               src="/images/page_4_img_1.png"
               alt="Market Opportunity"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
           <div>
@@ -39,7 +39,7 @@ const Market = () => {
             <img
               src="/images/page_15_img_1.png"
               alt="Competition"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
         </div>

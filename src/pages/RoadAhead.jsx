@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import AutoFrame from '../components/AutoFrame'
 
 const RoadAhead = () => {
   return (
@@ -11,10 +12,10 @@ const RoadAhead = () => {
               Fund Allocation & Burn
             </h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_fund_allocation_burn.html"
                 title="Fund Allocation & Burn"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
@@ -24,10 +25,10 @@ const RoadAhead = () => {
               18-Month Milestones
             </h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_18month_milestones.html"
                 title="18-Month Milestones"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
@@ -37,10 +38,10 @@ const RoadAhead = () => {
               Pre-Seed Narrative
             </h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_preseed_narrative.html"
                 title="Pre-Seed Narrative"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>

@@ -43,7 +43,7 @@ const SubNav = ({ items }) => {
   }
 
   return (
-    <div className="fixed left-0 top-[65px] h-[calc(100vh-65px)] w-64 bg-dark-lighter border-r border-primary/20 overflow-y-auto z-30">
+    <div className="fixed left-0 top-[65px] h-[calc(100vh-65px)] w-64 bg-[#EAF4FB] border-r border-primary/20 overflow-y-auto z-30">
       <nav className="p-6">
         <ul className="space-y-2">
           {items.map((item, index) => (
@@ -52,11 +52,11 @@ const SubNav = ({ items }) => {
                 onClick={() => handleScroll(item.id)}
                 className={`w-full text-left block px-4 py-3 rounded-lg transition-all font-audio-cassette ${
                   activeId === item.id
-                    ? 'bg-primary text-black font-semibold'
-                    : 'text-gray-300 hover:bg-dark-light hover:text-primary'
+                    ? 'bg-primary text-white font-semibold shadow-md'
+                    : 'text-gray-600 hover:bg-[#D5E9F7] hover:text-primary'
                 }`}
               >
-                <span className="text-sm text-gray-500 mr-2">{String(index + 1).padStart(2, '0')}</span>
+                <span className="text-sm text-gray-400 mr-2">{String(index + 1).padStart(2, '0')}</span>
                 {item.label}
               </button>
             </li>

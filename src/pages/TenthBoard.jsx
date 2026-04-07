@@ -9,7 +9,7 @@ const TenthBoard = () => {
           <img
             src="/images/page_6_img_1.png"
             alt="10th Board - Teenager Content"
-            className="max-w-full mx-auto rounded-lg shadow-2xl shadow-primary/10 border border-primary/20"
+            className="max-w-full mx-auto rounded-lg border border-primary/20 shadow-xl"
           />
         </div>
       </div>

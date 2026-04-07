@@ -1,4 +1,5 @@
 import React from 'react'
+import AutoFrame from '../components/AutoFrame'
 
 const VRExperience = () => {
   return (
@@ -11,7 +12,7 @@ const VRExperience = () => {
             <img
               src="/images/page_10_img_1.png"
               alt="VR at Edastra — Devices & Cost"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
           <div>
@@ -19,7 +20,7 @@ const VRExperience = () => {
             <img
               src="/images/page_11_img_1.png"
               alt="VR at Edastra — Scalability"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
         </div>
@@ -29,10 +30,10 @@ const VRExperience = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">VR Experience Overview</h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_vr_slide.html"
                 title="VR Slide"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
@@ -40,10 +41,10 @@ const VRExperience = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">VR Visual</h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_vr_visual.html"
                 title="VR Visual"
-                className="w-full h-[600px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>

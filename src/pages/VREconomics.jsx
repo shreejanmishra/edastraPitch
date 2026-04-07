@@ -1,4 +1,5 @@
 import React from 'react'
+import AutoFrame from '../components/AutoFrame'
 
 const VREconomics = () => {
   return (
@@ -11,7 +12,7 @@ const VREconomics = () => {
             <img
               src="/images/page_13_img_1.png"
               alt="AI-led VR Content Economics"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
           <div>
@@ -19,7 +20,7 @@ const VREconomics = () => {
             <img
               src="/images/page_14_img_1.png"
               alt="VR Profitability & Revenue Projections"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
         </div>
@@ -28,12 +29,12 @@ const VREconomics = () => {
         <div>
           <h3 className="text-2xl font-bold mb-4 text-primary">VR Economics Analysis</h3>
           <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-            <iframe
-              src="/graphs/edastra_vr_economics.html"
-              title="VR Economics"
-              className="w-full h-[600px] bg-white"
-              frameBorder="0"
-            />
+            <AutoFrame
+                src="/graphs/edastra_vr_economics.html"
+                title="VR Economics"
+                className="bg-white"
+                frameBorder="0"
+              />
           </div>
         </div>
       </div>

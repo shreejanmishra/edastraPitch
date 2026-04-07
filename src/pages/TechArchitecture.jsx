@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import AutoFrame from "../components/AutoFrame";
 
 const TechArchitecture = () => {
   return (
@@ -9,53 +10,58 @@ const TechArchitecture = () => {
           <img
             src="/images/page_17_img_1.png"
             alt="Tech Architecture"
-            className="max-w-full mx-auto rounded-lg shadow-2xl shadow-primary/10 border border-primary/20"
+            className="max-w-full mx-auto rounded-lg border border-primary/20 shadow-xl"
           />
         </div>
 
         {/* Interactive Graphs */}
         <div className="space-y-8">
           <div>
-            <h3 className="text-2xl font-bold mb-2 text-primary">Core Architecture (Interactive)</h3>
-            <p className="text-sm text-gray-400 mb-4">Use the tabs to explore: Full Stack → Client Layer → Platform Services → <strong>Infrastructure (Global Expansion)</strong></p>
+            <h3 className="text-2xl font-bold mb-2 text-primary">
+              Core Architecture (Interactive)
+            </h3>
+            <p className="text-sm text-gray-400 mb-4">
+              Use the tabs to explore: Full Stack → Client Layer → Platform
+              Services → <strong>Infrastructure (Global Expansion)</strong>
+            </p>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_tech_arch_fixed.html"
                 title="Core Architecture Interactive"
-                className="w-full h-[700px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
           </div>
-          <div>
+          {/* <div>
             <h3 className="text-2xl font-bold mb-2 text-primary">Detailed Architecture</h3>
             <p className="text-sm text-gray-400 mb-4">Detailed breakdown with layer labels and expanded service descriptions</p>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_tech_architecture.html"
                 title="Detailed Architecture"
-                className="w-full h-[700px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
-          </div>
+          </div> */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">Tech Cost Estimate</h3>
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              Tech Cost Estimate
+            </h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <iframe
+              <AutoFrame
                 src="/graphs/edastra_tech_cost_estimate.html"
                 title="Tech Cost Estimate"
-                className="w-full h-[700px] bg-white"
+                className="bg-white"
                 frameBorder="0"
               />
             </div>
           </div>
         </div>
       </div>
-
-      
     </div>
-  )
-}
+  );
+};
 
-export default TechArchitecture
+export default TechArchitecture;

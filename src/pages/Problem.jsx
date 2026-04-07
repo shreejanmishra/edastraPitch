@@ -12,7 +12,7 @@ const Problem = () => {
           <img
             src="/images/page_2_img_1.png"
             alt="Problem Statement"
-            className="max-w-full mx-auto rounded-lg shadow-2xl shadow-primary/10 border border-primary/20"
+            className="max-w-full mx-auto rounded-lg border border-primary/20 shadow-xl"
           />
         </div>
       </div>

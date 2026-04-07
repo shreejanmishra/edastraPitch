@@ -11,7 +11,7 @@ const Solution = () => {
             <img
               src="/images/page_3_img_1.png"
               alt="Solution Features — Scholarship, 4K Library, VR, OTT, Storytelling"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
           <div>
@@ -19,7 +19,7 @@ const Solution = () => {
             <img
               src="/images/page_8_img_1.png"
               alt="The Edastra Solution — Defining Solution"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
         </div>

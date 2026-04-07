@@ -1,19 +1,33 @@
 const fs = require('fs');
 const path = require('path');
 
-const dir = path.join(__dirname, 'public', 'graphs');
+const directoryPath = path.join(__dirname, 'src', 'pages');
+const indexCssPath = path.join(__dirname, 'src', 'index.css');
 
-let files = fs.readdirSync(dir).filter(f => f.endsWith('.html'));
+const replaceInFile = (filePath) => {
+  if (fs.existsSync(filePath)) {
+    let content = fs.readFileSync(filePath, 'utf8');
+    if (content.includes('#EAF4FB') || content.includes('#eaf4fb')) {
+      // Replace all instances of the hex color (case-insensitive)
+      let newContent = content.replace(/#EAF4FB/gi, '#FAFCFF');
+      fs.writeFileSync(filePath, newContent, 'utf8');
+      console.log(`Updated: ${path.basename(filePath)}`);
+    } else {
+        console.log(`No change: ${path.basename(filePath)}`);
+    }
+  }
+};
 
-files.forEach(file => {
-  const filepath = path.join(dir, file);
-  let content = fs.readFileSync(filepath, 'utf8');
-
-  // Fix the regex over-eager matching issues
-  content = content.replace(/#FAFCFF3E0/g, '#FFF3E0');
-  content = content.replace(/#FAFCFFfff/g, '#ffffff'); // if any
+fs.readdir(directoryPath, (err, files) => {
+  if (err) {
+    return console.log('Unable to scan directory: ' + err);
+  } 
   
-  fs.writeFileSync(filepath, content, 'utf8');
+  files.forEach((file) => {
+    if (file.endsWith('.jsx')) {
+      replaceInFile(path.join(directoryPath, file));
+    }
+  });
 });
 
-console.log('Fixed over-eager hex replacements.');
+replaceInFile(indexCssPath);

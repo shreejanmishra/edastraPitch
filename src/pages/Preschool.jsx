@@ -9,7 +9,7 @@ const Preschool = () => {
           <img
             src="/images/page_5_img_1.png"
             alt="Preschooler's Corner - Content Snippet"
-            className="max-w-full mx-auto rounded-lg shadow-2xl shadow-primary/10 border border-primary/20"
+            className="max-w-full mx-auto rounded-lg border border-primary/20 shadow-xl"
           />
         </div>
       </div>
