@@ -39,33 +39,33 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 .d{font-family:'Outfit',sans-serif;background: var(--white);color: var(--navy);min-height:100vh;}
 .nav{display:flex;background: var(--white);border-bottom:1px solid #C8E6F7;position:sticky;top:0;z-index:20;overflow-x:auto;}
-.nt{flex-shrink:0;padding:11px 18px;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#2A3050;cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;white-space:nowrap;transition:all .2s;}
+.nt{flex-shrink:0;padding:11px 18px;font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#2A3050;cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;white-space:nowrap;transition:all .2s;}
 .nt.on{color:#2A7FB5;border-bottom-color:#2A7FB5;}
 .nt:hover:not(.on){color:#4A5580;}
 .sl{display:none;padding:2rem 1.75rem 3rem;animation:fi .25s ease;}
 .sl.on{display:block;}
 @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-.ey{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#2A7FB5;margin-bottom:.4rem;}
-.ti{font-size:26px;font-weight:700;line-height:1.1;color: var(--navy);margin-bottom:.35rem;}
-.sb{font-size:13px;color:#2A3050;margin-bottom:1.5rem;line-height:1.6;}
+.ey{font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#2A7FB5;margin-bottom:.4rem;}
+.ti{font-size:32px;font-weight:700;line-height:1.1;color: var(--navy);margin-bottom:.35rem;}
+.sb{font-size:19px;color:#2A3050;margin-bottom:1.5rem;line-height:1.6;}
 .bar{width:44px;height:3px;background:#2A7FB5;margin-bottom:1.5rem;}
 
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.75rem;}
 .kpi{background: var(--white);border:1px solid #C8E6F7;border-radius: 12px;padding:.875rem 1rem;text-align:center;}
 .kpi.hi{border-color:#2A7FB5;background:rgba(42,127,181,0.05);}
-.kpi-n{font-size:24px;font-weight:700;line-height:1;margin-bottom:4px;}
-.kpi-l{font-size:11px;font-weight:500;margin-bottom:3px;}
-.kpi-s{font-size:10px;color:#2A3050;line-height:1.4;}
+.kpi-n{font-size:30px;font-weight:700;line-height:1;margin-bottom:4px;}
+.kpi-l{font-size:17px;font-weight:500;margin-bottom:3px;}
+.kpi-s{font-size:16px;color:#2A3050;line-height:1.4;}
 
 .chart-w{position:relative;width:100%;margin-bottom:1.5rem;}
 .h280{height:280px;}.h240{height:240px;}.h200{height:200px;}.h160{height:160px;}
 
-.leg{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:#2A3050;margin-bottom:8px;}
+.leg{display:flex;flex-wrap:wrap;gap:12px;font-size:17px;color:#2A3050;margin-bottom:8px;}
 .leg span{display:flex;align-items:center;gap:5px;}
 .ld{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
 
-.ins{border-radius:8px;padding:.875rem 1rem;font-size:12px;line-height:1.65;margin-bottom:1rem;}
+.ins{border-radius:8px;padding:.875rem 1rem;font-size:18px;line-height:1.65;margin-bottom:1rem;}
 .ins-b{background:rgba(42,127,181,0.07);border-left:2px solid #2A7FB5;color:rgba(16,58,90,0.85);}
 .ins-g{background:rgba(29,138,80,0.07);border-left:2px solid #1D8A50;color:rgba(16,58,90,0.85);}
 .ins-y{background:rgba(239,159,39,0.07);border-left:2px solid #EF9F27;color:rgba(16,58,90,0.85);}
@@ -75,39 +75,39 @@
 .ph{flex:1;padding:.875rem 1rem;border-right:1px solid #FAFCFF;}
 .ph:last-child{border-right:none;}
 .ph-dot{width:9px;height:9px;border-radius:50%;margin-bottom:7px;}
-.ph-per{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
-.ph-title{font-size:12px;font-weight:600;color: var(--navy);margin-bottom:5px;}
-.ph-detail{font-size:10px;color:#2A3050;line-height:1.5;}
-.ph-metric{font-size:11px;font-weight:500;margin-top:6px;}
+.ph-per{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.ph-title{font-size:18px;font-weight:600;color: var(--navy);margin-bottom:5px;}
+.ph-detail{font-size:16px;color:#2A3050;line-height:1.5;}
+.ph-metric{font-size:17px;font-weight:500;margin-top:6px;}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem;}
 
 .card{background: var(--white);border:1px solid #C8E6F7;border-radius: 12px;padding:.875rem 1rem;}
-.card-title{font-size:12px;font-weight:600;color: var(--navy);margin-bottom:.6rem;}
+.card-title{font-size:18px;font-weight:600;color: var(--navy);margin-bottom:.6rem;}
 .li-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
-.li-list li{font-size:11px;color:rgba(16,58,90,0.65);display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
+.li-list li{font-size:17px;color:rgba(16,58,90,0.65);display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
 .li-list li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;}
 
 .check-grid{display:flex;flex-direction:column;gap:6px;margin-bottom:1.5rem;}
 .chk{display:grid;grid-template-columns:28px 1fr auto auto;gap:10px;align-items:center;padding:9px 12px;background: var(--white);border-radius:8px;border:1px solid #C8E6F7;}
-.chk-n{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
-.chk-label{font-size:12px;font-weight:500;color: var(--navy);}
-.chk-target{font-size:11px;font-weight:600;}
-.chk-conf{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:500;}
+.chk-n{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;flex-shrink:0;}
+.chk-label{font-size:18px;font-weight:500;color: var(--navy);}
+.chk-target{font-size:17px;font-weight:600;}
+.chk-conf{font-size:16px;padding:2px 7px;border-radius:99px;font-weight:500;}
 .conf-h{background:rgba(29,138,80,0.15);color:#1D8A50;}
 .conf-m{background:rgba(239,159,39,0.15);color:#EF9F27;}
 
 .burn-row{display:flex;flex-direction:column;gap:6px;margin-bottom:1.5rem;}
 .br{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:7px 10px;background: var(--white);border-radius:6px;}
-.br-mo{font-size:11px;font-weight:500;color:#2A7FB5;}
+.br-mo{font-size:17px;font-weight:500;color:#2A7FB5;}
 .br-track{height:6px;border-radius:99px;overflow:hidden;background:#C8E6F7;}
 .br-fill{height:6px;border-radius:99px;background:#2A7FB5;}
-.br-val{font-size:11px;color:rgba(16,58,90,0.55);text-align:right;white-space:nowrap;min-width:80px;}
+.br-val{font-size:17px;color:rgba(16,58,90,0.55);text-align:right;white-space:nowrap;min-width:80px;}
 
 .callout{border-radius: 12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem;}
-.callout-l{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
-.callout-t{font-size:14px;line-height:1.7;font-weight:500;}
+.callout-l{font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
+.callout-t{font-size:20px;line-height:1.7;font-weight:500;}
 </style>
 
 <div class="d">
@@ -360,61 +360,61 @@
   <div class="check-grid">
     <div class="chk">
       <div class="chk-n" style="background:rgba(42,127,181,0.15);color:#2A7FB5">1</div>
-      <div><div class="chk-label">1Mn active users</div><div style="font-size:10px;color:#2A3050">Proves product-market fit at scale</div></div>
+      <div><div class="chk-label">1Mn active users</div><div style="font-size:16px;color:#2A3050">Proves product-market fit at scale</div></div>
       <div class="chk-target" style="color:#1D8A50">1,000,000</div>
       <div class="chk-conf conf-h">High confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(239,159,39,0.15);color:#EF9F27">2</div>
-      <div><div class="chk-label">Monthly recurring revenue</div><div style="font-size:10px;color:#2A3050">Demonstrates monetisation · ₹5 Cr ARR signal</div></div>
+      <div><div class="chk-label">Monthly recurring revenue</div><div style="font-size:16px;color:#2A3050">Demonstrates monetisation · ₹5 Cr ARR signal</div></div>
       <div class="chk-target" style="color:#1D8A50">₹40–50L MRR</div>
       <div class="chk-conf conf-h">High confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(29,138,80,0.15);color:#1D8A50">3</div>
-      <div><div class="chk-label">Subscription conversion rate</div><div style="font-size:10px;color:#2A3050">Each +1% = ~₹12 Cr additional ARR at scale</div></div>
+      <div><div class="chk-label">Subscription conversion rate</div><div style="font-size:16px;color:#2A3050">Each +1% = ~₹12 Cr additional ARR at scale</div></div>
       <div class="chk-target" style="color:#EF9F27">12–15%</div>
       <div class="chk-conf conf-m">Medium confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(216,90,48,0.15);color:#D85A30">4</div>
-      <div><div class="chk-label">CAC payback confirmed</div><div style="font-size:10px;color:#2A3050">Proves ₹180 CAC holds at 1Mn users, not just pilots</div></div>
+      <div><div class="chk-label">CAC payback confirmed</div><div style="font-size:16px;color:#2A3050">Proves ₹180 CAC holds at 1Mn users, not just pilots</div></div>
       <div class="chk-target" style="color:#1D8A50">&lt; 9 months</div>
       <div class="chk-conf conf-h">High confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(83,74,183,0.15);color:#7BC4E8">5</div>
-      <div><div class="chk-label">School / CSR partnerships</div><div style="font-size:10px;color:#2A3050">Partnership moat validated · low-CAC model replicable</div></div>
+      <div><div class="chk-label">School / CSR partnerships</div><div style="font-size:16px;color:#2A3050">Partnership moat validated · low-CAC model replicable</div></div>
       <div class="chk-target" style="color:#1D8A50">15+ signed</div>
       <div class="chk-conf conf-h">High confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(42,127,181,0.15);color:#2A7FB5">6</div>
-      <div><div class="chk-label">Exam outcome data</div><div style="font-size:10px;color:#2A3050">Differentiator — proof that learning works · justifies ARPU</div></div>
+      <div><div class="chk-label">Exam outcome data</div><div style="font-size:16px;color:#2A3050">Differentiator — proof that learning works · justifies ARPU</div></div>
       <div class="chk-target" style="color:#EF9F27">1 full cycle</div>
       <div class="chk-conf conf-m">Medium confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(29,138,80,0.15);color:#1D8A50">7</div>
-      <div><div class="chk-label">VR proof of concept</div><div style="font-size:10px;color:#2A3050">De-risks 2028 full launch · Series A has a deployment plan</div></div>
+      <div><div class="chk-label">VR proof of concept</div><div style="font-size:16px;color:#2A3050">De-risks 2028 full launch · Series A has a deployment plan</div></div>
       <div class="chk-target" style="color:#EF9F27">Demo ready</div>
       <div class="chk-conf conf-m">Medium confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(239,159,39,0.15);color:#EF9F27">8</div>
-      <div><div class="chk-label">Burn multiple</div><div style="font-size:10px;color:#2A3050">Capital efficiency benchmark · approaching best-in-class</div></div>
+      <div><div class="chk-label">Burn multiple</div><div style="font-size:16px;color:#2A3050">Capital efficiency benchmark · approaching best-in-class</div></div>
       <div class="chk-target" style="color:#1D8A50">&lt; 1.5x</div>
       <div class="chk-conf conf-h">High confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(216,90,48,0.15);color:#D85A30">9</div>
-      <div><div class="chk-label">Content library</div><div style="font-size:10px;color:#2A3050">300 videos = replication barrier for any competitor</div></div>
+      <div><div class="chk-label">Content library</div><div style="font-size:16px;color:#2A3050">300 videos = replication barrier for any competitor</div></div>
       <div class="chk-target" style="color:#1D8A50">300+ videos</div>
       <div class="chk-conf conf-h">High confidence</div>
     </div>
     <div class="chk">
       <div class="chk-n" style="background:rgba(83,74,183,0.15);color:#7BC4E8">10</div>
-      <div><div class="chk-label">Cash runway at raise</div><div style="font-size:10px;color:#2A3050">Negotiating leverage · raising from strength not desperation</div></div>
+      <div><div class="chk-label">Cash runway at raise</div><div style="font-size:16px;color:#2A3050">Negotiating leverage · raising from strength not desperation</div></div>
       <div class="chk-target" style="color:#1D8A50">&gt; ₹3 Cr</div>
       <div class="chk-conf conf-h">High confidence</div>
     </div>
@@ -422,7 +422,7 @@
 
   <div class="callout" style="background:rgba(42,127,181,0.07);border:1px solid rgba(42,127,181,0.2);">
     <div class="callout-l" style="color:#2A7FB5">Series A narrative sentence</div>
-    <div class="callout-t" style="color:rgba(16,58,90,0.9);font-size:13px;font-weight:400;">"By Month 16, Edastra will have 1Mn users, ₹5 Cr ARR, 15+ school partnerships, and a published exam outcome dataset. We raise ₹80–120 Cr to fund VR launch (2028), nationwide rollout (2029), and MEA entry (2030). Pre-seed capital de-risked the model — Series A scales what's proven."</div>
+    <div class="callout-t" style="color:rgba(16,58,90,0.9);font-size:19px;font-weight:400;">"By Month 16, Edastra will have 1Mn users, ₹5 Cr ARR, 15+ school partnerships, and a published exam outcome dataset. We raise ₹80–120 Cr to fund VR launch (2028), nationwide rollout (2029), and MEA entry (2030). Pre-seed capital de-risked the model — Series A scales what's proven."</div>
   </div>
 </div>
 

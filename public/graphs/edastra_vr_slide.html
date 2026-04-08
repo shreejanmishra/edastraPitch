@@ -31,7 +31,7 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
 .tab-btn{
   flex-shrink:0;padding:12px 18px;
   font-family:'DM Mono',monospace;
-  font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted);cursor:pointer;
   border:none;border-bottom:2.5px solid transparent;
   background:none;white-space:nowrap;
@@ -48,7 +48,7 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
 /* ── TYPOGRAPHY ── */
 .eyebrow{
   font-family:'DM Mono',monospace;
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  font-size:16px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--mid);margin-bottom:1.5rem;
 }
 .section-title{
@@ -56,12 +56,12 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
   font-size:clamp(32px,5vw,48px);font-weight:300;line-height:1.1;
   color:var(--navy);margin-bottom:0.5rem;
 }
-.section-sub{font-size:14px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:2rem;max-width:600px;}
+.section-sub{font-size:20px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:2rem;max-width:600px;}
 
 /* ── STAT ROW ── */
 .stat-row{display:flex;gap:48px;padding-top:24px;border-top:1px solid var(--rule);margin-top:32px;}
-.stat-n{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--deep);}
-.stat-l{font-size:11px;font-weight:300;color:var(--muted);margin-top:2px;letter-spacing:.03em;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--deep);}
+.stat-l{font-size:17px;font-weight:300;color:var(--muted);margin-top:2px;letter-spacing:.03em;}
 
 /* ── VR SCENE ── */
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;min-height:400px;}
@@ -76,7 +76,7 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
 .lens{width:48px;height:48px;border-radius:50%;background:var(--sky);position:relative;overflow:hidden;}
 .lens::after{content:'';position:absolute;inset:6px;border-radius:50%;background:var(--mid);opacity:.6;}
 .lens::before{content:'';position:absolute;top:10px;left:10px;width:12px;height:12px;border-radius:50%;background:white;opacity:.7;z-index:1;}
-.float-tag{position:absolute;background:white;border:1px solid var(--sky);border-radius:8px;padding:5px 10px;font-size:9px;font-weight:500;color:var(--deep);box-shadow:0 2px 12px rgba(42,127,181,0.08);white-space:nowrap;animation:float 3s ease-in-out infinite;}
+.float-tag{position:absolute;background:white;border:1px solid var(--sky);border-radius:8px;padding:5px 10px;font-size:15px;font-weight:500;color:var(--deep);box-shadow:0 2px 12px rgba(42,127,181,0.08);white-space:nowrap;animation:float 3s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px);}}
 
 /* ── DEVICE CARDS ── */
@@ -87,12 +87,12 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
 .device-card.hero-card *{color:white!important;}
 .device-icon{width:48px;height:48px;border-radius:12px;background:var(--ice);display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
 .device-card.hero-card .device-icon{background:rgba(255,255,255,0.15);}
-.device-price{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--deep);line-height:1;margin-bottom:4px;}
-.device-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;}
-.device-desc{font-size:11px;font-weight:300;color:var(--muted);line-height:1.6;}
-.device-reach{margin-top:auto;padding-top:16px;border-top:1px solid var(--rule);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
+.device-price{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--deep);line-height:1;margin-bottom:4px;}
+.device-name{font-size:19px;font-weight:500;color:var(--navy);margin-bottom:6px;}
+.device-desc{font-size:17px;font-weight:300;color:var(--muted);line-height:1.6;}
+.device-reach{margin-top:auto;padding-top:16px;border-top:1px solid var(--rule);font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
 .device-card.hero-card .device-reach{border-top-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);}
-.reach-num{font-size:16px;font-weight:500;font-family:'Outfit',sans-serif;display:block;margin-bottom:2px;color:var(--deep);}
+.reach-num{font-size:22px;font-weight:500;font-family:'Outfit',sans-serif;display:block;margin-bottom:2px;color:var(--deep);}
 .device-card.hero-card .reach-num{color:white;}
 .phone-shape{width:24px;height:38px;border:2.5px solid var(--mid);border-radius:5px;position:relative;}
 .phone-shape::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:7px;height:2px;background:var(--mid);border-radius:1px;}
@@ -104,18 +104,18 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
 .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:2rem;}
 .cost-left{border-right:1px solid var(--rule);padding-right:40px;display:flex;flex-direction:column;gap:28px;}
 .cost-right{padding-left:40px;display:flex;flex-direction:column;justify-content:center;}
-.cost-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.cost-label{font-family:'DM Mono',monospace;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
 .cost-bar-wrap{display:flex;gap:12px;align-items:flex-end;}
 .bar-pair{display:flex;flex-direction:column;align-items:center;gap:6px;}
 .bar-b{width:48px;border-radius:5px 5px 0 0;}
-.bar-label{font-size:10px;font-weight:300;color:var(--muted);text-align:center;}
-.bar-val{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--navy);text-align:center;}
-.saving-pill{display:inline-flex;align-items:center;gap:6px;background:var(--ice);border:1px solid var(--sky);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:500;color:var(--deep);margin-top:8px;}
+.bar-label{font-size:16px;font-weight:300;color:var(--muted);text-align:center;}
+.bar-val{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--navy);text-align:center;}
+.saving-pill{display:inline-flex;align-items:center;gap:6px;background:var(--ice);border:1px solid var(--sky);border-radius:99px;padding:4px 12px;font-size:17px;font-weight:500;color:var(--deep);margin-top:8px;}
 .tech-list{display:flex;flex-direction:column;gap:14px;}
 .tech-item{padding:16px 20px;border-radius:14px;border:1px solid var(--sky);background:var(--ice);display:flex;gap:14px;align-items:flex-start;}
 .tech-dot{width:8px;height:8px;border-radius:50%;background:var(--mid);flex-shrink:0;margin-top:4px;}
-.tech-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:3px;}
-.tech-sub{font-size:11px;font-weight:300;color:var(--muted);}
+.tech-name{font-size:19px;font-weight:500;color:var(--navy);margin-bottom:3px;}
+.tech-sub{font-size:17px;font-weight:300;color:var(--muted);}
 
 /* ── TIMELINE ── */
 .timeline{display:flex;gap:0;margin-top:2rem;position:relative;}
@@ -124,41 +124,41 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
 .t-node{position:absolute;top:24px;left:0;width:14px;height:14px;border-radius:50%;background:var(--white);border:2px solid var(--mid);transform:translateY(-50%);}
 .t-node.filled{background:var(--deep);border-color:var(--deep);}
 .t-node.active{background:var(--mid);border-color:var(--deep);box-shadow:0 0 0 4px rgba(42,127,181,0.15);}
-.t-year{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
-.t-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:4px;}
-.t-detail{font-size:11px;font-weight:300;color:var(--muted);line-height:1.55;}
-.t-metric{margin-top:10px;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--deep);}
-.t-metric-l{font-size:10px;font-weight:300;color:var(--muted);font-family:'Outfit',sans-serif;}
+.t-year{font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.t-title{font-size:19px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+.t-detail{font-size:17px;font-weight:300;color:var(--muted);line-height:1.55;}
+.t-metric{margin-top:10px;font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--deep);}
+.t-metric-l{font-size:16px;font-weight:300;color:var(--muted);font-family:'Outfit',sans-serif;}
 
 /* ── PRICING ── */
 .econ-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:2rem;align-items:start;}
 .margin-visual{display:flex;flex-direction:column;gap:16px;}
 .margin-row{display:flex;align-items:center;gap:14px;}
-.margin-label{font-size:12px;font-weight:300;color:var(--muted);min-width:130px;}
+.margin-label{font-size:18px;font-weight:300;color:var(--muted);min-width:130px;}
 .margin-track{flex:1;height:10px;background:var(--ice);border-radius:99px;overflow:hidden;}
 .margin-fill{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--deep));}
-.margin-pct{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--deep);min-width:48px;text-align:right;}
+.margin-pct{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--deep);min-width:48px;text-align:right;}
 .pricing-card{background:var(--ice);border-radius:20px;border:1.5px solid var(--sky);padding:32px;}
-.pricing-tier{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
-.pricing-amount{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;line-height:1;color:var(--navy);}
-.pricing-period{font-size:13px;font-weight:300;color:var(--muted);margin-top:4px;}
+.pricing-tier{font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+.pricing-amount{font-family:'Cormorant Garamond',serif;font-size:70px;font-weight:300;line-height:1;color:var(--navy);}
+.pricing-period{font-size:19px;font-weight:300;color:var(--muted);margin-top:4px;}
 .pricing-divider{height:1px;background:var(--sky);margin:24px 0;}
 .pricing-breakdown{display:flex;flex-direction:column;gap:8px;}
-.pb-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;}
+.pb-row{display:flex;justify-content:space-between;align-items:center;font-size:18px;}
 .pb-key{font-weight:300;color:var(--muted);}
 .pb-val{font-weight:500;color:var(--navy);}
 .pb-val.green{color:#1D8A50;}
 
 /* ── VC FRAME ── */
 .vc-panel{background:var(--navy);border-radius:20px;padding:40px;margin-top:1rem;}
-.vc-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,230,247,0.4);margin-bottom:20px;}
+.vc-eyebrow{font-family:'DM Mono',monospace;font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,230,247,0.4);margin-bottom:20px;}
 .vc-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,56px);font-weight:300;line-height:1.1;color:var(--sky);max-width:600px;}
 .vc-headline em{font-style:italic;color:white;}
 .vc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
 .vc-card{border:1px solid rgba(200,230,247,0.12);border-radius:14px;padding:24px;background:rgba(200,230,247,0.04);}
-.vc-stat{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;margin-bottom:4px;}
-.vc-card-title{font-size:13px;font-weight:500;color:var(--sky);margin-bottom:6px;}
-.vc-card-body{font-size:11px;font-weight:300;color:rgba(200,230,247,0.55);line-height:1.65;}
+.vc-stat{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:white;margin-bottom:4px;}
+.vc-card-title{font-size:19px;font-weight:500;color:var(--sky);margin-bottom:6px;}
+.vc-card-body{font-size:17px;font-weight:300;color:rgba(200,230,247,0.55);line-height:1.65;}
 
 /* scrollbar */
 ::-webkit-scrollbar{width:4px;}
@@ -183,7 +183,7 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
   <div class="hero-grid">
     <div>
       <div class="eyebrow">Immersive Learning · India K–12</div>
-      <div class="section-title">VR<sup style="font-size:16px;color:var(--deep);">×</sup></div>
+      <div class="section-title">VR<sup style="font-size:22px;color:var(--deep);">×</sup></div>
       <p class="section-sub">
         The classroom, reimagined.<br>
         Walk inside a cell. Stand on Mars.<br>
@@ -253,7 +253,7 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
         <div class="cost-label">Content per module</div>
         <div class="cost-bar-wrap">
           <div class="bar-pair"><div class="bar-val">₹20k</div><div class="bar-b" style="height:72px;background:rgba(200,230,247,0.4);"></div><div class="bar-label">Traditional</div></div>
-          <div style="display:flex;align-items:center;color:var(--mid);font-size:18px;padding-bottom:20px;">→</div>
+          <div style="display:flex;align-items:center;color:var(--mid);font-size:24px;padding-bottom:20px;">→</div>
           <div class="bar-pair"><div class="bar-val" style="color:var(--deep);">₹6k</div><div class="bar-b" style="height:22px;background:var(--deep);"></div><div class="bar-label">AI-assisted</div></div>
         </div>
         <div class="saving-pill">70% saved</div>
@@ -262,7 +262,7 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
         <div class="cost-label">CDN streaming / year</div>
         <div class="cost-bar-wrap">
           <div class="bar-pair"><div class="bar-val">₹35L</div><div class="bar-b" style="height:72px;background:rgba(200,230,247,0.4);"></div><div class="bar-label">Live stream</div></div>
-          <div style="display:flex;align-items:center;color:var(--mid);font-size:18px;padding-bottom:20px;">→</div>
+          <div style="display:flex;align-items:center;color:var(--mid);font-size:24px;padding-bottom:20px;">→</div>
           <div class="bar-pair"><div class="bar-val" style="color:var(--deep);">₹6L</div><div class="bar-b" style="height:12px;background:var(--deep);"></div><div class="bar-label">Offline-first</div></div>
         </div>
         <div class="saving-pill">85% saved</div>
@@ -271,14 +271,14 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
         <div class="cost-label">App store fee on VR sub</div>
         <div class="cost-bar-wrap">
           <div class="bar-pair"><div class="bar-val">30%</div><div class="bar-b" style="height:54px;background:rgba(200,230,247,0.4);"></div><div class="bar-label">Native app</div></div>
-          <div style="display:flex;align-items:center;color:var(--mid);font-size:18px;padding-bottom:20px;">→</div>
+          <div style="display:flex;align-items:center;color:var(--mid);font-size:24px;padding-bottom:20px;">→</div>
           <div class="bar-pair"><div class="bar-val" style="color:var(--deep);">0%</div><div class="bar-b" style="height:2px;background:var(--deep);"></div><div class="bar-label">WebXR billing</div></div>
         </div>
         <div class="saving-pill">100% eliminated</div>
       </div>
     </div>
     <div class="cost-right">
-      <p style="font-size:11px;font-weight:300;color:var(--muted);letter-spacing:.03em;margin-bottom:16px;text-transform:uppercase;">How it's done</p>
+      <p style="font-size:17px;font-weight:300;color:var(--muted);letter-spacing:.03em;margin-bottom:16px;text-transform:uppercase;">How it's done</p>
       <div class="tech-list">
         <div class="tech-item"><div class="tech-dot" style="background:var(--deep);"></div><div><div class="tech-name">Meshy AI + Luma AI</div><div class="tech-sub">Text-to-3D model generation. ₹500 vs ₹5,000 per 3D asset.</div></div></div>
         <div class="tech-item"><div class="tech-dot" style="background:var(--mid);"></div><div><div class="tech-name">WebXR + A-Frame</div><div class="tech-sub">VR in Chrome browser. No app store. No install. No 30% cut.</div></div></div>
@@ -343,13 +343,13 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
   <div class="section-title">Priced for<br>every family.</div>
   <div class="econ-grid">
     <div class="margin-visual">
-      <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Gross margin by tier</p>
+      <p style="font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Gross margin by tier</p>
       <div class="margin-row"><div class="margin-label">Tier 1 · ₹149/mo</div><div class="margin-track"><div class="margin-fill" style="width:94%"></div></div><div class="margin-pct">94%</div></div>
       <div class="margin-row"><div class="margin-label">Tier 2 · ₹79/mo</div><div class="margin-track"><div class="margin-fill" style="width:90%"></div></div><div class="margin-pct">90%</div></div>
       <div class="margin-row"><div class="margin-label">School bulk 100–249</div><div class="margin-track"><div class="margin-fill" style="width:78%"></div></div><div class="margin-pct">78%</div></div>
       <div class="margin-row"><div class="margin-label">Traditional VR (ref.)</div><div class="margin-track"><div class="margin-fill" style="width:0%;background:rgba(248,113,113,0.6);"></div></div><div class="margin-pct" style="color:#E28080;">neg.</div></div>
       <div style="margin-top:16px;padding:16px;background:var(--ice);border-radius:14px;border:1px solid var(--sky);">
-        <p style="font-size:11px;font-weight:300;color:var(--muted);line-height:1.7;">VR is the <strong style="font-weight:500;color:var(--navy);">highest-margin product</strong> in the portfolio — higher than ads or 2D subscription — because the optimised tech stack removes all the cost barriers of traditional VR.</p>
+        <p style="font-size:17px;font-weight:300;color:var(--muted);line-height:1.7;">VR is the <strong style="font-weight:500;color:var(--navy);">highest-margin product</strong> in the portfolio — higher than ads or 2D subscription — because the optimised tech stack removes all the cost barriers of traditional VR.</p>
       </div>
     </div>
     <div>
@@ -378,7 +378,7 @@ body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);ov
   <div class="vc-panel">
     <div class="vc-eyebrow">For investors</div>
     <div class="vc-headline">VR is not the ask.<br>VR is the <em>upsell</em>.</div>
-    <p style="font-size:13px;font-weight:300;color:rgba(200,230,247,0.5);max-width:480px;margin-top:16px;line-height:1.7;">Every core app user acquired at ₹180 CAC is a future VR subscriber at 3.6× ARPU with zero re-acquisition cost.</p>
+    <p style="font-size:19px;font-weight:300;color:rgba(200,230,247,0.5);max-width:480px;margin-top:16px;line-height:1.7;">Every core app user acquired at ₹180 CAC is a future VR subscriber at 3.6× ARPU with zero re-acquisition cost.</p>
     <div class="vc-cards">
       <div class="vc-card"><div class="vc-stat">₹0</div><div class="vc-card-title">Re-acquisition cost</div><div class="vc-card-body">Core app users upgrade to VR. CAC already paid. Pure margin expansion on an existing cohort.</div></div>
       <div class="vc-card"><div class="vc-stat">3.6×</div><div class="vc-card-title">ARPU multiplier</div><div class="vc-card-body">₹250 core app → ₹900 VR subscription. Same student. Same school relationship. Zero incremental CAC.</div></div>

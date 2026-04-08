@@ -39,7 +39,7 @@
 .deck{font-family:'Outfit',sans-serif;background: var(--white);color: var(--navy);min-height:100vh;}
 
 .slide-nav{display:flex;background: var(--white);border-bottom:1px solid rgba(42,127,181,0.15);position:sticky;top:0;z-index:20;overflow-x:auto;}
-.snav{flex-shrink:0;padding:10px 16px;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(16,58,90,0.35);cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;white-space:nowrap;transition:all .2s;}
+.snav{flex-shrink:0;padding:10px 16px;font-size:16px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(16,58,90,0.35);cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;white-space:nowrap;transition:all .2s;}
 .snav.active{color:#2A7FB5;border-bottom-color:#2A7FB5;}
 .snav:hover:not(.active){color:rgba(16,58,90,0.65);}
 
@@ -47,66 +47,66 @@
 .slide.active{display:block;}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-.kicker{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#2A7FB5;margin-bottom:.5rem;}
-.headline{font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.15;color: var(--navy);margin-bottom:.4rem;font-weight:700;}
-.sub{font-size:13px;color:rgba(16,58,90,0.45);margin-bottom:1.5rem;line-height:1.5;}
+.kicker{font-size:16px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#2A7FB5;margin-bottom:.5rem;}
+.headline{font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1.15;color: var(--navy);margin-bottom:.4rem;font-weight:700;}
+.sub{font-size:19px;color:rgba(16,58,90,0.45);margin-bottom:1.5rem;line-height:1.5;}
 .divider{width:40px;height:2px;background:#2A7FB5;margin-bottom:1.5rem;}
 
 .horizon-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;}
 .hz-card{border-radius:12px;overflow:hidden;}
-.hz-head{padding:.875rem 1.1rem;font-size:12px;font-weight:500;letter-spacing:.05em;}
+.hz-head{padding:.875rem 1.1rem;font-size:18px;font-weight:500;letter-spacing:.05em;}
 .hz-body{padding:.75rem 1.1rem 1rem;}
 .hz-row{display:grid;grid-template-columns:60px 1fr;gap:8px;padding:6px 0;border-bottom:.5px solid rgba(16,58,90,0.06);}
 .hz-row:last-child{border-bottom:none;}
-.hz-tag{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding-top:1px;}
-.hz-val{font-size:12px;color:rgba(16,58,90,0.8);line-height:1.45;}
+.hz-tag{font-size:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding-top:1px;}
+.hz-val{font-size:18px;color:rgba(16,58,90,0.8);line-height:1.45;}
 
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
 .stat{background:rgba(16,58,90,0.04);border:.5px solid rgba(16,58,90,0.1);border-radius: 12px;padding:.875rem 1rem;text-align:center;}
 .stat.gold{border-color:rgba(42,127,181,0.4);background:rgba(42,127,181,0.06);}
-.stat-n{font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1;margin-bottom:5px;}
-.stat-l{font-size:11px;font-weight:500;margin-bottom:3px;}
-.stat-s{font-size:10px;color:rgba(16,58,90,0.4);line-height:1.4;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1;margin-bottom:5px;}
+.stat-l{font-size:17px;font-weight:500;margin-bottom:3px;}
+.stat-s{font-size:16px;color:rgba(16,58,90,0.4);line-height:1.4;}
 
 .ops-track{display:flex;gap:0;margin-bottom:1.5rem;overflow-x:auto;border-radius: 12px;overflow:hidden;}
 .ops-item{flex:1;min-width:130px;padding:.875rem 1rem;border-right:.5px solid rgba(16,58,90,0.08);position:relative;}
 .ops-item:last-child{border-right:none;}
 .ops-dot{width:8px;height:8px;border-radius:50%;margin-bottom:7px;}
-.ops-period{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;}
-.ops-title{font-size:12px;font-weight:500;color: var(--navy);margin-bottom:5px;}
-.ops-detail{font-size:10px;color:rgba(16,58,90,0.45);line-height:1.5;}
-.ops-metric{font-size:11px;font-weight:500;margin-top:6px;}
+.ops-period{font-size:16px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;}
+.ops-title{font-size:18px;font-weight:500;color: var(--navy);margin-bottom:5px;}
+.ops-detail{font-size:16px;color:rgba(16,58,90,0.45);line-height:1.5;}
+.ops-metric{font-size:17px;font-weight:500;margin-top:6px;}
 
 .framing-pair{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem;}
 .frm{border-radius: 12px;padding:1rem 1.1rem;}
-.frm-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
-.frm-quote{font-size:13px;line-height:1.7;font-style:italic;}
-.frm-why{font-size:11px;margin-top:8px;opacity:.75;}
+.frm-label{font-size:16px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.frm-quote{font-size:19px;line-height:1.7;font-style:italic;}
+.frm-why{font-size:17px;margin-top:8px;opacity:.75;}
 
 .rounds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
 .round-card{border-radius: 12px;padding:.875rem 1rem;border:.5px solid rgba(16,58,90,0.08);}
-.round-pill{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;font-weight:500;margin-bottom:.5rem;}
-.round-size{font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1;margin-bottom:4px;}
-.round-when{font-size:10px;color:rgba(16,58,90,0.4);margin-bottom:.5rem;}
-.round-funds{font-size:11px;color:rgba(16,58,90,0.65);line-height:1.5;margin-bottom:.5rem;}
-.round-unlock{font-size:10px;font-weight:500;margin-bottom:.4rem;}
-.round-story{font-size:10px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;}
+.round-pill{display:inline-block;font-size:16px;padding:2px 8px;border-radius:99px;font-weight:500;margin-bottom:.5rem;}
+.round-size{font-family:'Cormorant Garamond',serif;font-size:28px;line-height:1;margin-bottom:4px;}
+.round-when{font-size:16px;color:rgba(16,58,90,0.4);margin-bottom:.5rem;}
+.round-funds{font-size:17px;color:rgba(16,58,90,0.65);line-height:1.5;margin-bottom:.5rem;}
+.round-unlock{font-size:16px;font-weight:500;margin-bottom:.4rem;}
+.round-story{font-size:16px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;}
 
 .vr-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem;}
 .vr-block{border-radius: 12px;padding:1rem 1.1rem;}
-.vr-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
-.vr-text{font-size:12px;line-height:1.65;}
-.vr-why{font-size:11px;margin-top:6px;font-style:italic;opacity:.7;}
+.vr-label{font-size:16px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.vr-text{font-size:18px;line-height:1.65;}
+.vr-why{font-size:17px;margin-top:6px;font-style:italic;opacity:.7;}
 
 .callout{border-radius: 12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem;}
-.callout-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
-.callout-text{font-size:14px;line-height:1.7;font-weight:500;}
+.callout-label{font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
+.callout-text{font-size:20px;line-height:1.7;font-weight:500;}
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;}
 .info-card{background:rgba(16,58,90,0.04);border:.5px solid rgba(16,58,90,0.1);border-radius: 12px;padding:.875rem 1rem;}
-.info-title{font-size:12px;font-weight:500;color: var(--navy);margin-bottom:6px;}
+.info-title{font-size:18px;font-weight:500;color: var(--navy);margin-bottom:6px;}
 .info-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
-.info-list li{font-size:11px;color:rgba(16,58,90,0.65);display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
+.info-list li{font-size:17px;color:rgba(16,58,90,0.65);display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
 .info-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:#2A7FB5;flex-shrink:0;margin-top:5px;}
 </style>
 
@@ -190,50 +190,50 @@
   <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem;">
     <div style="display:grid;grid-template-columns:32px 1fr 1fr 1fr;gap:12px;padding:8px 0;border-bottom:.5px solid rgba(16,58,90,0.08);">
       <div></div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,58,90,0.35)">Signal</div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,58,90,0.35)">What it proves</div>
-      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,58,90,0.35)">Benchmark</div>
+      <div style="font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,58,90,0.35)">Signal</div>
+      <div style="font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,58,90,0.35)">What it proves</div>
+      <div style="font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,58,90,0.35)">Benchmark</div>
     </div>
 
     <div style="display:grid;grid-template-columns:32px 1fr 1fr 1fr;gap:12px;padding:10px 0;border-bottom:.5px solid rgba(16,58,90,0.06);align-items:start;">
-      <div style="width:28px;height:28px;border-radius:50%;background:rgba(42,127,181,0.15);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:#2A7FB5;font-weight:700;">1</div>
-      <div><div style="font-size:12px;font-weight:500;color: var(--navy);margin-bottom:2px;">16,231 beta visits</div><div style="font-size:11px;color:#2A7FB5">Organic + offline only</div></div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.65);line-height:1.5;">Organic demand exists. Product pulls users without paid acquisition.</div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">Byju's first 10k users: 18 months. Edastra: beta phase.</div>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(42,127,181,0.15);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:19px;color:#2A7FB5;font-weight:700;">1</div>
+      <div><div style="font-size:18px;font-weight:500;color: var(--navy);margin-bottom:2px;">16,231 beta visits</div><div style="font-size:17px;color:#2A7FB5">Organic + offline only</div></div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.65);line-height:1.5;">Organic demand exists. Product pulls users without paid acquisition.</div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">Byju's first 10k users: 18 months. Edastra: beta phase.</div>
     </div>
 
     <div style="display:grid;grid-template-columns:32px 1fr 1fr 1fr;gap:12px;padding:10px 0;border-bottom:.5px solid rgba(16,58,90,0.06);align-items:start;">
-      <div style="width:28px;height:28px;border-radius:50%;background:rgba(110,231,183,0.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:#1D8A50;font-weight:700;">2</div>
-      <div><div style="font-size:12px;font-weight:500;color: var(--navy);margin-bottom:2px;">3.3% feedback rate</div><div style="font-size:11px;color:#1D8A50">2–6x industry average</div></div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.65);line-height:1.5;">Users are engaged, not passive. Strong Day-30 retention proxy.</div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">Industry beta avg: 0.5–1.5%. Edastra = 2–6x that.</div>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(110,231,183,0.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:19px;color:#1D8A50;font-weight:700;">2</div>
+      <div><div style="font-size:18px;font-weight:500;color: var(--navy);margin-bottom:2px;">3.3% feedback rate</div><div style="font-size:17px;color:#1D8A50">2–6x industry average</div></div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.65);line-height:1.5;">Users are engaged, not passive. Strong Day-30 retention proxy.</div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">Industry beta avg: 0.5–1.5%. Edastra = 2–6x that.</div>
     </div>
 
     <div style="display:grid;grid-template-columns:32px 1fr 1fr 1fr;gap:12px;padding:10px 0;border-bottom:.5px solid rgba(16,58,90,0.06);align-items:start;">
-      <div style="width:28px;height:28px;border-radius:50%;background:rgba(103,232,249,0.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:#7BC4E8;font-weight:700;">3</div>
-      <div><div style="font-size:12px;font-weight:500;color: var(--navy);margin-bottom:2px;">540+ feedback submissions</div><div style="font-size:11px;color:#7BC4E8">Active product dialogue</div></div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.65);line-height:1.5;">Roadmap is data-driven. Reduces Series A execution risk.</div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">Most pre-seeds raise on wireframes. Edastra has 540 data points.</div>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(103,232,249,0.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:19px;color:#7BC4E8;font-weight:700;">3</div>
+      <div><div style="font-size:18px;font-weight:500;color: var(--navy);margin-bottom:2px;">540+ feedback submissions</div><div style="font-size:17px;color:#7BC4E8">Active product dialogue</div></div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.65);line-height:1.5;">Roadmap is data-driven. Reduces Series A execution risk.</div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">Most pre-seeds raise on wireframes. Edastra has 540 data points.</div>
     </div>
 
     <div style="display:grid;grid-template-columns:32px 1fr 1fr 1fr;gap:12px;padding:10px 0;border-bottom:.5px solid rgba(16,58,90,0.06);align-items:start;">
-      <div style="width:28px;height:28px;border-radius:50%;background:rgba(83,74,183,0.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:#7BC4E8;font-weight:700;">4</div>
-      <div><div style="font-size:12px;font-weight:500;color: var(--navy);margin-bottom:2px;">1 school pilot live</div><div style="font-size:11px;color:#7BC4E8">Pre-funding B2B deal</div></div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.65);line-height:1.5;">B2B partnership model works. Schools co-pilot offline. ₹180 CAC validated.</div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">First school deal pre-funding. Next: 15 by Month 18.</div>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(83,74,183,0.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:19px;color:#7BC4E8;font-weight:700;">4</div>
+      <div><div style="font-size:18px;font-weight:500;color: var(--navy);margin-bottom:2px;">1 school pilot live</div><div style="font-size:17px;color:#7BC4E8">Pre-funding B2B deal</div></div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.65);line-height:1.5;">B2B partnership model works. Schools co-pilot offline. ₹180 CAC validated.</div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">First school deal pre-funding. Next: 15 by Month 18.</div>
     </div>
 
     <div style="display:grid;grid-template-columns:32px 1fr 1fr 1fr;gap:12px;padding:10px 0;align-items:start;">
-      <div style="width:28px;height:28px;border-radius:50%;background:rgba(216,90,48,0.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:#D85A30;font-weight:700;">5</div>
-      <div><div style="font-size:12px;font-weight:500;color: var(--navy);margin-bottom:2px;">VR UI in live product</div><div style="font-size:11px;color:#D85A30">Not a slide. It's built.</div></div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.65);line-height:1.5;">VR is de-risked. Technical foundation exists. 2028 launch starts from a built base.</div>
-      <div style="font-size:11px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">Most EdTech VR is 2028+ vision. Ours is in the app today.</div>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(216,90,48,0.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:19px;color:#D85A30;font-weight:700;">5</div>
+      <div><div style="font-size:18px;font-weight:500;color: var(--navy);margin-bottom:2px;">VR UI in live product</div><div style="font-size:17px;color:#D85A30">Not a slide. It's built.</div></div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.65);line-height:1.5;">VR is de-risked. Technical foundation exists. 2028 launch starts from a built base.</div>
+      <div style="font-size:17px;color:rgba(16,58,90,0.45);font-style:italic;line-height:1.4;">Most EdTech VR is 2028+ vision. Ours is in the app today.</div>
     </div>
   </div>
 
   <div class="callout" style="background:rgba(29,138,80,0.08);border:.5px solid rgba(29,138,80,0.3)">
     <div class="callout-label" style="color:#1D8A50">The combined signal</div>
-    <div class="callout-text" style="color:rgba(16,58,90,0.85);font-size:13px;font-weight:400;">Five signals together form a pattern: this team executes, this product has organic pull, and this model is capital-efficient. That pattern is what funds pre-seeds at ₹20 Cr — not just ₹3–8 Cr.</div>
+    <div class="callout-text" style="color:rgba(16,58,90,0.85);font-size:19px;font-weight:400;">Five signals together form a pattern: this team executes, this product has organic pull, and this model is capital-efficient. That pattern is what funds pre-seeds at ₹20 Cr — not just ₹3–8 Cr.</div>
   </div>
 </div>
 
@@ -271,7 +271,7 @@
 
   <div class="callout" style="background:rgba(42,127,181,0.07);border:.5px solid rgba(42,127,181,0.25);">
     <div class="callout-label" style="color:#2A7FB5">The one-slide rule for VR & MEA</div>
-    <div class="callout-text" style="color:rgba(16,58,90,0.85);font-size:13px;font-weight:400;">In the pre-seed deck, VR and MEA get <strong style="color:#2A7FB5">one combined slide</strong> labelled "Series A & B Vision." Three bullet points only: (1) VR PoC already live in product, (2) Series A = full VR build, (3) MEA = Series B entry via Indian diaspora in UAE/KSA. No financial projections on that slide. Financials live in the data room.</div>
+    <div class="callout-text" style="color:rgba(16,58,90,0.85);font-size:19px;font-weight:400;">In the pre-seed deck, VR and MEA get <strong style="color:#2A7FB5">one combined slide</strong> labelled "Series A & B Vision." Three bullet points only: (1) VR PoC already live in product, (2) Series A = full VR build, (3) MEA = Series B entry via Indian diaspora in UAE/KSA. No financial projections on that slide. Financials live in the data room.</div>
   </div>
 </div>
 
@@ -445,7 +445,7 @@
 
   <div class="callout" style="background:rgba(42,127,181,0.07);border:.5px solid rgba(42,127,181,0.25);">
     <div class="callout-label" style="color:#2A7FB5">The capital story in one breath</div>
-    <div class="callout-text" style="color:#2A7FB5;font-size:13px;font-weight:400;">Pre-seed proves the model. Series A scales VR and goes nationwide. Series B enters MEA at 3.8x ARPU. Each round has clear proof points, defined milestones, and a separate narrative — they do not compete with each other in a pitch.</div>
+    <div class="callout-text" style="color:#2A7FB5;font-size:19px;font-weight:400;">Pre-seed proves the model. Series A scales VR and goes nationwide. Series B enters MEA at 3.8x ARPU. Each round has clear proof points, defined milestones, and a separate narrative — they do not compete with each other in a pitch.</div>
   </div>
 </div>
 
@@ -463,27 +463,27 @@
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;">
     <div>
-      <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,58,90,0.35);margin-bottom:.75rem;">Pitch structure (60-min meeting)</div>
+      <div style="font-size:17px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,58,90,0.35);margin-bottom:.75rem;">Pitch structure (60-min meeting)</div>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:rgba(42,127,181,0.07);border-radius:8px;border:.5px solid rgba(42,127,181,0.2);">
-          <div style="font-size:10px;font-weight:700;color:#2A7FB5;min-width:40px;">0–5 min</div>
-          <div style="font-size:11px;color:rgba(16,58,90,0.75);line-height:1.4;">Opening sentence. Traction numbers. Product is live. Show the app.</div>
+          <div style="font-size:16px;font-weight:700;color:#2A7FB5;min-width:40px;">0–5 min</div>
+          <div style="font-size:17px;color:rgba(16,58,90,0.75);line-height:1.4;">Opening sentence. Traction numbers. Product is live. Show the app.</div>
         </div>
         <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:rgba(29,138,80,0.06);border-radius:8px;border:.5px solid rgba(29,138,80,0.15);">
-          <div style="font-size:10px;font-weight:700;color:#1D8A50;min-width:40px;">5–20 min</div>
-          <div style="font-size:11px;color:rgba(16,58,90,0.75);line-height:1.4;">18-month plan. User milestones. Revenue model. CAC story. Sub conversion thesis.</div>
+          <div style="font-size:16px;font-weight:700;color:#1D8A50;min-width:40px;">5–20 min</div>
+          <div style="font-size:17px;color:rgba(16,58,90,0.75);line-height:1.4;">18-month plan. User milestones. Revenue model. CAC story. Sub conversion thesis.</div>
         </div>
         <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:rgba(16,58,90,0.04);border-radius:8px;border:.5px solid rgba(16,58,90,0.08);">
-          <div style="font-size:10px;font-weight:700;color:rgba(16,58,90,0.5);min-width:40px;">20–30 min</div>
-          <div style="font-size:11px;color:rgba(16,58,90,0.75);line-height:1.4;">Team. Market size. Unit economics. Content moat (₹230/min vs ₹1k–3k industry).</div>
+          <div style="font-size:16px;font-weight:700;color:rgba(16,58,90,0.5);min-width:40px;">20–30 min</div>
+          <div style="font-size:17px;color:rgba(16,58,90,0.75);line-height:1.4;">Team. Market size. Unit economics. Content moat (₹230/min vs ₹1k–3k industry).</div>
         </div>
         <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:rgba(123,196,232,0.06);border-radius:8px;border:.5px solid rgba(123,196,232,0.15);">
-          <div style="font-size:10px;font-weight:700;color:#7BC4E8;min-width:40px;">30–35 min</div>
-          <div style="font-size:11px;color:rgba(16,58,90,0.75);line-height:1.4;">Vision slide: VR PoC live → Series A. MEA diaspora wedge → Series B. Three bullets only.</div>
+          <div style="font-size:16px;font-weight:700;color:#7BC4E8;min-width:40px;">30–35 min</div>
+          <div style="font-size:17px;color:rgba(16,58,90,0.75);line-height:1.4;">Vision slide: VR PoC live → Series A. MEA diaspora wedge → Series B. Three bullets only.</div>
         </div>
         <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:rgba(16,58,90,0.04);border-radius:8px;border:.5px solid rgba(16,58,90,0.08);">
-          <div style="font-size:10px;font-weight:700;color:rgba(16,58,90,0.5);min-width:40px;">35–60 min</div>
-          <div style="font-size:11px;color:rgba(16,58,90,0.75);line-height:1.4;">Q&A. Data room for financial model. Bear/base/bull scenarios. Series A trigger specifics.</div>
+          <div style="font-size:16px;font-weight:700;color:rgba(16,58,90,0.5);min-width:40px;">35–60 min</div>
+          <div style="font-size:17px;color:rgba(16,58,90,0.75);line-height:1.4;">Q&A. Data room for financial model. Bear/base/bull scenarios. Series A trigger specifics.</div>
         </div>
       </div>
     </div>
@@ -510,7 +510,7 @@
 
   <div class="callout" style="background:rgba(123,196,232,0.08);border:.5px solid rgba(123,196,232,0.25);">
     <div class="callout-label" style="color:#7BC4E8">The sentence that ties everything together</div>
-    <div class="callout-text" style="color:rgba(16,58,90,0.9);font-size:13px;font-weight:400;">"We are raising ₹20 Cr to prove the model in India — 1Mn users, ₹5 Cr ARR, exam outcome data, 15 school partnerships. VR and MEA are the Series A and B stories. Pre-seed investors are backing the team and the 18-month plan, not the 2031 projection."</div>
+    <div class="callout-text" style="color:rgba(16,58,90,0.9);font-size:19px;font-weight:400;">"We are raising ₹20 Cr to prove the model in India — 1Mn users, ₹5 Cr ARR, exam outcome data, 15 school partnerships. VR and MEA are the Series A and B stories. Pre-seed investors are backing the team and the 18-month plan, not the 2031 projection."</div>
   </div>
 </div>
 </div>

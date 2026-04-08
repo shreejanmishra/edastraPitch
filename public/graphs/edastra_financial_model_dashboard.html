@@ -37,36 +37,36 @@
 body { margin: 0; padding: 0; background: var(--white); }
 .wrap { padding: 1rem 0 2rem; font-family: var(--font-sans); }
 .tab-row { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; padding: 0 1rem; }
-.tab { padding: 6px 16px; border-radius: 99px; font-size: 12px; cursor: pointer; border:1px solid var(--color-border-secondary); background: transparent; color: var(--color-text-secondary); transition: all 0.15s; }
+.tab { padding: 6px 16px; border-radius: 99px; font-size:18px; cursor: pointer; border:1px solid var(--color-border-secondary); background: transparent; color: var(--color-text-secondary); transition: all 0.15s; }
 .tab.active { background: var(--color-text-primary); color: var(--color-background-primary); border-color: transparent; }
 .panel { display: none; }
 .panel.active { display: block; }
 
 .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1.5rem; }
 .kpi { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; }
-.kpi-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
-.kpi-val { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
-.kpi-sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+.kpi-label { font-size:18px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.kpi-val { font-size:28px; font-weight: 500; color: var(--color-text-primary); }
+.kpi-sub { font-size:17px; color: var(--color-text-tertiary); margin-top: 2px; }
 
 .chart-wrap { position: relative; width: 100%; margin-bottom: 1.5rem; }
 .h260 { height: 260px; }
 .h220 { height: 220px; }
 .h200 { height: 200px; }
 
-.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size:18px; color: var(--color-text-secondary); margin-bottom: 8px; }
 .legend span { display: flex; align-items: center; gap: 5px; }
 .ld { width: 10px; height: 10px; border-radius: 2px; }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
 .phase-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 1.5rem; }
 .phase-card { border-radius: var(--border-radius-lg); border:1px solid var(--color-border-tertiary); padding: 0.875rem 1rem; background: var(--color-background-primary); }
-.phase-year { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 3px; }
-.phase-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
-.phase-row { display: flex; justify-content: space-between; font-size: 12px; padding: 2px 0; border-bottom:1px solid var(--color-border-tertiary); }
+.phase-year { font-size:17px; color: var(--color-text-tertiary); margin-bottom: 3px; }
+.phase-name { font-size:19px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
+.phase-row { display: flex; justify-content: space-between; font-size:18px; padding: 2px 0; border-bottom:1px solid var(--color-border-tertiary); }
 .phase-row:last-child { border-bottom: none; }
 .phase-key { color: var(--color-text-secondary); }
 .phase-val { font-weight: 500; color: var(--color-text-primary); }
-.badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 99px; margin-bottom: 6px; }
+.badge { display: inline-block; font-size:16px; padding: 2px 7px; border-radius: 99px; margin-bottom: 6px; }
 </style>
 
 <div class="wrap">
