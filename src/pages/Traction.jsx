@@ -1,23 +1,16 @@
-import React from 'react'
-import AutoFrame from '../components/AutoFrame'
+import React from "react";
+import AutoFrame from "../components/AutoFrame";
 
 const Traction = () => {
   return (
     <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
-      <div className="section-container flex-grow">
-        {/* Slide image */}
-        <div className="mb-12">
-          <img
-            src="/images/page_9_img_1.png"
-            alt="Beta Tester Traction"
-            className="max-w-full mx-auto rounded-lg border border-primary/20 shadow-xl"
-          />
-        </div>
-
+      <div className="section-container flex-grow w-full">
         {/* Interactive Graphs */}
         <div className="space-y-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">Traction & Pre-Seed Proof</h3>
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              Traction & Pre-Seed Proof
+            </h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
               <AutoFrame
                 src="/graphs/edastra_traction_preseed_proof.html"
@@ -28,7 +21,9 @@ const Traction = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">Success Map</h3>
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              Success Map
+            </h3>
             <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
               <AutoFrame
                 src="/graphs/edastra_success_map.html"
@@ -40,10 +35,8 @@ const Traction = () => {
           </div>
         </div>
       </div>
-
-      
     </div>
-  )
-}
+  );
+};
 
-export default Traction
+export default Traction;
