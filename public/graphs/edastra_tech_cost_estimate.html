@@ -12,8 +12,8 @@
   --border-radius-md: 8px;
 }
 body { margin: 0; padding: 0; background: #fff; }
-.w{padding:1rem 0 2rem;font-family:var(--font-sans);}
-.tab-row{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap;padding:0 1rem;}
+.w{padding:1.5rem;font-family:var(--font-sans);}
+.tab-row{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap;}
 .tab{padding:6px 16px;border-radius:99px;font-size:18px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);transition:all .15s;}
 .tab.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:transparent;}
 .panel{display:none;}
@@ -102,7 +102,7 @@ body { margin: 0; padding: 0; background: #fff; }
   </div>
   <div class="chart-w h260"><canvas id="c-overview"></canvas></div>
 
-  <div class="tbl">
+  <table class="tbl">
     <thead><tr><th>Category</th><th>Year 1 (0–200k users)</th><th>Year 2 (200k–1Mn)</th><th>Year 3 (1Mn–3Mn)</th><th>Scales with</th></tr></thead>
     <tbody>
       <tr><td>Infra & cloud (compute + DB)</td><td><span class="pill p-lo">₹18–28L</span></td><td><span class="pill p-mid">₹45–70L</span></td><td><span class="pill p-hi">₹120–180L</span></td><td>Users + content volume</td></tr>
@@ -112,7 +112,7 @@ body { margin: 0; padding: 0; background: #fff; }
       <tr><td>Dev tools & monitoring</td><td><span class="pill p-lo">₹6–10L</span></td><td><span class="pill p-lo">₹8–14L</span></td><td><span class="pill p-mid">₹12–20L</span></td><td>Team size + services</td></tr>
       <tr class="tot"><td>Total</td><td>₹58–94L</td><td>₹126–204L</td><td>₹285–445L</td><td></td></tr>
     </tbody>
-  </div>
+  </table>
 
   <div class="ins i-g">
     <strong>Key leverage point:</strong> Video CDN is your biggest variable cost. At 200k users watching 3 videos/week at 8 min each, you stream ~200TB/month. At ₹6–8/GB on AWS CloudFront India, that's ₹12–16L/month. Switching to Cloudflare R2 + Stream cuts this by 40–60% — one of the highest-ROI infrastructure decisions you can make early.
@@ -123,7 +123,7 @@ body { margin: 0; padding: 0; background: #fff; }
 <!-- ══ INFRA & CLOUD ══ -->
 <div class="panel" id="panel-infra">
   <div class="sec">AWS / GCP compute, database & storage costs (India region)</div>
-  <div class="tbl">
+  <table class="tbl">
     <thead><tr><th>Component</th><th>Service</th><th>Spec (Year 1)</th><th>Monthly est.</th><th>Annual est.</th><th>Tier</th></tr></thead>
     <tbody>
       <tr>
@@ -185,14 +185,14 @@ body { margin: 0; padding: 0; background: #fff; }
         <td>₹1.98L/mo</td><td>₹23.8L/yr</td><td></td>
       </tr>
     </tbody>
-  </div>
+  </table>
 
   <div class="ins i-y">
     <strong>Year 2 scaling (200k → 1Mn users):</strong> App servers scale to 12–16 nodes (₹85k/mo), RDS upgrades to db.r6g.large (₹55k/mo), CDN cost triples to ₹2.8L/mo. Total infra crosses ₹6–8L/month. Cloudflare Stream pricing is consumption-based — budget ₹0.75 per 1,000 minutes delivered.
   </div>
 
   <div class="sec">VR infrastructure (2028 launch — additional cost)</div>
-  <div class="tbl">
+  <table class="tbl">
     <thead><tr><th>Component</th><th>Service</th><th>Spec</th><th>Annual est.</th><th>Note</th></tr></thead>
     <tbody>
       <tr><td>VR asset storage<span class="sub">3D scenes · textures · audio</span></td><td>AWS S3</td><td>+50TB assets</td><td>₹6L</td><td>One-time ramp then stable</td></tr>
@@ -200,13 +200,13 @@ body { margin: 0; padding: 0; background: #fff; }
       <tr><td>WebRTC / real-time<span class="sub">Multiplayer VR sessions</span></td><td>Agora / Daily</td><td>500k min/mo</td><td>₹4–8L</td><td>Only if collaborative VR</td></tr>
       <tr class="tot"><td colspan="3">Additional VR infra (Year 3)</td><td>₹28–42L/yr</td><td>On top of base infra</td></tr>
     </tbody>
-  </div>
+  </table>
 </div>
 
 <!-- ══ SERVICES & APIs ══ -->
 <div class="panel" id="panel-services">
   <div class="sec">Third-party services & API costs</div>
-  <div class="tbl">
+  <table class="tbl">
     <thead><tr><th>Service</th><th>Provider</th><th>What it does</th><th>Pricing model</th><th>Year 1 est.</th><th>Year 2 est.</th></tr></thead>
     <tbody>
       <tr>
@@ -274,7 +274,7 @@ body { margin: 0; padding: 0; background: #fff; }
         <td>₹21–35L</td><td>₹46–83L</td><td></td>
       </tr>
     </tbody>
-  </div>
+  </table>
 
   <div class="ins i-r">
     <strong>App store fees are the hidden cost:</strong> Apple and Google take 30% of all in-app subscription revenue in Year 1, dropping to 15% from Year 2 onwards. At ₹5 Cr ARR, that's ₹75L–1.5 Cr going to Apple/Google annually. Factor this into your ARPU model — net subscription ARPU after store fees is ₹770–935 vs headline ₹1,100.
@@ -284,7 +284,7 @@ body { margin: 0; padding: 0; background: #fff; }
 <!-- ══ TEAM & TOOLS ══ -->
 <div class="panel" id="panel-team">
   <div class="sec">Engineering team salaries (annual, India market rate 2026)</div>
-  <div class="tbl">
+  <table class="tbl">
     <thead><tr><th>Role</th><th>Count</th><th>Monthly salary</th><th>Annual cost</th><th>Phase hired</th></tr></thead>
     <tbody>
       <tr><td>Tech Architect / Lead<span class="sub">System design · infra decisions</span></td><td>1</td><td>₹1.5–2L</td><td>₹18–24L</td><td><span class="pill p-blue">Pre-seed M1</span></td></tr>
@@ -296,10 +296,10 @@ body { margin: 0; padding: 0; background: #fff; }
       <tr><td>VR developer<span class="sub">Unity / Unreal · PoC modules</span></td><td>1</td><td>₹1–1.5L</td><td>₹12–18L</td><td><span class="pill p-mid">M6 (PoC phase)</span></td></tr>
       <tr class="tot"><td colspan="2">Total engineering (9 people)</td><td></td><td>₹1.02–1.49 Cr/yr</td><td></td></tr>
     </tbody>
-  </div>
+  </table>
 
   <div class="sec">Developer tools & monitoring (annual SaaS)</div>
-  <div class="tbl">
+  <table class="tbl">
     <thead><tr><th>Tool</th><th>Purpose</th><th>Plan</th><th>Annual cost</th></tr></thead>
     <tbody>
       <tr><td>GitHub Teams</td><td>Code · CI/CD · Actions</td><td>$4/user × 9</td><td>₹3.6L</td></tr>
@@ -312,7 +312,7 @@ body { margin: 0; padding: 0; background: #fff; }
       <tr><td>1Password Teams</td><td>Secrets · password mgmt</td><td>Team plan</td><td>₹0.5L</td></tr>
       <tr class="tot"><td colspan="3">Total dev tools</td><td>₹15.9–20.4L/yr</td></tr>
     </tbody>
-  </div>
+  </table>
 
   <div class="ins i-g">
     <strong>Engineering team = your biggest tech cost by far.</strong> 9 engineers at ₹1–1.5 Cr/yr dwarfs all infra costs. The ₹6 Cr "Team & Operations" allocation in the fund model covers this for 4–6 years — or 2 years at full team plus a 50% headcount expansion. Hire backend + mobile first (Month 1), defer AI/ML and VR engineers until Month 6 when you have traction data to actually train on.
@@ -322,7 +322,7 @@ body { margin: 0; padding: 0; background: #fff; }
 <!-- ══ PHASE BY PHASE ══ -->
 <div class="panel" id="panel-phases">
   <div class="sec">Tech cost by phase — what you spend and when</div>
-  <div class="tbl">
+  <table class="tbl">
     <thead><tr><th>Phase</th><th>Period</th><th>Infra</th><th>APIs & tools</th><th>Engineering</th><th>Total tech</th><th>% of total burn</th></tr></thead>
     <tbody>
       <tr>
@@ -367,7 +367,7 @@ body { margin: 0; padding: 0; background: #fff; }
         <td>₹405–605L</td><td>~₹4–6 Cr of ₹20 Cr raise</td>
       </tr>
     </tbody>
-  </div>
+  </table>
 
   <div class="two">
     <div>
@@ -396,44 +396,71 @@ body { margin: 0; padding: 0; background: #fff; }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-function sw(id,btn){
+const initialized = {};
+let chartInsts = {};
+
+const years=['Year 1\n(0–200k)','Year 2\n(200k–1Mn)','Year 3\n(1Mn–3Mn)'];
+const phases=['M1–3','M4–6','M7–9','M10–12','M13–15','M16–18'];
+
+function mkChart(id, cfg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (chartInsts[id]) chartInsts[id].destroy();
+  chartInsts[id] = new Chart(el, cfg);
+}
+
+const panelCharts = {
+  overview: () => {
+    mkChart('c-overview', {
+      type:'bar',
+      data:{labels:years,datasets:[
+        {label:'Infra & cloud', data:[23,58,150],backgroundColor:'#378ADD',stack:'s',borderRadius:3},
+        {label:'Video CDN',     data:[16,48,120],backgroundColor:'#1D9E75',stack:'s',borderRadius:3},
+        {label:'Third-party APIs',data:[28,65,90],backgroundColor:'#EF9F27',stack:'s',borderRadius:3},
+        {label:'AI tools',      data:[18,26,34],backgroundColor:'#534AB7',stack:'s',borderRadius:3},
+        {label:'Dev tools',     data:[18,11,16],backgroundColor:'#888780',stack:'s',borderRadius:3},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{
+          x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11}}},
+          y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11},callback:v=>'₹'+v+'L'}}
+        }
+      }
+    });
+  },
+  phases: () => {
+    mkChart('c-phases', {
+      type:'bar',
+      data:{labels:phases,datasets:[
+        {label:'Infra & cloud', data:[6,11,18,28,45,52],backgroundColor:'#378ADD',stack:'s',borderRadius:3},
+        {label:'APIs & tools',  data:[4,10,15,22,30,35],backgroundColor:'#EF9F27',stack:'s',borderRadius:3},
+        {label:'Engineering',   data:[30,34,36,38,42,46],backgroundColor:'#534AB7',stack:'s',borderRadius:3},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{
+          x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11}}},
+          y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11},callback:v=>'₹'+v+'L'}}
+        }
+      }
+    });
+  }
+};
+
+function sw(id, btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
   btn.classList.add('active');
+  
+  requestAnimationFrame(() => {
+    if (!initialized[id]) {
+      initialized[id] = true;
+      if (panelCharts[id]) panelCharts[id]();
+    }
+  });
 }
 
-const years=['Year 1\n(0–200k)','Year 2\n(200k–1Mn)','Year 3\n(1Mn–3Mn)'];
-new Chart(document.getElementById('c-overview'),{
-  type:'bar',
-  data:{labels:years,datasets:[
-    {label:'Infra & cloud', data:[23,58,150],backgroundColor:'#378ADD',stack:'s',borderRadius:3},
-    {label:'Video CDN',     data:[16,48,120],backgroundColor:'#1D9E75',stack:'s',borderRadius:3},
-    {label:'Third-party APIs',data:[28,65,90],backgroundColor:'#EF9F27',stack:'s',borderRadius:3},
-    {label:'AI tools',      data:[18,26,34],backgroundColor:'#534AB7',stack:'s',borderRadius:3},
-    {label:'Dev tools',     data:[18,11,16],backgroundColor:'#888780',stack:'s',borderRadius:3},
-  ]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-    scales:{
-      x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11}}},
-      y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11},callback:v=>'₹'+v+'L'}}
-    }
-  }
-});
-
-const phases=['M1–3','M4–6','M7–9','M10–12','M13–15','M16–18'];
-new Chart(document.getElementById('c-phases'),{
-  type:'bar',
-  data:{labels:phases,datasets:[
-    {label:'Infra & cloud', data:[6,11,18,28,45,52],backgroundColor:'#378ADD',stack:'s',borderRadius:3},
-    {label:'APIs & tools',  data:[4,10,15,22,30,35],backgroundColor:'#EF9F27',stack:'s',borderRadius:3},
-    {label:'Engineering',   data:[30,34,36,38,42,46],backgroundColor:'#534AB7',stack:'s',borderRadius:3},
-  ]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-    scales:{
-      x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11}}},
-      y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'var(--color-text-secondary)',font:{size:11},callback:v=>'₹'+v+'L'}}
-    }
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  sw('overview', document.querySelector('.tab.active') || document.querySelector('.tab'));
 });
 </script>

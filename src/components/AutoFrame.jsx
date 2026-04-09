@@ -6,7 +6,7 @@ import React, { useRef, useState, useEffect } from 'react';
  * 
  * For same-origin iframes only (which is the case for /graphs/*.html files).
  */
-const AutoFrame = ({ src, title, className = '', style = {}, frameBorder = '0', minHeight = 400, maxHeight = 6000 }) => {
+const AutoFrame = ({ src, title, className = '', style = {}, frameBorder = '0', minHeight = 200, maxHeight = 6000 }) => {
   const iframeRef = useRef(null);
   const [height, setHeight] = useState(minHeight);
 
@@ -14,20 +14,30 @@ const AutoFrame = ({ src, title, className = '', style = {}, frameBorder = '0', 
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    let rafId;
     let intervalId;
     let observer;
+    let mutationObserver;
+    let measureTimeout;
 
     const measure = () => {
       try {
         const doc = iframe.contentDocument || iframe.contentWindow?.document;
         if (doc && doc.body) {
-          const bodyHeight = doc.body.scrollHeight;
-          const docHeight = doc.documentElement.scrollHeight;
-          const measured = Math.max(bodyHeight, docHeight);
+          const bodyScroll = doc.body.scrollHeight;
+          const docScroll = doc.documentElement.scrollHeight;
+
+          // Use the tighter of scrollHeight and bounding rect
+          let measured = Math.max(bodyScroll, docScroll);
+
+          // getBoundingClientRect gives the actual rendered box size - more accurate
+          const rect = doc.body.getBoundingClientRect();
+          const rectHeight = Math.ceil(rect.height);
+          if (rectHeight > 0 && rectHeight < measured) {
+            measured = rectHeight;
+          }
 
           if (measured > 0) {
-            const clamped = Math.min(Math.max(measured + 16, minHeight), maxHeight);
+            const clamped = Math.min(Math.max(measured, minHeight), maxHeight);
             setHeight(prev => {
               if (Math.abs(prev - clamped) > 2) return clamped;
               return prev;
@@ -39,19 +49,40 @@ const AutoFrame = ({ src, title, className = '', style = {}, frameBorder = '0', 
       }
     };
 
+    const debouncedMeasure = () => {
+      clearTimeout(measureTimeout);
+      measureTimeout = setTimeout(measure, 80);
+    };
+
     const handleLoad = () => {
-      measure();
+      // Multiple delayed measurements to catch Chart.js renders and late layout
+      setTimeout(measure, 100);
+      setTimeout(measure, 400);
+      setTimeout(measure, 1000);
+      setTimeout(measure, 2000);
+
       try {
         const doc = iframe.contentDocument || iframe.contentWindow?.document;
         if (doc && doc.body) {
-          // Monitor size changes continuously
-          observer = new ResizeObserver(() => measure());
+          // ResizeObserver for body size changes
+          observer = new ResizeObserver(debouncedMeasure);
           observer.observe(doc.body);
           
-          // Catch interactive layout changes via clicks
+          // MutationObserver catches tab switches (display:none → display:block),
+          // new chart canvases being added, etc.
+          mutationObserver = new MutationObserver(debouncedMeasure);
+          mutationObserver.observe(doc.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class', 'style']
+          });
+
+          // Click handler for interactive tab switches
           doc.addEventListener('click', () => {
-            setTimeout(measure, 50);
-            setTimeout(measure, 350);
+            setTimeout(measure, 100);
+            setTimeout(measure, 400);
+            setTimeout(measure, 1000);
           });
         }
       } catch (e) {
@@ -64,8 +95,10 @@ const AutoFrame = ({ src, title, className = '', style = {}, frameBorder = '0', 
 
     return () => {
       iframe.removeEventListener('load', handleLoad);
+      clearTimeout(measureTimeout);
       if (intervalId) clearInterval(intervalId);
       if (observer) observer.disconnect();
+      if (mutationObserver) mutationObserver.disconnect();
     };
   }, [src, minHeight, maxHeight]);
 

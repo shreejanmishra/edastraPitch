@@ -26,7 +26,7 @@ const Ecosystem = () => {
 
   return (
     <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
-      <div className="section-container flex-grow">
+      <div className="section-container flex-grow w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left: Image */}
           <div className="flex items-center justify-center">

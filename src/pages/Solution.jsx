@@ -3,7 +3,7 @@ import React from "react";
 const Solution = () => {
   return (
     <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
-      <div className="section-container flex-grow">
+      <div className="section-container flex-grow w-full">
         {/* Solution Features */}
         <div className="mb-16">
           <h3 className="text-3xl font-bold mb-6 text-[#103A5A]">
@@ -97,8 +97,10 @@ const Solution = () => {
           </div>
         </div>
 
+        <hr className="border-t border-[#C8E6F7] mb-16 w-3/4 mx-auto" />
+
         {/* The Edastra Solution */}
-        <div className="pt-16 mt-8 border-t border-[#C8E6F7]">
+        <div>
           <div className="text-left mb-12">
             <h3 className="text-3xl font-bold mb-4 text-[#103A5A]">
               The Edastra Solution
