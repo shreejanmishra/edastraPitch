@@ -7,7 +7,9 @@ const Preschool = () => {
         <h2 className="text-3xl font-bold mb-8 text-[#103A5A]">
           Preschool Product Design
         </h2>
-
+        <p className="text-lg text-[#103A5A] mt-4 mb-2 font-bold font-weight-600">
+          Content Snippet
+        </p>
         {/* Video Section */}
         <div className="mb-16">
           <div
@@ -25,40 +27,82 @@ const Preschool = () => {
           </div>
         </div>
 
-        {/* Content Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left: Image */}
-          <div>
-            <img
-              src="/images/page_5_img_1.png"
-              alt="Preschooler's Corner - Content Snippet"
-              className="w-full rounded-lg border border-[#C8E6F7] shadow-xl hover:shadow-2xl transition-shadow duration-300"
-            />
-          </div>
-
-          {/* Right: Key Features Cards */}
-          <div className="flex flex-col space-y-6">
-            <div className="bg-white p-6 rounded-lg shadow-lg border border-[#C8E6F7]">
+        {/* Features Cards Stack */}
+        <div className="flex flex-col space-y-6 mb-16 w-full">
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-[#C8E6F7] flex gap-4">
+            <div className="flex-shrink-0">
+              <img src="/images/india_icon.png" alt="India" className="w-12 h-12" />
+            </div>
+            <div className="flex-1">
               <p className="text-lg text-[#103A5A]">
-                Culturally relatable to Indian preschool households with
-                familiar accents, dialects, environments, and visual cues.
+                Culturally relatable to Indian preschool households with familiar
+                accents, dialects, environments, and visual cues.
               </p>
             </div>
+          </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-lg border border-[#C8E6F7]">
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-[#C8E6F7] flex gap-4">
+            <div className="flex-shrink-0">
+              <img src="/images/indian_icon.png" alt="India" className="w-12 h-12" />
+            </div>
+            <div className="flex-1">
               <p className="text-lg text-[#103A5A]">
                 Character design reflects diverse Indian skin tones to foster
-                identity recognition and emotional connection.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-lg border border-[#C8E6F7]">
-              <p className="text-lg text-[#103A5A]">
-                Early childhood psychology principles to minimise
-                overstimulation and support sustained attention.
+                identity recognition and emotional connection. We are no longer
+                forced to use the fair skinned characters that were prevalent in
+                the Indian market.
               </p>
             </div>
           </div>
+
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-[#C8E6F7] flex gap-4">
+            <div className="flex-shrink-0">
+              <img src="/images/child_icon.png" alt="Child" className="w-12 h-12" />
+            </div>
+            <div className="flex-1">
+              <p className="text-lg text-[#103A5A]">
+                Early childhood psychology principles to minimise overstimulation
+                and support sustained attention.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-[#C8E6F7] flex gap-4">
+            <div className="flex-shrink-0">
+              <img src="/images/cdn_icon.png" alt="CDN" className="w-12 h-12" />
+            </div>
+            <div className="flex-1">
+              <p className="text-lg text-[#103A5A]">
+                Using Youtube as a temporary CDN for video streaming since it is
+                free and reliable, but not scalable for large scale operations. It
+                forces the free users to watch ads before the content and leaves
+                us at the mercy of YouTube's terms and conditions.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-[#C8E6F7] flex gap-4">
+            <div className="flex-shrink-0">
+              <img src="/images/moviescript_icon.png" alt="Movie Script" className="w-12 h-12" />
+            </div>
+            <div className="flex-1">
+              <p className="text-lg text-[#103A5A]">
+                Script was written by our team and video was generated using
+                free-tier AI. A dedicated script writer can come with a much more
+                engaging script and use of AI can make the video production much
+                more efficient.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Image */}
+        <div className="w-full">
+          <img
+            src="/images/page_5_img_1.png"
+            alt="Preschooler's Corner - Content Snippet"
+            className="w-full rounded-lg border border-[#C8E6F7] shadow-xl hover:shadow-2xl transition-shadow duration-300"
+          />
         </div>
       </div>
     </div>

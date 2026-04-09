@@ -3,7 +3,6 @@ import SubNav from '../components/SubNav'
 import Problem from './Problem'
 import Solution from './Solution'
 import Ecosystem from './Ecosystem'
-import BetaApp from './BetaApp'
 import Traction from './Traction'
 
 const OurApproach = () => {
@@ -11,7 +10,6 @@ const OurApproach = () => {
     { id: 'problem', label: 'Problem' },
     { id: 'solution', label: 'Solution' },
     { id: 'ecosystem', label: 'Ecosystem' },
-    { id: 'betaapp', label: 'Beta App' },
     { id: 'traction', label: 'Traction' },
   ]
 
@@ -22,7 +20,6 @@ const OurApproach = () => {
         <div id="problem"><Problem /></div>
         <div id="solution"><Solution /></div>
         <div id="ecosystem"><Ecosystem /></div>
-        <div id="betaapp"><BetaApp /></div>
         <div id="traction"><Traction /></div>
       </div>
     </div>
