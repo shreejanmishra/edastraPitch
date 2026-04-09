@@ -19,69 +19,79 @@ const Solution = () => {
             </div>
 
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-                <h4 className="font-bold text-xl text-[#103A5A] mb-2 flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-[#EAF4FB] text-[#103A5A] flex items-center justify-center mr-3 text-sm">
-                    1
-                  </span>
-                  Integrated Scholarship Engine
-                </h4>
-                <p className="text-gray-700 ml-11">
-                  Subscription and ad revenue funds engagement-linked
-                  scholarships by NGOs & CSR partners.
-                </p>
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/scholarship_icon.png" alt="Scholarship" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-xl text-[#103A5A] mb-2">
+                    Integrated Scholarship Engine
+                  </h4>
+                  <p className="text-gray-700">
+                    Subscription and ad revenue funds engagement-linked
+                    scholarships by NGOs & CSR partners.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-                <h4 className="font-bold text-xl text-[#103A5A] mb-2 flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-[#EAF4FB] text-[#103A5A] flex items-center justify-center mr-3 text-sm">
-                    2
-                  </span>
-                  4K Edutainment Library
-                </h4>
-                <p className="text-gray-700 ml-11">
-                  4,000+ cinematic educational and narrative-led videos
-                  (Pre-School to Grade 10), built 4K and future VR integration.
-                </p>
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/4k_icon.png" alt="4K" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-xl text-[#103A5A] mb-2">
+                    4K Edutainment Library
+                  </h4>
+                  <p className="text-gray-700">
+                    4,000+ cinematic educational and narrative-led videos
+                    (Pre-School to Grade 10), built 4K and future VR integration.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-                <h4 className="font-bold text-xl text-[#103A5A] mb-2 flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-[#EAF4FB] text-[#103A5A] flex items-center justify-center mr-3 text-sm">
-                    3
-                  </span>
-                  VR-Powered Learning
-                </h4>
-                <p className="text-gray-700 ml-11">
-                  Virtual classrooms, immersive science labs, historical
-                  reconstructions and career simulations.
-                </p>
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/vr_icon.png" alt="VR" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-xl text-[#103A5A] mb-2">
+                    VR-Powered Learning
+                  </h4>
+                  <p className="text-gray-700">
+                    Virtual classrooms, immersive science labs, historical
+                    reconstructions and career simulations.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-                <h4 className="font-bold text-xl text-[#103A5A] mb-2 flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-[#EAF4FB] text-[#103A5A] flex items-center justify-center mr-3 text-sm">
-                    4
-                  </span>
-                  Family-Safe, Purpose-First OTT
-                </h4>
-                <p className="text-gray-700 ml-11">
-                  A zero-toxic, parent-approved ecosystem combining learning and
-                  trust on unified platform.
-                </p>
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/family_icon.png" alt="Family" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-xl text-[#103A5A] mb-2">
+                    Family-Safe, Purpose-First OTT
+                  </h4>
+                  <p className="text-gray-700">
+                    A zero-toxic, parent-approved ecosystem combining learning and
+                    trust on unified platform.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-                <h4 className="font-bold text-xl text-[#103A5A] mb-2 flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-[#EAF4FB] text-[#103A5A] flex items-center justify-center mr-3 text-sm">
-                    5
-                  </span>
-                  Interactive Storytelling
-                </h4>
-                <p className="text-gray-700 ml-11">
-                  Alternative endings and decision-based narratives that promote
-                  learning through participation.
-                </p>
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/book_icon.png" alt="Storytelling" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-xl text-[#103A5A] mb-2">
+                    Interactive Storytelling
+                  </h4>
+                  <p className="text-gray-700">
+                    Alternative endings and decision-based narratives that promote
+                    learning through participation.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -264,58 +274,88 @@ const Solution = () => {
 
             {/* Right: The Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
-                  Unified Academic Ecosystem
-                </h4>
-                <p className="text-sm text-gray-600">
-                  ICSE / IB / SSC / CBSE under one platform.
-                </p>
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/book_icon.png" alt="Book" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
+                    Unified Academic Ecosystem
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    ICSE / IB / SSC / CBSE under one platform.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
-                  Reinforced Learning Architecture
-                </h4>
-                <p className="text-sm text-gray-600">
-                  Every module concludes with structured assessment.
-                </p>
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/brain_icon.png" alt="Brain" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
+                    Reinforced Learning Architecture
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    Every module concludes with structured assessment.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
-                  Built-in Career Guidance
-                </h4>
-                <p className="text-sm text-gray-600">
-                  On-demand specialist consultations within the app.
-                </p>
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/career_icon.png" alt="Career" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
+                    Built-in Career Guidance
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    On-demand specialist consultations within the app.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
-                  Social Academic Layer
-                </h4>
-                <p className="text-sm text-gray-600">
-                  Peer groups & parent communities embedded natively.
-                </p>
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/family_icon.png" alt="Family" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
+                    Social Academic Layer
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    Peer groups & parent communities embedded natively.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
-                  Psychology + AI-Validated Design
-                </h4>
-                <p className="text-sm text-gray-600">
-                  Optimized UI and learning flows for focus & retention.
-                </p>
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/AI_icon.png" alt="AI" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
+                    Psychology + AI-Validated Design
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    Optimized UI and learning flows for focus & retention.
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
-                  Single Subscription Model
-                </h4>
-                <p className="text-sm text-gray-600">
-                  No fragmentation. No multi-app dependency.
-                </p>
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+                <div className="flex-shrink-0">
+                  <img src="/images/subscription_icon.png" alt="Subscription" className="w-12 h-12" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
+                    Single Subscription Model
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    No fragmentation. No multi-app dependency.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

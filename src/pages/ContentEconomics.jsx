@@ -1,24 +1,19 @@
-import React from 'react'
-import AutoFrame from '../components/AutoFrame'
+import React from "react";
+import AutoFrame from "../components/AutoFrame";
 
 const ContentEconomics = () => {
   return (
-    <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
-      <div className="section-container flex-grow">
+    <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col w-full border-b border-[#C8E6F7]">
+      <div className="section-container flex-grow w-full">
         {/* Slide image */}
-        <div className="mb-12">
-          <img
-            src="/images/page_15_img_1.png"
-            alt="Content Production Structural Advantage"
-            className="max-w-full mx-auto rounded-lg border border-primary/20 shadow-xl"
-          />
-        </div>
 
         {/* Interactive Graphs */}
-        <div className="space-y-8">
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">Content Economics Visual</h3>
-            <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
+        <div className="space-y-8 w-full">
+          <div className="w-full">
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              Content Economics Visual
+            </h3>
+            <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl w-full">
               <AutoFrame
                 src="/graphs/edastra_content_economics_visual.html"
                 title="Content Economics Visual"
@@ -27,9 +22,11 @@ const ContentEconomics = () => {
               />
             </div>
           </div>
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">Content Unit Economics</h3>
-            <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
+          {/* <div className="w-full">
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              Content Unit Economics
+            </h3>
+            <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl w-full">
               <AutoFrame
                 src="/graphs/edastra_content_unit_economics.html"
                 title="Content Unit Economics"
@@ -37,10 +34,12 @@ const ContentEconomics = () => {
                 frameBorder="0"
               />
             </div>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">Content Unit Economics (Detailed)</h3>
-            <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
+          </div> */}
+          <div className="w-full">
+            <h3 className="text-2xl font-bold mb-4 text-primary">
+              Content Unit Economics (Detailed)
+            </h3>
+            <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl w-full">
               <AutoFrame
                 src="/graphs/edastra_content_unit_economics-2.html"
                 title="Content Unit Economics Detailed"
@@ -49,23 +48,10 @@ const ContentEconomics = () => {
               />
             </div>
           </div>
-          <div>
-            <h3 className="text-2xl font-bold mb-4 text-primary">VR Content Economics</h3>
-            <div className="rounded-lg overflow-hidden border border-primary/20 shadow-xl">
-              <AutoFrame
-                src="/graphs/vr_content_economics_slide.html"
-                title="VR Content Economics Slide"
-                className="bg-white"
-                frameBorder="0"
-              />
-            </div>
-          </div>
         </div>
       </div>
-
-      
     </div>
-  )
-}
+  );
+};
 
-export default ContentEconomics
+export default ContentEconomics;

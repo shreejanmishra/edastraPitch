@@ -16,42 +16,48 @@ const AutoFrame = ({ src, title, className = '', style = {}, frameBorder = '0', 
 
     let rafId;
     let intervalId;
+    let observer;
 
     const measure = () => {
       try {
         const doc = iframe.contentDocument || iframe.contentWindow?.document;
         if (doc && doc.body) {
-          // Use scrollHeight as the most reliable measurement of total content height
           const bodyHeight = doc.body.scrollHeight;
           const docHeight = doc.documentElement.scrollHeight;
           const measured = Math.max(bodyHeight, docHeight);
 
           if (measured > 0) {
-            // Clamp between min and max, add small buffer to prevent edge-case scrollbars
             const clamped = Math.min(Math.max(measured + 16, minHeight), maxHeight);
             setHeight(prev => {
-              // Only update if the difference is meaningful (>2px) to avoid infinite re-renders
               if (Math.abs(prev - clamped) > 2) return clamped;
               return prev;
             });
           }
         }
       } catch {
-        // Cross-origin: fall back to fixed height, no-op
+        // Cross-origin fallback
       }
     };
 
     const handleLoad = () => {
-      // Measure immediately on load
       measure();
-      // Then poll periodically to catch dynamic content changes (Chart.js rendering, tab switches, etc.)
-      intervalId = setInterval(measure, 500);
-      // Stop polling after 10 seconds to save resources
-      setTimeout(() => {
-        if (intervalId) clearInterval(intervalId);
-        // Do one final measure
-        measure();
-      }, 10000);
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (doc && doc.body) {
+          // Monitor size changes continuously
+          observer = new ResizeObserver(() => measure());
+          observer.observe(doc.body);
+          
+          // Catch interactive layout changes via clicks
+          doc.addEventListener('click', () => {
+            setTimeout(measure, 50);
+            setTimeout(measure, 350);
+          });
+        }
+      } catch (e) {
+        // Cross-origin or unobservable: fallback to interval
+        intervalId = setInterval(measure, 1000);
+      }
     };
 
     iframe.addEventListener('load', handleLoad);
@@ -59,7 +65,7 @@ const AutoFrame = ({ src, title, className = '', style = {}, frameBorder = '0', 
     return () => {
       iframe.removeEventListener('load', handleLoad);
       if (intervalId) clearInterval(intervalId);
-      if (rafId) cancelAnimationFrame(rafId);
+      if (observer) observer.disconnect();
     };
   }, [src, minHeight, maxHeight]);
 

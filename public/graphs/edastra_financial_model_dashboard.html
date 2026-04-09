@@ -36,11 +36,13 @@
 
 body { margin: 0; padding: 0; background: var(--white); }
 .wrap { padding: 1rem 0 2rem; font-family: var(--font-sans); }
+.panels-container { position: relative; }
 .tab-row { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; padding: 0 1rem; }
 .tab { padding: 6px 16px; border-radius: 99px; font-size:18px; cursor: pointer; border:1px solid var(--color-border-secondary); background: transparent; color: var(--color-text-secondary); transition: all 0.15s; }
 .tab.active { background: var(--color-text-primary); color: var(--color-background-primary); border-color: transparent; }
-.panel { display: none; }
+.panel { display: none; width: 100%; animation: fadeIn 0.3s ease; }
 .panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1.5rem; }
 .kpi { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; }
@@ -320,6 +322,7 @@ body { margin: 0; padding: 0; background: var(--white); }
 </div>
 </div>
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const years = ['2026','2027','2028','2029','2030','2031'];
@@ -351,173 +354,209 @@ const arpu_mat  =[0,100,180,340,420,480];
 const arpu_vr   =[0,0,150,180,200,210];
 const arpu_mea_s=[0,0,0,0,278,390];
 
-function mkChart(id, cfg) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  new Chart(el, cfg);
-}
+/* ── helpers ── */
+const tickX  = {color:'rgba(123,196,232,0.6)', font:{size:11}};
+const gridFaint = {color:'rgba(128,128,128,0.1)'};
 
+function axX()  { return {grid:gridFaint, ticks:tickX}; }
+function axY(cb){ return {grid:gridFaint, ticks:{color:'rgba(123,196,232,0.6)',font:{size:11},callback:cb}}; }
 function defOpts(extra={}) {
   return {
     responsive:true, maintainAspectRatio:false,
-    plugins:{ legend:{display:false}, ...extra.plugins },
-    scales:{
-      x:{ grid:{color:'rgba(128,128,128,0.1)'}, ticks:{color:'#7BC4E8780',font:{size:11}} },
-      y:{ grid:{color:'rgba(128,128,128,0.1)'}, ticks:{color:'#7BC4E8780',font:{size:11}} },
-      ...extra.scales
-    },
-    ...extra
+    animation:{duration:400},
+    plugins:{ legend:{display:false}, ...(extra.plugins||{}) },
+    scales:{ x:axX(), y:axY(v=>v), ...(extra.scales||{}) }
   };
 }
 
-mkChart('c-overview', {
-  data:{ labels:years, datasets:[
-    { type:'bar', label:'Revenue', data:rev, backgroundColor:'#2A7FB5', stack:'s', borderRadius:3, order:2 },
-    { type:'bar', label:'Costs',   data:costs,backgroundColor:'#D85A30', stack:'s2',borderRadius:3, order:3 },
-    { type:'line',label:'P&L',    data:pnl, borderColor:'#1D8A50', backgroundColor:'transparent',
-      pointBackgroundColor:'#1D8A50', pointRadius:4, tension:0.35, borderWidth:2.5, order:1 }
-  ]},
-  options: defOpts({ plugins:{legend:{display:false}},
-    scales:{
-      x:{ grid:{color:'rgba(128,128,128,0.1)'}, ticks:{color:'#7BC4E8780',font:{size:11}} },
-      y:{ grid:{color:'rgba(128,128,128,0.1)'}, ticks:{color:'#7BC4E8780',font:{size:11},
-        callback:v=>(v<0?'-':'')+'₹'+Math.abs(v)+'Cr'} }
-    }
-  })
-});
+/* ── lazy-init registry ── */
+const initialized = {};   // panelId => true once charts created
+const chartInsts  = {};   // canvasId => Chart instance
 
-mkChart('c-overview2', {
-  data:{ labels:years, datasets:[
-    { type:'bar', label:'Total users',  data:users, backgroundColor:'#7BC4E8', borderRadius:3, yAxisID:'y', order:2 },
-    { type:'line',label:'Blended ARPU', data:arpu_india, borderColor:'#EF9F27',
-      backgroundColor:'transparent', pointBackgroundColor:'#EF9F27', pointRadius:3,
-      tension:0.35, borderWidth:2, yAxisID:'y2', order:1 }
-  ]},
-  options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
-    scales:{
-      x:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-      y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>v+'Mn'},title:{display:true,text:'Users (Mn)',color:'#7BC4E8',font:{size:10}}},
-      y2:{position:'right',grid:{display:false},ticks:{color:'#EF9F27',font:{size:11},callback:v=>'₹'+v},title:{display:true,text:'ARPU (₹)',color:'#EF9F27',font:{size:10}}}
-    }
+function mkChart(id, cfg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (chartInsts[id]) { chartInsts[id].destroy(); }
+  chartInsts[id] = new Chart(el, cfg);
+}
+
+/* ── chart factory functions per panel ── */
+const panelCharts = {
+
+  overview: () => {
+    mkChart('c-overview', {
+      type: 'bar',
+      data:{ labels:years, datasets:[
+        { type:'bar', label:'Revenue', data:rev,  backgroundColor:'#2A7FB5', stack:'s',  borderRadius:3, order:2 },
+        { type:'bar', label:'Costs',   data:costs, backgroundColor:'#D85A30', stack:'s2', borderRadius:3, order:3 },
+        { type:'line',label:'P&L',     data:pnl,   borderColor:'#1D8A50', backgroundColor:'transparent',
+          pointBackgroundColor:'#1D8A50', pointRadius:4, tension:0.35, borderWidth:2.5, order:1 }
+      ]},
+      options: defOpts({ scales:{
+        x:axX(),
+        y:axY(v=>(v<0?'-':'')+'₹'+Math.abs(v)+'Cr')
+      }})
+    });
+    mkChart('c-overview2', {
+      type: 'bar',
+      data:{ labels:years, datasets:[
+        { type:'bar', label:'Total users',  data:users,      backgroundColor:'#7BC4E8', borderRadius:3, yAxisID:'y',  order:2 },
+        { type:'line',label:'Blended ARPU', data:arpu_india, borderColor:'#EF9F27',
+          backgroundColor:'transparent', pointBackgroundColor:'#EF9F27', pointRadius:3,
+          tension:0.35, borderWidth:2, yAxisID:'y2', order:1 }
+      ]},
+      options:{ responsive:true, maintainAspectRatio:false, animation:{duration:400},
+        plugins:{legend:{display:false}},
+        scales:{
+          x:axX(),
+          y:{...axY(v=>v+'Mn'), title:{display:true,text:'Users (Mn)',color:'#7BC4E8',font:{size:10}}},
+          y2:{position:'right',grid:{display:false},
+              ticks:{color:'#EF9F27',font:{size:11},callback:v=>'₹'+v},
+              title:{display:true,text:'ARPU (₹)',color:'#EF9F27',font:{size:10}}}
+        }
+      }
+    });
+  },
+
+  revenue: () => {
+    mkChart('c-rev', {
+      type: 'bar',
+      data:{ labels:years, datasets:[
+        { type:'bar', label:'Revenue', data:rev,  backgroundColor:'#2A7FB5', borderRadius:3, order:2 },
+        { type:'bar', label:'Costs',   data:costs, backgroundColor:'#D85A30', borderRadius:3, order:3 },
+        { type:'line',label:'P&L',     data:pnl,   borderColor:'#1D8A50', backgroundColor:'transparent',
+          pointBackgroundColor:'#1D8A50',pointRadius:4,tension:0.35,borderWidth:2.5,order:1 }
+      ]},
+      options: defOpts({ scales:{
+        x:axX(),
+        y:axY(v=>(v<0?'-':'')+'₹'+Math.abs(v)+'Cr')
+      }})
+    });
+    mkChart('c-mix', {
+      type: 'bar',
+      data:{ labels:years, datasets:[
+        { label:'Ads',          data:ads_rev.map(v=>Math.round(v)), backgroundColor:'#2A7FB5', stack:'s', borderRadius:3 },
+        { label:'Subscription', data:sub_rev.map(v=>Math.round(v)), backgroundColor:'#1D8A50', stack:'s', borderRadius:3 },
+        { label:'Licensing',    data:lic_rev.map(v=>Math.round(v)), backgroundColor:'#EF9F27', stack:'s', borderRadius:3 },
+      ]},
+      options: defOpts({ scales:{
+        x:{...axX(), stacked:true},
+        y:{...axY(v=>'₹'+v+'Cr'), stacked:true}
+      }})
+    });
+  },
+
+  users: () => {
+    mkChart('c-users', {
+      type: 'bar',
+      data:{ labels:years, datasets:[
+        { label:'India', data:users, backgroundColor:'#7BC4E8', borderRadius:3, stack:'u' },
+        { label:'MEA',   data:mea_u, backgroundColor:'#1D8A50', borderRadius:3, stack:'u' },
+      ]},
+      options: defOpts({ scales:{
+        x:{...axX(), stacked:true},
+        y:{...axY(v=>v+'Mn'), stacked:true}
+      }})
+    });
+    mkChart('c-arpu', {
+      type: 'line',
+      data:{ labels:years, datasets:[
+        { type:'line',label:'India ARPU', data:arpu_india, borderColor:'#EF9F27',
+          backgroundColor:'transparent',pointBackgroundColor:'#EF9F27',pointRadius:4,tension:0.35,borderWidth:2 },
+        { type:'line',label:'MEA ARPU',   data:arpu_mea,   borderColor:'#D85A30',
+          backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:4,tension:0.35,borderWidth:2,borderDash:[5,3] },
+      ]},
+      options: defOpts({ scales:{
+        x:axX(),
+        y:axY(v=>'₹'+v)
+      }})
+    });
+    mkChart('c-arpu-stack', {
+      type: 'bar',
+      data:{ labels:years, datasets:[
+        { label:'New/Yr1',    data:arpu_new,   backgroundColor:'#2A7FB5', stack:'a', borderRadius:3 },
+        { label:'Mature',     data:arpu_mat,   backgroundColor:'#7BC4E8', stack:'a', borderRadius:3 },
+        { label:'VR uplift',  data:arpu_vr,    backgroundColor:'#1D8A50', stack:'a', borderRadius:3 },
+        { label:'MEA uplift', data:arpu_mea_s, backgroundColor:'#EF9F27', stack:'a', borderRadius:3 },
+      ]},
+      options: defOpts({ scales:{
+        x:{...axX(), stacked:true},
+        y:{...axY(v=>'₹'+v), stacked:true}
+      }})
+    });
+  },
+
+  scenarios: () => {
+    mkChart('c-scen', {
+      type: 'line',
+      data:{ labels:years, datasets:[
+        { type:'line',label:'Bear',data:bear_rev,borderColor:'#D85A30',backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:4,tension:0.35,borderWidth:2 },
+        { type:'line',label:'Base',data:base_rev,borderColor:'#2A7FB5',backgroundColor:'transparent',pointBackgroundColor:'#2A7FB5',pointRadius:4,tension:0.35,borderWidth:2.5 },
+        { type:'line',label:'Bull',data:bull_rev,borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:4,tension:0.35,borderWidth:2 },
+      ]},
+      options: defOpts({ scales:{
+        x:axX(),
+        y:axY(v=>(v<0?'-':'')+'₹'+Math.abs(v)+'Cr')
+      }})
+    });
+    mkChart('c-margin', {
+      type: 'line',
+      data:{ labels:years, datasets:[
+        { type:'line',label:'Bear',data:bear_mg,borderColor:'#D85A30',backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:3,tension:0.35,borderWidth:1.5 },
+        { type:'line',label:'Base',data:base_mg,borderColor:'#2A7FB5',backgroundColor:'transparent',pointBackgroundColor:'#2A7FB5',pointRadius:3,tension:0.35,borderWidth:2 },
+        { type:'line',label:'Bull',data:bull_mg,borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:3,tension:0.35,borderWidth:1.5 },
+      ]},
+      options: defOpts({ scales:{x:axX(), y:axY(v=>v+'%')} })
+    });
+    mkChart('c-burn', {
+      type: 'line',
+      data:{ labels:years, datasets:[
+        { type:'line',label:'Bear',data:bear_bm,borderColor:'#D85A30',backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:3,tension:0.35,borderWidth:1.5 },
+        { type:'line',label:'Base',data:burn,   borderColor:'#2A7FB5',backgroundColor:'transparent',pointBackgroundColor:'#2A7FB5',pointRadius:3,tension:0.35,borderWidth:2 },
+        { type:'line',label:'Bull',data:bull_bm,borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:3,tension:0.35,borderWidth:1.5 },
+      ]},
+      options: defOpts({ scales:{x:axX(), y:{...axY(v=>v+'x'), min:0, max:3}} })
+    });
+  },
+
+  phases: () => {
+    mkChart('c-phases', {
+      type: 'bar',
+      data:{ labels:years, datasets:[
+        { type:'bar', label:'Revenue', data:rev,   backgroundColor:'#2A7FB5', borderRadius:3, order:2, yAxisID:'y' },
+        { type:'bar', label:'Costs',   data:costs,  backgroundColor:'#D85A30', borderRadius:3, order:3, yAxisID:'y' },
+        { type:'line',label:'Margin',  data:margin, borderColor:'#EF9F27', backgroundColor:'transparent',
+          pointBackgroundColor:'#EF9F27',pointRadius:4,tension:0.35,borderWidth:2,order:1,yAxisID:'y2' },
+      ]},
+      options:{ responsive:true, maintainAspectRatio:false, animation:{duration:400},
+        plugins:{legend:{display:false}},
+        scales:{
+          x:axX(),
+          y:{...axY(v=>(v<0?'-':'')+'₹'+Math.abs(v)+'Cr'),
+             title:{display:true,text:'₹ Crore',color:'rgba(123,196,232,0.6)',font:{size:10}}},
+          y2:{position:'right',grid:{display:false},
+              ticks:{color:'#EF9F27',font:{size:11},callback:v=>v+'%'},
+              title:{display:true,text:'Margin %',color:'#EF9F27',font:{size:10}}}
+        }
+      }
+    });
   }
-});
+};
 
-mkChart('c-rev', {
-  data:{ labels:years, datasets:[
-    { type:'bar', label:'Revenue', data:rev,  backgroundColor:'#2A7FB5', borderRadius:3, order:2 },
-    { type:'bar', label:'Costs',   data:costs,backgroundColor:'#D85A30', borderRadius:3, order:3 },
-    { type:'line',label:'P&L',     data:pnl,  borderColor:'#1D8A50',backgroundColor:'transparent',
-      pointBackgroundColor:'#1D8A50',pointRadius:4,tension:0.35,borderWidth:2.5,order:1 }
-  ]},
-  options: defOpts({ scales:{
-    x:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-    y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>(v<0?'-':'')+'₹'+Math.abs(v)+'Cr'}}
-  }})
-});
-
-mkChart('c-mix', {
-  data:{ labels:years, datasets:[
-    { label:'Ads',          data:ads_rev.map(v=>Math.round(v)), backgroundColor:'#2A7FB5', stack:'s', borderRadius:3 },
-    { label:'Subscription', data:sub_rev.map(v=>Math.round(v)), backgroundColor:'#1D8A50', stack:'s', borderRadius:3 },
-    { label:'Licensing',    data:lic_rev.map(v=>Math.round(v)), backgroundColor:'#EF9F27', stack:'s', borderRadius:3 },
-  ]},
-  options: defOpts({ scales:{
-    x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-    y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>'₹'+v+'Cr'}}
-  }})
-});
-
-mkChart('c-users', {
-  data:{ labels:years, datasets:[
-    { label:'India', data:users, backgroundColor:'#7BC4E8', borderRadius:3, stack:'u' },
-    { label:'MEA',   data:mea_u, backgroundColor:'#1D8A50', borderRadius:3, stack:'u' },
-  ]},
-  options: defOpts({ scales:{
-    x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-    y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>v+'Mn'}}
-  }})
-});
-
-mkChart('c-arpu', {
-  data:{ labels:years, datasets:[
-    { type:'line',label:'India ARPU', data:arpu_india,borderColor:'#EF9F27',backgroundColor:'transparent',pointBackgroundColor:'#EF9F27',pointRadius:4,tension:0.35,borderWidth:2 },
-    { type:'line',label:'MEA ARPU',   data:arpu_mea,  borderColor:'#D85A30',backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:4,tension:0.35,borderWidth:2,borderDash:[5,3] },
-  ]},
-  options: defOpts({ scales:{
-    x:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-    y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>'₹'+v}}
-  }})
-});
-
-mkChart('c-arpu-stack', {
-  data:{ labels:years, datasets:[
-    { label:'New/Yr1',   data:arpu_new,   backgroundColor:'#2A7FB5', stack:'a', borderRadius:3 },
-    { label:'Mature',    data:arpu_mat,   backgroundColor:'#7BC4E8', stack:'a', borderRadius:3 },
-    { label:'VR uplift', data:arpu_vr,    backgroundColor:'#1D8A50', stack:'a', borderRadius:3 },
-    { label:'MEA uplift',data:arpu_mea_s, backgroundColor:'#EF9F27', stack:'a', borderRadius:3 },
-  ]},
-  options: defOpts({ scales:{
-    x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-    y:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>'₹'+v}}
-  }})
-});
-
-mkChart('c-scen', {
-  data:{ labels:years, datasets:[
-    { type:'line',label:'Bear',data:bear_rev,borderColor:'#D85A30',backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:4,tension:0.35,borderWidth:2 },
-    { type:'line',label:'Base',data:base_rev,borderColor:'#2A7FB5',backgroundColor:'transparent',pointBackgroundColor:'#2A7FB5',pointRadius:4,tension:0.35,borderWidth:2.5 },
-    { type:'line',label:'Bull',data:bull_rev,borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:4,tension:0.35,borderWidth:2 },
-  ]},
-  options: defOpts({ scales:{
-    x:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-    y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>(v<0?'-':'')+'₹'+Math.abs(v)+'Cr'}}
-  }})
-});
-
-mkChart('c-margin', {
-  data:{ labels:years, datasets:[
-    { type:'line',label:'Bear',data:bear_mg,borderColor:'#D85A30',backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:3,tension:0.35,borderWidth:1.5 },
-    { type:'line',label:'Base',data:base_mg,borderColor:'#2A7FB5',backgroundColor:'transparent',pointBackgroundColor:'#2A7FB5',pointRadius:3,tension:0.35,borderWidth:2 },
-    { type:'line',label:'Bull',data:bull_mg,borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:3,tension:0.35,borderWidth:1.5 },
-  ]},
-  options: defOpts({ scales:{
-    x:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-    y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>v+'%'}}
-  }})
-});
-
-mkChart('c-burn', {
-  data:{ labels:years, datasets:[
-    { type:'line',label:'Bear',data:bear_bm,borderColor:'#D85A30',backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:3,tension:0.35,borderWidth:1.5 },
-    { type:'line',label:'Base',data:burn,   borderColor:'#2A7FB5',backgroundColor:'transparent',pointBackgroundColor:'#2A7FB5',pointRadius:3,tension:0.35,borderWidth:2 },
-    { type:'line',label:'Bull',data:bull_bm,borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:3,tension:0.35,borderWidth:1.5 },
-  ]},
-  options: defOpts({ scales:{
-    x:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-    y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>v+'x'},min:0,max:3}
-  }})
-});
-
-mkChart('c-phases', {
-  data:{ labels:years, datasets:[
-    { type:'bar', label:'Revenue', data:rev,  backgroundColor:'#2A7FB5', borderRadius:3, order:2, yAxisID:'y' },
-    { type:'bar', label:'Costs',   data:costs,backgroundColor:'#D85A30', borderRadius:3, order:3, yAxisID:'y' },
-    { type:'line',label:'Margin',  data:margin,borderColor:'#EF9F27',backgroundColor:'transparent',
-      pointBackgroundColor:'#EF9F27',pointRadius:4,tension:0.35,borderWidth:2,order:1,yAxisID:'y2' },
-  ]},
-  options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
-    scales:{
-      x:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11}}},
-      y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#7BC4E8780',font:{size:11},callback:v=>(v<0?'-':'')+'₹'+Math.abs(v)+'Cr'},title:{display:true,text:'₹ Crore',color:'#7BC4E8780',font:{size:10}}},
-      y2:{position:'right',grid:{display:false},ticks:{color:'#EF9F27',font:{size:11},callback:v=>v+'%'},title:{display:true,text:'Margin %',color:'#EF9F27',font:{size:10}}}
-    }
-  }
-});
-
+/* ── tab switcher with lazy init ── */
 function sw(id, btn) {
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+id).classList.add('active');
+  const panel = document.getElementById('panel-'+id);
+  panel.classList.add('active');
   btn.classList.add('active');
+  /* One rAF lets the browser compute layout (especially .two-col widths),
+     then we create charts the first time or just let responsive handle the rest. */
+  requestAnimationFrame(() => {
+    if (!initialized[id]) {
+      initialized[id] = true;
+      if (panelCharts[id]) panelCharts[id]();
+    }
+  });
 }
 </script>

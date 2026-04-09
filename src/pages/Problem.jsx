@@ -10,8 +10,8 @@ const Problem = () => {
   ];
 
   return (
-    <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
-      <div className="section-container flex-grow">
+    <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col w-full border-b border-[#C8E6F7]">
+      <div className="section-container flex-grow w-full">
         <h2 className="text-3xl font-bold mb-8 text-[#103A5A]">
           The Problem We Wish to Solve
         </h2>

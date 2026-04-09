@@ -56,7 +56,6 @@ const SubNav = ({ items }) => {
                     : 'text-gray-600 hover:bg-[#D5E9F7] hover:text-primary'
                 }`}
               >
-                <span className="text-sm text-gray-400 mr-2">{String(index + 1).padStart(2, '0')}</span>
                 {item.label}
               </button>
             </li>
