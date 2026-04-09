@@ -10,7 +10,7 @@ const ProductSection = () => {
   const subNavItems = [
     { id: "betaapp", label: "Prototype App" },
     { id: "preschool", label: "Preschool" },
-    { id: "10th-board", label: "10th Board" },
+    { id: "10th-board", label: "School" },
     { id: "scholarships", label: "Scholarships" },
     { id: "vr", label: "VR Experience" },
   ];

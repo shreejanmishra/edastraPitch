@@ -19,7 +19,7 @@ const Solution = () => {
             </div>
 
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/scholarship_icon.png" alt="Scholarship" className="w-12 h-12" />
                 </div>
@@ -34,7 +34,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/4k_icon.png" alt="4K" className="w-12 h-12" />
                 </div>
@@ -49,7 +49,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/vr_icon.png" alt="VR" className="w-12 h-12" />
                 </div>
@@ -64,7 +64,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/family_icon.png" alt="Family" className="w-12 h-12" />
                 </div>
@@ -79,7 +79,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex gap-4">
+              <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/book_icon.png" alt="Storytelling" className="w-12 h-12" />
                 </div>
@@ -276,7 +276,7 @@ const Solution = () => {
 
             {/* Right: The Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/book_icon.png" alt="Book" className="w-12 h-12" />
                 </div>
@@ -290,7 +290,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/brain_icon.png" alt="Brain" className="w-12 h-12" />
                 </div>
@@ -304,7 +304,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/career_icon.png" alt="Career" className="w-12 h-12" />
                 </div>
@@ -318,7 +318,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/family_icon.png" alt="Family" className="w-12 h-12" />
                 </div>
@@ -332,7 +332,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/AI_icon.png" alt="AI" className="w-12 h-12" />
                 </div>
@@ -346,7 +346,7 @@ const Solution = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex gap-4">
+              <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
                   <img src="/images/subscription_icon.png" alt="Subscription" className="w-12 h-12" />
                 </div>
