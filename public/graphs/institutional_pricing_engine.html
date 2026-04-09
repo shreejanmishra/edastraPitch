@@ -43,29 +43,26 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family:'Outfit',sans-serif;
-    background: #b8c4c2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
+    font-family: var(--font-sans);
+    background: #ffffff;
+    margin: 0;
+    padding: 1.5rem;
   }
 
   .page {
     display: flex;
-    gap: 20px;
-    max-width: 1100px;
+    gap: 24px;
     width: 100%;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   /* ── LEFT CARD ── */
   .left-card {
     background: var(--white);
-    border-radius: 14px;
-    padding: 28px 28px 24px;
-    flex: 0 0 520px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    border-radius: var(--border-radius-md);
+    padding: 24px;
+    flex: 1;
+    border: 1px solid var(--color-border-secondary);
   }
 
   .bulk-label {
@@ -283,11 +280,11 @@
 
   /* ── RIGHT CARD ── */
   .right-card {
-    background: rgba(220, 224, 245, 0.88);
-    border-radius: 14px;
-    padding: 20px 20px 24px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 24px;
     flex: 1;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border: 1px solid var(--color-border-secondary);
   }
 
   .right-card-title {
