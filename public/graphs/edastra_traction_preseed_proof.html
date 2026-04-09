@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edastra Chart</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --font-sans: "Outfit", sans-serif;
+        --font-serif: "Cormorant Garamond", serif;
+        --font-mono: "DM Mono", monospace;
+        --ice: #eaf4fb;
+        --sky: #c8e6f7;
+        --mid: #7bc4e8;
+        --deep: #2a7fb5;
+        --navy: #103a5a;
+        --white: #fafcff;
+        --rule: rgba(42, 127, 181, 0.15);
+        --txt: #103a5a;
+        --muted: #5a8fad;
+        --color-text-primary: #103a5a;
+        --color-text-secondary: #5a8fad;
+        --color-text-tertiary: #7bc4e8;
+        --color-background-primary: #fafcff;
+        --color-background-secondary: #eaf4fb;
+        --color-border-secondary: #c8e6f7;
+        --color-border-tertiary: rgba(42, 127, 181, 0.15);
+        --color-text-success: #1d8a50;
+        --color-text-danger: #d85a30;
+        --color-text-warning: #ef9f27;
+        --color-text-info: #2a7fb5;
+        --color-background-success: #e6f5f0;
+        --color-background-warning: #fff3e0;
+        --color-background-info: #e8f0fa;
+        --color-border-info: #c8e6f7;
+        --border-radius-md: 12px;
+        --border-radius-lg: 20px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--white);
+        font-family: "Outfit", sans-serif;
+        color: var(--txt);
+        overflow-x: hidden;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      .deck {
+        font-family: "Outfit", sans-serif;
+        background: var(--white);
+        color: var(--txt);
+        padding: 0;
+      }
+      .nav {
+        display: flex;
+        border-bottom: 1px solid var(--sky);
+        background: var(--white);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .ntab {
+        flex: 1;
+        padding: 11px 0;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        background: none;
+        transition: all 0.2s;
+      }
+      .ntab.active {
+        color: var(--deep);
+        border-bottom-color: var(--deep);
+      }
+      .ntab:hover:not(.active) {
+        color: var(--navy);
+      }
+      .panel {
+        display: none;
+        padding: 1.75rem;
+        animation: fi 0.25s ease;
+      }
+      .panel.active {
+        display: block;
+      }
+      @keyframes fi {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .eyebrow {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--deep);
+        margin-bottom: 5px;
+      }
+      .ptitle {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        color: var(--navy);
+        margin-bottom: 3px;
+      }
+      .psub {
+        font-size: 18px;
+        color: var(--muted);
+        margin-bottom: 1.25rem;
+      }
+      .gline {
+        width: 36px;
+        height: 2px;
+        background: var(--deep);
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 1.5rem;
+      }
+      .hero-card {
+        background: var(--white);
+        border: 1px solid var(--sky);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(42, 127, 181, 0.06);
+      }
+      .hero-card.gold {
+        border-color: var(--deep);
+        background: rgba(42, 127, 181, 0.07);
+      }
+      .hero-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 34px;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .hero-label {
+        font-size: 17px;
+        font-weight: 500;
+        margin-bottom: 4px;
+        color: var(--navy);
+      }
+      .hero-note {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      .insight {
+        border-radius: 6px;
+        padding: 0.75rem 1rem;
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+      .i-gold {
+        background: rgba(42, 127, 181, 0.08);
+        border-left: 2px solid var(--deep);
+        color: var(--navy);
+      }
+      .i-green {
+        background: rgba(29, 138, 80, 0.08);
+        border-left: 2px solid #059669;
+        color: var(--navy);
+      }
+      .i-blue {
+        background: rgba(123, 196, 232, 0.08);
+        border-left: 2px solid #0891b2;
+        color: var(--navy);
+      }
+      .i-red {
+        background: rgba(216, 90, 48, 0.08);
+        border-left: 2px solid #dc2626;
+        color: var(--navy);
+      }
+
+      .chart-wrap {
+        position: relative;
+        width: 100%;
+        margin-bottom: 1.25rem;
+      }
+      .h240 {
+        height: 240px;
+      }
+      .h200 {
+        height: 200px;
+      }
+      .h180 {
+        height: 180px;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 17px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .leg-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .leg-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        margin-bottom: 1.25rem;
+      }
+      .three-col {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 1.25rem;
+      }
+
+      .proof-card {
+        background: var(--white);
+        border: 1px solid var(--sky);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+        box-shadow: 0 2px 8px rgba(42, 127, 181, 0.06);
+      }
+      .proof-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.6rem;
+      }
+      .proof-signal {
+        font-size: 19px;
+        font-weight: 500;
+        color: var(--navy);
+      }
+      .proof-tag {
+        font-size: 16px;
+        padding: 2px 7px;
+        border-radius: 99px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .tag-high {
+        background: rgba(29, 138, 80, 0.25);
+        color: #1d8a50;
+      }
+      .tag-med {
+        background: rgba(217, 119, 6, 0.25);
+        color: #ef9f27;
+      }
+      .proof-proves {
+        font-size: 17px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+      }
+      .proof-bench {
+        font-size: 16px;
+        color: var(--mid);
+        font-style: italic;
+      }
+
+      .milestone-row {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        margin-bottom: 1.5rem;
+        overflow-x: auto;
+      }
+      .ms-item {
+        flex: 1;
+        min-width: 120px;
+        border: 1px solid var(--sky);
+        border-right: none;
+        padding: 0.75rem 0.875rem;
+        position: relative;
+      }
+      .ms-item:last-child {
+        border-right: 1px solid var(--sky);
+      }
+      .ms-item.done {
+        background: rgba(29, 138, 80, 0.06);
+      }
+      .ms-item.active-ms {
+        background: rgba(42, 127, 181, 0.06);
+        border-color: var(--deep);
+      }
+      .ms-item.future {
+        background: var(--ice);
+      }
+      .ms-label {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .ms-title {
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .ms-detail {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+      .ms-marker {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-bottom: 6px;
+      }
+
+      .narrative-block {
+        border-radius: 8px;
+        padding: 1rem 1.1rem;
+        margin-bottom: 10px;
+      }
+      .narr-label {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .narr-quote {
+        font-size: 19px;
+        line-height: 1.7;
+        font-style: italic;
+        color: var(--navy);
+      }
+      .narr-verdict {
+        font-size: 17px;
+        margin-top: 8px;
+        opacity: 0.8;
+      }
+
+      .cap-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .cap-label {
+        font-size: 17px;
+        color: var(--muted);
+        min-width: 160px;
+      }
+      .cap-track {
+        flex: 1;
+        height: 7px;
+        background: var(--ice);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .cap-fill {
+        height: 7px;
+        border-radius: 99px;
+      }
+      .cap-val {
+        font-size: 17px;
+        min-width: 80px;
+        text-align: right;
+        color: var(--navy);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck">
+      <nav class="nav">
+        <button class="ntab active" onclick="sw('headline', this)">
+          Headline numbers
+        </button>
+        <button class="ntab" onclick="sw('proof', this)">Proof points</button>
+        <button class="ntab" onclick="sw('milestones', this)">
+          18-month plan
+        </button>
+        <button class="ntab" onclick="sw('narrative', this)">
+          Pitch narrative
+        </button>
+      </nav>
+
+      <!-- ══ TAB 1: HEADLINE NUMBERS ══ -->
+      <div class="panel active" id="panel-headline">
+        <div class="eyebrow">Pre-funding · zero paid spend</div>
+        <div class="ptitle">Beta traction snapshot</div>
+        <div class="psub">
+          All organic · offline marketing only · product live with VR section
+        </div>
+        <div class="gline"></div>
+
+        <div class="hero-grid">
+          <div class="hero-card gold">
+            <div class="hero-num" style="color: #2a7fb5">16,231</div>
+            <div class="hero-label" style="color: #2a7fb5">
+              Beta platform visits
+            </div>
+            <div class="hero-note">
+              Organic + offline only. Zero paid acquisition.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-num" style="color: #1d8a50">540+</div>
+            <div class="hero-label" style="color: #1d8a50">
+              Feedback submissions
+            </div>
+            <div class="hero-note">
+              3.3% active rate — 2–6x industry average.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-num" style="color: #7bc4e8">1</div>
+            <div class="hero-label" style="color: var(--mid)">
+              School pilot live
+            </div>
+            <div class="hero-note">
+              B2B partnership model validated pre-funding.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-num" style="color: #d85a30">₹0</div>
+            <div class="hero-label" style="color: #d85a30">Paid CAC</div>
+            <div class="hero-note">
+              First 16k users cost nothing. Validates ₹180 model.
+            </div>
+          </div>
+        </div>
+
+        <div class="insight i-gold">
+          <strong style="color: #2a7fb5"
+            >This is not a zero-traction pre-seed.</strong
+          >
+          Product is live. Beta users are real. School pilot is running. VR
+          section is already built into the app. These numbers materially
+          de-risk the ₹20 Cr ask — standard 40–60% pre-seed discount does not
+          apply here.
+        </div>
+
+        <div class="two-col">
+          <div>
+            <div class="legend">
+              <div class="leg-item">
+                <div class="leg-dot" style="background: #2a7fb5"></div>
+                Weekly visits
+              </div>
+              <div class="leg-item">
+                <div
+                  class="leg-dot"
+                  style="background: #1d8a50; border-radius: 50%"
+                ></div>
+                Feedback submissions
+              </div>
+            </div>
+            <div class="chart-wrap h240"><canvas id="c-weekly"></canvas></div>
+          </div>
+          <div>
+            <div style="margin-bottom: 1rem">
+              <div class="cap-row">
+                <div class="cap-label">Beta platform visits</div>
+                <div class="cap-track">
+                  <div
+                    class="cap-fill"
+                    style="width: 100%; background: #2a7fb5"
+                  ></div>
+                </div>
+                <div class="cap-val" style="color: #2a7fb5">16,231</div>
+              </div>
+              <div class="cap-row">
+                <div class="cap-label">Feedback submissions</div>
+                <div class="cap-track">
+                  <div
+                    class="cap-fill"
+                    style="width: 33%; background: #1d8a50"
+                  ></div>
+                </div>
+                <div class="cap-val" style="color: #1d8a50">540+</div>
+              </div>
+              <div class="cap-row">
+                <div class="cap-label">Active feedback rate</div>
+                <div class="cap-track">
+                  <div
+                    class="cap-fill"
+                    style="width: 66%; background: #7bc4e8"
+                  ></div>
+                </div>
+                <div class="cap-val" style="color: #7bc4e8">3.3%</div>
+              </div>
+              <div class="cap-row">
+                <div class="cap-label">Industry avg (beta)</div>
+                <div class="cap-track">
+                  <div
+                    class="cap-fill"
+                    style="width: 15%; background: rgba(90, 143, 173, 0.5)"
+                  ></div>
+                </div>
+                <div class="cap-val" style="color: var(--muted)">0.5–1.5%</div>
+              </div>
+              <div class="cap-row">
+                <div class="cap-label">School pilots live</div>
+                <div class="cap-track">
+                  <div
+                    class="cap-fill"
+                    style="width: 8%; background: #7bc4e8"
+                  ></div>
+                </div>
+                <div class="cap-val" style="color: #7bc4e8">1 live</div>
+              </div>
+              <div class="cap-row">
+                <div class="cap-label">Paid CAC spend</div>
+                <div class="cap-track">
+                  <div
+                    class="cap-fill"
+                    style="width: 0%; background: #d85a30"
+                  ></div>
+                </div>
+                <div class="cap-val" style="color: rgba(90, 143, 173, 0.5)">
+                  ₹0
+                </div>
+              </div>
+            </div>
+            <div class="insight i-green" style="margin-bottom: 0">
+              <strong style="color: #1d8a50">Engagement rate benchmark:</strong>
+              Edastra beta = 3.3%. Typical beta product = 0.5–1.5%. Edastra is
+              <strong style="color: #1d8a50">2–6x the industry average</strong>
+              — indicating genuine product pull, not passive signups.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB 2: PROOF POINTS ══ -->
+      <div class="panel" id="panel-proof">
+        <div class="eyebrow">5 signals · what they prove · VC implication</div>
+        <div class="ptitle">Proof point analysis</div>
+        <div class="psub">
+          Each signal separately defensible · together they de-risk the entire
+          raise
+        </div>
+        <div class="gline"></div>
+
+        <div class="three-col">
+          <div class="proof-card">
+            <div class="proof-head">
+              <div class="proof-signal">16,231 beta visits</div>
+              <div class="proof-tag tag-high">High signal</div>
+            </div>
+            <div class="proof-proves">
+              Organic demand exists. Product attracts users without advertising.
+              CAC of ₹0 for first 16k users.
+            </div>
+            <div class="proof-bench">
+              Byju's first 10k users: 18 months. Edastra: beta phase, organic
+              only.
+            </div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-head">
+              <div class="proof-signal">3.3% feedback rate</div>
+              <div class="proof-tag tag-high">High signal</div>
+            </div>
+            <div class="proof-proves">
+              Users are engaged, not passive. They care enough to respond — a
+              strong Day-30 retention proxy.
+            </div>
+            <div class="proof-bench">
+              Industry beta feedback avg: 0.5–1.5%. Edastra = 2–6x benchmark.
+            </div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-head">
+              <div class="proof-signal">540+ submissions</div>
+              <div class="proof-tag tag-high">High signal</div>
+            </div>
+            <div class="proof-proves">
+              Product-market dialogue is active. Roadmap is data-driven, not
+              assumption-driven. Reduces Series A execution risk.
+            </div>
+            <div class="proof-bench">
+              Most pre-seeds raise on wireframes. Edastra has 540 real data
+              points.
+            </div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-head">
+              <div class="proof-signal">1 school pilot live</div>
+              <div class="proof-tag tag-med">Medium signal</div>
+            </div>
+            <div class="proof-proves">
+              B2B partnership model validated. Schools will co-pilot offline.
+              Replication is the next milestone — not the first.
+            </div>
+            <div class="proof-bench">
+              Byju's first school deal: 6 months. Edastra has one pre-funding.
+            </div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-head">
+              <div class="proof-signal">VR in live product</div>
+              <div class="proof-tag tag-med">Medium signal</div>
+            </div>
+            <div class="proof-proves">
+              VR is not a future promise — it is a live UI section. Technical
+              foundation exists. 2028 launch is de-risked.
+            </div>
+            <div class="proof-bench">
+              Most EdTech VR is a 2028+ slide. Edastra has a VR UI built today.
+            </div>
+          </div>
+          <div
+            class="proof-card"
+            style="
+              border-color: var(--deep);
+              background: rgba(42, 127, 181, 0.07);
+            "
+          >
+            <div class="proof-head">
+              <div class="proof-signal">₹0 acquisition cost</div>
+              <div
+                class="proof-tag"
+                style="background: rgba(42, 127, 181, 0.15); color: var(--deep)"
+              >
+                Moat signal
+              </div>
+            </div>
+            <div class="proof-proves">
+              16,231 users acquired at zero paid spend. Validates the ₹180 CAC
+              thesis entirely — before spending a rupee on acquisition.
+            </div>
+            <div class="proof-bench">
+              Pure digital EdTech CAC: ₹1,000–3,000. Edastra beta CAC: ₹0.
+            </div>
+          </div>
+        </div>
+
+        <div class="insight i-blue">
+          <strong style="color: #7bc4e8">Combined signal strength:</strong> No
+          single proof point is decisive. But 5 signals together — organic
+          traffic, high engagement, active feedback, a live pilot, and a VR UI —
+          form a pattern that tells investors this team executes, this product
+          has pull, and this model is capital-efficient. That pattern is what
+          funds pre-seeds at the upper end.
+        </div>
+
+        <div class="two-col">
+          <div>
+            <div class="legend">
+              <div class="leg-item">
+                <div class="leg-dot" style="background: #2a7fb5"></div>
+                Edastra (3.3%)
+              </div>
+              <div class="leg-item">
+                <div
+                  class="leg-dot"
+                  style="background: rgba(90, 143, 173, 0.5)"
+                ></div>
+                Industry avg (1.0%)
+              </div>
+            </div>
+            <div class="chart-wrap h200"><canvas id="c-engage"></canvas></div>
+          </div>
+          <div>
+            <div class="legend">
+              <div class="leg-item">
+                <div class="leg-dot" style="background: #2a7fb5"></div>
+                Edastra CAC (₹0)
+              </div>
+              <div class="leg-item">
+                <div class="leg-dot" style="background: #d85a30"></div>
+                Digital EdTech avg (₹1,500)
+              </div>
+              <div class="leg-item">
+                <div class="leg-dot" style="background: #ef9f27"></div>
+                Target model (₹180)
+              </div>
+            </div>
+            <div class="chart-wrap h200"><canvas id="c-cac"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB 3: 18-MONTH PLAN ══ -->
+      <div class="panel" id="panel-milestones">
+        <div class="eyebrow">₹20 Cr deployment · proof points per phase</div>
+        <div class="ptitle">18-month operating plan</div>
+        <div class="psub">
+          Starting from 16,231 users — not zero · Series A trigger at Month 16
+        </div>
+        <div class="gline"></div>
+
+        <div class="milestone-row">
+          <div class="ms-item done">
+            <div class="ms-marker" style="background: #1d8a50"></div>
+            <div class="ms-label" style="color: #1d8a50">Pre-funding</div>
+            <div class="ms-title">16k beta users</div>
+            <div class="ms-detail">
+              Product live · 1 school pilot · 3.3% engagement · VR UI built
+            </div>
+          </div>
+          <div class="ms-item active-ms">
+            <div class="ms-marker" style="background: #2a7fb5"></div>
+            <div class="ms-label" style="color: #2a7fb5">M1–M3</div>
+            <div class="ms-title">MVP v2 launch</div>
+            <div class="ms-detail">
+              20k users · 3 more pilots · CAC confirmed ₹180
+            </div>
+          </div>
+          <div class="ms-item future">
+            <div
+              class="ms-marker"
+              style="background: rgba(90, 143, 173, 0.5)"
+            ></div>
+            <div class="ms-label" style="color: var(--muted)">M4–M6</div>
+            <div class="ms-title">10 partnerships</div>
+            <div class="ms-detail">
+              100k users · first revenue · ₹10–25L MRR
+            </div>
+          </div>
+          <div class="ms-item future">
+            <div
+              class="ms-marker"
+              style="background: rgba(90, 143, 173, 0.5)"
+            ></div>
+            <div class="ms-label" style="color: var(--muted)">M7–M9</div>
+            <div class="ms-title">Sub paywall live</div>
+            <div class="ms-detail">300k users · 8% sub conv · ₹1 Cr MRR</div>
+          </div>
+          <div class="ms-item future">
+            <div
+              class="ms-marker"
+              style="background: rgba(90, 143, 173, 0.5)"
+            ></div>
+            <div class="ms-label" style="color: var(--muted)">M10–M12</div>
+            <div class="ms-title">Exam data cycle 1</div>
+            <div class="ms-detail">750k users · ₹2 Cr MRR · Series A deck</div>
+          </div>
+          <div class="ms-item future">
+            <div
+              class="ms-marker"
+              style="background: rgba(90, 143, 173, 0.5)"
+            ></div>
+            <div class="ms-label" style="color: var(--muted)">M13–M15</div>
+            <div class="ms-title">1Mn milestone</div>
+            <div class="ms-detail">
+              ₹5 Cr ARR · VR PoC demo · Series A in process
+            </div>
+          </div>
+          <div
+            class="ms-item"
+            style="
+              background: rgba(123, 196, 232, 0.08);
+              border-color: rgba(123, 196, 232, 0.35);
+            "
+          >
+            <div class="ms-marker" style="background: #7bc4e8"></div>
+            <div class="ms-label" style="color: #7bc4e8">M16–M18</div>
+            <div class="ms-title">Series A close</div>
+            <div class="ms-detail">
+              ₹80–120 Cr raised · VR build begins · MEA scoping
+            </div>
+          </div>
+        </div>
+
+        <div class="legend">
+          <div class="leg-item">
+            <div class="leg-dot" style="background: #2a7fb5"></div>
+            Users (k)
+          </div>
+          <div class="leg-item">
+            <div
+              class="leg-dot"
+              style="background: #1d8a50; border-radius: 50%"
+            ></div>
+            MRR target (₹L)
+          </div>
+        </div>
+        <div class="chart-wrap h240"><canvas id="c-milestone"></canvas></div>
+
+        <div class="insight i-gold">
+          <strong style="color: #2a7fb5"
+            >Why Series A moves to Month 16 (not 18):</strong
+          >
+          Starting from 16,231 users instead of 0 means all user milestones
+          arrive ~2 months earlier. That gives 2 extra months of runway buffer
+          at the most critical negotiation point in the company's history.
+        </div>
+      </div>
+
+      <!-- ══ TAB 4: PITCH NARRATIVE ══ -->
+      <div class="panel" id="panel-narrative">
+        <div class="eyebrow">How to frame this in every investor meeting</div>
+        <div class="ptitle">The pre-seed pitch narrative</div>
+        <div class="psub">
+          With traction vs without · what changes · the one sentence that opens
+          every meeting
+        </div>
+        <div class="gline"></div>
+
+        <div
+          class="narrative-block"
+          style="
+            background: rgba(216, 90, 48, 0.08);
+            border: 0.5px solid rgba(216, 90, 48, 0.25);
+          "
+        >
+          <div class="narr-label" style="color: #d85a30">
+            Without traction (old)
+          </div>
+          <div class="narr-quote" style="color: var(--muted)">
+            "We are building an EdTech platform. We plan to get 200k users in
+            Year 1 and achieve PMF by 2027. We are asking for ₹20 Cr."
+          </div>
+          <div class="narr-verdict" style="color: #d85a30">
+            Weak. Every pre-seed says this. No differentiation. Investor has
+            heard it 100 times. Standard 40–60% valuation discount applied.
+          </div>
+        </div>
+
+        <div
+          class="narrative-block"
+          style="
+            background: rgba(29, 138, 80, 0.08);
+            border: 0.5px solid rgba(29, 138, 80, 0.3);
+          "
+        >
+          <div class="narr-label" style="color: #1d8a50">
+            With traction (new)
+          </div>
+          <div class="narr-quote" style="color: var(--navy)">
+            "We have 16,231 beta users, a 3.3% engagement rate that is 2–6x the
+            industry average, one school pilot running, and a VR section already
+            built — all pre-funding, zero paid marketing. We are raising ₹20 Cr
+            to scale what is already working."
+          </div>
+          <div class="narr-verdict" style="color: #1d8a50">
+            Strong. Specific. Proves execution. Frames raise as scaling, not
+            building. Removes the standard pre-seed risk discount.
+          </div>
+        </div>
+
+        <div
+          class="narrative-block"
+          style="
+            background: rgba(42, 127, 181, 0.08);
+            border: 0.5px solid rgba(42, 127, 181, 0.35);
+          "
+        >
+          <div class="narr-label" style="color: #2a7fb5">
+            The one sentence to open every meeting
+          </div>
+          <div
+            class="narr-quote"
+            style="
+              color: #2a7fb5;
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 500;
+            "
+          >
+            "We have 16,231 beta users, a 3.3% engagement rate that is 2–6x the
+            industry average, one school pilot running, and a VR section already
+            built — all pre-funding, zero paid marketing. We are raising ₹20 Cr
+            to scale what is already working."
+          </div>
+        </div>
+
+        <div class="three-col">
+          <div class="proof-card">
+            <div
+              style="
+                font-size: 17px;
+                font-weight: 600;
+                color: #2a7fb5;
+                margin-bottom: 6px;
+                letter-spacing: 0.05em;
+              "
+            >
+              WHAT CHANGES
+            </div>
+            <div style="font-size: 18px; color: var(--muted); line-height: 1.6">
+              The ask changes from "fund a concept" to "scale what works." That
+              is the difference between a 3–5x valuation discount and none.
+            </div>
+          </div>
+          <div class="proof-card">
+            <div
+              style="
+                font-size: 17px;
+                font-weight: 600;
+                color: #1d8a50;
+                margin-bottom: 6px;
+                letter-spacing: 0.05em;
+              "
+            >
+              CAC STORY
+            </div>
+            <div style="font-size: 18px; color: var(--muted); line-height: 1.6">
+              ₹180 CAC is no longer an assumption — it is proven. First 16k
+              users cost ₹0. That is the strongest possible CAC validation.
+            </div>
+          </div>
+          <div class="proof-card">
+            <div
+              style="
+                font-size: 17px;
+                font-weight: 600;
+                color: #7bc4e8;
+                margin-bottom: 6px;
+                letter-spacing: 0.05em;
+              "
+            >
+              SERIES A PATH
+            </div>
+            <div style="font-size: 18px; color: var(--muted); line-height: 1.6">
+              Starting from 16k users means milestones arrive 2 months early.
+              Series A trigger moves M18 → M16. Two months more negotiating
+              leverage.
+            </div>
+          </div>
+        </div>
+
+        <div class="insight i-blue">
+          <strong style="color: #7bc4e8"
+            >The bear case is also stronger with traction.</strong
+          >
+          Even if sub conversion stays at 10–15%, you have a proven organic
+          acquisition channel and a working product. Bear case 2031 = ₹880 Cr
+          revenue, ₹4,400–7,000 Cr implied valuation. That is a 4–6x return on
+          pre-seed capital — from the downside scenario.
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <script>
+      function sw(id, btn) {
+        document
+          .querySelectorAll(".panel")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".ntab")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("panel-" + id).classList.add("active");
+        btn.classList.add("active");
+      }
+
+      const weeks = [
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6",
+        "W7",
+        "W8",
+        "W9",
+        "W10",
+        "W11",
+        "W12",
+        "W13",
+        "W14",
+        "W15",
+        "W16",
+        "W17",
+      ];
+      const wVisits = [
+        600, 700, 680, 820, 900, 950, 880, 1100, 1050, 1200, 1300, 1080, 820,
+        1200, 1280, 900, 271,
+      ];
+      const wFeedback = [
+        18, 22, 20, 28, 32, 34, 28, 40, 36, 44, 48, 36, 24, 44, 50, 34, 10,
+      ];
+
+      new Chart(document.getElementById("c-weekly"), {
+        data: {
+          labels: weeks,
+          datasets: [
+            {
+              type: "bar",
+              label: "Weekly visits",
+              data: wVisits,
+              backgroundColor: "rgba(42,127,181,0.7)",
+              borderRadius: 3,
+              order: 2,
+            },
+            {
+              type: "line",
+              label: "Feedback",
+              data: wFeedback,
+              borderColor: "#1D8A50",
+              backgroundColor: "transparent",
+              pointBackgroundColor: "#1D8A50",
+              pointRadius: 3,
+              tension: 0.4,
+              borderWidth: 2,
+              yAxisID: "y2",
+              order: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              grid: { color: "rgba(42,127,181,0.08)" },
+              ticks: { color: "var(--muted)", font: { size: 10 } },
+            },
+            y: {
+              grid: { color: "rgba(42,127,181,0.1)" },
+              ticks: { color: "var(--muted)", font: { size: 10 } },
+              title: {
+                display: true,
+                text: "Visits",
+                color: "#2A7FB5",
+                font: { size: 10 },
+              },
+            },
+            y2: {
+              position: "right",
+              grid: { display: false },
+              ticks: { color: "#1D8A50", font: { size: 10 } },
+              title: {
+                display: true,
+                text: "Feedback",
+                color: "#1D8A50",
+                font: { size: 10 },
+              },
+            },
+          },
+        },
+      });
+
+      new Chart(document.getElementById("c-engage"), {
+        type: "bar",
+        data: {
+          labels: [
+            "Edastra beta",
+            "Top-tier beta\n(1.5%)",
+            "Industry avg\n(1.0%)",
+            "Typical\n(0.5%)",
+          ],
+          datasets: [
+            {
+              data: [3.3, 1.5, 1.0, 0.5],
+              backgroundColor: [
+                "#2A7FB5",
+                "rgba(200,230,247,0.8)",
+                "rgba(200,230,247,0.6)",
+                "rgba(200,230,247,0.4)",
+              ],
+              borderRadius: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: "var(--muted)", font: { size: 11 } },
+            },
+            y: {
+              grid: { color: "rgba(42,127,181,0.1)" },
+              ticks: {
+                color: "var(--muted)",
+                font: { size: 10 },
+                callback: (v) => v + "%",
+              },
+              max: 4,
+            },
+          },
+        },
+      });
+
+      new Chart(document.getElementById("c-cac"), {
+        type: "bar",
+        data: {
+          labels: [
+            "Digital EdTech\navg",
+            "Byju's model",
+            "Edastra\ntarget",
+            "Edastra\nbeta actual",
+          ],
+          datasets: [
+            {
+              data: [1500, 800, 180, 0],
+              backgroundColor: [
+                "#D85A30",
+                "rgba(216,90,48,0.5)",
+                "#EF9F27",
+                "#1D8A50",
+              ],
+              borderRadius: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: "var(--muted)", font: { size: 10 } },
+            },
+            y: {
+              grid: { color: "rgba(42,127,181,0.1)" },
+              ticks: {
+                color: "var(--muted)",
+                font: { size: 10 },
+                callback: (v) => "₹" + v,
+              },
+            },
+          },
+        },
+      });
+
+      const msMonths = [
+        "Pre-fund",
+        "M1–3",
+        "M4–6",
+        "M7–9",
+        "M10–12",
+        "M13–15",
+        "M16–18",
+      ];
+      const msUsers = [16.2, 20, 100, 300, 750, 1000, 1000];
+      const msMRR = [0, 0, 17, 100, 200, 420, 500];
+      new Chart(document.getElementById("c-milestone"), {
+        data: {
+          labels: msMonths,
+          datasets: [
+            {
+              type: "bar",
+              label: "Users (k)",
+              data: msUsers,
+              backgroundColor: "rgba(42,127,181,0.65)",
+              borderRadius: 3,
+              order: 2,
+              yAxisID: "y",
+            },
+            {
+              type: "line",
+              label: "MRR (₹L)",
+              data: msMRR,
+              borderColor: "#1D8A50",
+              backgroundColor: "transparent",
+              pointBackgroundColor: "#1D8A50",
+              pointRadius: 5,
+              tension: 0.35,
+              borderWidth: 2.5,
+              order: 1,
+              yAxisID: "y2",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              grid: { color: "rgba(42,127,181,0.08)" },
+              ticks: { color: "var(--muted)", font: { size: 11 } },
+            },
+            y: {
+              grid: { color: "rgba(42,127,181,0.1)" },
+              ticks: {
+                color: "var(--muted)",
+                font: { size: 10 },
+                callback: (v) => v + "k users",
+              },
+              title: {
+                display: true,
+                text: "Users (k)",
+                color: "#2A7FB5",
+                font: { size: 10 },
+              },
+            },
+            y2: {
+              position: "right",
+              grid: { display: false },
+              ticks: {
+                color: "#1D8A50",
+                font: { size: 10 },
+                callback: (v) => "₹" + v + "L",
+              },
+              title: {
+                display: true,
+                text: "MRR (₹L)",
+                color: "#1D8A50",
+                font: { size: 10 },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

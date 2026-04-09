@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edastra VR</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ice:#EAF4FB;
+  --sky:#C8E6F7;
+  --mid:#7BC4E8;
+  --deep:#2A7FB5;
+  --navy:#103A5A;
+  --white:#FAFCFF;
+  --rule:rgba(42,127,181,0.15);
+  --txt:#103A5A;
+  --muted:#5A8FAD;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--txt);overflow-x:hidden;}
+
+/* ── TAB NAV ── */
+.tab-nav{
+  display:flex;
+  background:var(--white);
+  border-bottom:1px solid var(--sky);
+  position:sticky;top:0;z-index:20;
+  overflow-x:auto;
+}
+.tab-btn{
+  flex-shrink:0;padding:12px 18px;
+  font-family:'DM Mono',monospace;
+  font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;
+  border:none;border-bottom:2.5px solid transparent;
+  background:none;white-space:nowrap;
+  transition:all .2s;
+}
+.tab-btn.active{color:var(--deep);border-bottom-color:var(--deep);}
+.tab-btn:hover:not(.active){color:var(--navy);}
+
+/* ── TAB PANELS ── */
+.tab-panel{display:none;padding:2rem 2.5rem 3rem;animation:fadeIn .3s ease;}
+.tab-panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ── TYPOGRAPHY ── */
+.eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:16px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:1.5rem;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,5vw,48px);font-weight:300;line-height:1.1;
+  color:var(--navy);margin-bottom:0.5rem;
+}
+.section-sub{font-size:20px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:2rem;max-width:600px;}
+
+/* ── STAT ROW ── */
+.stat-row{display:flex;gap:48px;padding-top:24px;border-top:1px solid var(--rule);margin-top:32px;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--deep);}
+.stat-l{font-size:17px;font-weight:300;color:var(--muted);margin-top:2px;letter-spacing:.03em;}
+
+/* ── VR SCENE ── */
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;min-height:400px;}
+.vr-scene-wrap{display:flex;align-items:center;justify-content:center;position:relative;padding:40px;background:var(--ice);border-radius:24px;}
+.vr-scene{width:220px;height:220px;border-radius:50%;border:1.5px solid var(--sky);position:relative;display:flex;align-items:center;justify-content:center;}
+.vr-orbit{position:absolute;width:100%;height:100%;border-radius:50%;border:1px dashed rgba(42,127,181,0.2);animation:spin 18s linear infinite;}
+.vr-orbit:nth-child(2){animation-duration:28s;animation-direction:reverse;width:75%;height:75%;top:12.5%;left:12.5%;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.vr-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--deep);top:-5px;left:50%;margin-left:-5px;}
+.vr-dot-2{background:var(--mid);width:6px;height:6px;top:-3px;margin-left:-3px;}
+.vr-inner{width:120px;height:72px;background:var(--white);border-radius:12px;border:1px solid var(--sky);display:flex;gap:4px;align-items:center;justify-content:center;box-shadow:0 4px 32px rgba(42,127,181,0.1);position:relative;z-index:2;}
+.lens{width:48px;height:48px;border-radius:50%;background:var(--sky);position:relative;overflow:hidden;}
+.lens::after{content:'';position:absolute;inset:6px;border-radius:50%;background:var(--mid);opacity:.6;}
+.lens::before{content:'';position:absolute;top:10px;left:10px;width:12px;height:12px;border-radius:50%;background:white;opacity:.7;z-index:1;}
+.float-tag{position:absolute;background:white;border:1px solid var(--sky);border-radius:8px;padding:5px 10px;font-size:15px;font-weight:500;color:var(--deep);box-shadow:0 2px 12px rgba(42,127,181,0.08);white-space:nowrap;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px);}}
+
+/* ── DEVICE CARDS ── */
+.device-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:2rem;}
+.device-card{background:var(--white);border:1px solid var(--sky);border-radius:20px;padding:28px 24px;transition:transform .3s;display:flex;flex-direction:column;}
+.device-card:hover{transform:translateY(-4px);}
+.device-card.hero-card{background:var(--deep);border-color:var(--deep);}
+.device-card.hero-card *{color:white!important;}
+.device-icon{width:48px;height:48px;border-radius:12px;background:var(--ice);display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.device-card.hero-card .device-icon{background:rgba(255,255,255,0.15);}
+.device-price{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--deep);line-height:1;margin-bottom:4px;}
+.device-name{font-size:19px;font-weight:500;color:var(--navy);margin-bottom:6px;}
+.device-desc{font-size:17px;font-weight:300;color:var(--muted);line-height:1.6;}
+.device-reach{margin-top:auto;padding-top:16px;border-top:1px solid var(--rule);font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
+.device-card.hero-card .device-reach{border-top-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);}
+.reach-num{font-size:22px;font-weight:500;font-family:'Outfit',sans-serif;display:block;margin-bottom:2px;color:var(--deep);}
+.device-card.hero-card .reach-num{color:white;}
+.phone-shape{width:24px;height:38px;border:2.5px solid var(--mid);border-radius:5px;position:relative;}
+.phone-shape::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:7px;height:2px;background:var(--mid);border-radius:1px;}
+.headset-shape{width:36px;height:24px;border:2.5px solid white;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:3px;}
+.headset-lens{width:10px;height:10px;border-radius:50%;border:2px solid rgba(255,255,255,0.6);}
+.shell-shape{width:32px;height:24px;border:2.5px solid var(--mid);border-radius:5px;}
+
+/* ── COST GRID ── */
+.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:2rem;}
+.cost-left{border-right:1px solid var(--rule);padding-right:40px;display:flex;flex-direction:column;gap:28px;}
+.cost-right{padding-left:40px;display:flex;flex-direction:column;justify-content:center;}
+.cost-label{font-family:'DM Mono',monospace;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.cost-bar-wrap{display:flex;gap:12px;align-items:flex-end;}
+.bar-pair{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.bar-b{width:48px;border-radius:5px 5px 0 0;}
+.bar-label{font-size:16px;font-weight:300;color:var(--muted);text-align:center;}
+.bar-val{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--navy);text-align:center;}
+.saving-pill{display:inline-flex;align-items:center;gap:6px;background:var(--ice);border:1px solid var(--sky);border-radius:99px;padding:4px 12px;font-size:17px;font-weight:500;color:var(--deep);margin-top:8px;}
+.tech-list{display:flex;flex-direction:column;gap:14px;}
+.tech-item{padding:16px 20px;border-radius:14px;border:1px solid var(--sky);background:var(--ice);display:flex;gap:14px;align-items:flex-start;}
+.tech-dot{width:8px;height:8px;border-radius:50%;background:var(--mid);flex-shrink:0;margin-top:4px;}
+.tech-name{font-size:19px;font-weight:500;color:var(--navy);margin-bottom:3px;}
+.tech-sub{font-size:17px;font-weight:300;color:var(--muted);}
+
+/* ── TIMELINE ── */
+.timeline{display:flex;gap:0;margin-top:2rem;position:relative;}
+.timeline::before{content:'';position:absolute;top:32px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--rule),var(--mid),var(--rule));}
+.t-item{flex:1;padding-top:56px;position:relative;padding-right:16px;}
+.t-node{position:absolute;top:24px;left:0;width:14px;height:14px;border-radius:50%;background:var(--white);border:2px solid var(--mid);transform:translateY(-50%);}
+.t-node.filled{background:var(--deep);border-color:var(--deep);}
+.t-node.active{background:var(--mid);border-color:var(--deep);box-shadow:0 0 0 4px rgba(42,127,181,0.15);}
+.t-year{font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.t-title{font-size:19px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+.t-detail{font-size:17px;font-weight:300;color:var(--muted);line-height:1.55;}
+.t-metric{margin-top:10px;font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--deep);}
+.t-metric-l{font-size:16px;font-weight:300;color:var(--muted);font-family:'Outfit',sans-serif;}
+
+/* ── PRICING ── */
+.econ-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:2rem;align-items:start;}
+.margin-visual{display:flex;flex-direction:column;gap:16px;}
+.margin-row{display:flex;align-items:center;gap:14px;}
+.margin-label{font-size:18px;font-weight:300;color:var(--muted);min-width:130px;}
+.margin-track{flex:1;height:10px;background:var(--ice);border-radius:99px;overflow:hidden;}
+.margin-fill{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--deep));}
+.margin-pct{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--deep);min-width:48px;text-align:right;}
+.pricing-card{background:var(--ice);border-radius:20px;border:1.5px solid var(--sky);padding:32px;}
+.pricing-tier{font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+.pricing-amount{font-family:'Cormorant Garamond',serif;font-size:70px;font-weight:300;line-height:1;color:var(--navy);}
+.pricing-period{font-size:19px;font-weight:300;color:var(--muted);margin-top:4px;}
+.pricing-divider{height:1px;background:var(--sky);margin:24px 0;}
+.pricing-breakdown{display:flex;flex-direction:column;gap:8px;}
+.pb-row{display:flex;justify-content:space-between;align-items:center;font-size:18px;}
+.pb-key{font-weight:300;color:var(--muted);}
+.pb-val{font-weight:500;color:var(--navy);}
+.pb-val.green{color:#1D8A50;}
+
+/* ── VC FRAME ── */
+.vc-panel{background:var(--navy);border-radius:20px;padding:40px;margin-top:1rem;}
+.vc-eyebrow{font-family:'DM Mono',monospace;font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,230,247,0.4);margin-bottom:20px;}
+.vc-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,56px);font-weight:300;line-height:1.1;color:var(--sky);max-width:600px;}
+.vc-headline em{font-style:italic;color:white;}
+.vc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.vc-card{border:1px solid rgba(200,230,247,0.12);border-radius:14px;padding:24px;background:rgba(200,230,247,0.04);}
+.vc-stat{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:white;margin-bottom:4px;}
+.vc-card-title{font-size:19px;font-weight:500;color:var(--sky);margin-bottom:6px;}
+.vc-card-body{font-size:17px;font-weight:300;color:rgba(200,230,247,0.55);line-height:1.65;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--sky);border-radius:2px;}
+</style>
+</head>
+<body>
+
+<!-- TAB NAVIGATION -->
+<nav class="tab-nav" id="tabNav">
+  <button class="tab-btn active" onclick="switchTab('hero',this)">VR Overview</button>
+  <button class="tab-btn" onclick="switchTab('devices',this)">Device Strategy</button>
+  <button class="tab-btn" onclick="switchTab('costs',this)">Cost Engineering</button>
+  <button class="tab-btn" onclick="switchTab('roadmap',this)">Roadmap</button>
+  <button class="tab-btn" onclick="switchTab('pricing',this)">Pricing</button>
+  <button class="tab-btn" onclick="switchTab('vc',this)">Investor Frame</button>
+</nav>
+
+<!-- ══ TAB 1: HERO ══ -->
+<div class="tab-panel active" id="tab-hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Immersive Learning · India K–12</div>
+      <div class="section-title">VR<sup style="font-size:22px;color:var(--deep);">×</sup></div>
+      <p class="section-sub">
+        The classroom, reimagined.<br>
+        Walk inside a cell. Stand on Mars.<br>
+        Feel every concept.
+      </p>
+      <div class="stat-row">
+        <div><div class="stat-n">3.6×</div><div class="stat-l">ARPU uplift</div></div>
+        <div><div class="stat-n">₹79</div><div class="stat-l">Entry price / month</div></div>
+        <div><div class="stat-n">600M+</div><div class="stat-l">addressable devices</div></div>
+      </div>
+    </div>
+    <div class="vr-scene-wrap">
+      <div class="vr-scene">
+        <div class="vr-orbit"><div class="vr-dot"></div></div>
+        <div class="vr-orbit"><div class="vr-dot vr-dot-2"></div></div>
+        <div class="vr-inner">
+          <div class="lens"></div>
+          <div class="lens"></div>
+        </div>
+      </div>
+      <div class="float-tag" style="top:10px;right:10px;">WebXR · No install</div>
+      <div class="float-tag" style="animation-delay:.8s;bottom:10px;left:10px;">OpenXR standard</div>
+      <div class="float-tag" style="animation-delay:1.6s;bottom:40px;right:0;">90%+ margin</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 2: DEVICE LADDER ══ -->
+<div class="tab-panel" id="tab-devices">
+  <div class="eyebrow">02 / 06 · Device strategy</div>
+  <div class="section-title">Every student.<br>Every device.</div>
+  <div class="section-sub">Edastra is subscription-based — students use their own device. No hardware capex on the balance sheet.</div>
+  <div class="device-row">
+    <div class="device-card">
+      <div class="device-icon"><div class="phone-shape"></div></div>
+      <div class="device-price">₹500</div>
+      <div class="device-name">Phone VR shell</div>
+      <div class="device-desc">Any Android 8+ phone. Chrome browser. No headset purchase needed.</div>
+      <div class="device-reach"><span class="reach-num">600M+</span>Eligible devices today</div>
+    </div>
+    <div class="device-card">
+      <div class="device-icon"><div class="shell-shape"></div></div>
+      <div class="device-price">₹8–20k</div>
+      <div class="device-name">Android XR / PICO 4</div>
+      <div class="device-desc">Standalone 6DoF headset. Full positional tracking. Tier 2 cities from 2029.</div>
+      <div class="device-reach"><span class="reach-num">Tier 2</span>2029 rollout</div>
+    </div>
+    <div class="device-card hero-card">
+      <div class="device-icon">
+        <div class="headset-shape"><div class="headset-lens"></div><div class="headset-lens"></div></div>
+      </div>
+      <div class="device-price" style="color:white;">₹35k</div>
+      <div class="device-name">Meta Quest 3S</div>
+      <div class="device-desc">Maximum immersion. Mixed reality. Tier 1 metros. Trending to ₹20k by 2027.</div>
+      <div class="device-reach"><span class="reach-num">₹900</span>ARPU · highest margin</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 3: COST ENGINEERING ══ -->
+<div class="tab-panel" id="tab-costs">
+  <div class="eyebrow">03 / 06 · Economics</div>
+  <div class="section-title">Cost engineered<br>to <em style="font-style:italic;color:var(--deep);">70% lower.</em></div>
+  <div class="cost-grid">
+    <div class="cost-left">
+      <div>
+        <div class="cost-label">Content per module</div>
+        <div class="cost-bar-wrap">
+          <div class="bar-pair"><div class="bar-val">₹20k</div><div class="bar-b" style="height:72px;background:rgba(200,230,247,0.4);"></div><div class="bar-label">Traditional</div></div>
+          <div style="display:flex;align-items:center;color:var(--mid);font-size:24px;padding-bottom:20px;">→</div>
+          <div class="bar-pair"><div class="bar-val" style="color:var(--deep);">₹6k</div><div class="bar-b" style="height:22px;background:var(--deep);"></div><div class="bar-label">AI-assisted</div></div>
+        </div>
+        <div class="saving-pill">70% saved</div>
+      </div>
+      <div>
+        <div class="cost-label">CDN streaming / year</div>
+        <div class="cost-bar-wrap">
+          <div class="bar-pair"><div class="bar-val">₹35L</div><div class="bar-b" style="height:72px;background:rgba(200,230,247,0.4);"></div><div class="bar-label">Live stream</div></div>
+          <div style="display:flex;align-items:center;color:var(--mid);font-size:24px;padding-bottom:20px;">→</div>
+          <div class="bar-pair"><div class="bar-val" style="color:var(--deep);">₹6L</div><div class="bar-b" style="height:12px;background:var(--deep);"></div><div class="bar-label">Offline-first</div></div>
+        </div>
+        <div class="saving-pill">85% saved</div>
+      </div>
+      <div>
+        <div class="cost-label">App store fee on VR sub</div>
+        <div class="cost-bar-wrap">
+          <div class="bar-pair"><div class="bar-val">30%</div><div class="bar-b" style="height:54px;background:rgba(200,230,247,0.4);"></div><div class="bar-label">Native app</div></div>
+          <div style="display:flex;align-items:center;color:var(--mid);font-size:24px;padding-bottom:20px;">→</div>
+          <div class="bar-pair"><div class="bar-val" style="color:var(--deep);">0%</div><div class="bar-b" style="height:2px;background:var(--deep);"></div><div class="bar-label">WebXR billing</div></div>
+        </div>
+        <div class="saving-pill">100% eliminated</div>
+      </div>
+    </div>
+    <div class="cost-right">
+      <p style="font-size:17px;font-weight:300;color:var(--muted);letter-spacing:.03em;margin-bottom:16px;text-transform:uppercase;">How it's done</p>
+      <div class="tech-list">
+        <div class="tech-item"><div class="tech-dot" style="background:var(--deep);"></div><div><div class="tech-name">Meshy AI + Luma AI</div><div class="tech-sub">Text-to-3D model generation. ₹500 vs ₹5,000 per 3D asset.</div></div></div>
+        <div class="tech-item"><div class="tech-dot" style="background:var(--mid);"></div><div><div class="tech-name">WebXR + A-Frame</div><div class="tech-sub">VR in Chrome browser. No app store. No install. No 30% cut.</div></div></div>
+        <div class="tech-item"><div class="tech-dot" style="background:var(--sky);"></div><div><div class="tech-name">Offline-first delivery</div><div class="tech-sub">Download once on WiFi. Play anywhere. 85% CDN saving.</div></div></div>
+        <div class="tech-item"><div class="tech-dot" style="background:var(--deep);"></div><div><div class="tech-name">OpenXR standard</div><div class="tech-sub">One codebase. Every headset. Future-proof with no rewrites.</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 4: ROADMAP ══ -->
+<div class="tab-panel" id="tab-roadmap">
+  <div class="eyebrow">04 / 06 · Launch roadmap</div>
+  <div class="section-title">Four stages.<br>One direction.</div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-node filled"></div>
+      <div class="t-year">Now · 2026</div>
+      <div class="t-title">UI live today</div>
+      <div class="t-detail">VR section already built into the app. Not a promise — a live tab.</div>
+      <div class="t-metric">Live</div>
+      <div class="t-metric-l">product today</div>
+    </div>
+    <div class="t-item">
+      <div class="t-node active"></div>
+      <div class="t-year">Pre-seed · M6</div>
+      <div class="t-title">PoC modules</div>
+      <div class="t-detail">2 VR lessons. Human cell + Solar system. Validate learning efficacy.</div>
+      <div class="t-metric">₹3–5L</div>
+      <div class="t-metric-l">cloud cost only</div>
+    </div>
+    <div class="t-item">
+      <div class="t-node"></div>
+      <div class="t-year">Series A · 2027</div>
+      <div class="t-title">Full library built</div>
+      <div class="t-detail">Grades 6–8. 3 subjects each. 80–120 modules. Unity + AI pipeline.</div>
+      <div class="t-metric">₹80–120 Cr</div>
+      <div class="t-metric-l">Series A funded</div>
+    </div>
+    <div class="t-item">
+      <div class="t-node"></div>
+      <div class="t-year">2028 · Launch</div>
+      <div class="t-title">Tier 1 metro rollout</div>
+      <div class="t-detail">Mumbai · Delhi · Bengaluru. ₹149/mo. Meta Quest + phone VR.</div>
+      <div class="t-metric">0.3 Mn</div>
+      <div class="t-metric-l">Year 1 users</div>
+    </div>
+    <div class="t-item">
+      <div class="t-node"></div>
+      <div class="t-year">2029–31</div>
+      <div class="t-title">National + MEA</div>
+      <div class="t-detail">Phone VR unlocks Tier 2/3. MEA via Indian diaspora. 5Mn VR users.</div>
+      <div class="t-metric">₹2,000 Cr</div>
+      <div class="t-metric-l">VR revenue 2030</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 5: PRICING ══ -->
+<div class="tab-panel" id="tab-pricing">
+  <div class="eyebrow">05 / 06 · Subscription pricing</div>
+  <div class="section-title">Priced for<br>every family.</div>
+  <div class="econ-grid">
+    <div class="margin-visual">
+      <p style="font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Gross margin by tier</p>
+      <div class="margin-row"><div class="margin-label">Tier 1 · ₹149/mo</div><div class="margin-track"><div class="margin-fill" style="width:94%"></div></div><div class="margin-pct">94%</div></div>
+      <div class="margin-row"><div class="margin-label">Tier 2 · ₹79/mo</div><div class="margin-track"><div class="margin-fill" style="width:90%"></div></div><div class="margin-pct">90%</div></div>
+      <div class="margin-row"><div class="margin-label">School bulk 100–249</div><div class="margin-track"><div class="margin-fill" style="width:78%"></div></div><div class="margin-pct">78%</div></div>
+      <div class="margin-row"><div class="margin-label">Traditional VR (ref.)</div><div class="margin-track"><div class="margin-fill" style="width:0%;background:rgba(248,113,113,0.6);"></div></div><div class="margin-pct" style="color:#E28080;">neg.</div></div>
+      <div style="margin-top:16px;padding:16px;background:var(--ice);border-radius:14px;border:1px solid var(--sky);">
+        <p style="font-size:17px;font-weight:300;color:var(--muted);line-height:1.7;">VR is the <strong style="font-weight:500;color:var(--navy);">highest-margin product</strong> in the portfolio — higher than ads or 2D subscription — because the optimised tech stack removes all the cost barriers of traditional VR.</p>
+      </div>
+    </div>
+    <div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Tier 1 · Metro India</div>
+        <div class="pricing-amount">₹149</div>
+        <div class="pricing-period">per month · Full VR library</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-breakdown">
+          <div class="pb-row"><span class="pb-key">Annual (billed yearly)</span><span class="pb-val">₹1,490</span></div>
+          <div class="pb-row"><span class="pb-key">Tier 2 access price</span><span class="pb-val">₹79 / mo</span></div>
+          <div class="pb-row"><span class="pb-key">School bulk (100+)</span><span class="pb-val">₹104 / student</span></div>
+          <div class="pb-row"><span class="pb-key">Core app included</span><span class="pb-val green">Yes ✓</span></div>
+          <div class="pb-row"><span class="pb-key">Offline playback</span><span class="pb-val green">Yes ✓</span></div>
+          <div class="pb-row"><span class="pb-key">All devices</span><span class="pb-val green">Quest + Android + Phone</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 6: VC FRAME ══ -->
+<div class="tab-panel" id="tab-vc">
+  <div class="eyebrow">06 / 06 · The investor frame</div>
+  <div class="section-title">The upsell story.</div>
+  <div class="vc-panel">
+    <div class="vc-eyebrow">For investors</div>
+    <div class="vc-headline">VR is not the ask.<br>VR is the <em>upsell</em>.</div>
+    <p style="font-size:19px;font-weight:300;color:rgba(200,230,247,0.5);max-width:480px;margin-top:16px;line-height:1.7;">Every core app user acquired at ₹180 CAC is a future VR subscriber at 3.6× ARPU with zero re-acquisition cost.</p>
+    <div class="vc-cards">
+      <div class="vc-card"><div class="vc-stat">₹0</div><div class="vc-card-title">Re-acquisition cost</div><div class="vc-card-body">Core app users upgrade to VR. CAC already paid. Pure margin expansion on an existing cohort.</div></div>
+      <div class="vc-card"><div class="vc-stat">3.6×</div><div class="vc-card-title">ARPU multiplier</div><div class="vc-card-body">₹250 core app → ₹900 VR subscription. Same student. Same school relationship. Zero incremental CAC.</div></div>
+      <div class="vc-card"><div class="vc-stat">Today</div><div class="vc-card-title">VR UI already live</div><div class="vc-card-body">The VR section is built into the product now. Pre-seed funds 2 PoC modules. Series A funds the full library.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

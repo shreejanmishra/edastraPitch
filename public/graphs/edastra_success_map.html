@@ -1,0 +1,1811 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edastra Chart</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --font-sans: "Outfit", sans-serif;
+        --font-serif: "Cormorant Garamond", serif;
+        --font-mono: "DM Mono", monospace;
+        --ice: #eaf4fb;
+        --sky: #c8e6f7;
+        --mid: #7bc4e8;
+        --deep: #2a7fb5;
+        --navy: #103a5a;
+        --white: #fafcff;
+        --rule: rgba(42, 127, 181, 0.15);
+        --txt: #103a5a;
+        --muted: #5a8fad;
+        --color-text-primary: #103a5a;
+        --color-text-secondary: #5a8fad;
+        --color-text-tertiary: #7bc4e8;
+        --color-background-primary: #fafcff;
+        --color-background-secondary: #eaf4fb;
+        --color-border-secondary: #c8e6f7;
+        --color-border-tertiary: rgba(42, 127, 181, 0.15);
+        --color-text-success: #1d8a50;
+        --color-text-danger: #d85a30;
+        --color-text-warning: #ef9f27;
+        --color-text-info: #2a7fb5;
+        --color-background-success: #e6f5f0;
+        --color-background-warning: #fff3e0;
+        --color-background-info: #e8f0fa;
+        --color-border-info: #c8e6f7;
+        --border-radius-md: 12px;
+        --border-radius-lg: 20px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--white);
+        font-family: "Outfit", sans-serif;
+        color: var(--txt);
+        overflow-x: hidden;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      .d {
+        font-family: "Outfit", sans-serif;
+        background: var(--white);
+        color: var(--txt);
+        }
+      .nav {
+        display: flex;
+        background: var(--white);
+        border-bottom: 1px solid var(--sky);
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        overflow-x: auto;
+      }
+      .nt {
+        flex-shrink: 0;
+        padding: 11px 16px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        background: none;
+        white-space: nowrap;
+        transition: all 0.2s;
+      }
+      .nt.on {
+        color: var(--deep);
+        border-bottom-color: var(--deep);
+      }
+      .nt:hover:not(.on) {
+        color: var(--navy);
+      }
+      .sl {
+        display: none;
+        padding: 2rem 1.75rem 3rem;
+        animation: fi 0.25s ease;
+      }
+      .sl.on {
+        display: block;
+      }
+      @keyframes fi {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .ey {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin-bottom: 0.4rem;
+      }
+      .ti {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.1;
+        color: var(--navy);
+        margin-bottom: 0.35rem;
+      }
+      .sb {
+        font-size: 19px;
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+      .bar {
+        width: 44px;
+        height: 3px;
+        background: var(--mid);
+        margin-bottom: 1.5rem;
+      }
+      .kpi-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 1.5rem;
+      }
+      .kpi {
+        background: var(--ice);
+        border: 1px solid var(--sky);
+        border-radius: 12px;
+        padding: 0.875rem 1rem;
+        text-align: center;
+      }
+      .kpi.hi {
+        border-color: var(--mid);
+        background: rgba(123, 196, 232, 0.15);
+      }
+      .kpi-n {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .kpi-l {
+        font-size: 17px;
+        font-weight: 500;
+        margin-bottom: 3px;
+      }
+      .kpi-s {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 1.5rem;
+      }
+      .three {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 1.5rem;
+      }
+      .four {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 1.5rem;
+      }
+      .card {
+        background: var(--ice);
+        border: 1px solid var(--sky);
+        border-radius: 12px;
+        padding: 0.875rem 1rem;
+      }
+      .ct {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 0.6rem;
+      }
+      .li {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .li li {
+        font-size: 17px;
+        color: var(--muted);
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        line-height: 1.4;
+      }
+      .li li::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--mid);
+        flex-shrink: 0;
+        margin-top: 5px;
+      }
+      .ins {
+        border-radius: 8px;
+        padding: 0.875rem 1rem;
+        font-size: 18px;
+        line-height: 1.65;
+        margin-bottom: 1rem;
+      }
+      .ins-g {
+        background: var(--color-background-success);
+        border-left: 2px solid var(--color-text-success);
+        color: var(--txt);
+      }
+      .ins-b {
+        background: var(--color-background-info);
+        border-left: 2px solid var(--color-text-info);
+        color: var(--txt);
+      }
+      .ins-y {
+        background: var(--color-background-warning);
+        border-left: 2px solid var(--color-text-warning);
+        color: var(--txt);
+      }
+      .ins-r {
+        background: rgba(248, 113, 113, 0.07);
+        border-left: 2px solid #f87171;
+        color: var(--txt);
+      }
+      .chart-w {
+        position: relative;
+        width: 100%;
+        margin-bottom: 1.25rem;
+      }
+      .h260 {
+        height: 260px;
+      }
+      .h220 {
+        height: 220px;
+      }
+      .h200 {
+        height: 200px;
+      }
+      .leg {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 17px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .leg span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .ld {
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      .callout {
+        border-radius: 12px;
+        padding: 1.1rem 1.25rem;
+        margin-bottom: 1.25rem;
+      }
+      .cl {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+      .ct2 {
+        font-size: 20px;
+        line-height: 1.7;
+        font-weight: 500;
+      }
+
+      /* flywheel */
+      .fw-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 1.5rem;
+      }
+      .fw-row {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+      }
+      .fw-item {
+        flex: 1;
+        padding: 0.875rem 1rem;
+        border: 1px solid var(--sky);
+        border-right: none;
+        position: relative;
+      }
+      .fw-item:last-child {
+        border-right: 1px solid var(--sky);
+      }
+      .fw-num {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--mid);
+        letter-spacing: 0.06em;
+        margin-bottom: 3px;
+      }
+      .fw-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 3px;
+      }
+      .fw-detail {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+      .fw-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        color: var(--mid);
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      /* risk table */
+      .risk-row {
+        display: grid;
+        grid-template-columns: 1fr 80px 1fr 1fr;
+        gap: 10px;
+        padding: 9px 10px;
+        border-bottom: 1px solid var(--rule);
+        font-size: 18px;
+        align-items: start;
+      }
+      .risk-hdr {
+        background: var(--ice);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border-radius: 6px 6px 0 0;
+      }
+      .pill {
+        display: inline-block;
+        font-size: 16px;
+        padding: 2px 7px;
+        border-radius: 99px;
+        font-weight: 500;
+      }
+      .p-hi {
+        background: rgba(248, 113, 113, 0.2);
+        color: #d85a30;
+      }
+      .p-mid {
+        background: rgba(239, 159, 39, 0.2);
+        color: #fde68a;
+      }
+      .p-lo {
+        background: rgba(74, 222, 128, 0.2);
+        color: #86efac;
+      }
+
+      /* metric tracker */
+      .metric-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .m-label {
+        font-size: 17px;
+        color: var(--muted);
+        min-width: 180px;
+      }
+      .m-track {
+        flex: 1;
+        height: 6px;
+        background: var(--ice);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .m-fill {
+        height: 6px;
+        border-radius: 99px;
+      }
+      .m-val {
+        font-size: 17px;
+        font-weight: 500;
+        min-width: 100px;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d">
+      <nav class="nav">
+        <button class="nt on" onclick="ss('flywheel', this)">
+          Growth flywheel
+        </button>
+        <button class="nt" onclick="ss('pillars', this)">
+          5 success pillars
+        </button>
+        <button class="nt" onclick="ss('metrics', this)">
+          North star metrics
+        </button>
+        <button class="nt" onclick="ss('moats', this)">Moat building</button>
+        <button class="nt" onclick="ss('risks', this)">
+          Risks & mitigations
+        </button>
+        <button class="nt" onclick="ss('playbook', this)">
+          Execution playbook
+        </button>
+      </nav>
+
+      <!-- ══ FLYWHEEL ══ -->
+      <div class="sl on" id="sl-flywheel">
+        <div class="ey">The self-reinforcing growth engine</div>
+        <div class="ti">Success is a flywheel,<br />not a straight line.</div>
+        <div class="sb">
+          Each stage feeds the next. When exam outcomes improve, ARPU rises.
+          When ARPU rises, content improves. When content improves, more schools
+          join.
+        </div>
+        <div class="bar"></div>
+
+        <div class="kpi-row">
+          <div class="kpi hi">
+            <div class="kpi-n" style="color: #4ade80">Exam outcomes</div>
+            <div class="kpi-l" style="color: #86efac">The central unlock</div>
+            <div class="kpi-s">Drives every other flywheel stage</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-n" style="color: #60a5fa">₹180 CAC</div>
+            <div class="kpi-l" style="color: #93c5fd">Partnership moat</div>
+            <div class="kpi-s">Schools bring users at zero paid spend</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-n" style="color: #ef9f27">3.6x ARPU</div>
+            <div class="kpi-l" style="color: #fde68a">VR upsell engine</div>
+            <div class="kpi-s">Paid cohort → premium with zero re-CAC</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-n" style="color: #f87171">10–13x</div>
+            <div class="kpi-l" style="color: #d85a30">Content cost moat</div>
+            <div class="kpi-s">AI pipeline vs studio rate</div>
+          </div>
+        </div>
+
+        <!-- Flywheel as horizontal loop -->
+        <div class="fw-wrap">
+          <div class="fw-row">
+            <div
+              class="fw-item"
+              style="
+                background: rgba(74, 222, 128, 0.06);
+                border-color: rgba(74, 222, 128, 0.2);
+              "
+            >
+              <div class="fw-num">01</div>
+              <div class="fw-title" style="color: #4ade80">
+                School partnerships
+              </div>
+              <div class="fw-detail">
+                Low-CAC user acquisition. Schools bring 25–500 students per
+                deal. No paid marketing needed.
+              </div>
+            </div>
+            <div class="fw-arrow">→</div>
+            <div class="fw-item" style="background: rgba(96, 165, 250, 0.05)">
+              <div class="fw-num">02</div>
+              <div class="fw-title" style="color: #60a5fa">
+                Growing user base
+              </div>
+              <div class="fw-detail">
+                More users → more engagement data → better personalisation →
+                better learning outcomes.
+              </div>
+            </div>
+            <div class="fw-arrow">→</div>
+            <div class="fw-item" style="background: rgba(239, 159, 39, 0.05)">
+              <div class="fw-num">03</div>
+              <div class="fw-title" style="color: #ef9f27">
+                Exam outcome proof
+              </div>
+              <div class="fw-detail">
+                Students on Edastra 6+ months score measurably better. Data
+                collected from Month 9 board cycle.
+              </div>
+            </div>
+          </div>
+          <div class="fw-row" style="flex-direction: row-reverse">
+            <div
+              class="fw-item"
+              style="
+                background: rgba(74, 222, 128, 0.06);
+                border-color: rgba(74, 222, 128, 0.2);
+              "
+            >
+              <div class="fw-num">06</div>
+              <div class="fw-title" style="color: #4ade80">
+                More partnerships
+              </div>
+              <div class="fw-detail">
+                Published outcome data → more schools want Edastra. Each school
+                brings 25–500 new users at ₹0 CAC.
+              </div>
+            </div>
+            <div class="fw-arrow" style="transform: scaleX(-1)">→</div>
+            <div class="fw-item" style="background: rgba(248, 113, 113, 0.05)">
+              <div class="fw-num">05</div>
+              <div class="fw-title" style="color: #f87171">
+                Better content IP
+              </div>
+              <div class="fw-detail">
+                Higher revenue → more content investment → richer library →
+                higher retention → lower churn.
+              </div>
+            </div>
+            <div class="fw-arrow" style="transform: scaleX(-1)">→</div>
+            <div class="fw-item" style="background: rgba(83, 74, 183, 0.05)">
+              <div class="fw-num">04</div>
+              <div class="fw-title" style="color: #7bc4e8">Higher ARPU</div>
+              <div class="fw-detail">
+                Outcome proof justifies paywall. Users upgrade to subscription →
+                VR → ₹250 → ₹900 journey.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="callout"
+          style="
+            background: rgba(74, 222, 128, 0.07);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+          "
+        >
+          <div class="cl" style="color: #4ade80">
+            The single most important thing to get right
+          </div>
+          <div
+            class="ct2"
+            style="color: #5a95b9; font-size: 19px; font-weight: 400"
+          >
+            Collect exam outcome data from the first board cycle (Month 9). One
+            semester of measurable improvement data unlocks every other flywheel
+            stage — school renewals, paywall conversions, VR upsell, Series A
+            narrative, and MEA entry justification. Without it, you are selling
+            a promise. With it, you are selling proof.
+          </div>
+        </div>
+
+        <div class="leg">
+          <span
+            ><span class="ld" style="background: #4ade80"></span
+            >Partnerships</span
+          ><span><span class="ld" style="background: #60a5fa"></span>Users</span
+          ><span
+            ><span class="ld" style="background: #ef9f27"></span>Outcomes</span
+          ><span><span class="ld" style="background: #7bc4e8"></span>ARPU</span
+          ><span
+            ><span class="ld" style="background: #f87171"></span>Content</span
+          >
+        </div>
+        <div class="chart-w h200"><canvas id="c-fly"></canvas></div>
+      </div>
+
+      <!-- ══ 5 PILLARS ══ -->
+      <div class="sl" id="sl-pillars">
+        <div class="ey">What must go right</div>
+        <div class="ti">
+          5 pillars. Each one can kill<br />the company if it fails.
+        </div>
+        <div class="sb">
+          Not aspirations — hard dependencies. If any one of these is missing at
+          the wrong time, the model breaks.
+        </div>
+        <div class="bar"></div>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+          "
+        >
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1fr 2fr 1fr;
+              gap: 14px;
+              padding: 1rem;
+              background: #eaf4fb;
+              border: 1px solid rgba(74, 222, 128, 0.25);
+              border-radius: 12px;
+              align-items: start;
+            "
+          >
+            <div
+              style="
+                font-family: 'Outfit', sans-serif;
+                font-size: 28px;
+                font-weight: 700;
+                color: #4ade80;
+                line-height: 1;
+              "
+            >
+              01
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 19px;
+                  font-weight: 600;
+                  color: #4ade80;
+                  margin-bottom: 4px;
+                "
+              >
+                Exam outcome data loop
+              </div>
+              <div style="font-size: 17px; color: #5a95b9; line-height: 1.5">
+                Month 9 priority. Every other pillar depends on this proof
+                existing.
+              </div>
+            </div>
+            <div style="font-size: 17px; color: #103a5a; line-height: 1.6">
+              Track every student who uses Edastra for 6+ months. Compare their
+              board exam scores to a matched control group. Publish the results.
+              Even a 5% improvement in average score is statistically
+              significant and commercially transformative — it turns a
+              subscription into a necessity, not a nice-to-have.
+            </div>
+            <div>
+              <div class="pill p-hi" style="margin-bottom: 6px">
+                Highest priority
+              </div>
+              <div style="font-size: 16px; color: #103a5a">
+                Failure = paywall never justifiable
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1fr 2fr 1fr;
+              gap: 14px;
+              padding: 1rem;
+              background: #eaf4fb;
+              border: 1px solid #102018;
+              border-radius: 12px;
+              align-items: start;
+            "
+          >
+            <div
+              style="
+                font-family: 'Outfit', sans-serif;
+                font-size: 28px;
+                font-weight: 700;
+                color: #60a5fa;
+                line-height: 1;
+              "
+            >
+              02
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 19px;
+                  font-weight: 600;
+                  color: #60a5fa;
+                  margin-bottom: 4px;
+                "
+              >
+                School partnership pipeline
+              </div>
+              <div style="font-size: 17px; color: #5a95b9; line-height: 1.5">
+                15 schools by Month 18. Each school = 25–500 users at ₹0 CAC.
+              </div>
+            </div>
+            <div style="font-size: 17px; color: #103a5a; line-height: 1.6">
+              The partnership model is what makes ₹180 CAC possible. It requires
+              a dedicated partnerships team member from Day 1, a clear school
+              value proposition (curriculum-aligned, exam-outcome tracked,
+              teacher-friendly dashboard), and a referral incentive — schools
+              that refer other schools get 1 month free. Target GEMS, DPS,
+              Kendriya Vidyalaya chains first for multiplier effect.
+            </div>
+            <div>
+              <div class="pill p-hi" style="margin-bottom: 6px">Critical</div>
+              <div style="font-size: 16px; color: #103a5a">
+                Failure = CAC blows out to ₹1,000+
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1fr 2fr 1fr;
+              gap: 14px;
+              padding: 1rem;
+              background: #eaf4fb;
+              border: 1px solid #102018;
+              border-radius: 12px;
+              align-items: start;
+            "
+          >
+            <div
+              style="
+                font-family: 'Outfit', sans-serif;
+                font-size: 28px;
+                font-weight: 700;
+                color: #ef9f27;
+                line-height: 1;
+              "
+            >
+              03
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 19px;
+                  font-weight: 600;
+                  color: #ef9f27;
+                  margin-bottom: 4px;
+                "
+              >
+                Content quality & velocity
+              </div>
+              <div style="font-size: 17px; color: #5a95b9; line-height: 1.5">
+                300+ videos by Month 12. AI pipeline keeps cost at ₹230/min.
+              </div>
+            </div>
+            <div style="font-size: 17px; color: #103a5a; line-height: 1.6">
+              Content is both the product and the moat. A 300-video library
+              takes a competitor 18 months to replicate at any budget. The
+              AI-assisted pipeline (₹230/min vs ₹1,000–3,000 studio rate) is the
+              structural advantage that makes this economical. Guard the
+              pipeline — it is proprietary. Hire a Content Lead by Month 1 who
+              owns quality standards and curriculum alignment.
+            </div>
+            <div>
+              <div
+                class="pill p-mid"
+                style="margin-bottom: 6px; color: #ef9f27"
+              >
+                High priority
+              </div>
+              <div style="font-size: 16px; color: #103a5a">
+                Failure = no moat vs competitors
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1fr 2fr 1fr;
+              gap: 14px;
+              padding: 1rem;
+              background: #eaf4fb;
+              border: 1px solid #102018;
+              border-radius: 12px;
+              align-items: start;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Space Grotesk&quot;;
+                font-size: 28px;
+                font-weight: 700;
+                color: #7bc4e8;
+                line-height: 1;
+              "
+            >
+              04
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 19px;
+                  font-weight: 600;
+                  color: #7bc4e8;
+                  margin-bottom: 4px;
+                "
+              >
+                Subscription conversion engine
+              </div>
+              <div style="font-size: 17px; color: #5a95b9; line-height: 1.5">
+                12–15% conversion by Month 15. Every +1% = ₹12 Cr ARR.
+              </div>
+            </div>
+            <div style="font-size: 17px; color: #103a5a; line-height: 1.6">
+              The paywall only works if users experience enough value in the
+              free tier to want more. Design the free tier to create deliberate
+              "cliff moments" — a student gets 3 free VR modules, then hits a
+              paywall before the fourth. Free tier should show learning progress
+              milestones that only continue with subscription. Exam countdown
+              feature (30 days to board exams) is a natural urgency trigger for
+              conversion.
+            </div>
+            <div>
+              <div
+                class="pill p-mid"
+                style="margin-bottom: 6px; color: #ef9f27"
+              >
+                High priority
+              </div>
+              <div style="font-size: 16px; color: #103a5a">
+                Failure = ad-only model, low margin
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1fr 2fr 1fr;
+              gap: 14px;
+              padding: 1rem;
+              background: #eaf4fb;
+              border: 1px solid #102018;
+              border-radius: 12px;
+              align-items: start;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Space Grotesk&quot;;
+                font-size: 28px;
+                font-weight: 700;
+                color: #f87171;
+                line-height: 1;
+              "
+            >
+              05
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 19px;
+                  font-weight: 600;
+                  color: #f87171;
+                  margin-bottom: 4px;
+                "
+              >
+                Capital efficiency
+              </div>
+              <div style="font-size: 17px; color: #5a95b9; line-height: 1.5">
+                Burn multiple &lt;1.5x by Month 18. ₹3–4 Cr cash at Series A
+                raise.
+              </div>
+            </div>
+            <div style="font-size: 17px; color: #103a5a; line-height: 1.6">
+              Every rupee must generate traceable value. Variable costs
+              (content, marketing) flex down if revenue misses. Fixed costs
+              (core team, infra) are protected. Monthly burn review by founders
+              — not quarterly. The golden rule: never let runway drop below 9
+              months without a fundraise already in process. Series A process
+              begins at Month 12 when you have 500k users and ₹1 Cr MRR — not at
+              Month 16 when you're already hitting triggers.
+            </div>
+            <div>
+              <div
+                class="pill p-mid"
+                style="margin-bottom: 6px; color: #ef9f27"
+              >
+                Operational
+              </div>
+              <div style="font-size: 16px; color: #103a5a">
+                Failure = forced raise at bad terms
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ NORTH STAR METRICS ══ -->
+      <div class="sl" id="sl-metrics">
+        <div class="ey">What you measure · what you manage</div>
+        <div class="ti">7 metrics. One number<br />per week matters most.</div>
+        <div class="sb">
+          Weekly metric review by founders. Monthly board-level report. Each
+          metric has a red line — below it, action is required that week.
+        </div>
+        <div class="bar"></div>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #102018;
+            margin-bottom: 1.5rem;
+          "
+        >
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1.5fr 1fr 1fr 1fr 1fr;
+              gap: 0;
+              padding: 8px 12px;
+              background: #eaf4fb;
+              font-size: 16px;
+              font-weight: 600;
+              letter-spacing: 0.07em;
+              text-transform: uppercase;
+              color: #1a3020;
+            "
+          >
+            <div>#</div>
+            <div>Metric</div>
+            <div>Red line</div>
+            <div>Target M12</div>
+            <div>Target M18</div>
+            <div>Why it matters</div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1.5fr 1fr 1fr 1fr 1fr;
+              gap: 0;
+              padding: 10px 12px;
+              border-top: 1px solid #0a1410;
+              font-size: 17px;
+              background: rgba(74, 222, 128, 0.04);
+            "
+          >
+            <div style="font-weight: 700; color: #4ade80">01</div>
+            <div>
+              <strong style="color: #103a5a">Weekly Active Users (WAU)</strong>
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Users who watch ≥1 video/week
+              </div>
+            </div>
+            <div style="color: #f87171">&lt; 30% of MAU</div>
+            <div style="color: #4ade80">45%+ WAU/MAU</div>
+            <div style="color: #4ade80">50%+ WAU/MAU</div>
+            <div style="color: #103a5a; font-size: 16px">
+              Engagement health. Low WAU = content problem.
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1.5fr 1fr 1fr 1fr 1fr;
+              gap: 0;
+              padding: 10px 12px;
+              border-top: 1px solid #0a1410;
+              font-size: 17px;
+            "
+          >
+            <div style="font-weight: 700; color: #60a5fa">02</div>
+            <div>
+              <strong style="color: #103a5a">Day-30 retention</strong>
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                % users still active 30 days after install
+              </div>
+            </div>
+            <div style="color: #f87171">&lt; 25%</div>
+            <div style="color: #60a5fa">35%+</div>
+            <div style="color: #60a5fa">40%+</div>
+            <div style="color: #103a5a; font-size: 16px">
+              PMF signal. Below 25% = product not sticky.
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1.5fr 1fr 1fr 1fr 1fr;
+              gap: 0;
+              padding: 10px 12px;
+              border-top: 1px solid #0a1410;
+              font-size: 17px;
+              background: rgba(74, 222, 128, 0.04);
+            "
+          >
+            <div style="font-weight: 700; color: #ef9f27">03</div>
+            <div>
+              <strong style="color: #103a5a">Sub conversion rate</strong>
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Free users who upgrade to paid
+              </div>
+            </div>
+            <div style="color: #f87171">&lt; 5%</div>
+            <div style="color: #ef9f27">8–10%</div>
+            <div style="color: #ef9f27">12–15%</div>
+            <div style="color: #103a5a; font-size: 16px">
+              Revenue engine. Each +1% = ₹12 Cr ARR at 1Mn users.
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1.5fr 1fr 1fr 1fr 1fr;
+              gap: 0;
+              padding: 10px 12px;
+              border-top: 1px solid #0a1410;
+              font-size: 17px;
+            "
+          >
+            <div style="font-weight: 700; color: #7bc4e8">04</div>
+            <div>
+              <strong style="color: #103a5a">CAC (blended)</strong>
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Total acquisition cost per active user
+              </div>
+            </div>
+            <div style="color: #f87171">&gt; ₹400</div>
+            <div style="color: #7bc4e8">≤ ₹200</div>
+            <div style="color: #7bc4e8">≤ ₹180</div>
+            <div style="color: #103a5a; font-size: 16px">
+              Partnership model validation. Above ₹400 = paid ads crept in.
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1.5fr 1fr 1fr 1fr 1fr;
+              gap: 0;
+              padding: 10px 12px;
+              border-top: 1px solid #0a1410;
+              font-size: 17px;
+              background: rgba(74, 222, 128, 0.04);
+            "
+          >
+            <div style="font-weight: 700; color: #f87171">05</div>
+            <div>
+              <strong style="color: #103a5a">MRR growth rate</strong>
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Month-over-month revenue growth
+              </div>
+            </div>
+            <div style="color: #f87171">&lt; 10% MoM</div>
+            <div style="color: #f87171">20%+ MoM</div>
+            <div style="color: #f87171">15%+ MoM</div>
+            <div style="color: #103a5a; font-size: 16px">
+              Series A readiness. Below 15% MoM = hard raise.
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1.5fr 1fr 1fr 1fr 1fr;
+              gap: 0;
+              padding: 10px 12px;
+              border-top: 1px solid #0a1410;
+              font-size: 17px;
+            "
+          >
+            <div style="font-weight: 700; color: #4ade80">06</div>
+            <div>
+              <strong style="color: #103a5a">School NPS</strong>
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Net Promoter Score from school admins
+              </div>
+            </div>
+            <div style="color: #f87171">&lt; 30</div>
+            <div style="color: #4ade80">&gt; 50</div>
+            <div style="color: #4ade80">&gt; 60</div>
+            <div style="color: #103a5a; font-size: 16px">
+              Renewal predictor. NPS &gt; 50 = school refers other schools.
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 48px 1.5fr 1fr 1fr 1fr 1fr;
+              gap: 0;
+              padding: 10px 12px;
+              border-top: 1px solid #0a1410;
+              font-size: 17px;
+              background: rgba(74, 222, 128, 0.04);
+            "
+          >
+            <div style="font-weight: 700; color: #ef9f27">07</div>
+            <div>
+              <strong style="color: #103a5a">Burn multiple</strong>
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Net burn ÷ net new ARR
+              </div>
+            </div>
+            <div style="color: #f87171">&gt; 2.5x</div>
+            <div style="color: #ef9f27">&lt; 1.8x</div>
+            <div style="color: #4ade80">&lt; 1.5x</div>
+            <div style="color: #103a5a; font-size: 16px">
+              Capital efficiency. Above 2.5x = spending too fast relative to
+              growth.
+            </div>
+          </div>
+        </div>
+
+        <div class="ins ins-g">
+          <strong style="color: #4ade80">The one weekly number:</strong> Sub
+          conversion rate. It is the leading indicator for every other metric —
+          WAU, MRR, burn multiple, and Series A readiness all flow from whether
+          free users are converting to paid. Review it every Monday. If it drops
+          two weeks in a row, convene an emergency product sprint that week, not
+          next quarter.
+        </div>
+      </div>
+
+      <!-- ══ MOATS ══ -->
+      <div class="sl" id="sl-moats">
+        <div class="ey">What makes Edastra hard to copy</div>
+        <div class="ti">
+          4 moats. Each one takes<br />18+ months to replicate.
+        </div>
+        <div class="sb">
+          A competitor with unlimited money could copy any one of these. Copying
+          all four simultaneously is practically impossible.
+        </div>
+        <div class="bar"></div>
+
+        <div class="two">
+          <div class="card" style="border-color: rgba(74, 222, 128, 0.25)">
+            <div class="ct" style="color: #4ade80">
+              Moat 1 — Content IP library
+            </div>
+            <ul class="li">
+              <li>300+ videos by Month 12 · 1,500+ by Year 3</li>
+              <li>AI pipeline produces at ₹230/min vs ₹1k–3k studio rate</li>
+              <li>Competitor needs 18 months + ₹5 Cr minimum to replicate</li>
+              <li>Content is curriculum-mapped to CBSE/ICSE — not generic</li>
+              <li>Moat deepens with every video added — compounding</li>
+            </ul>
+            <div
+              style="
+                margin-top: 8px;
+                font-size: 16px;
+                color: #4ade80;
+                font-style: italic;
+              "
+            >
+              Time to replicate: 18 months minimum at any budget
+            </div>
+          </div>
+          <div class="card" style="border-color: rgba(96, 165, 250, 0.2)">
+            <div class="ct" style="color: #60a5fa">
+              Moat 2 — School partnership network
+            </div>
+            <ul class="li">
+              <li>Each school signed = 25–500 users at ₹0 CAC permanently</li>
+              <li>
+                School switching cost is high — admin retraining, data migration
+              </li>
+              <li>
+                School NPS &gt; 60 = schools refer other schools (viral B2B)
+              </li>
+              <li>
+                Outcome data is school-specific — can't be replicated elsewhere
+              </li>
+              <li>
+                Multi-year contracts from batch 100+ give revenue visibility
+              </li>
+            </ul>
+            <div
+              style="
+                margin-top: 8px;
+                font-size: 16px;
+                color: #60a5fa;
+                font-style: italic;
+              "
+            >
+              Time to replicate: 12–24 months of relationship building
+            </div>
+          </div>
+          <div class="card" style="border-color: rgba(239, 159, 39, 0.2)">
+            <div class="ct" style="color: #ef9f27">
+              Moat 3 — Exam outcome dataset
+            </div>
+            <ul class="li">
+              <li>
+                First dataset available Month 9 · grows with every board cycle
+              </li>
+              <li>Proprietary — no competitor can claim this data</li>
+              <li>Becomes the paywall justification parents actually trust</li>
+              <li>Enables price increases over time (outcomes proven)</li>
+              <li>Feeds personalisation engine — improving content quality</li>
+            </ul>
+            <div
+              style="
+                margin-top: 8px;
+                font-size: 16px;
+                color: #ef9f27;
+                font-style: italic;
+              "
+            >
+              Time to replicate: 1 full academic year minimum
+            </div>
+          </div>
+          <div class="card" style="border-color: rgba(83, 74, 183, 0.2)">
+            <div class="ct" style="color: #7bc4e8">
+              Moat 4 — VR first-mover (India K-12)
+            </div>
+            <ul class="li">
+              <li>VR UI already live · PoC validates before 2028 launch</li>
+              <li>Byju's VR collapsed — white space exists right now</li>
+              <li>
+                Device partnerships (Meta, Android XR) give preferential
+                placement
+              </li>
+              <li>
+                3D content library is non-trivial to produce even with budget
+              </li>
+              <li>
+                OpenXR standard means Edastra runs on every future headset
+              </li>
+            </ul>
+            <div
+              style="
+                margin-top: 8px;
+                font-size: 16px;
+                color: #7bc4e8;
+                font-style: italic;
+              "
+            >
+              Time to replicate: 2–3 years to reach Edastra's 2028 position
+            </div>
+          </div>
+        </div>
+
+        <div class="ins ins-b">
+          <strong style="color: #60a5fa">The compounding moat:</strong> These
+          four moats reinforce each other. Content quality drives school
+          partnerships. School partnerships provide outcome data. Outcome data
+          justifies VR pricing. VR pricing funds more content. By the time a
+          competitor copies one moat, Edastra's other three have grown further.
+          This is why the flywheel matters more than any single feature.
+        </div>
+      </div>
+
+      <!-- ══ RISKS ══ -->
+      <div class="sl" id="sl-risks">
+        <div class="ey">What can go wrong · and how to stop it</div>
+        <div class="ti">8 risks. Each with a<br />named mitigation.</div>
+        <div class="sb">
+          Honest risk register. A VC will raise all of these — have the answer
+          ready before the meeting.
+        </div>
+        <div class="bar"></div>
+
+        <div
+          style="
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #102018;
+            margin-bottom: 1.5rem;
+          "
+        >
+          <div class="risk-row risk-hdr">
+            <div>Risk</div>
+            <div>Severity</div>
+            <div>What happens if it hits</div>
+            <div>Mitigation</div>
+          </div>
+          <div class="risk-row" style="background: rgba(248, 113, 113, 0.04)">
+            <div style="font-size: 18px; font-weight: 500; color: #d85a30">
+              Exam outcomes don't improve
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Users don't score better
+              </div>
+            </div>
+            <div><span class="pill p-hi">Critical</span></div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Paywall unjustifiable. Schools don't renew. ARPU stays at ₹250 (ad
+              tier). Series A narrative collapses.
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Start outcome tracking from Day 1. Hire a learning scientist by
+              Month 3. Design content with retrieval practice, spaced
+              repetition, and formative quizzes — not passive video.
+            </div>
+          </div>
+          <div class="risk-row">
+            <div style="font-size: 18px; font-weight: 500; color: #d85a30">
+              Sub conversion stays at 5%
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Bear case materialises
+              </div>
+            </div>
+            <div><span class="pill p-hi">High</span></div>
+            <div style="font-size: 17px; color: #5a95b9">
+              MRR stays low. Burn multiple stays above 2x. Series A raise at
+              lower valuation or delayed.
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Paywall UX A/B tested monthly. "Cliff moments" designed into free
+              tier. Exam countdown as urgency trigger. School bulk orders
+              provide floor revenue regardless of B2C conversion.
+            </div>
+          </div>
+          <div class="risk-row" style="background: rgba(248, 113, 113, 0.04)">
+            <div style="font-size: 18px; font-weight: 500; color: #ef9f27">
+              Byju's-style implosion risk
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Market trust collapses
+              </div>
+            </div>
+            <div>
+              <span class="pill p-mid" style="color: #ef9f27">Medium</span>
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Parents wary of EdTech subscriptions. School deals harder to
+              close. VC narrative challenged.
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Publish outcome data proactively. No aggressive sales tactics.
+              Monthly contracts (not annual lock-in) until trust is built.
+              Position as "anti-Byju's" — transparent, outcome-first,
+              parent-controlled.
+            </div>
+          </div>
+          <div class="risk-row">
+            <div style="font-size: 18px; font-weight: 500; color: #ef9f27">
+              VR device adoption slower than forecast
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Headset prices stay high
+              </div>
+            </div>
+            <div>
+              <span class="pill p-mid" style="color: #ef9f27">Medium</span>
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              2028 VR launch user target of 0.3Mn misses. ARPU blended stays
+              closer to ₹550 than ₹900.
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Phone VR fallback (₹500 shell + any Android) unlocks 600Mn
+              devices. VR PoC validates on phone first. Device dependency is
+              optional, not mandatory.
+            </div>
+          </div>
+          <div class="risk-row" style="background: rgba(248, 113, 113, 0.04)">
+            <div style="font-size: 18px; font-weight: 500; color: #ef9f27">
+              Google / NCERT launches free competitor
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Free government content
+              </div>
+            </div>
+            <div>
+              <span class="pill p-mid" style="color: #ef9f27">Medium</span>
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Ad revenue compressed. Free tier harder to justify. Price
+              sensitivity increases.
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Outcome data + personalisation + VR cannot be replicated by NCERT.
+              Government content is static. Edastra is adaptive. Position as
+              "NCERT + AI + outcomes" not a replacement.
+            </div>
+          </div>
+          <div class="risk-row">
+            <div style="font-size: 18px; font-weight: 500; color: #ef9f27">
+              Key engineer leaves pre-launch
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Team risk
+              </div>
+            </div>
+            <div>
+              <span class="pill p-mid" style="color: #ef9f27">Medium</span>
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              3–6 month delay. Product milestone pushed. Series A data weaker.
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              ESOP cliff at 12 months. Document all architecture decisions. No
+              single points of failure in codebase. Pair programming for
+              critical systems. Hire for culture-fit over skills alone.
+            </div>
+          </div>
+          <div class="risk-row" style="background: rgba(248, 113, 113, 0.04)">
+            <div style="font-size: 18px; font-weight: 500; color: #1d8a50">
+              MEA entry fails to gain traction
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                2030 revenue miss
+              </div>
+            </div>
+            <div><span class="pill p-lo">Lower</span></div>
+            <div style="font-size: 17px; color: #5a95b9">
+              2030–31 revenue stays at India-only baseline (₹950–1,650 Cr).
+              Series B narrative weakened.
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              India profitability funds MEA at low risk. Start with Indian
+              diaspora schools in Dubai (guaranteed demand). MEA is Series B
+              capital deployment — India alone is a fundable business.
+            </div>
+          </div>
+          <div class="risk-row">
+            <div style="font-size: 18px; font-weight: 500; color: #d85a30">
+              DPDP Act compliance failure
+              <div style="font-size: 16px; color: #5a95b9; margin-top: 2px">
+                Student data regulation
+              </div>
+            </div>
+            <div><span class="pill p-hi">High if triggered</span></div>
+            <div style="font-size: 17px; color: #5a95b9">
+              App pulled from stores. School contracts voided. Reputational
+              damage with parents.
+            </div>
+            <div style="font-size: 17px; color: #5a95b9">
+              Hire a data privacy lawyer from Month 1. Build DPDP compliance
+              into the product architecture (data minimisation, parental consent
+              flows, localised storage). Make compliance a selling point to
+              schools — "DPDP compliant by design."
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PLAYBOOK ══ -->
+      <div class="sl" id="sl-playbook">
+        <div class="ey">Week by week · month by month</div>
+        <div class="ti">
+          The execution playbook.<br />What the team does every day.
+        </div>
+        <div class="sb">
+          Broken into sprints. Each month has one primary objective and one
+          metric that proves it worked.
+        </div>
+        <div class="bar"></div>
+
+        <div class="kpi-row">
+          <div class="kpi hi">
+            <div class="kpi-n" style="color: #4ade80">M1–3</div>
+            <div class="kpi-l" style="color: #86efac">Build & baseline</div>
+            <div class="kpi-s">Product live · team assembled</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-n" style="color: #60a5fa">M4–6</div>
+            <div class="kpi-l" style="color: #93c5fd">Pilot & validate</div>
+            <div class="kpi-s">10 schools · first revenue</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-n" style="color: #ef9f27">M7–12</div>
+            <div class="kpi-l" style="color: #fde68a">Scale & convert</div>
+            <div class="kpi-s">Sub paywall · ₹1 Cr MRR</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-n" style="color: #f87171">M13–18</div>
+            <div class="kpi-l" style="color: #d85a30">Prove & raise</div>
+            <div class="kpi-s">1Mn users · Series A</div>
+          </div>
+        </div>
+
+        <div class="four">
+          <div class="card" style="border-color: rgba(74, 222, 128, 0.3)">
+            <div class="ct" style="color: #4ade80">M1–3 · Build</div>
+            <ul class="li">
+              <li>Hire core 6 (eng ×2, content ×2, product, partnerships)</li>
+              <li>MVP v2 live with sub paywall built (not active)</li>
+              <li>
+                3 school pilots signed — run weekly outcome tracking from Day 1
+              </li>
+              <li>Content: 50 videos across Gr 6–8</li>
+              <li>VR PoC: 2 demo modules on Quest 3S</li>
+              <li>DPDP compliance architecture in place</li>
+            </ul>
+            <div
+              style="
+                margin-top: 8px;
+                padding: 6px 8px;
+                background: rgba(74, 222, 128, 0.08);
+                border-radius: 6px;
+                font-size: 16px;
+                color: #4ade80;
+              "
+            >
+              Proof: 20k users · CAC ≤ ₹200 · 3 schools onboarded
+            </div>
+          </div>
+          <div class="card">
+            <div class="ct" style="color: #60a5fa">M4–6 · Pilot</div>
+            <ul class="li">
+              <li>10 school/CSR partnerships signed</li>
+              <li>100k users reached</li>
+              <li>Ad revenue starts (₹10–20L MRR)</li>
+              <li>Sub paywall goes live at Month 6 — 5% conversion target</li>
+              <li>Content: 150 videos live</li>
+              <li>First feedback report published to schools</li>
+            </ul>
+            <div
+              style="
+                margin-top: 8px;
+                padding: 6px 8px;
+                background: rgba(96, 165, 250, 0.08);
+                border-radius: 6px;
+                font-size: 16px;
+                color: #60a5fa;
+              "
+            >
+              Proof: 100k users · ₹20L MRR · 5% sub conv · Day-30 retention 35%+
+            </div>
+          </div>
+          <div class="card">
+            <div class="ct" style="color: #ef9f27">M7–12 · Scale</div>
+            <ul class="li">
+              <li>Sub conversion 8–10% — A/B test paywall weekly</li>
+              <li>300k → 750k users</li>
+              <li>₹1 Cr MRR by Month 9</li>
+              <li>First board exam cycle data collected (Month 9)</li>
+              <li>
+                Outcome data published to schools — renewal conversations start
+              </li>
+              <li>Series A deck v1 drafted at Month 12</li>
+            </ul>
+            <div
+              style="
+                margin-top: 8px;
+                padding: 6px 8px;
+                background: rgba(239, 159, 39, 0.08);
+                border-radius: 6px;
+                font-size: 16px;
+                color: #ef9f27;
+              "
+            >
+              Proof: ₹1 Cr MRR · outcome data published · 10% sub conv
+            </div>
+          </div>
+          <div class="card">
+            <div class="ct" style="color: #f87171">M13–18 · Raise</div>
+            <ul class="li">
+              <li>1Mn users by Month 15</li>
+              <li>₹5 Cr ARR · ₹40–50L MRR</li>
+              <li>15 school partnerships · 85%+ renewal rate</li>
+              <li>Series A process begins Month 12 · closes Month 16</li>
+              <li>VR PoC efficacy results published</li>
+              <li>MEA scoping trips (Dubai/Nairobi) in Month 17–18</li>
+            </ul>
+            <div
+              style="
+                margin-top: 8px;
+                padding: 6px 8px;
+                background: rgba(248, 113, 113, 0.08);
+                border-radius: 6px;
+                font-size: 16px;
+                color: #f87171;
+              "
+            >
+              Proof: 1Mn users · ₹5 Cr ARR · Series A closed · 15 schools
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="callout"
+          style="
+            background: rgba(74, 222, 128, 0.07);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+          "
+        >
+          <div class="cl" style="color: #4ade80">
+            The daily question every founder should ask
+          </div>
+          <div
+            class="ct2"
+            style="color: #5a95b9; font-size: 19px; font-weight: 400"
+          >
+            "Did we do something today that makes a student more likely to score
+            better on their next exam?" If yes, you are on the right path. If
+            no, the day was wasted — regardless of how many meetings were held
+            or features were shipped.
+          </div>
+        </div>
+
+        <div class="leg">
+          <span
+            ><span class="ld" style="background: #4ade80"></span>Users (k)</span
+          ><span
+            ><span
+              class="ld"
+              style="background: #ef9f27; border-radius: 50%"
+            ></span
+            >MRR (₹L)</span
+          ><span
+            ><span
+              class="ld"
+              style="background: #60a5fa; border-radius: 50%"
+            ></span
+            >Sub conv %</span
+          >
+        </div>
+        <div class="chart-w h220"><canvas id="c-play"></canvas></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <script>
+      function ss(id, btn) {
+        document
+          .querySelectorAll(".sl")
+          .forEach((s) => s.classList.remove("on"));
+        document
+          .querySelectorAll(".nt")
+          .forEach((b) => b.classList.remove("on"));
+        document.getElementById("sl-" + id).classList.add("on");
+        btn.classList.add("on");
+      }
+
+      const months = [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9",
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "M15",
+        "M16",
+        "M17",
+        "M18",
+      ];
+
+      new Chart(document.getElementById("c-fly"), {
+        type: "radar",
+        data: {
+          labels: [
+            "Partnerships",
+            "Content quality",
+            "User growth",
+            "Exam outcomes",
+            "ARPU",
+            "Retention",
+          ],
+          datasets: [
+            {
+              label: "Month 6",
+              data: [30, 45, 25, 10, 15, 35],
+              borderColor: "rgba(74,222,128,0.5)",
+              backgroundColor: "rgba(74,222,128,0.08)",
+              pointBackgroundColor: "#4ADE80",
+              pointRadius: 3,
+              borderWidth: 1.5,
+            },
+            {
+              label: "Month 12",
+              data: [55, 65, 55, 40, 45, 55],
+              borderColor: "rgba(96,165,250,0.5)",
+              backgroundColor: "rgba(96,165,250,0.08)",
+              pointBackgroundColor: "#60A5FA",
+              pointRadius: 3,
+              borderWidth: 1.5,
+            },
+            {
+              label: "Month 18",
+              data: [75, 80, 80, 70, 70, 75],
+              borderColor: "rgba(239,159,39,0.6)",
+              backgroundColor: "rgba(239,159,39,0.08)",
+              pointBackgroundColor: "#EF9F27",
+              pointRadius: 3,
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            r: {
+              grid: { color: "rgba(255,255,255,0.05)" },
+              ticks: { display: false },
+              pointLabels: { color: "#1A3020", font: { size: 11 } },
+            },
+          },
+        },
+      });
+
+      const users = [
+        18, 20, 25, 40, 60, 100, 150, 200, 300, 400, 500, 650, 800, 900, 1000,
+        1000, 1000, 1000,
+      ];
+      const mrr_data = [
+        0, 0, 0, 10, 15, 25, 50, 75, 100, 130, 160, 200, 280, 360, 420, 420,
+        420, 420,
+      ];
+      const conv = [
+        0, 0, 0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 14, 14,
+      ];
+
+      new Chart(document.getElementById("c-play"), {
+        data: {
+          labels: months,
+          datasets: [
+            {
+              type: "bar",
+              label: "Users (k)",
+              data: users,
+              backgroundColor: "rgba(74,222,128,0.5)",
+              borderRadius: 3,
+              order: 3,
+              yAxisID: "y",
+            },
+            {
+              type: "line",
+              label: "MRR (₹L)",
+              data: mrr_data,
+              borderColor: "#EF9F27",
+              backgroundColor: "transparent",
+              pointBackgroundColor: "#EF9F27",
+              pointRadius: 3,
+              tension: 0.4,
+              borderWidth: 2,
+              order: 2,
+              yAxisID: "y2",
+            },
+            {
+              type: "line",
+              label: "Sub conv%",
+              data: conv,
+              borderColor: "#60A5FA",
+              backgroundColor: "transparent",
+              pointBackgroundColor: "#60A5FA",
+              pointRadius: 3,
+              tension: 0.3,
+              borderWidth: 1.5,
+              order: 1,
+              yAxisID: "y3",
+              borderDash: [4, 3],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              grid: { color: "rgba(255,255,255,0.03)" },
+              ticks: { color: "#1A3020", font: { size: 10 } },
+            },
+            y: {
+              grid: { color: "rgba(255,255,255,0.04)" },
+              ticks: {
+                color: "#1A3020",
+                font: { size: 10 },
+                callback: (v) => v + "k",
+              },
+            },
+            y2: {
+              position: "right",
+              grid: { display: false },
+              ticks: {
+                color: "#EF9F27",
+                font: { size: 10 },
+                callback: (v) => "₹" + v + "L",
+              },
+              display: false,
+            },
+            y3: {
+              position: "right",
+              grid: { display: false },
+              ticks: {
+                color: "#60A5FA",
+                font: { size: 10 },
+                callback: (v) => v + "%",
+              },
+              display: false,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

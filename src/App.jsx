@@ -3,33 +3,23 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './pages/Hero'
-import Problem from './pages/Problem'
-import Solution from './pages/Solution'
-import Market from './pages/Market'
-import Product from './pages/Product'
-import BusinessModel from './pages/BusinessModel'
-import Traction from './pages/Traction'
-import Team from './pages/Team'
-import Financials from './pages/Financials'
-import Contact from './pages/Contact'
+import OurApproach from './pages/OurApproach'
+import ProductSection from './pages/ProductSection'
+import FinancialsSection from './pages/FinancialsSection'
+import TeamSection from './pages/TeamSection'
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-black text-white flex flex-col">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow flex flex-col min-h-0">
           <Routes>
             <Route path="/" element={<Hero />} />
-            <Route path="/problem" element={<Problem />} />
-            <Route path="/solution" element={<Solution />} />
-            <Route path="/market" element={<Market />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/business-model" element={<BusinessModel />} />
-            <Route path="/traction" element={<Traction />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/financials" element={<Financials />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/our-approach/*" element={<OurApproach />} />
+            <Route path="/product/*" element={<ProductSection />} />
+            <Route path="/financials/*" element={<FinancialsSection />} />
+            <Route path="/team/*" element={<TeamSection />} />
           </Routes>
         </main>
         <Footer />

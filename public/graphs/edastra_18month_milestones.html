@@ -1,0 +1,631 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'DM Mono', monospace;
+  --ice: #EAF4FB;
+  --sky: #C8E6F7;
+  --mid: #7BC4E8;
+  --deep: #2A7FB5;
+  --navy: #103A5A;
+  --white: #FAFCFF;
+  --rule: rgba(42,127,181,0.15);
+  --txt: #103A5A;
+  --muted: #5A8FAD;
+  --color-text-primary: #103A5A;
+  --color-text-secondary: #5A8FAD;
+  --color-text-tertiary: #7BC4E8;
+  --color-background-primary: #FAFCFF;
+  --color-background-secondary: #EAF4FB;
+  --color-border-secondary: #C8E6F7;
+  --color-border-tertiary: rgba(42,127,181,0.15);
+  --color-text-success: #1D8A50;
+  --color-text-danger: #D85A30;
+  --color-text-warning: #EF9F27;
+  --color-text-info: #2A7FB5;
+  --color-background-success: #E6F5F0;
+  --color-background-warning: #FFF3E0;
+  --color-background-info: #E8F0FA;
+  --color-border-info: #C8E6F7;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+}
+
+
+
+*{box-sizing:border-box;margin:0;padding:0;}
+.d{font-family:'Outfit',sans-serif;background: var(--white);color: var(--navy);}
+.nav{display:flex;background: var(--white);border-bottom:1px solid #C8E6F7;position:sticky;top:0;z-index:20;overflow-x:auto;}
+.nt{flex-shrink:0;padding:11px 18px;font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#2A3050;cursor:pointer;border-bottom:2px solid transparent;border-top:none;border-left:none;border-right:none;background:none;white-space:nowrap;transition:all .2s;}
+.nt.on{color:#2A7FB5;border-bottom-color:#2A7FB5;}
+.nt:hover:not(.on){color:#4A5580;}
+.sl{display:none;padding:2rem 1.75rem 3rem;animation:fi .25s ease;}
+.sl.on{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.ey{font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#2A7FB5;margin-bottom:.4rem;}
+.ti{font-size:32px;font-weight:700;line-height:1.1;color: var(--navy);margin-bottom:.35rem;}
+.sb{font-size:19px;color:#2A3050;margin-bottom:1.5rem;line-height:1.6;}
+.bar{width:44px;height:3px;background:#2A7FB5;margin-bottom:1.5rem;}
+
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.75rem;}
+.kpi{background: var(--white);border:1px solid #C8E6F7;border-radius: 12px;padding:.875rem 1rem;text-align:center;}
+.kpi.hi{border-color:#2A7FB5;background:rgba(42,127,181,0.05);}
+.kpi-n{font-size:30px;font-weight:700;line-height:1;margin-bottom:4px;}
+.kpi-l{font-size:17px;font-weight:500;margin-bottom:3px;}
+.kpi-s{font-size:16px;color:#2A3050;line-height:1.4;}
+
+.chart-w{position:relative;width:100%;margin-bottom:1.5rem;}
+.h280{height:280px;}.h240{height:240px;}.h200{height:200px;}.h160{height:160px;}
+
+.leg{display:flex;flex-wrap:wrap;gap:12px;font-size:17px;color:#2A3050;margin-bottom:8px;}
+.leg span{display:flex;align-items:center;gap:5px;}
+.ld{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+
+.ins{border-radius:8px;padding:.875rem 1rem;font-size:18px;line-height:1.65;margin-bottom:1rem;}
+.ins-b{background:rgba(42,127,181,0.07);border-left:2px solid #2A7FB5;color:rgba(16,58,90,0.85);}
+.ins-g{background:rgba(29,138,80,0.07);border-left:2px solid #1D8A50;color:rgba(16,58,90,0.85);}
+.ins-y{background:rgba(239,159,39,0.07);border-left:2px solid #EF9F27;color:rgba(16,58,90,0.85);}
+.ins-r{background:rgba(216,90,48,0.07);border-left:2px solid #D85A30;color:rgba(16,58,90,0.85);}
+
+.phase-strip{display:flex;gap:0;margin-bottom:1.75rem;border-radius: 12px;overflow:hidden;}
+.ph{flex:1;padding:.875rem 1rem;border-right:1px solid #FAFCFF;}
+.ph:last-child{border-right:none;}
+.ph-dot{width:9px;height:9px;border-radius:50%;margin-bottom:7px;}
+.ph-per{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.ph-title{font-size:18px;font-weight:600;color: var(--navy);margin-bottom:5px;}
+.ph-detail{font-size:16px;color:#2A3050;line-height:1.5;}
+.ph-metric{font-size:17px;font-weight:500;margin-top:6px;}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem;}
+
+.card{background: var(--white);border:1px solid #C8E6F7;border-radius: 12px;padding:.875rem 1rem;}
+.card-title{font-size:18px;font-weight:600;color: var(--navy);margin-bottom:.6rem;}
+.li-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.li-list li{font-size:17px;color:rgba(16,58,90,0.65);display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
+.li-list li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+
+.check-grid{display:flex;flex-direction:column;gap:6px;margin-bottom:1.5rem;}
+.chk{display:grid;grid-template-columns:28px 1fr auto auto;gap:10px;align-items:center;padding:9px 12px;background: var(--white);border-radius:8px;border:1px solid #C8E6F7;}
+.chk-n{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;flex-shrink:0;}
+.chk-label{font-size:18px;font-weight:500;color: var(--navy);}
+.chk-target{font-size:17px;font-weight:600;}
+.chk-conf{font-size:16px;padding:2px 7px;border-radius:99px;font-weight:500;}
+.conf-h{background:rgba(29,138,80,0.15);color:#1D8A50;}
+.conf-m{background:rgba(239,159,39,0.15);color:#EF9F27;}
+
+.burn-row{display:flex;flex-direction:column;gap:6px;margin-bottom:1.5rem;}
+.br{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:7px 10px;background: var(--white);border-radius:6px;}
+.br-mo{font-size:17px;font-weight:500;color:#2A7FB5;}
+.br-track{height:6px;border-radius:99px;overflow:hidden;background:#C8E6F7;}
+.br-fill{height:6px;border-radius:99px;background:#2A7FB5;}
+.br-val{font-size:17px;color:rgba(16,58,90,0.55);text-align:right;white-space:nowrap;min-width:80px;}
+
+.callout{border-radius: 12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem;}
+.callout-l{font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;}
+.callout-t{font-size:20px;line-height:1.7;font-weight:500;}
+</style>
+
+<div class="d">
+<nav class="nav">
+  <button class="nt on" onclick="sw('timeline',this)">Timeline</button>
+  <button class="nt"    onclick="sw('burn',this)">Burn model</button>
+  <button class="nt"    onclick="sw('growth',this)">User growth</button>
+  <button class="nt"    onclick="sw('revenue',this)">Revenue path</button>
+  <button class="nt"    onclick="sw('seriesa',this)">Series A triggers</button>
+  <button class="nt"    onclick="sw('capital',this)">Capital structure</button>
+</nav>
+
+<!-- ══ SLIDE 1: TIMELINE ══ -->
+<div class="sl on" id="sl-timeline">
+  <div class="ey">₹20 Cr deployment · 18 months</div>
+  <div class="ti">Every rupee maps to<br>a named proof point.</div>
+  <div class="sb">Starting from 16,231 beta users. Series A trigger moves to Month 16, not 18.</div>
+  <div class="bar"></div>
+
+  <div class="kpi-row">
+    <div class="kpi hi">
+      <div class="kpi-n" style="color:#2A7FB5">16,231</div>
+      <div class="kpi-l" style="color:#A5BAFF">Starting users</div>
+      <div class="kpi-s">Pre-funding · organic only</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#1D8A50">1 Mn</div>
+      <div class="kpi-l" style="color:#15755A">Month 15 target</div>
+      <div class="kpi-s">Series A unlock milestone</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#EF9F27">₹5 Cr</div>
+      <div class="kpi-l" style="color:#FDE68A">ARR target M15</div>
+      <div class="kpi-s">₹40–50L MRR at M15</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#D85A30">M16</div>
+      <div class="kpi-l" style="color:#FDBA74">Series A trigger</div>
+      <div class="kpi-s">2 months early vs zero-traction start</div>
+    </div>
+  </div>
+
+  <div class="phase-strip">
+    <div class="ph" style="background: var(--white);">
+      <div class="ph-dot" style="background:#1D8A50;box-shadow:0 0 6px #1D8A50;"></div>
+      <div class="ph-per" style="color:#1D8A50;">Pre-funding</div>
+      <div class="ph-title">Done</div>
+      <div class="ph-detail">Product live · VR UI · 1 school · 16k users · 3.3% engagement</div>
+      <div class="ph-metric" style="color:#1D8A50;">₹0 spent</div>
+    </div>
+    <div class="ph" style="background:rgba(42,127,181,0.06);">
+      <div class="ph-dot" style="background:#2A7FB5;"></div>
+      <div class="ph-per" style="color:#2A7FB5;">M1–M3</div>
+      <div class="ph-title">Build</div>
+      <div class="ph-detail">Team onboard · MVP v2 · 3 pilots · CAC ₹180 confirmed</div>
+      <div class="ph-metric" style="color:#2A7FB5;">20k users</div>
+    </div>
+    <div class="ph" style="background:rgba(239,159,39,0.04);">
+      <div class="ph-dot" style="background:#EF9F27;"></div>
+      <div class="ph-per" style="color:#EF9F27;">M4–M6</div>
+      <div class="ph-title">Pilot</div>
+      <div class="ph-detail">10 partnerships · 100k users · first revenue ₹10–25L MRR</div>
+      <div class="ph-metric" style="color:#EF9F27;">100k users</div>
+    </div>
+    <div class="ph" style="background:rgba(29,138,80,0.04);">
+      <div class="ph-dot" style="background:#1D8A50;"></div>
+      <div class="ph-per" style="color:#1D8A50;">M7–M9</div>
+      <div class="ph-title">Revenue</div>
+      <div class="ph-detail">Sub paywall · 8% conv · ₹1 Cr MRR · CAC payback confirmed</div>
+      <div class="ph-metric" style="color:#1D8A50;">300k users</div>
+    </div>
+    <div class="ph" style="background:rgba(83,74,183,0.04);">
+      <div class="ph-dot" style="background:#7BC4E8;"></div>
+      <div class="ph-per" style="color:#7BC4E8;">M10–M12</div>
+      <div class="ph-title">PMF signal</div>
+      <div class="ph-detail">750k users · ₹2 Cr MRR · exam data cycle 1 · Series A deck</div>
+      <div class="ph-metric" style="color:#7BC4E8;">750k users</div>
+    </div>
+    <div class="ph" style="background:rgba(216,90,48,0.04);">
+      <div class="ph-dot" style="background:#D85A30;"></div>
+      <div class="ph-per" style="color:#D85A30;">M13–M15</div>
+      <div class="ph-title">Scale</div>
+      <div class="ph-detail">1Mn · ₹5 Cr ARR · VR PoC demo · Series A in process</div>
+      <div class="ph-metric" style="color:#D85A30;">1Mn users</div>
+    </div>
+    <div class="ph" style="background:rgba(42,127,181,0.08);border:1px solid rgba(42,127,181,0.2);">
+      <div class="ph-dot" style="background:#2A7FB5;box-shadow:0 0 8px #2A7FB5;"></div>
+      <div class="ph-per" style="color:#2A7FB5;">M16–M18</div>
+      <div class="ph-title">Series A</div>
+      <div class="ph-detail">₹80–120 Cr raised · VR build starts · MEA scoping</div>
+      <div class="ph-metric" style="color:#2A7FB5;">₹80–120 Cr</div>
+    </div>
+  </div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#2A7FB5"></span>Users (k)</span>
+    <span><span class="ld" style="background:#1D8A50;border-radius:50%"></span>MRR (₹L)</span>
+    <span><span class="ld" style="background:#EF9F27;border-radius:50%"></span>Cash remaining (₹ Cr)</span>
+  </div>
+  <div class="chart-w h280"><canvas id="c-timeline"></canvas></div>
+</div>
+
+<!-- ══ SLIDE 2: BURN MODEL ══ -->
+<div class="sl" id="sl-burn">
+  <div class="ey">₹20 Cr over 18 months</div>
+  <div class="ti">Where every rupee goes,<br>month by month.</div>
+  <div class="sb">Monthly burn ramp by category. Peak at ₹95–100L/mo during scale phase. ₹3–4 Cr cash at Series A raise.</div>
+  <div class="bar"></div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-n" style="color:#2A7FB5">₹65L</div>
+      <div class="kpi-l" style="color:#A5BAFF">Starting burn</div>
+      <div class="kpi-s">M1–M2 · lean team phase</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#EF9F27">₹95L</div>
+      <div class="kpi-l" style="color:#FDE68A">Peak burn</div>
+      <div class="kpi-s">M13–M15 · scale phase</div>
+    </div>
+    <div class="kpi hi">
+      <div class="kpi-n" style="color:#1D8A50">₹3–4 Cr</div>
+      <div class="kpi-l" style="color:#15755A">Cash at M16</div>
+      <div class="kpi-s">Series A negotiating leverage</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#D85A30">24 mo</div>
+      <div class="kpi-l" style="color:#FDBA74">Effective runway</div>
+      <div class="kpi-s">At avg ₹78L/mo burn rate</div>
+    </div>
+  </div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#2A7FB5"></span>Team</span>
+    <span><span class="ld" style="background:#D85A30"></span>Content</span>
+    <span><span class="ld" style="background:#1D8A50"></span>Tech & cloud</span>
+    <span><span class="ld" style="background:#EF9F27"></span>Marketing</span>
+    <span><span class="ld" style="background:#7BC4E8"></span>Other</span>
+    <span><span class="ld" style="background:#E8C547;border-radius:50%"></span>Cash remaining (₹ Cr)</span>
+  </div>
+  <div class="chart-w h280"><canvas id="c-burn"></canvas></div>
+
+  <div class="ins ins-b">
+    <strong style="color:#2A7FB5">Bear case burn:</strong> If revenue misses targets, variable costs (content, marketing) flex down 35–40%. Fixed costs (core team, infra) hold. ₹20 Cr still covers 2026 + 2027 with buffer. No rescue round required — Series A is planned at M16 with a lower trigger of 750k users + ₹2 Cr ARR.
+  </div>
+</div>
+
+<!-- ══ SLIDE 3: USER GROWTH ══ -->
+<div class="sl" id="sl-growth">
+  <div class="ey">0.2Mn → 1Mn · 18 months</div>
+  <div class="ti">The user growth curve<br>is already started.</div>
+  <div class="sb">16,231 beta users pre-funding means the model starts warm, not cold. Every milestone arrives 2 months early.</div>
+  <div class="bar"></div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-n" style="color:#1D8A50">16,231</div>
+      <div class="kpi-l" style="color:#15755A">Day 0 users</div>
+      <div class="kpi-s">Beta · organic · zero paid</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#2A7FB5">100k</div>
+      <div class="kpi-l" style="color:#A5BAFF">Month 6 target</div>
+      <div class="kpi-s">First revenue milestone</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#EF9F27">500k</div>
+      <div class="kpi-l" style="color:#FDE68A">Month 11 target</div>
+      <div class="kpi-s">PMF signal confirmed</div>
+    </div>
+    <div class="kpi hi">
+      <div class="kpi-n" style="color:#D85A30">1 Mn</div>
+      <div class="kpi-l" style="color:#FDBA74">Month 15 target</div>
+      <div class="kpi-s">Series A unlock · headline metric</div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div>
+      <div class="leg">
+        <span><span class="ld" style="background:#2A7FB5"></span>Cumulative users (k)</span>
+        <span><span class="ld" style="background:#1D8A50;border-radius:50%"></span>Monthly new users (k)</span>
+      </div>
+      <div class="chart-w h240"><canvas id="c-users"></canvas></div>
+    </div>
+    <div>
+      <div class="leg">
+        <span><span class="ld" style="background:#EF9F27"></span>Sub conversion rate</span>
+        <span><span class="ld" style="background:#1D8A50;border-radius:50%"></span>Paying users (k)</span>
+      </div>
+      <div class="chart-w h240"><canvas id="c-subs"></canvas></div>
+    </div>
+  </div>
+
+  <div class="ins ins-g">
+    <strong style="color:#1D8A50">Why starting from 16k matters:</strong> A cold start at Month 1 needs to acquire all 1Mn users from zero. Starting from 16,231 means the first milestone (20k users) is days away, not weeks. The growth curve begins mid-slope, not flat — which is exactly what investors see in the data.
+  </div>
+</div>
+
+<!-- ══ SLIDE 4: REVENUE PATH ══ -->
+<div class="sl" id="sl-revenue">
+  <div class="ey">₹0 → ₹5 Cr ARR · 15 months</div>
+  <div class="ti">Three revenue streams.<br>One convergence point.</div>
+  <div class="sb">Ad revenue starts Month 4. Subscription paywall at Month 6. Licensing revenue via school contracts from Month 3.</div>
+  <div class="bar"></div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-n" style="color:#EF9F27">M4</div>
+      <div class="kpi-l" style="color:#FDE68A">First ad revenue</div>
+      <div class="kpi-s">₹10–15L / month initially</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#2A7FB5">M6</div>
+      <div class="kpi-l" style="color:#A5BAFF">Sub paywall live</div>
+      <div class="kpi-s">5% conversion target · ₹350/yr ARPU</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#1D8A50">₹1 Cr</div>
+      <div class="kpi-l" style="color:#15755A">Month 9 MRR</div>
+      <div class="kpi-s">First major revenue milestone</div>
+    </div>
+    <div class="kpi hi">
+      <div class="kpi-n" style="color:#D85A30">₹40–50L</div>
+      <div class="kpi-l" style="color:#FDBA74">Month 15 MRR</div>
+      <div class="kpi-s">= ₹5 Cr ARR · Series A trigger</div>
+    </div>
+  </div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#EF9F27"></span>Ad revenue (₹L/mo)</span>
+    <span><span class="ld" style="background:#2A7FB5"></span>Subscription revenue (₹L/mo)</span>
+    <span><span class="ld" style="background:#1D8A50"></span>Licensing revenue (₹L/mo)</span>
+    <span><span class="ld" style="background:#E8C547;border-radius:50%"></span>Total MRR (₹L/mo)</span>
+  </div>
+  <div class="chart-w h280"><canvas id="c-rev"></canvas></div>
+
+  <div class="ins ins-y">
+    <strong style="color:#EF9F27">The subscription conversion thesis:</strong> Sub conversion drives everything. At 8% conversion (base), MRR hits ₹1 Cr by Month 9. At 12% (bull), it hits ₹1 Cr by Month 7. Each percentage point of conversion = ~₹12 Cr additional ARR at 1Mn users. The exam outcome data loop — students who use Edastra for 6+ months score better on board exams — is the paywall justification.
+  </div>
+</div>
+
+<!-- ══ SLIDE 5: SERIES A TRIGGERS ══ -->
+<div class="sl" id="sl-seriesa">
+  <div class="ey">Month 16 · ₹80–120 Cr target</div>
+  <div class="ti">10 proof points.<br>All must be green.</div>
+  <div class="sb">Series A investors will verify every one of these. Build the evidence from Day 1.</div>
+  <div class="bar"></div>
+
+  <div class="check-grid">
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(42,127,181,0.15);color:#2A7FB5">1</div>
+      <div><div class="chk-label">1Mn active users</div><div style="font-size:16px;color:#2A3050">Proves product-market fit at scale</div></div>
+      <div class="chk-target" style="color:#1D8A50">1,000,000</div>
+      <div class="chk-conf conf-h">High confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(239,159,39,0.15);color:#EF9F27">2</div>
+      <div><div class="chk-label">Monthly recurring revenue</div><div style="font-size:16px;color:#2A3050">Demonstrates monetisation · ₹5 Cr ARR signal</div></div>
+      <div class="chk-target" style="color:#1D8A50">₹40–50L MRR</div>
+      <div class="chk-conf conf-h">High confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(29,138,80,0.15);color:#1D8A50">3</div>
+      <div><div class="chk-label">Subscription conversion rate</div><div style="font-size:16px;color:#2A3050">Each +1% = ~₹12 Cr additional ARR at scale</div></div>
+      <div class="chk-target" style="color:#EF9F27">12–15%</div>
+      <div class="chk-conf conf-m">Medium confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(216,90,48,0.15);color:#D85A30">4</div>
+      <div><div class="chk-label">CAC payback confirmed</div><div style="font-size:16px;color:#2A3050">Proves ₹180 CAC holds at 1Mn users, not just pilots</div></div>
+      <div class="chk-target" style="color:#1D8A50">&lt; 9 months</div>
+      <div class="chk-conf conf-h">High confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(83,74,183,0.15);color:#7BC4E8">5</div>
+      <div><div class="chk-label">School / CSR partnerships</div><div style="font-size:16px;color:#2A3050">Partnership moat validated · low-CAC model replicable</div></div>
+      <div class="chk-target" style="color:#1D8A50">15+ signed</div>
+      <div class="chk-conf conf-h">High confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(42,127,181,0.15);color:#2A7FB5">6</div>
+      <div><div class="chk-label">Exam outcome data</div><div style="font-size:16px;color:#2A3050">Differentiator — proof that learning works · justifies ARPU</div></div>
+      <div class="chk-target" style="color:#EF9F27">1 full cycle</div>
+      <div class="chk-conf conf-m">Medium confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(29,138,80,0.15);color:#1D8A50">7</div>
+      <div><div class="chk-label">VR proof of concept</div><div style="font-size:16px;color:#2A3050">De-risks 2028 full launch · Series A has a deployment plan</div></div>
+      <div class="chk-target" style="color:#EF9F27">Demo ready</div>
+      <div class="chk-conf conf-m">Medium confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(239,159,39,0.15);color:#EF9F27">8</div>
+      <div><div class="chk-label">Burn multiple</div><div style="font-size:16px;color:#2A3050">Capital efficiency benchmark · approaching best-in-class</div></div>
+      <div class="chk-target" style="color:#1D8A50">&lt; 1.5x</div>
+      <div class="chk-conf conf-h">High confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(216,90,48,0.15);color:#D85A30">9</div>
+      <div><div class="chk-label">Content library</div><div style="font-size:16px;color:#2A3050">300 videos = replication barrier for any competitor</div></div>
+      <div class="chk-target" style="color:#1D8A50">300+ videos</div>
+      <div class="chk-conf conf-h">High confidence</div>
+    </div>
+    <div class="chk">
+      <div class="chk-n" style="background:rgba(83,74,183,0.15);color:#7BC4E8">10</div>
+      <div><div class="chk-label">Cash runway at raise</div><div style="font-size:16px;color:#2A3050">Negotiating leverage · raising from strength not desperation</div></div>
+      <div class="chk-target" style="color:#1D8A50">&gt; ₹3 Cr</div>
+      <div class="chk-conf conf-h">High confidence</div>
+    </div>
+  </div>
+
+  <div class="callout" style="background:rgba(42,127,181,0.07);border:1px solid rgba(42,127,181,0.2);">
+    <div class="callout-l" style="color:#2A7FB5">Series A narrative sentence</div>
+    <div class="callout-t" style="color:rgba(16,58,90,0.9);font-size:19px;font-weight:400;">"By Month 16, Edastra will have 1Mn users, ₹5 Cr ARR, 15+ school partnerships, and a published exam outcome dataset. We raise ₹80–120 Cr to fund VR launch (2028), nationwide rollout (2029), and MEA entry (2030). Pre-seed capital de-risked the model — Series A scales what's proven."</div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 6: CAPITAL STRUCTURE ══ -->
+<div class="sl" id="sl-capital">
+  <div class="ey">₹20 Cr pre-seed · capital discipline</div>
+  <div class="ti">The math that proves<br>no rescue round is needed.</div>
+  <div class="sb">Even in the bear case, ₹20 Cr covers 2026 + 2027 with buffer. Series A is planned, not reactive.</div>
+  <div class="bar"></div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-n" style="color:#1D8A50">₹20 Cr</div>
+      <div class="kpi-l" style="color:#15755A">Pre-seed raise</div>
+      <div class="kpi-s">₹78L avg monthly burn</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#2A7FB5">₹8 Cr</div>
+      <div class="kpi-l" style="color:#A5BAFF">2026 deployment</div>
+      <div class="kpi-s">6 months post-funding (partial yr)</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-n" style="color:#EF9F27">₹8.4 Cr</div>
+      <div class="kpi-l" style="color:#FDE68A">2027 deployment</div>
+      <div class="kpi-s">Full year · team + content ramp</div>
+    </div>
+    <div class="kpi hi">
+      <div class="kpi-n" style="color:#D85A30">₹3.6 Cr</div>
+      <div class="kpi-l" style="color:#FDBA74">Buffer at M16</div>
+      <div class="kpi-s">Negotiating leverage for Series A</div>
+    </div>
+  </div>
+
+  <div class="leg">
+    <span><span class="ld" style="background:#D85A30"></span>Bear cash trajectory</span>
+    <span><span class="ld" style="background:#2A7FB5"></span>Base cash trajectory</span>
+    <span><span class="ld" style="background:#1D8A50"></span>Bull cash trajectory</span>
+  </div>
+  <div class="chart-w h240"><canvas id="c-cash"></canvas></div>
+
+  <div class="three">
+    <div class="card">
+      <div class="card-title" style="color:#D85A30">Bear case (sub conv 10–15%)</div>
+      <ul class="li-list">
+        <li style="--c:#D85A30">Variable costs flex down 35–40%</li>
+        <li style="--c:#D85A30">Series A trigger: 750k users + ₹2 Cr ARR</li>
+        <li style="--c:#D85A30">₹2–3 Cr cash at M16 raise</li>
+        <li style="--c:#D85A30">No rescue round needed</li>
+        <li style="--c:#D85A30">Bear 2031 = ₹880 Cr → ₹4–7k Cr valuation</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(42,127,181,0.3);background:rgba(42,127,181,0.04);">
+      <div class="card-title" style="color:#2A7FB5">Base case (sub conv 25–30%)</div>
+      <ul class="li-list">
+        <li>Series A trigger: 1Mn users + ₹5 Cr ARR</li>
+        <li>₹3–4 Cr cash at M16 raise</li>
+        <li>Series A at full valuation · clean cap table</li>
+        <li>₹80–120 Cr raised · VR build begins</li>
+        <li>Base 2031 = ₹2,445 Cr → ₹12–20k Cr</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#1D8A50">Bull case (sub conv 45–55%)</div>
+      <ul class="li-list">
+        <li style="--c:#1D8A50">Series A trigger hit at M14 · 2 months early</li>
+        <li style="--c:#1D8A50">₹5+ Cr cash at raise · strong leverage</li>
+        <li style="--c:#1D8A50">Series A at premium valuation</li>
+        <li style="--c:#1D8A50">VR + MEA both funded by Series A</li>
+        <li style="--c:#1D8A50">Bull 2031 = ₹3,465 Cr → ₹17–28k Cr</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ins ins-g">
+    <strong style="color:#1D8A50">The key message for every investor:</strong> "₹20 Cr covers the full pre-seed plan with ₹3–4 Cr buffer. We raise Series A at Month 16 from strength, not desperation. Even in the bear case, we hit the Series A trigger — it just happens at a lower valuation with a lower milestone. The ₹20 Cr is not a bridge — it is the proof of concept capital."
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function sw(id,btn){
+  document.querySelectorAll('.sl').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nt').forEach(b=>b.classList.remove('on'));
+  document.getElementById('sl-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+
+const mslabels=['Pre-fund','M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12','M13','M14','M15','M16','M17','M18'];
+const cum_users=[16,18,20,25,40,60,100,150,200,300,400,500,650,800,900,1000,1000,1000,1000];
+const monthly_new=[16,2,2,5,15,20,40,50,50,100,100,100,150,150,100,100,0,0,0];
+const mrr=[0,0,0,0,10,15,25,50,75,100,130,160,200,280,360,420,420,420,420];
+const cash_base=[20,18.7,17.4,16.2,15,13.8,12.6,11.3,10,8.6,7.2,5.8,4.3,2.9,1.7,0.5,null,null,null];
+
+const defs={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  scales:{x:{grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#2A3050',font:{size:10}}},
+          y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#2A3050',font:{size:10}}}}};
+
+new Chart(document.getElementById('c-timeline'),{
+  data:{labels:mslabels,datasets:[
+    {type:'bar',  label:'Users (k)', data:cum_users, backgroundColor:'rgba(42,127,181,0.6)',borderRadius:3,order:3,yAxisID:'y'},
+    {type:'line', label:'MRR (₹L)', data:mrr, borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:3,tension:0.4,borderWidth:2,order:2,yAxisID:'y2'},
+    {type:'line', label:'Cash (₹Cr)',data:cash_base,borderColor:'#EF9F27',backgroundColor:'transparent',pointBackgroundColor:'#EF9F27',pointRadius:3,tension:0.3,borderWidth:1.5,order:1,yAxisID:'y3',borderDash:[4,3]},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#2A3050',font:{size:10}}},
+      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#2A3050',font:{size:10},callback:v=>v+'k'},title:{display:true,text:'Users (k)',color:'#2A7FB5',font:{size:10}}},
+      y2:{position:'right',grid:{display:false},ticks:{color:'#1D8A50',font:{size:10},callback:v=>'₹'+v+'L'},title:{display:true,text:'MRR',color:'#1D8A50',font:{size:10}}},
+      y3:{position:'right',grid:{display:false},ticks:{color:'#EF9F27',font:{size:10},callback:v=>'₹'+v+'Cr'},display:false}
+    }
+  }
+});
+
+const months18=['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12','M13','M14','M15','M16','M17','M18'];
+const team_b=[18,18,18,22,22,22,26,26,26,26,26,26,30,30,30,30,30,30];
+const cont_b=[30,30,25,25,20,18,15,12,10,10,8,8,8,6,5,5,5,5];
+const tech_b=[20,20,20,15,12,10,8,8,8,8,8,8,8,8,8,8,8,8];
+const mkt_b= [2,3,4,5,6,7,8,9,10,10,10,10,10,9,8,8,7,7];
+const oth_b= [8,7,6,5,5,5,5,5,5,5,5,5,5,5,5,4,4,4];
+const tot_b = months18.map((_,i)=>team_b[i]+cont_b[i]+tech_b[i]+mkt_b[i]+oth_b[i]);
+let cash=2000;
+const cash_rem=tot_b.map(b=>{cash-=b;return Math.round(cash)/100;});
+
+new Chart(document.getElementById('c-burn'),{
+  data:{labels:months18,datasets:[
+    {type:'bar',label:'Team',   data:team_b,backgroundColor:'#2A7FB5',stack:'s',borderRadius:3,order:2},
+    {type:'bar',label:'Content',data:cont_b,backgroundColor:'#D85A30',stack:'s',borderRadius:3,order:2},
+    {type:'bar',label:'Tech',   data:tech_b,backgroundColor:'#1D8A50',stack:'s',borderRadius:3,order:2},
+    {type:'bar',label:'Mkt',    data:mkt_b, backgroundColor:'#EF9F27',stack:'s',borderRadius:3,order:2},
+    {type:'bar',label:'Other',  data:oth_b, backgroundColor:'#7BC4E8',stack:'s',borderRadius:3,order:2},
+    {type:'line',label:'Cash',  data:cash_rem,borderColor:'#E8C547',backgroundColor:'transparent',pointBackgroundColor:'#E8C547',pointRadius:3,tension:0.3,borderWidth:2,order:1,yAxisID:'y2'},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{
+      x:{stacked:true,grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#2A3050',font:{size:10}}},
+      y:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#2A3050',font:{size:10},callback:v=>'₹'+v+'L'}},
+      y2:{position:'right',grid:{display:false},ticks:{color:'#E8C547',font:{size:10},callback:v=>'₹'+v+'Cr'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('c-users'),{
+  data:{labels:months18,datasets:[
+    {type:'bar',label:'Cum users',data:cum_users.slice(1),backgroundColor:'rgba(42,127,181,0.5)',borderRadius:3,order:2,yAxisID:'y'},
+    {type:'line',label:'New/mo',data:monthly_new.slice(1),borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:3,tension:0.4,borderWidth:2,order:1,yAxisID:'y2'},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#2A3050',font:{size:10}}},
+      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#2A3050',font:{size:10},callback:v=>v+'k'},title:{display:true,text:'Cumulative (k)',color:'#2A7FB5',font:{size:9}}},
+      y2:{position:'right',grid:{display:false},ticks:{color:'#1D8A50',font:{size:10},callback:v=>v+'k'},title:{display:true,text:'New/mo (k)',color:'#1D8A50',font:{size:9}}}
+    }
+  }
+});
+
+const sub_conv=[0,0,0,0,2,3,5,6,7,8,9,10,11,12,13,14,14,14];
+const paying=cum_users.slice(1).map((u,i)=>Math.round(u*sub_conv[i]/100));
+new Chart(document.getElementById('c-subs'),{
+  data:{labels:months18,datasets:[
+    {type:'bar',label:'Sub conv%',data:sub_conv,backgroundColor:'rgba(239,159,39,0.5)',borderRadius:3,order:2,yAxisID:'y'},
+    {type:'line',label:'Paying (k)',data:paying,borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:3,tension:0.4,borderWidth:2,order:1,yAxisID:'y2'},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#2A3050',font:{size:10}}},
+      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#2A3050',font:{size:10},callback:v=>v+'%'},max:18},
+      y2:{position:'right',grid:{display:false},ticks:{color:'#1D8A50',font:{size:10},callback:v=>v+'k paying'}}
+    }
+  }
+});
+
+const ad_rev=months18.map((_,i)=>i<3?0:Math.round(8+i*2.5));
+const sub_rev2=months18.map((_,i)=>i<5?0:Math.round(paying[i]*350/12));
+const lic_rev=months18.map((_,i)=>i<2?0:Math.round(i*0.8));
+const tot_rev=months18.map((_,i)=>ad_rev[i]+sub_rev2[i]+lic_rev[i]);
+new Chart(document.getElementById('c-rev'),{
+  data:{labels:months18,datasets:[
+    {type:'bar',label:'Ads',data:ad_rev,backgroundColor:'#EF9F27',stack:'r',borderRadius:3,order:2},
+    {type:'bar',label:'Sub',data:sub_rev2,backgroundColor:'#2A7FB5',stack:'r',borderRadius:3,order:2},
+    {type:'bar',label:'Lic',data:lic_rev,backgroundColor:'#1D8A50',stack:'r',borderRadius:3,order:2},
+    {type:'line',label:'Total MRR',data:tot_rev,borderColor:'#E8C547',backgroundColor:'transparent',pointBackgroundColor:'#E8C547',pointRadius:3,tension:0.4,borderWidth:2,order:1,yAxisID:'y2'},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{
+      x:{stacked:true,grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#2A3050',font:{size:10}}},
+      y:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#2A3050',font:{size:10},callback:v=>'₹'+v+'L'}},
+      y2:{position:'right',grid:{display:false},ticks:{color:'#E8C547',font:{size:10},callback:v=>'₹'+v+'L total'}}
+    }
+  }
+});
+
+const bear_cash= months18.map((_,i)=>Math.max(0,Math.round((2000-tot_b.slice(0,i+1).reduce((a,b)=>a+b,0)*1.15)/100*10)/10));
+const bull_cash= months18.map((_,i)=>Math.max(0,Math.round((2000-tot_b.slice(0,i+1).reduce((a,b)=>a+b,0)*0.85)/100*10)/10));
+new Chart(document.getElementById('c-cash'),{
+  data:{labels:months18,datasets:[
+    {type:'line',label:'Bear',data:bear_cash,borderColor:'#D85A30',backgroundColor:'transparent',pointBackgroundColor:'#D85A30',pointRadius:3,tension:0.3,borderWidth:1.5,borderDash:[5,3]},
+    {type:'line',label:'Base',data:cash_rem, borderColor:'#2A7FB5',backgroundColor:'transparent',pointBackgroundColor:'#2A7FB5',pointRadius:4,tension:0.3,borderWidth:2.5},
+    {type:'line',label:'Bull',data:bull_cash,borderColor:'#1D8A50',backgroundColor:'transparent',pointBackgroundColor:'#1D8A50',pointRadius:3,tension:0.3,borderWidth:1.5},
+  ]},
+  options:{...defs,scales:{
+    x:{grid:{color:'rgba(255,255,255,0.03)'},ticks:{color:'#2A3050',font:{size:10}}},
+    y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#2A3050',font:{size:10},callback:v=>'₹'+v+'Cr'},min:0,max:22}
+  }}
+});
+</script>

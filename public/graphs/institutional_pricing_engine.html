@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Institutional Pricing Engine</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'DM Mono', monospace;
+  --ice: #EAF4FB;
+  --sky: #C8E6F7;
+  --mid: #7BC4E8;
+  --deep: #2A7FB5;
+  --navy: #103A5A;
+  --white: #FAFCFF;
+  --rule: rgba(42,127,181,0.15);
+  --txt: #103A5A;
+  --muted: #5A8FAD;
+  --color-text-primary: #103A5A;
+  --color-text-secondary: #5A8FAD;
+  --color-text-tertiary: #7BC4E8;
+  --color-background-primary: #FAFCFF;
+  --color-background-secondary: #EAF4FB;
+  --color-border-secondary: #C8E6F7;
+  --color-border-tertiary: rgba(42,127,181,0.15);
+  --color-text-success: #1D8A50;
+  --color-text-danger: #D85A30;
+  --color-text-warning: #EF9F27;
+  --color-text-info: #2A7FB5;
+  --color-background-success: #E6F5F0;
+  --color-background-warning: #FFF3E0;
+  --color-background-info: #E8F0FA;
+  --color-border-info: #C8E6F7;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+}
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-sans);
+    background: #ffffff;
+    margin: 0;
+    padding: 1.5rem;
+  }
+
+  .page {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  /* ── LEFT CARD ── */
+  .left-card {
+    background: var(--white);
+    border-radius: var(--border-radius-md);
+    padding: 24px;
+    flex: 1;
+    border: 1px solid var(--color-border-secondary);
+  }
+
+  .bulk-label {
+    font-size:15px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #5A8FAD;
+    margin-bottom: 6px;
+  }
+
+  .left-card h2 {
+    font-size:26px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #111;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size:17px;
+    color: #666;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1.5px solid #C8E6F7;
+    margin-bottom: 16px;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size:17px;
+  }
+
+  thead th {
+    font-size:15px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #7BC4E8;
+    padding: 0 8px 8px 0;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-top: 1px solid #EAF4FB;
+  }
+
+  tbody tr:last-child {
+    background: #f5f5f5;
+    font-weight: 600;
+  }
+
+  tbody td {
+    padding: 9px 8px 9px 0;
+    vertical-align: middle;
+    color: #222;
+    line-height: 1.3;
+  }
+
+  tbody td:first-child { font-weight: 500; }
+  tbody td:last-child { color: #5A8FAD; font-size:16.5px; }
+
+  .badge {
+    display: inline-block;
+    height: 6px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  .badge-sm { width: 22px; }
+  .badge-md { width: 34px; }
+  .badge-lg { width: 46px; }
+
+  .blue-dark  { background: #2563eb; }
+  .blue-light { background: #93c5fd; }
+  .amber      { background: #f59e0b; }
+  .amber-light{ background: #EF9F27; }
+  .blue-full  { background: #1d4ed8; }
+
+  .custom-deal {
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size:16px;
+    white-space: nowrap;
+  }
+
+  .school-wide td { font-size:16.5px; }
+  .flat-note { font-size:15.5px; color: #7BC4E8; line-height: 1.4; }
+
+  /* Chart */
+  .chart-section { margin-top: 18px; }
+
+  .chart-legend {
+    display: flex;
+    gap: 14px;
+    font-size:15.5px;
+    color: #5A8FAD;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+
+  .legend-dot {
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .dot-blue  { background: #4472c4; }
+  .dot-green { background: #70ad47; }
+  .dot-red   { background: #c00000; }
+
+  .chart-outer {
+    display: flex;
+    gap: 0;
+    align-items: flex-end;
+  }
+
+  /* Y-axis labels column */
+  .y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px;   /* chart plot height */
+    margin-right: 4px;
+    padding-bottom: 0;
+  }
+
+  .y-label {
+    font-size:14.5px;
+    color: #7BC4E8;
+    font-family: 'DM Mono', monospace;
+    text-align: right;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* Plot area: bars + x-labels */
+  .plot-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bars-area {
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    border-left: 1.5px solid #aaa;
+    border-bottom: 1.5px solid #aaa;
+    position: relative;
+    padding: 0 6px;
+    gap: 8px;
+  }
+
+  /* Horizontal grid lines — positioned by % of chart height */
+  .gl {
+    position: absolute;
+    left: 0; right: 0;
+    border-top: 1px solid #C8E6F7;
+    pointer-events: none;
+  }
+
+  .bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 0;
+  }
+
+  .bar-group-inner {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .bar {
+    border-radius: 1px 1px 0 0;
+    flex: 1;
+    min-width: 8px;
+  }
+
+  .bar-blue  { background: #4472c4; }
+  .bar-green { background: #70ad47; }
+  .bar-red   { background: #c00000; }
+
+  .x-labels-row {
+    display: flex;
+    gap: 8px;
+    padding: 0 6px;
+    margin-top: 4px;
+  }
+
+  .x-label {
+    font-size:15px;
+    color: #666;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    flex: 1;
+    white-space: nowrap;
+  }
+
+  /* ── RIGHT CARD ── */
+  .right-card {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 24px;
+    flex: 1;
+    border: 1px solid var(--color-border-secondary);
+  }
+
+  .right-card-title {
+    font-size:19px;
+    font-weight: 600;
+    color: #1a237e;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .right-card-title::before {
+    content: '☐';
+    font-size:20px;
+    font-weight: 400;
+    color: #3949ab;
+  }
+
+  .section-title {
+    font-size:17px;
+    font-weight: 700;
+    color: #1a237e;
+    margin: 12px 0 5px;
+  }
+
+  .section-item {
+    font-size:16.5px;
+    color: #2c3e70;
+    line-height: 1.55;
+    margin-bottom: 2px;
+  }
+
+  .arrow { color: #3949ab; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- LEFT CARD -->
+  <div class="left-card">
+    <div class="bulk-label">Bulk Pricing Schedule</div>
+    <h2>More students. Lower per-seat cost.<br>Higher school stickiness.</h2>
+    <p class="subtitle">Progressive discount structure. Locks schools in for the academic year. Renewal rate target: 85%+.</p>
+    <hr class="divider">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Batch Size</th>
+          <th>Discount</th>
+          <th>Tier 1/mo</th>
+          <th>Tier 2/mo</th>
+          <th>Annual/Student</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>25–49 students</td>
+          <td><span class="badge badge-sm blue-dark"></span></td>
+          <td>₹125/mo</td>
+          <td>₹65/mo</td>
+          <td>~15% off retail</td>
+        </tr>
+        <tr>
+          <td>50–99 students</td>
+          <td><span class="badge badge-md blue-light"></span></td>
+          <td>₹104/mo</td>
+          <td>₹61/mo</td>
+          <td>~20% off retail</td>
+        </tr>
+        <tr>
+          <td>100–249 students</td>
+          <td><span class="badge badge-md amber"></span></td>
+          <td>₹104/mo</td>
+          <td>₹68/mo</td>
+          <td>~25% off retail</td>
+        </tr>
+        <tr>
+          <td>200–499 students</td>
+          <td><span class="badge badge-lg amber-light"></span></td>
+          <td>₹97/mo</td>
+          <td>₹52/mo</td>
+          <td>~25% off retail</td>
+        </tr>
+        <tr>
+          <td><strong>300+ students</strong></td>
+          <td><span class="badge badge-lg blue-full"></span></td>
+          <td><strong>₹88/mo</strong></td>
+          <td><strong>₹47/mo</strong></td>
+          <td><span class="custom-deal">~30% · custom deal</span></td>
+        </tr>
+        <tr class="school-wide">
+          <td><strong>School-wide license</strong></td>
+          <td class="flat-note">Flat annual fee –<br>unlimited students</td>
+          <td><strong>₹1.8–6L/yr</strong></td>
+          <td>based on size</td>
+          <td>Best for large schools</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Chart -->
+    <!--
+      Y-axis max = 180. Chart height = 180px → 1px per ₹1.
+      Y labels: ₹0, ₹20, ₹40, ₹60, ₹80, ₹100, ₹160, ₹180
+      Grid lines at each label level.
+
+      Data (from table):
+        Tier 1: 125, 104, 104, 97, 88
+        Tier 2:  65,  61,  68, 52, 47
+        Infra floor (estimated ~15): 15, 15, 15, 15, 15
+      Bar height = value × (180/180) = value px
+    -->
+    <div class="chart-section">
+      <div class="chart-legend">
+        <div class="legend-item"><span class="legend-dot dot-blue"></span>Tier 1 per student revenue</div>
+        <div class="legend-item"><span class="legend-dot dot-green"></span>Tier 2 per student revenue</div>
+        <div class="legend-item"><span class="legend-dot dot-red"></span>Infra cost floor</div>
+      </div>
+
+      <div class="chart-outer">
+        <!-- Y-axis: labels top→bottom = ₹180 → ₹0 -->
+        <div class="y-axis">
+          <div class="y-label">₹180/mo</div>
+          <div class="y-label">₹160/mo</div>
+          <div class="y-label" style="visibility:hidden">₹120/mo</div>
+          <div class="y-label">₹100/mo</div>
+          <div class="y-label">₹80/mo</div>
+          <div class="y-label">₹60/mo</div>
+          <div class="y-label">₹40/mo</div>
+          <div class="y-label">₹20/mo</div>
+          <div class="y-label">₹0/mo</div>
+        </div>
+
+        <div class="plot-wrap">
+          <div class="bars-area">
+            <!-- Grid lines: bottom = value/180 * 100% -->
+            <div class="gl" style="bottom:calc(20/180*100%)"></div>  <!-- ₹20 -->
+            <div class="gl" style="bottom:calc(40/180*100%)"></div>  <!-- ₹40 -->
+            <div class="gl" style="bottom:calc(60/180*100%)"></div>  <!-- ₹60 -->
+            <div class="gl" style="bottom:calc(80/180*100%)"></div>  <!-- ₹80 -->
+            <div class="gl" style="bottom:calc(100/180*100%)"></div> <!-- ₹100 -->
+            <div class="gl" style="bottom:calc(160/180*100%)"></div> <!-- ₹160 -->
+            <div class="gl" style="bottom:calc(180/180*100%)"></div> <!-- ₹180 -->
+
+            <!-- 25-49: T1=125, T2=65, Infra≈15 -->
+            <div class="bar-group">
+              <div class="bar-group-inner">
+                <div class="bar bar-blue"  style="height:calc(125/180*180px)"></div>
+                <div class="bar bar-green" style="height:calc(65/180*180px)"></div>
+                <div class="bar bar-red"   style="height:calc(15/180*180px)"></div>
+              </div>
+            </div>
+
+            <!-- 50-89: T1=104, T2=61, Infra≈15 -->
+            <div class="bar-group">
+              <div class="bar-group-inner">
+                <div class="bar bar-blue"  style="height:calc(104/180*180px)"></div>
+                <div class="bar bar-green" style="height:calc(61/180*180px)"></div>
+                <div class="bar bar-red"   style="height:calc(15/180*180px)"></div>
+              </div>
+            </div>
+
+            <!-- 100-249: T1=104, T2=68, Infra≈15 -->
+            <div class="bar-group">
+              <div class="bar-group-inner">
+                <div class="bar bar-blue"  style="height:calc(104/180*180px)"></div>
+                <div class="bar bar-green" style="height:calc(68/180*180px)"></div>
+                <div class="bar bar-red"   style="height:calc(15/180*180px)"></div>
+              </div>
+            </div>
+
+            <!-- 200-499: T1=97, T2=52, Infra≈15 -->
+            <div class="bar-group">
+              <div class="bar-group-inner">
+                <div class="bar bar-blue"  style="height:calc(97/180*180px)"></div>
+                <div class="bar bar-green" style="height:calc(52/180*180px)"></div>
+                <div class="bar bar-red"   style="height:calc(15/180*180px)"></div>
+              </div>
+            </div>
+
+            <!-- 500+: T1=88, T2=47, Infra≈15 -->
+            <div class="bar-group">
+              <div class="bar-group-inner">
+                <div class="bar bar-blue"  style="height:calc(88/180*180px)"></div>
+                <div class="bar bar-green" style="height:calc(47/180*180px)"></div>
+                <div class="bar bar-red"   style="height:calc(15/180*180px)"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- X-axis labels -->
+          <div class="x-labels-row">
+            <div class="x-label">25–49</div>
+            <div class="x-label">50–89</div>
+            <div class="x-label">100–249</div>
+            <div class="x-label">200–499</div>
+            <div class="x-label">500+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT CARD -->
+  <div class="right-card">
+    <div class="right-card-title">Institutional Pricing Engine</div>
+
+    <div class="section-title">Margin Engine:</div>
+    <div class="section-item">Protects profitability via pricing discipline</div>
+    <div class="section-item">Volume Engine: Drives adoption through pricing incentives</div>
+
+    <div class="section-title">Dual-Engine Model</div>
+    <div class="section-item">Ideal for scaling institutional revenue</div>
+    <div class="section-item">Higher ARPU with lower servicing complexity</div>
+    <div class="section-item">Large schools move toward flat-fee licensing (₹1.8–6L/yr)</div>
+
+    <div class="section-title">Enterprise Upsell Path</div>
+    <div class="section-item">Long-term contracts improve lifetime value (LTV)</div>
+    <div class="section-item">Institutional dependency increases switching costs</div>
+    <div class="section-item">Targeting 85%+ renewal rates</div>
+
+    <div class="section-title">High Retention Engine</div>
+    <div class="section-item">Improves revenue predictability</div>
+    <div class="section-item">School-wide licenses shift model from transactional <span class="arrow">→</span> recurring</div>
+    <div class="section-item">Annual academic lock-ins reduce churn windows</div>
+
+    <div class="section-title">Recurring Revenue Model</div>
+    <div class="section-item">Ensures sustainable scaling vs growth-at-all-costs</div>
+    <div class="section-item">Pricing is engineered—not reactive</div>
+    <div class="section-item">Every additional user remains profitable</div>
+
+    <div class="section-title">Strong Unit Economics</div>
+    <div class="section-item">Prevents volume-led margin erosion (common EdTech pitfall)</div>
+    <div class="section-item">Maintains ~55–68% contribution margins even at scale</div>
+    <div class="section-item">Strict floor pricing thresholds enforced</div>
+  </div>
+
+</div>
+</body>
+</html>

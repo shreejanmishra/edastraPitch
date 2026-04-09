@@ -1,34 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const [displayText, setDisplayText] = useState("");
+  const fullText = "Transforming the future, one innovation at a time";
+
+  useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      setDisplayText(fullText.slice(0, index + 1));
+      index++;
+      if (index === fullText.length) {
+        clearInterval(timer);
+      }
+    }, 40); // 40ms per character for a fast futuristic feel
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-dark-lighter to-black text-white pt-20">
-      <div className="section-container text-center max-w-4xl">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary">
+    <div className="flex-1 flex flex-col md:flex-row min-h-[calc(100vh-89px)] max-h-[calc(100vh-89px)] pt-[65px] overflow-hidden">
+      {/* Left panel: text content styled like subnav */}
+      <div className="w-full md:w-auto flex-1 bg-[#EAF4FB] border-b md:border-b-0 md:border-r border-primary/20 flex flex-col items-center justify-center p-6 md:p-8 text-center shrink-0 min-h-0 overflow-y-auto">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
           Welcome to Our Vision
         </h1>
-        <p className="text-xl md:text-2xl mb-8 text-gray-300">
-          Transforming the future, one innovation at a time
-        </p>
+        <div className="min-h-[4rem] md:min-h-[2rem] flex items-center justify-center mb-8">
+          <p className="text-xl md:text-2xl text-gray-700 font-mono tracking-wide">
+            {displayText}
+            <span className="animate-pulse text-primary font-bold drop-shadow-[0_0_8px_#103A5A]">
+              |
+            </span>
+          </p>
+        </div>
         <Link
-          to="/problem"
-          className="inline-block bg-primary text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-light hover:shadow-xl hover:shadow-primary/20 transform hover:-translate-y-1 transition-all"
+          to="/our-approach"
+          className="inline-block bg-primary text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-primary-light hover:shadow-xl hover:shadow-primary/20 transform hover:-translate-y-1 transition-all"
         >
           Learn More
         </Link>
-        
-        {/* Display the actual slide image */}
-        <div className="mt-12">
-          <img
-            src="/images/page_1_img_1.png"
-            alt="Cover Slide"
-            className="max-w-full mx-auto rounded-lg shadow-2xl shadow-primary/10 border border-primary/20"
-          />
-        </div>
       </div>
-    </div>
-  )
-}
 
-export default Hero
+      {/* Right panel: the image filling the "body" edge-to-edge tightly */}
+    </div>
+  );
+};
+
+export default Hero;

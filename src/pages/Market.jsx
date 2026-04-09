@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
 
 const Market = () => {
   const marketData = [
@@ -21,8 +21,8 @@ const Market = () => {
   ]
 
   return (
-    <div className="min-h-screen pt-20 pb-16 bg-black">
-      <div className="section-container">
+    <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
+      <div className="section-container flex-grow">
        
         {/* Display the actual slide images */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -31,7 +31,7 @@ const Market = () => {
             <img
               src="/images/page_4_img_1.png"
               alt="Market Opportunity"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
           <div>
@@ -39,7 +39,7 @@ const Market = () => {
             <img
               src="/images/page_15_img_1.png"
               alt="Competition"
-              className="w-full rounded-lg shadow-xl shadow-primary/10 border border-primary/20"
+              className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
           </div>
         </div>
@@ -58,22 +58,9 @@ const Market = () => {
             </div>
           ))}
         </div>
-
-        <div className="flex justify-between mt-12">
-          <Link
-            to="/solution"
-            className="px-6 py-3 bg-dark-lighter border border-primary/20 text-white rounded-lg hover:bg-dark-light hover:border-primary/40 transition-all"
-          >
-            ← Previous
-          </Link>
-          <Link
-            to="/product"
-            className="px-6 py-3 bg-primary text-black rounded-lg hover:bg-primary-light transition-all font-semibold"
-          >
-            Next →
-          </Link>
-        </div>
       </div>
+
+      
     </div>
   )
 }
