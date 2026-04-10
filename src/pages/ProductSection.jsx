@@ -9,7 +9,7 @@ import VRExperience from "./VRExperience";
 const ProductSection = () => {
   const subNavItems = [
     { id: "betaapp", label: "Prototype App" },
-    { id: "preschool", label: "Preschool" },
+    { id: "preschool", label: "Content Design" },
     { id: "10th-board", label: "School" },
     { id: "scholarships", label: "Scholarships" },
     { id: "vr", label: "VR Experience" },
