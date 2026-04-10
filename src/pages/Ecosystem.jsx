@@ -28,13 +28,21 @@ const Ecosystem = () => {
     <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
       <div className="section-container flex-grow w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          {/* Left: Image */}
-          <div className="flex items-center justify-center">
-            <img
-              src="/images/page_4_img_1.png"
-              alt="Edastra Ecosystem"
-              className="w-full rounded-lg border border-primary/20 shadow-xl"
-            />
+          {/* Left: Video */}
+          <div className="sticky top-24">
+            <div
+              className="relative w-full overflow-hidden rounded-lg border border-[#C8E6F7] shadow-xl"
+              style={{ paddingTop: "177.78%" }}
+            >
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/wFHR2_ag1uk"
+                title="Edastra Ecosystem"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
 
           {/* Right: Feature Cards */}

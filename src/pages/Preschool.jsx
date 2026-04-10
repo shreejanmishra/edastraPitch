@@ -5,7 +5,7 @@ const Preschool = () => {
     <div className="min-h-[100vh] py-24 bg-[#FAFCFF] flex flex-col border-b border-[#C8E6F7]">
       <div className="section-container flex-grow w-full">
         <h2 className="text-3xl font-bold mb-8 text-[#103A5A]">
-          Preschool Product Design
+          Content Design
         </h2>
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column: Visuals (Sticky) */}
@@ -24,12 +24,18 @@ const Preschool = () => {
               ></iframe>
             </div>
 
-            <div className="mt-6">
-              <img
-                src="/images/page_5_img_1.png"
-                alt="Preschooler's Corner - Content Snippet"
-                className="w-full rounded-lg border border-[#C8E6F7] shadow-xl hover:shadow-2xl transition-shadow duration-300"
-              />
+            <div
+              className="relative w-full overflow-hidden rounded-lg border border-[#C8E6F7] shadow-xl"
+              style={{ paddingTop: "56.25%" }}
+            >
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/fnvynAIQe9k"
+                title="Preschool Content Example"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
 

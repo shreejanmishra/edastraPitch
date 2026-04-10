@@ -1,181 +1,102 @@
-# Pitch Deck Website - React + Vite + Tailwind CSS
+# Edastra Pitch Deck Website
 
-A modern, multi-page website built from your 19-page pitch deck PDF using React Router.
+A modern, interactive pitch deck website for Edastra - an edutainment platform designed to democratize high-quality education and family-safe entertainment.
 
-## ✅ What's Done
+## Overview
 
-- ✅ Extracted all 19 pages from PDF to `public/images/`
-- ✅ Created 10 separate page routes with React Router
-- ✅ Each page displays the corresponding PDF slide image(s)
-- ✅ Added navigation between pages (Previous/Next buttons)
-- ✅ Responsive design with Tailwind CSS
-- ✅ Fixed navbar with active page highlighting
+This is a React-based single-page application built with Vite, featuring multiple sections showcasing Edastra's vision, products, and business model.
 
-## 🗺️ Website Structure
+## Tech Stack
 
-Each component is now a separate page with its own route:
+- **React** 18.2.0 - UI library
+- **React Router DOM** 6.21.0 - Client-side routing
+- **Vite** 5.0.8 - Build tool and dev server
+- **Tailwind CSS** 3.4.0 - Utility-first CSS framework
+- **PostCSS** & **Autoprefixer** - CSS processing
 
-| Route | Page | PDF Pages | Description |
-|-------|------|-----------|-------------|
-| `/` | Hero | 1 | Landing page / Cover slide |
-| `/problem` | Problem | 2 | Problem statement |
-| `/solution` | Solution | 3, 16 | Solution & tech stack |
-| `/market` | Market | 4, 15 | Market size & competition |
-| `/product` | Product | 5-6 | Product features |
-| `/business-model` | BusinessModel | 7-8 | Revenue & pricing |
-| `/traction` | Traction | 9-10, 17 | Metrics & roadmap |
-| `/team` | Team | 11-12 | Team & advisors |
-| `/financials` | Financials | 13-14 | Financial projections |
-| `/contact` | Contact | 18-19 | The ask & contact info |
+## Getting Started
 
-## 🚀 Quick Start
+### Prerequisites
 
-### 1. Install Dependencies
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd edastraPitch
+```
+
+2. Install dependencies
 ```bash
 npm install
 ```
 
-### 2. Start Development Server
+3. Start the development server
 ```bash
 npm run dev
 ```
-Opens at http://localhost:5173
 
-### 3. Navigate the Website
-- Click navigation links in the header
-- Use Previous/Next buttons at the bottom of each page
-- Each page shows the actual PDF slide images
+4. Open your browser and navigate to `http://localhost:5173`
 
-## 📝 Customizing Content
+## Available Scripts
 
-### Update Text Content
-Edit the page files in `src/pages/`:
-- `Hero.jsx` - Landing page
-- `Problem.jsx` - Problem statement
-- `Solution.jsx` - Solution overview
-- `Market.jsx` - Market opportunity
-- `Product.jsx` - Product features
-- `BusinessModel.jsx` - Business model
-- `Traction.jsx` - Traction metrics
-- `Team.jsx` - Team members
-- `Financials.jsx` - Financial projections
-- `Contact.jsx` - Contact information
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run show-mapping` - Show component mapping
 
-### Update Company Name
-Edit these files:
-- `src/components/Navbar.jsx` - Line 28
-- `src/components/Footer.jsx`
-- `index.html` - Page title
-
-### Customize Colors
-Edit `tailwind.config.js`:
-```javascript
-colors: {
-  primary: {
-    DEFAULT: '#2563eb',  // Your brand color
-    dark: '#1e40af',
-  },
-}
-```
-
-## 📁 Project Structure
+## Project Structure
 
 ```
+edastraPitch/
 ├── public/
-│   └── images/              # 19 extracted PDF pages
-│       ├── page_1_img_1.png
-│       ├── page_2_img_1.png
-│       └── ...
+│   ├── images/          # Static images and icons
+│   └── graphs/          # Interactive HTML graphs
 ├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx       # Fixed navigation bar
-│   │   └── Footer.jsx       # Footer component
-│   ├── pages/               # 10 page components (routes)
-│   │   ├── Hero.jsx
-│   │   ├── Problem.jsx
-│   │   ├── Solution.jsx
-│   │   ├── Market.jsx
-│   │   ├── Product.jsx
-│   │   ├── BusinessModel.jsx
-│   │   ├── Traction.jsx
-│   │   ├── Team.jsx
-│   │   ├── Financials.jsx
-│   │   └── Contact.jsx
-│   ├── App.jsx              # Router configuration
-│   ├── main.jsx
-│   └── index.css
-├── index.html
+│   ├── components/      # Reusable React components
+│   ├── pages/           # Page components
+│   ├── App.jsx          # Main app component
+│   ├── index.css        # Global styles
+│   └── main.jsx         # Entry point
 ├── package.json
 ├── vite.config.js
-├── tailwind.config.js
-└── postcss.config.js
+└── tailwind.config.js
 ```
 
-## 🎨 Features
+## Key Features
 
-- Multi-page navigation with React Router
-- Responsive design (mobile, tablet, desktop)
-- Fixed navigation bar with active page highlighting
-- Previous/Next navigation on each page
-- PDF slide images displayed on each page
-- Modern, professional styling
-- Fast development with Vite HMR
+- Interactive navigation with smooth scrolling
+- Responsive design for all screen sizes
+- Dynamic content sections with cards and icons
+- Embedded interactive graphs and visualizations
+- Auto-resizing iframes for graph content
+- Sticky navigation and visual elements
 
-## 🔧 Development
+## Sections
 
-### View Page Mapping
-```bash
-npm run show-mapping
-```
-Shows which PDF page corresponds to which route.
+- **Home** - Landing page with hero section
+- **Our Approach** - Problem, Solution, Ecosystem, Beta App, Traction
+- **Product** - Prototype App, Preschool, 10th Board, Scholarships
+- **VR Experience** - Virtual reality learning modules
+- **Content Economics** - Business model and unit economics
+- **Tech Architecture** - Technical infrastructure
+- **Market** - Market analysis and opportunity
+- **Financial Outlook** - Revenue projections and growth
+- **Road Ahead** - Future plans and milestones
+- **Team** - Founders and team members
+- **Contact** - Get in touch
 
-### Build for Production
-```bash
-npm run build
-```
-Creates optimized build in `dist/` folder.
+## Building for Production
 
-### Preview Production Build
-```bash
-npm run preview
-```
-
-## 🚀 Deployment
-
-### Netlify
-1. `npm run build`
-2. Drag `dist/` folder to netlify.com/drop
-
-### Vercel
 ```bash
 npm run build
-npx vercel --prod
 ```
 
-### GitHub Pages
-```bash
-npm run build
-# Push dist/ to gh-pages branch
-```
+The build output will be in the `dist/` directory, ready to be deployed to any static hosting service.
 
-## 💡 Tips
+## License
 
-1. **Each page is independent** - Edit one page at a time
-2. **Images are already embedded** - All PDF slides are displayed
-3. **Navigation is automatic** - Previous/Next buttons work out of the box
-4. **Test on mobile** - Design is responsive
-5. **Customize gradually** - Start with Hero page, then move through each page
-
-## 📖 Next Steps
-
-1. ✅ Dependencies installed
-2. ✅ Website structure created
-3. ⬜ Customize text content in each page
-4. ⬜ Update company name and branding
-5. ⬜ Adjust colors in Tailwind config
-6. ⬜ Test on different devices
-7. ⬜ Build and deploy
-
----
-
-**Ready to use!** Run `npm install` then `npm run dev` to start! 🎉
+All rights reserved.
