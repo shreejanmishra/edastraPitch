@@ -54,11 +54,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* iOS safe-area support */
+    -webkit-text-size-adjust: 100%;
   }
   
   body {
     @apply text-black bg-[#FAFCFF];
     font-family: 'Roboto', sans-serif;
+    /* Smoother scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -94,5 +98,16 @@
   
   .font-jost {
     font-family: 'Jost', sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for horizontal SubNav pill bar on mobile */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

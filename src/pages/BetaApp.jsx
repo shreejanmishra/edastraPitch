@@ -8,7 +8,7 @@ const BetaApp = () => {
           Prototype App
         </h2>
         <div className="grid lg:grid-cols-2 gap-8 items-start">
-          <div className="sticky top-24">
+          <div className="lg:sticky lg:top-24">
             <img
               src="/images/beta_app.png"
               alt="Edastra Prototype App Interface"

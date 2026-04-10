@@ -7,7 +7,7 @@ const Scholarships = () => {
         <h2 className="text-3xl font-bold mb-8 text-[#103A5A]">Scholarships</h2>
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column: Visuals (Sticky) */}
-          <div className="sticky top-24 space-y-8">
+          <div className="lg:sticky lg:top-24 space-y-8">
             <img
               src="/images/scholarship.png"
               alt="Scholarship"

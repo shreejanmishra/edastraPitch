@@ -9,7 +9,7 @@ const Preschool = () => {
         </h2>
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column: Visuals (Sticky) */}
-          <div className="sticky top-24 flex flex-col space-y-6">
+          <div className="lg:sticky lg:top-24 flex flex-col space-y-6">
             <div
               className="relative w-full overflow-hidden rounded-lg border border-[#C8E6F7] shadow-xl"
               style={{ paddingTop: "56.25%" }}

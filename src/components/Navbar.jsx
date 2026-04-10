@@ -3,6 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -29,6 +35,8 @@ const Navbar = () => {
               Edastra
             </span>
           </Link>
+
+          {/* Desktop Nav — unchanged */}
           <ul className="hidden lg:flex space-x-8">
             {navLinks.map((link) => (
               <li key={link.to}>
@@ -46,7 +54,56 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-primary/5 transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`block w-6 h-0.5 bg-primary transition-all duration-300 ${
+                mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-primary mt-1.5 transition-all duration-300 ${
+                mobileMenuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-primary mt-1.5 transition-all duration-300 ${
+                mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+              }`}
+            />
+          </button>
         </div>
+      </div>
+
+      {/* Mobile Menu Drawer */}
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <ul className="px-4 pb-4 space-y-1 bg-white border-t border-primary/10">
+          {navLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-4 py-3 rounded-lg transition-all font-audio-cassette ${
+                  location.pathname === link.to ||
+                  (link.to !== "/" && location.pathname.startsWith(link.to))
+                    ? "bg-primary text-white font-semibold"
+                    : "text-gray-700 hover:bg-primary/5 hover:text-primary"
+                }`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );
