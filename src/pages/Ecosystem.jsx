@@ -29,7 +29,7 @@ const Ecosystem = () => {
       <div className="section-container flex-grow w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left: Video */}
-          <div className="sticky top-24">
+          <div className="lg:sticky lg:top-24">
             <div
               className="relative w-full overflow-hidden rounded-lg border border-[#C8E6F7] shadow-xl"
               style={{ paddingTop: "177.78%" }}

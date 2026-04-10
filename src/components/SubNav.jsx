@@ -43,26 +43,51 @@ const SubNav = ({ items }) => {
   }
 
   return (
-    <div className="fixed left-0 top-[65px] h-[calc(100vh-65px)] w-64 bg-[#EAF4FB] border-r border-primary/20 overflow-y-auto z-30">
-      <nav className="p-6">
-        <ul className="space-y-2">
-          {items.map((item, index) => (
-            <li key={item.id}>
-              <button
-                onClick={() => handleScroll(item.id)}
-                className={`w-full text-left block px-4 py-3 rounded-lg transition-all font-audio-cassette ${
-                  activeId === item.id
-                    ? 'bg-primary text-white font-semibold shadow-md'
-                    : 'text-gray-600 hover:bg-[#D5E9F7] hover:text-primary'
-                }`}
-              >
-                {item.label}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
+    <>
+      {/* Desktop Sidebar — completely unchanged */}
+      <div className="hidden lg:block fixed left-0 top-[65px] h-[calc(100vh-65px)] w-64 bg-[#EAF4FB] border-r border-primary/20 overflow-y-auto z-30">
+        <nav className="p-6">
+          <ul className="space-y-2">
+            {items.map((item, index) => (
+              <li key={item.id}>
+                <button
+                  onClick={() => handleScroll(item.id)}
+                  className={`w-full text-left block px-4 py-3 rounded-lg transition-all font-audio-cassette ${
+                    activeId === item.id
+                      ? 'bg-primary text-white font-semibold shadow-md'
+                      : 'text-gray-600 hover:bg-[#D5E9F7] hover:text-primary'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      {/* Mobile Horizontal Pill Bar */}
+      <div className="lg:hidden fixed left-0 top-[65px] w-full bg-[#EAF4FB] border-b border-primary/20 z-30 shadow-sm">
+        <nav className="overflow-x-auto scrollbar-hide">
+          <ul className="flex gap-2 px-3 py-2 min-w-max">
+            {items.map((item) => (
+              <li key={item.id} className="flex-shrink-0">
+                <button
+                  onClick={() => handleScroll(item.id)}
+                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm transition-all font-audio-cassette ${
+                    activeId === item.id
+                      ? 'bg-primary text-white font-semibold shadow-md'
+                      : 'text-gray-600 bg-white border border-primary/15 hover:bg-[#D5E9F7] hover:text-primary'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </>
   )
 }
 

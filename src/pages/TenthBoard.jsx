@@ -7,7 +7,7 @@ const TenthBoard = () => {
         <h2 className="text-3xl font-bold mb-8 text-[#103A5A]">School & High School Product Design</h2>
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column: Visuals (Sticky) */}
-          <div className="sticky top-24">
+          <div className="lg:sticky lg:top-24">
             <img
               src="/images/school_2.png"
               alt="10th Board - Teenager Content"

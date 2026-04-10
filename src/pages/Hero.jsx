@@ -19,7 +19,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="flex-1 flex flex-col md:flex-row min-h-[calc(100vh-89px)] max-h-[calc(100vh-89px)] pt-[65px] overflow-hidden">
+    <div className="flex-1 flex flex-col md:flex-row min-h-[calc(100svh-65px)] lg:min-h-[calc(100vh-89px)] lg:max-h-[calc(100vh-89px)] pt-[65px] lg:overflow-hidden">
       {/* Left panel: text content styled like subnav */}
       <div className="w-full md:w-auto flex-1 bg-[#EAF4FB] border-b md:border-b-0 md:border-r border-primary/20 flex flex-col items-center justify-center p-6 md:p-8 text-center shrink-0 min-h-0 overflow-y-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">

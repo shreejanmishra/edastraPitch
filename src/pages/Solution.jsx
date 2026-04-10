@@ -10,7 +10,7 @@ const Solution = () => {
             Solution Features
           </h3>
           <div className="grid lg:grid-cols-2 gap-8 items-start">
-            <div className="sticky top-24">
+            <div className="lg:sticky lg:top-24">
               <img
                 src="/images/page_3_img_2.png"
                 alt="Solution Features — Scholarship, 4K Library, VR, OTT, Storytelling"
