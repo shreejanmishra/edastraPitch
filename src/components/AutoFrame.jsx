@@ -12,18 +12,23 @@ import React, { useRef, useState, useEffect } from 'react';
 const MOBILE_RESPONSIVE_CSS = `
 @media (max-width: 600px) {
   /* ── Global resets ── */
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+  }
   body, .wrap, .deck {
     padding: 0 !important;
     overflow-x: hidden !important;
   }
   .wrap {
     padding: 0.75rem !important;
+    width: 100% !important;
   }
   .deck {
     padding: 0 !important;
   }
   .panel, .tab-panel {
     padding: 0.75rem !important;
+    width: 100% !important;
   }
 
   /* ── Tab navigation ── */
@@ -46,14 +51,17 @@ const MOBILE_RESPONSIVE_CSS = `
     flex-shrink: 0 !important;
   }
 
-  /* ── KPI / Hero grids: 4-col → 2-col ── */
   /* ── KPI / Hero/ VR grids: 4-col → 2-col ── */
   .kpi-grid, .hero-grid, .kpi-row {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 6px !important;
+    width: 100% !important;
   }
   .kpi, .hero-card {
     padding: 0.5rem 0.6rem !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
   }
   .kpi-label, .hero-note, .kpi-s, .kpi-l {
     font-size: 12px !important;
@@ -65,12 +73,12 @@ const MOBILE_RESPONSIVE_CSS = `
     font-size: 12px !important;
   }
 
-
   /* ── Two-column → single column ── */
   .two-col, .econ-grid, .cost-grid, .two, .page {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     flex-direction: column !important;
     gap: 0.75rem !important;
+    width: 100% !important;
   }
   .cost-left {
     border-right: none !important;
@@ -85,8 +93,9 @@ const MOBILE_RESPONSIVE_CSS = `
 
   /* ── Three-column → single column ── */
   .three-col, .vc-cards, .three {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 8px !important;
+    width: 100% !important;
   }
 
   table {
@@ -97,14 +106,15 @@ const MOBILE_RESPONSIVE_CSS = `
   }
 
   div[style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 6px !important;
   }
 
   /* ── Phase grid: 3-col → 1-col ── */
   .phase-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 8px !important;
+    width: 100% !important;
   }
   .phase-card {
     padding: 0.65rem 0.8rem !important;

@@ -373,6 +373,17 @@
         color: rgba(16, 58, 90, 0.35);
         font-family: 'DM Mono', monospace;
       }
+      @media (max-width: 768px) {
+        .two { grid-template-columns: 1fr !important; }
+        .three { grid-template-columns: 1fr !important; }
+        .kpi-row { grid-template-columns: 1fr 1fr !important; }
+        #sl-summary > div[style*="flex-direction: column"] { overflow-x: auto !important; }
+        #sl-summary > div[style*="flex-direction: column"] > div { min-width: 600px !important; }
+        #sl-problem > div[style*="flex-direction: column"] { overflow-x: auto !important; }
+        #sl-problem > div[style*="flex-direction: column"] > div { min-width: 600px !important; }
+        .sol-tech { word-break: break-word; overflow-wrap: break-word; }
+        .card { word-break: break-word; overflow-wrap: break-word; }
+      }
     </style>
   </head>
   <body>

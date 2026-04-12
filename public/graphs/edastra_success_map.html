@@ -422,6 +422,30 @@
         min-width: 100px;
         text-align: right;
       }
+      @media (max-width: 768px) {
+        #sl-risks > div[style*="overflow: hidden"] {
+          overflow-x: auto !important;
+        }
+        .risk-row {
+          min-width: 600px;
+        }
+        .fw-row {
+          flex-direction: column !important;
+        }
+        .fw-arrow {
+          display: none !important;
+        }
+        .fw-item {
+          border-right: 1px solid var(--sky) !important;
+          border-bottom: 0px !important;
+        }
+        .fw-item:last-child {
+          border-bottom: 1px solid var(--sky) !important;
+        }
+        .four {
+          grid-template-columns: 1fr !important;
+        }
+      }
     </style>
   </head>
   <body>
