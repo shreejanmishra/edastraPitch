@@ -1,362 +1,810 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edastra Chart</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edastra Chart</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --font-sans: "Outfit", sans-serif;
+        --font-serif: "Cormorant Garamond", serif;
+        --font-mono: "DM Mono", monospace;
+        --ice: #eaf4fb;
+        --sky: #c8e6f7;
+        --mid: #7bc4e8;
+        --deep: #2a7fb5;
+        --navy: #103a5a;
+        --white: #fafcff;
+        --rule: rgba(42, 127, 181, 0.15);
+        --txt: #103a5a;
+        --muted: #5a8fad;
+        --color-text-primary: #103a5a;
+        --color-text-secondary: #5a8fad;
+        --color-text-tertiary: #7bc4e8;
+        --color-background-primary: #fafcff;
+        --color-background-secondary: #eaf4fb;
+        --color-border-secondary: #c8e6f7;
+        --color-border-tertiary: rgba(42, 127, 181, 0.15);
+        --color-text-success: #1d8a50;
+        --color-text-danger: #d85a30;
+        --color-text-warning: #ef9f27;
+        --color-text-info: #2a7fb5;
+        --color-background-success: #e6f5f0;
+        --color-background-warning: #fff3e0;
+        --color-background-info: #e8f0fa;
+        --color-border-info: #c8e6f7;
+        --border-radius-md: 12px;
+        --border-radius-lg: 20px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--white);
+        font-family: "Outfit", sans-serif;
+        color: var(--txt);
+        overflow-x: hidden;
+      }
 
-:root {
-  --font-sans: 'Outfit', sans-serif;
-  --font-serif: 'Cormorant Garamond', serif;
-  --font-mono: 'DM Mono', monospace;
-  --ice: #EAF4FB;
-  --sky: #C8E6F7;
-  --mid: #7BC4E8;
-  --deep: #2A7FB5;
-  --navy: #103A5A;
-  --white: #FAFCFF;
-  --rule: rgba(42,127,181,0.15);
-  --txt: #103A5A;
-  --muted: #5A8FAD;
-  --color-text-primary: #103A5A;
-  --color-text-secondary: #5A8FAD;
-  --color-text-tertiary: #7BC4E8;
-  --color-background-primary: #FAFCFF;
-  --color-background-secondary: #EAF4FB;
-  --color-border-secondary: #C8E6F7;
-  --color-border-tertiary: rgba(42,127,181,0.15);
-  --color-text-success: #1D8A50;
-  --color-text-danger: #D85A30;
-  --color-text-warning: #EF9F27;
-  --color-text-info: #2A7FB5;
-  --color-background-success: #E6F5F0;
-  --color-background-warning: #FFF3E0;
-  --color-background-info: #E8F0FA;
-  --color-border-info: #C8E6F7;
-  --border-radius-md: 12px;
-  --border-radius-lg: 20px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--white); font-family: 'Outfit', sans-serif; color: var(--txt); overflow-x: hidden; }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
+      .deck {
+        font-family: "Outfit", sans-serif;
+        background: var(--white);
+        color: var(--txt);
+      }
 
-  
+      /* ── SLIDE NAV ── */
+      .slide-nav {
+        display: flex;
+        gap: 0;
+        border-bottom: 1px solid rgba(42, 127, 181, 0.2);
+      }
+      .snav {
+        flex: 1;
+        padding: 10px 0;
+        text-align: center;
+        font-size: 17px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(16, 58, 90, 0.45);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+      }
+      .snav.active {
+        color: var(--deep);
+        border-bottom-color: var(--deep);
+      }
+      .snav:hover:not(.active) {
+        color: rgba(16, 58, 90, 0.75);
+      }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+      .slide {
+        display: none;
+        padding: 2rem 2rem 2.5rem;
+        animation: fadeIn 0.3s ease;
+      }
+      .slide.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
 
-  
+      /* ── SHARED ── */
+      .slide-eyebrow {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--deep);
+        margin-bottom: 6px;
+      }
+      .slide-title {
+        font-family: "DM Serif Display", serif;
+        font-size: 32px;
+        color: var(--txt);
+        margin-bottom: 4px;
+        line-height: 1.15;
+      }
+      .slide-sub {
+        font-size: 18px;
+        color: rgba(16, 58, 90, 0.5);
+        margin-bottom: 1.75rem;
+      }
+      .gold-line {
+        width: 40px;
+        height: 2px;
+        background: var(--deep);
+        margin: 10px 0 1.5rem;
+      }
 
+      /* ── ALLOCATION SLIDE ── */
+      .alloc-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+      .alloc-chart-area {
+        position: relative;
+      }
+      .donut-wrap {
+        position: relative;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto 1rem;
+      }
+      .donut-wrap svg {
+        width: 100%;
+        height: auto;
+      }
+      .donut-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        pointer-events: none;
+      }
+      .donut-amount {
+        font-family: "DM Serif Display", serif;
+        font-size: 32px;
+        color: var(--deep);
+        line-height: 1;
+      }
+      .donut-label {
+        font-size: 16px;
+        color: rgba(16, 58, 90, 0.5);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-top: 3px;
+      }
 
+      .alloc-list {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .alloc-item {
+        display: grid;
+        grid-template-columns: 10px 1fr auto auto;
+        gap: 8px;
+        align-items: center;
+        padding: 7px 10px;
+        background: rgba(16, 58, 90, 0.04);
+        border-radius: 6px;
+        border: 1px solid rgba(16, 58, 90, 0.07);
+        transition: background 0.15s;
+      }
+      .alloc-item:hover {
+        background: rgba(16, 58, 90, 0.08);
+      }
+      .alloc-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .alloc-name {
+        font-size: 18px;
+        color: rgba(16, 58, 90, 0.85);
+      }
+      .alloc-cr {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--gold-light);
+        min-width: 50px;
+        text-align: right;
+      }
+      .alloc-pct {
+        font-size: 17px;
+        color: rgba(16, 58, 90, 0.4);
+        min-width: 34px;
+        text-align: right;
+      }
 
-  .deck { font-family:'Outfit',sans-serif; background: var(--white); color: var(--txt); }
+      .total-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 10px;
+        border-top: 1px solid rgba(42, 127, 181, 0.3);
+        margin-top: 4px;
+      }
+      .total-line span:first-child {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--txt);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .total-line span:last-child {
+        font-family: "DM Serif Display", serif;
+        font-size: 26px;
+        color: var(--deep);
+      }
 
-  /* ── SLIDE NAV ── */
-  .slide-nav { display: flex; gap: 0; border-bottom: 1px solid rgba(42,127,181,0.2); }
-  .snav { flex: 1; padding: 10px 0; text-align: center; font-size:17px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(16, 58, 90, 0.45); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
-  .snav.active { color: var(--deep); border-bottom-color: var(--deep); }
-  .snav:hover:not(.active) { color: rgba(16, 58, 90, 0.75); }
+      .insight-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 1.25rem;
+      }
+      .ic {
+        padding: 10px 12px;
+        background: rgba(42, 127, 181, 0.07);
+        border-left: 2px solid var(--deep);
+        border-radius: 0 6px 6px 0;
+      }
+      .ic-title {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--gold-light);
+        margin-bottom: 2px;
+      }
+      .ic-body {
+        font-size: 17px;
+        color: rgba(16, 58, 90, 0.6);
+        line-height: 1.5;
+      }
 
-  .slide { display: none; padding: 2rem 2rem 2.5rem; animation: fadeIn 0.3s ease; }
-  .slide.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+      /* ── BURN MODEL ── */
+      .burn-stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 1.5rem;
+      }
+      .bstat {
+        background: rgba(16, 58, 90, 0.04);
+        border: 1px solid rgba(16, 58, 90, 0.1);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+      }
+      .bstat-label {
+        font-size: 16px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(16, 58, 90, 0.4);
+        margin-bottom: 4px;
+      }
+      .bstat-val {
+        font-family: "DM Serif Display", serif;
+        font-size: 28px;
+        color: var(--deep);
+      }
+      .bstat-sub {
+        font-size: 16px;
+        color: rgba(16, 58, 90, 0.35);
+        margin-top: 2px;
+      }
 
-  /* ── SHARED ── */
-  .slide-eyebrow { font-size:16px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--deep); margin-bottom: 6px; }
-  .slide-title { font-family: 'DM Serif Display', serif; font-size:32px; color: var(--txt); margin-bottom: 4px; line-height: 1.15; }
-  .slide-sub { font-size:18px; color: rgba(16, 58, 90, 0.5); margin-bottom: 1.75rem; }
-  .gold-line { width: 40px; height: 2px; background: var(--deep); margin: 10px 0 1.5rem; }
+      .burn-chart-wrap {
+        position: relative;
+        width: 100%;
+        height: 280px;
+        margin-bottom: 1rem;
+      }
+      .burn-legend {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 1.25rem;
+        flex-wrap: wrap;
+      }
+      .bl-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 17px;
+        color: rgba(16, 58, 90, 0.55);
+      }
+      .bl-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
 
-  /* ── ALLOCATION SLIDE ── */
-  .alloc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
-  .alloc-chart-area { position: relative; }
-  .donut-wrap { position: relative; width: 100%; max-width: 280px; margin: 0 auto 1rem; }
-  .donut-wrap svg { width: 100%; height: auto; }
-  .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
-  .donut-amount { font-family: 'DM Serif Display', serif; font-size:32px; color: var(--deep); line-height: 1; }
-  .donut-label { font-size:16px; color: rgba(16, 58, 90, 0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
+      .milestone-track {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 6px;
+        margin-top: 1rem;
+      }
+      .ms-item {
+        background: rgba(16, 58, 90, 0.04);
+        border: 1px solid rgba(16, 58, 90, 0.08);
+        border-radius: 6px;
+        padding: 8px 8px;
+        text-align: center;
+        position: relative;
+      }
+      .ms-item.series-a {
+        border-color: rgba(42, 127, 181, 0.5);
+        background: rgba(42, 127, 181, 0.07);
+      }
+      .ms-month {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--deep);
+        letter-spacing: 0.06em;
+        margin-bottom: 4px;
+      }
+      .ms-text {
+        font-size: 16px;
+        color: rgba(16, 58, 90, 0.55);
+        line-height: 1.4;
+      }
+      .ms-milestone {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--txt);
+        margin-top: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck">
+      <div class="slide-nav">
+        <div class="snav active" onclick="showSlide('alloc', this)">
+          Fund allocation
+        </div>
+        <div class="snav" onclick="showSlide('burn', this)">
+          Monthly burn model
+        </div>
+      </div>
 
-  .alloc-list { display: flex; flex-direction: column; gap: 7px; }
-  .alloc-item { display: grid; grid-template-columns: 10px 1fr auto auto; gap: 8px; align-items: center; padding: 7px 10px; background: rgba(16, 58, 90, 0.04); border-radius: 6px; border:1px solid rgba(16, 58, 90, 0.07); transition: background 0.15s; }
-  .alloc-item:hover { background: rgba(16, 58, 90, 0.08); }
-  .alloc-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .alloc-name { font-size:18px; color: rgba(16, 58, 90, 0.85); }
-  .alloc-cr { font-size:18px; font-weight: 500; color: var(--gold-light); min-width: 50px; text-align: right; }
-  .alloc-pct { font-size:17px; color: rgba(16, 58, 90, 0.4); min-width: 34px; text-align: right; }
+      <!-- ══ SLIDE 1: ALLOCATION ══ -->
+      <div class="slide active" id="slide-alloc">
+        <div class="slide-eyebrow">Pre-seed · ₹20 Crore</div>
+        <div class="slide-title">Fund Allocation</div>
+        <div class="slide-sub">
+          Revised for pre-seed stage · Team-first · Vision-deferred
+        </div>
+        <div class="gold-line"></div>
 
-  .total-line { display: flex; justify-content: space-between; align-items: center; padding: 10px 10px; border-top: 1px solid rgba(42,127,181,0.3); margin-top: 4px; }
-  .total-line span:first-child { font-size:18px; font-weight: 600; color: var(--txt); letter-spacing: 0.04em; text-transform: uppercase; }
-  .total-line span:last-child { font-family: 'DM Serif Display', serif; font-size:26px; color: var(--deep); }
+        <div class="alloc-layout">
+          <div class="alloc-chart-area">
+            <div class="donut-wrap">
+              <svg
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+                id="donutSvg"
+              ></svg>
+              <div class="donut-center">
+                <div class="donut-amount">₹20 Cr</div>
+                <div class="donut-label">Pre-seed raise</div>
+              </div>
+            </div>
 
-  .insight-cards { display: flex; flex-direction: column; gap: 8px; margin-top: 1.25rem; }
-  .ic { padding: 10px 12px; background: rgba(42,127,181,0.07); border-left: 2px solid var(--deep); border-radius: 0 6px 6px 0; }
-  .ic-title { font-size:17px; font-weight: 600; color: var(--gold-light); margin-bottom: 2px; }
-  .ic-body { font-size:17px; color: rgba(16, 58, 90, 0.6); line-height: 1.5; }
+            <div class="insight-cards">
+              <div class="ic">
+                <div class="ic-title">Team-first capital structure</div>
+                <div class="ic-body">
+                  30% to headcount — 6–8 person founding team for 24 months. The
+                  biggest shift from original allocation.
+                </div>
+              </div>
+              <div class="ic">
+                <div class="ic-title">Vision-deferred VR</div>
+                <div class="ic-body">
+                  VR reduced to R&D only (3%). Full VR build funded by Series A
+                  in 2027, not pre-seed capital.
+                </div>
+              </div>
+              <div class="ic">
+                <div class="ic-title">₹180 CAC maintained</div>
+                <div class="ic-body">
+                  7% marketing via partnerships, not paid acquisition.
+                  Deliberate and defensible.
+                </div>
+              </div>
+            </div>
+          </div>
 
-  /* ── BURN MODEL ── */
-  .burn-stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1.5rem; }
-  .bstat { background: rgba(16, 58, 90, 0.04); border:1px solid rgba(16, 58, 90, 0.1); border-radius: 8px; padding: 0.75rem 1rem; }
-  .bstat-label { font-size:16px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(16, 58, 90, 0.4); margin-bottom: 4px; }
-  .bstat-val { font-family: 'DM Serif Display', serif; font-size:28px; color: var(--deep); }
-  .bstat-sub { font-size:16px; color: rgba(16, 58, 90, 0.35); margin-top: 2px; }
+          <div>
+            <div class="alloc-list" id="allocList"></div>
+            <div class="total-line">
+              <span>Total raise</span>
+              <span>₹20.0 Cr</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  .burn-chart-wrap { position: relative; width: 100%; height: 280px; margin-bottom: 1rem; }
-  .burn-legend { display: flex; gap: 16px; margin-bottom: 1.25rem; flex-wrap: wrap; }
-  .bl-item { display: flex; align-items: center; gap: 5px; font-size:17px; color: rgba(16, 58, 90, 0.55); }
-  .bl-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+      <!-- ══ SLIDE 2: BURN MODEL ══ -->
+      <div class="slide" id="slide-burn">
+        <div class="slide-eyebrow">24-month operating plan</div>
+        <div class="slide-title">Monthly Burn Model</div>
+        <div class="slide-sub">
+          Series A trigger at Month 18 · ₹20 Cr runway
+        </div>
+        <div class="gold-line"></div>
 
-  .milestone-track { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 6px; margin-top: 1rem; }
-  .ms-item { background: rgba(16, 58, 90, 0.04); border:1px solid rgba(16, 58, 90, 0.08); border-radius: 6px; padding: 8px 8px; text-align: center; position: relative; }
-  .ms-item.series-a { border-color: rgba(42,127,181,0.5); background: rgba(42,127,181,0.07); }
-  .ms-month { font-size:16px; font-weight: 600; color: var(--deep); letter-spacing: 0.06em; margin-bottom: 4px; }
-  .ms-text { font-size:16px; color: rgba(16, 58, 90, 0.55); line-height: 1.4; }
-  .ms-milestone { font-size:16px; font-weight: 500; color: var(--txt); margin-top: 3px; }
-
-</style>
-</head>
-<body>
-<div class="deck">
-  <div class="slide-nav">
-    <div class="snav active" onclick="showSlide('alloc',this)">Fund allocation</div>
-    <div class="snav" onclick="showSlide('burn',this)">Monthly burn model</div>
-  </div>
-
-  <!-- ══ SLIDE 1: ALLOCATION ══ -->
-  <div class="slide active" id="slide-alloc">
-    <div class="slide-eyebrow">Pre-seed · ₹20 Crore</div>
-    <div class="slide-title">Fund Allocation</div>
-    <div class="slide-sub">Revised for pre-seed stage · Team-first · Vision-deferred</div>
-    <div class="gold-line"></div>
-
-    <div class="alloc-layout">
-      <div class="alloc-chart-area">
-        <div class="donut-wrap">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id="donutSvg"></svg>
-          <div class="donut-center">
-            <div class="donut-amount">₹20 Cr</div>
-            <div class="donut-label">Pre-seed raise</div>
+        <div class="burn-stats">
+          <div class="bstat">
+            <div class="bstat-label">Total runway</div>
+            <div class="bstat-val">24 mo</div>
+            <div class="bstat-sub">At ₹58–85L/mo avg burn</div>
+          </div>
+          <div class="bstat">
+            <div class="bstat-label">Peak monthly burn</div>
+            <div class="bstat-val">₹1.1 Cr</div>
+            <div class="bstat-sub">Month 10–14 (scale phase)</div>
+          </div>
+          <div class="bstat">
+            <div class="bstat-label">Series A trigger</div>
+            <div class="bstat-val">18 mo</div>
+            <div class="bstat-sub">1Mn users · ₹5 Cr ARR</div>
+          </div>
+          <div class="bstat">
+            <div class="bstat-label">Cash at Month 18</div>
+            <div class="bstat-val">₹4.2 Cr</div>
+            <div class="bstat-sub">5-month bridge buffer</div>
           </div>
         </div>
 
-        <div class="insight-cards">
-          <div class="ic">
-            <div class="ic-title">Team-first capital structure</div>
-            <div class="ic-body">30% to headcount — 6–8 person founding team for 24 months. The biggest shift from original allocation.</div>
+        <div class="burn-legend">
+          <div class="bl-item">
+            <div class="bl-dot" style="background: #2563eb"></div>
+            Team
           </div>
-          <div class="ic">
-            <div class="ic-title">Vision-deferred VR</div>
-            <div class="ic-body">VR reduced to R&D only (3%). Full VR build funded by Series A in 2027, not pre-seed capital.</div>
+          <div class="bl-item">
+            <div class="bl-dot" style="background: #dc2626"></div>
+            Content
           </div>
-          <div class="ic">
-            <div class="ic-title">₹180 CAC maintained</div>
-            <div class="ic-body">7% marketing via partnerships, not paid acquisition. Deliberate and defensible.</div>
+          <div class="bl-item">
+            <div class="bl-dot" style="background: #059669"></div>
+            Tech &amp; Cloud
+          </div>
+          <div class="bl-item">
+            <div class="bl-dot" style="background: #d97706"></div>
+            Marketing
+          </div>
+          <div class="bl-item">
+            <div class="bl-dot" style="background: #7c3aed"></div>
+            Other
+          </div>
+          <div class="bl-item">
+            <div
+              class="bl-dot"
+              style="background: #2a7fb5; border-radius: 50%"
+            ></div>
+            Cumulative cash remaining
           </div>
         </div>
-      </div>
 
-      <div>
-        <div class="alloc-list" id="allocList"></div>
-        <div class="total-line">
-          <span>Total raise</span>
-          <span>₹20.0 Cr</span>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="burn-chart-wrap"><canvas id="burnChart"></canvas></div>
 
-  <!-- ══ SLIDE 2: BURN MODEL ══ -->
-  <div class="slide" id="slide-burn">
-    <div class="slide-eyebrow">24-month operating plan</div>
-    <div class="slide-title">Monthly Burn Model</div>
-    <div class="slide-sub">Series A trigger at Month 18 · ₹20 Cr runway</div>
-    <div class="gold-line"></div>
-
-    <div class="burn-stats">
-      <div class="bstat">
-        <div class="bstat-label">Total runway</div>
-        <div class="bstat-val">24 mo</div>
-        <div class="bstat-sub">At ₹58–85L/mo avg burn</div>
-      </div>
-      <div class="bstat">
-        <div class="bstat-label">Peak monthly burn</div>
-        <div class="bstat-val">₹1.1 Cr</div>
-        <div class="bstat-sub">Month 10–14 (scale phase)</div>
-      </div>
-      <div class="bstat">
-        <div class="bstat-label">Series A trigger</div>
-        <div class="bstat-val">Month 18</div>
-        <div class="bstat-sub">1Mn users · ₹5 Cr ARR</div>
-      </div>
-      <div class="bstat">
-        <div class="bstat-label">Cash at Month 18</div>
-        <div class="bstat-val">₹4.2 Cr</div>
-        <div class="bstat-sub">5-month bridge buffer</div>
+        <div class="milestone-track" id="msTrack"></div>
       </div>
     </div>
 
-    <div class="burn-legend">
-      <div class="bl-item"><div class="bl-dot" style="background:#2563EB"></div>Team</div>
-      <div class="bl-item"><div class="bl-dot" style="background:#DC2626"></div>Content</div>
-      <div class="bl-item"><div class="bl-dot" style="background:#059669"></div>Tech &amp; Cloud</div>
-      <div class="bl-item"><div class="bl-dot" style="background:#D97706"></div>Marketing</div>
-      <div class="bl-item"><div class="bl-dot" style="background:#7C3AED"></div>Other</div>
-      <div class="bl-item"><div class="bl-dot" style="background:#2A7FB5;border-radius:50%"></div>Cumulative cash remaining</div>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <script>
+      // ── Data ──────────────────────────────────────────────────────────────────
+      const allocs = [
+        { name: "Team & Operations", cr: 6.0, pct: 30, color: "#2563EB" },
+        { name: "Content Creation", cr: 5.0, pct: 25, color: "#DC2626" },
+        { name: "Core Technology", cr: 3.0, pct: 15, color: "#059669" },
+        { name: "Cloud & CDN", cr: 1.6, pct: 8, color: "#0891B2" },
+        { name: "Marketing & Partners", cr: 1.4, pct: 7, color: "#D97706" },
+        { name: "Security", cr: 0.8, pct: 4, color: "#7C3AED" },
+        { name: "Access Programme", cr: 0.8, pct: 4, color: "#B45309" },
+        { name: "VR R&D / PoC", cr: 0.6, pct: 3, color: "#BE185D" },
+        { name: "Legal + Buffer", cr: 0.8, pct: 4, color: "#374151" },
+      ];
 
-    <div class="burn-chart-wrap"><canvas id="burnChart"></canvas></div>
+      // ── Donut ─────────────────────────────────────────────────────────────────
+      const svg = document.getElementById("donutSvg");
+      const cx = 100,
+        cy = 100,
+        R = 78,
+        r = 50;
+      let angle = -Math.PI / 2;
+      allocs.forEach((a) => {
+        const sweep = (a.pct / 100) * 2 * Math.PI;
+        const x1 = cx + R * Math.cos(angle),
+          y1 = cy + R * Math.sin(angle);
+        angle += sweep;
+        const x2 = cx + R * Math.cos(angle),
+          y2 = cy + R * Math.sin(angle);
+        const ix1 = cx + r * Math.cos(angle),
+          iy1 = cy + r * Math.sin(angle);
+        const iAngle = angle - sweep;
+        const ix2 = cx + r * Math.cos(iAngle),
+          iy2 = cy + r * Math.sin(iAngle);
+        const lg = sweep > Math.PI ? 1 : 0;
+        const path = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "path",
+        );
+        path.setAttribute(
+          "d",
+          `M ${x1} ${y1} A ${R} ${R} 0 ${lg} 1 ${x2} ${y2} L ${ix1} ${iy1} A ${r} ${r} 0 ${lg} 0 ${ix2} ${iy2} Z`,
+        );
+        path.setAttribute("fill", a.color);
+        path.setAttribute("opacity", "0.9");
+        path.style.transition = "opacity 0.15s";
+        path.addEventListener("mouseenter", () =>
+          path.setAttribute("opacity", "1"),
+        );
+        path.addEventListener("mouseleave", () =>
+          path.setAttribute("opacity", "0.9"),
+        );
+        svg.appendChild(path);
+        // gap
+        const gap = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "path",
+        );
+        gap.setAttribute("d", `M ${cx} ${cy} L ${x2} ${y2}`);
+        gap.setAttribute("stroke", "#0D1B2A");
+        gap.setAttribute("stroke-width", "2");
+        gap.setAttribute("fill", "none");
+        svg.appendChild(gap);
+      });
+      // inner circle
+      const circ = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle",
+      );
+      circ.setAttribute("cx", cx);
+      circ.setAttribute("cy", cy);
+      circ.setAttribute("r", r);
+      circ.setAttribute("fill", "#0D1B2A");
+      svg.appendChild(circ);
 
-    <div class="milestone-track" id="msTrack"></div>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script>
-// ── Data ──────────────────────────────────────────────────────────────────
-const allocs = [
-  { name: 'Team & Operations',    cr: 6.0, pct: 30, color: '#2563EB' },
-  { name: 'Content Creation',     cr: 5.0, pct: 25, color: '#DC2626' },
-  { name: 'Core Technology',      cr: 3.0, pct: 15, color: '#059669' },
-  { name: 'Cloud & CDN',          cr: 1.6, pct:  8, color: '#0891B2' },
-  { name: 'Marketing & Partners', cr: 1.4, pct:  7, color: '#D97706' },
-  { name: 'Security',             cr: 0.8, pct:  4, color: '#7C3AED' },
-  { name: 'Access Programme',     cr: 0.8, pct:  4, color: '#B45309' },
-  { name: 'VR R&D / PoC',         cr: 0.6, pct:  3, color: '#BE185D' },
-  { name: 'Legal + Buffer',       cr: 0.8, pct:  4, color: '#374151' },
-];
-
-// ── Donut ─────────────────────────────────────────────────────────────────
-const svg = document.getElementById('donutSvg');
-const cx = 100, cy = 100, R = 78, r = 50;
-let angle = -Math.PI / 2;
-allocs.forEach(a => {
-  const sweep = (a.pct / 100) * 2 * Math.PI;
-  const x1 = cx + R * Math.cos(angle), y1 = cy + R * Math.sin(angle);
-  angle += sweep;
-  const x2 = cx + R * Math.cos(angle), y2 = cy + R * Math.sin(angle);
-  const ix1 = cx + r * Math.cos(angle), iy1 = cy + r * Math.sin(angle);
-  const iAngle = angle - sweep;
-  const ix2 = cx + r * Math.cos(iAngle), iy2 = cy + r * Math.sin(iAngle);
-  const lg = sweep > Math.PI ? 1 : 0;
-  const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-  path.setAttribute('d', `M ${x1} ${y1} A ${R} ${R} 0 ${lg} 1 ${x2} ${y2} L ${ix1} ${iy1} A ${r} ${r} 0 ${lg} 0 ${ix2} ${iy2} Z`);
-  path.setAttribute('fill', a.color);
-  path.setAttribute('opacity','0.9');
-  path.style.transition = 'opacity 0.15s';
-  path.addEventListener('mouseenter',()=>path.setAttribute('opacity','1'));
-  path.addEventListener('mouseleave',()=>path.setAttribute('opacity','0.9'));
-  svg.appendChild(path);
-  // gap
-  const gap = document.createElementNS('http://www.w3.org/2000/svg','path');
-  gap.setAttribute('d', `M ${cx} ${cy} L ${x2} ${y2}`);
-  gap.setAttribute('stroke','#0D1B2A'); gap.setAttribute('stroke-width','2'); gap.setAttribute('fill','none');
-  svg.appendChild(gap);
-});
-// inner circle
-const circ = document.createElementNS('http://www.w3.org/2000/svg','circle');
-circ.setAttribute('cx',cx); circ.setAttribute('cy',cy); circ.setAttribute('r',r);
-circ.setAttribute('fill','#0D1B2A'); svg.appendChild(circ);
-
-// ── Alloc list ────────────────────────────────────────────────────────────
-const list = document.getElementById('allocList');
-allocs.forEach(a => {
-  const div = document.createElement('div');
-  div.className = 'alloc-item';
-  div.innerHTML = `
+      // ── Alloc list ────────────────────────────────────────────────────────────
+      const list = document.getElementById("allocList");
+      allocs.forEach((a) => {
+        const div = document.createElement("div");
+        div.className = "alloc-item";
+        div.innerHTML = `
     <div class="alloc-dot" style="background:${a.color}"></div>
     <div class="alloc-name">${a.name}</div>
     <div class="alloc-cr">₹${a.cr.toFixed(1)} Cr</div>
     <div class="alloc-pct">${a.pct}%</div>
   `;
-  list.appendChild(div);
-});
+        list.appendChild(div);
+      });
 
-// ── Burn model data (monthly) ─────────────────────────────────────────────
-const months = Array.from({length:24},(_,i)=>`M${i+1}`);
+      // ── Burn model data (monthly) ─────────────────────────────────────────────
+      const months = Array.from({ length: 24 }, (_, i) => `M${i + 1}`);
 
-// team ramp: starts lean, steps up at M4, M8, M13
-const team = [18,18,18,22,22,22,22,26,26,26,26,26,30,30,30,30,30,30,26,26,26,26,26,26];
-// content: heavy front, tapers
-const content = [30,30,25,25,20,18,15,12,10,10,8,8,8,6,5,5,5,5,4,4,4,4,4,4];
-// tech+cloud: build phase then stable
-const tech = [20,20,20,15,12,10,8,8,8,8,8,8,8,8,8,8,8,8,7,7,7,7,7,7];
-// marketing: ramp with user growth
-const mkt = [2,3,4,5,6,7,8,9,10,10,10,10,10,9,8,8,8,8,7,7,7,7,7,7];
-// other (security, legal, access, vr rd)
-const other = [8,7,6,5,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4];
+      // team ramp: starts lean, steps up at M4, M8, M13
+      const team = [
+        18, 18, 18, 22, 22, 22, 22, 26, 26, 26, 26, 26, 30, 30, 30, 30, 30, 30,
+        26, 26, 26, 26, 26, 26,
+      ];
+      // content: heavy front, tapers
+      const content = [
+        30, 30, 25, 25, 20, 18, 15, 12, 10, 10, 8, 8, 8, 6, 5, 5, 5, 5, 4, 4, 4,
+        4, 4, 4,
+      ];
+      // tech+cloud: build phase then stable
+      const tech = [
+        20, 20, 20, 15, 12, 10, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 7, 7,
+        7, 7,
+      ];
+      // marketing: ramp with user growth
+      const mkt = [
+        2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 9, 8, 8, 8, 8, 7, 7, 7, 7,
+        7, 7,
+      ];
+      // other (security, legal, access, vr rd)
+      const other = [
+        8, 7, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+      ];
 
-// total burn each month (in Lakhs)
-const burnMonthly = months.map((_,i) => team[i]+content[i]+tech[i]+mkt[i]+other[i]);
+      // total burn each month (in Lakhs)
+      const burnMonthly = months.map(
+        (_, i) => team[i] + content[i] + tech[i] + mkt[i] + other[i],
+      );
 
-// cumulative spend & cash remaining (₹ in Lakhs, total = 2000L = ₹20Cr)
-let cash = 2000;
-const cashRemaining = burnMonthly.map(b => { cash -= b; return Math.max(cash, 0); });
+      // cumulative spend & cash remaining (₹ in Lakhs, total = 2000L = ₹20Cr)
+      let cash = 2000;
+      const cashRemaining = burnMonthly.map((b) => {
+        cash -= b;
+        return Math.max(cash, 0);
+      });
 
-// ── Burn Chart ────────────────────────────────────────────────────────────
-new Chart(document.getElementById('burnChart'), {
-  data: {
-    labels: months,
-    datasets: [
-      { type:'bar', label:'Team',    data: team,    backgroundColor:'#2563EB', stack:'burn', borderRadius:2 },
-      { type:'bar', label:'Content', data: content, backgroundColor:'#DC2626', stack:'burn', borderRadius:2 },
-      { type:'bar', label:'Tech & Cloud', data: tech, backgroundColor:'#059669', stack:'burn', borderRadius:2 },
-      { type:'bar', label:'Marketing', data: mkt, backgroundColor:'#D97706', stack:'burn', borderRadius:2 },
-      { type:'bar', label:'Other',   data: other,   backgroundColor:'#7C3AED', stack:'burn', borderRadius:2 },
-      { type:'line', label:'Cash remaining (₹L)', data: cashRemaining,
-        borderColor:'#2A7FB5', backgroundColor:'transparent',
-        pointBackgroundColor:'#2A7FB5', pointRadius:2, tension:0.4,
-        borderWidth:2, yAxisID:'y2', order:0 },
-    ]
-  },
-  options: {
-    responsive:true, maintainAspectRatio:false,
-    plugins:{ legend:{display:false},
-      tooltip:{ callbacks:{
-        label: ctx => {
-          if(ctx.dataset.label==='Cash remaining (₹L)')
-            return ` Cash: ₹${(ctx.parsed.y/100).toFixed(1)} Cr`;
-          return ` ${ctx.dataset.label}: ₹${ctx.parsed.y}L`;
+      // ── Burn Chart ────────────────────────────────────────────────────────────
+      new Chart(document.getElementById("burnChart"), {
+        data: {
+          labels: months,
+          datasets: [
+            {
+              type: "bar",
+              label: "Team",
+              data: team,
+              backgroundColor: "#2563EB",
+              stack: "burn",
+              borderRadius: 2,
+            },
+            {
+              type: "bar",
+              label: "Content",
+              data: content,
+              backgroundColor: "#DC2626",
+              stack: "burn",
+              borderRadius: 2,
+            },
+            {
+              type: "bar",
+              label: "Tech & Cloud",
+              data: tech,
+              backgroundColor: "#059669",
+              stack: "burn",
+              borderRadius: 2,
+            },
+            {
+              type: "bar",
+              label: "Marketing",
+              data: mkt,
+              backgroundColor: "#D97706",
+              stack: "burn",
+              borderRadius: 2,
+            },
+            {
+              type: "bar",
+              label: "Other",
+              data: other,
+              backgroundColor: "#7C3AED",
+              stack: "burn",
+              borderRadius: 2,
+            },
+            {
+              type: "line",
+              label: "Cash remaining (₹L)",
+              data: cashRemaining,
+              borderColor: "#2A7FB5",
+              backgroundColor: "transparent",
+              pointBackgroundColor: "#2A7FB5",
+              pointRadius: 2,
+              tension: 0.4,
+              borderWidth: 2,
+              yAxisID: "y2",
+              order: 0,
+            },
+          ],
         },
-        footer: items => {
-          const barItems = items.filter(i=>i.dataset.label!=='Cash remaining (₹L)');
-          if(!barItems.length) return '';
-          const total = barItems.reduce((s,i)=>s+i.parsed.y,0);
-          return `Total burn: ₹${total}L (₹${(total/100).toFixed(2)} Cr)`;
-        }
-      }}
-    },
-    scales:{
-      x:{ stacked:true, grid:{color:'rgba(16, 58, 90, 0.05)'}, ticks:{color:'rgba(16, 58, 90, 0.4)',font:{size:10}} },
-      y:{ stacked:true, grid:{color:'rgba(16, 58, 90, 0.07)'}, ticks:{color:'rgba(16, 58, 90, 0.4)',font:{size:10}, callback:v=>`₹${v}L` }, title:{display:true,text:'Monthly burn (₹ Lakhs)',color:'rgba(16, 58, 90, 0.3)',font:{size:10}} },
-      y2:{ position:'right', grid:{display:false}, ticks:{color:'#2A7FB5',font:{size:10}, callback:v=>`₹${(v/100).toFixed(0)}Cr`}, title:{display:true,text:'Cash remaining',color:'#2A7FB5',font:{size:10}} }
-    }
-  }
-});
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  if (ctx.dataset.label === "Cash remaining (₹L)")
+                    return ` Cash: ₹${(ctx.parsed.y / 100).toFixed(1)} Cr`;
+                  return ` ${ctx.dataset.label}: ₹${ctx.parsed.y}L`;
+                },
+                footer: (items) => {
+                  const barItems = items.filter(
+                    (i) => i.dataset.label !== "Cash remaining (₹L)",
+                  );
+                  if (!barItems.length) return "";
+                  const total = barItems.reduce((s, i) => s + i.parsed.y, 0);
+                  return `Total burn: ₹${total}L (₹${(total / 100).toFixed(2)} Cr)`;
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { color: "rgba(16, 58, 90, 0.05)" },
+              ticks: { color: "rgba(16, 58, 90, 0.4)", font: { size: 10 } },
+            },
+            y: {
+              stacked: true,
+              grid: { color: "rgba(16, 58, 90, 0.07)" },
+              ticks: {
+                color: "rgba(16, 58, 90, 0.4)",
+                font: { size: 10 },
+                callback: (v) => `₹${v}L`,
+              },
+              title: {
+                display: true,
+                text: "Monthly burn (₹ Lakhs)",
+                color: "rgba(16, 58, 90, 0.3)",
+                font: { size: 10 },
+              },
+            },
+            y2: {
+              position: "right",
+              grid: { display: false },
+              ticks: {
+                color: "#2A7FB5",
+                font: { size: 10 },
+                callback: (v) => `₹${(v / 100).toFixed(0)}Cr`,
+              },
+              title: {
+                display: true,
+                text: "Cash remaining",
+                color: "#2A7FB5",
+                font: { size: 10 },
+              },
+            },
+          },
+        },
+      });
 
-// ── Milestones ────────────────────────────────────────────────────────────
-const milestones = [
-  { m:'M1–3',   text:'MVP live · 3 pilot schools · 5k beta users', key:'Product' },
-  { m:'M4–6',   text:'10 partnerships · 50k users · first ad revenue', key:'Traction' },
-  { m:'M7–9',   text:'200k users · 8% sub conversion · ₹50L MRR', key:'Revenue' },
-  { m:'M10–12', text:'500k users · ₹1 Cr MRR · exam data cycle 1', key:'PMF signal' },
-  { m:'M13–15', text:'1Mn users · ₹3–5 Cr ARR · VR PoC complete', key:'Scale' },
-  { m:'M16–18', text:'Series A raise · ₹80–120 Cr target · VR build begins', key:'Series A', seriesA:true },
-];
-const track = document.getElementById('msTrack');
-milestones.forEach(ms => {
-  const div = document.createElement('div');
-  div.className = 'ms-item' + (ms.seriesA?' series-a':'');
-  div.innerHTML = `<div class="ms-month">${ms.m}</div><div class="ms-text">${ms.text}</div><div class="ms-milestone">${ms.key}</div>`;
-  track.appendChild(div);
-});
+      // ── Milestones ────────────────────────────────────────────────────────────
+      const milestones = [
+        {
+          m: "M1–3",
+          text: "MVP live · 3 pilot schools · 5k beta users",
+          key: "Product",
+        },
+        {
+          m: "M4–6",
+          text: "10 partnerships · 50k users · first ad revenue",
+          key: "Traction",
+        },
+        {
+          m: "M7–9",
+          text: "200k users · 8% sub conversion · ₹50L MRR",
+          key: "Revenue",
+        },
+        {
+          m: "M10–12",
+          text: "500k users · ₹1 Cr MRR · exam data cycle 1",
+          key: "PMF signal",
+        },
+        {
+          m: "M13–15",
+          text: "1Mn users · ₹3–5 Cr ARR · VR PoC complete",
+          key: "Scale",
+        },
+        {
+          m: "M16–18",
+          text: "Series A raise · ₹80–120 Cr target · VR build begins",
+          key: "Series A",
+          seriesA: true,
+        },
+      ];
+      const track = document.getElementById("msTrack");
+      milestones.forEach((ms) => {
+        const div = document.createElement("div");
+        div.className = "ms-item" + (ms.seriesA ? " series-a" : "");
+        div.innerHTML = `<div class="ms-month">${ms.m}</div><div class="ms-text">${ms.text}</div><div class="ms-milestone">${ms.key}</div>`;
+        track.appendChild(div);
+      });
 
-// ── Slide switch ──────────────────────────────────────────────────────────
-function showSlide(id, btn) {
-  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.snav').forEach(b=>b.classList.remove('active'));
-  document.getElementById('slide-'+id).classList.add('active');
-  btn.classList.add('active');
-}
-</script>
-</body>
+      // ── Slide switch ──────────────────────────────────────────────────────────
+      function showSlide(id, btn) {
+        document
+          .querySelectorAll(".slide")
+          .forEach((s) => s.classList.remove("active"));
+        document
+          .querySelectorAll(".snav")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("slide-" + id).classList.add("active");
+        btn.classList.add("active");
+      }
+    </script>
+  </body>
 </html>
