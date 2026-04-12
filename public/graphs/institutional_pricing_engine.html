@@ -321,6 +321,14 @@
   }
 
   .arrow { color: #3949ab; }
+
+  @media (max-width: 768px) {
+    .page { flex-direction: column !important; }
+    .left-card { width: 100% !important; padding: 16px !important; }
+    .chart-outer { overflow-x: auto !important; padding-bottom: 8px !important; }
+    .plot-wrap { min-width: 400px !important; }
+    table { display: block !important; overflow-x: auto !important; white-space: nowrap !important; }
+  }
 </style>
 </head>
 <body>

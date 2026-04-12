@@ -108,6 +108,15 @@
 .info-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
 .info-list li{font-size:17px;color:rgba(16,58,90,0.65);display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
 .info-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:#2A7FB5;flex-shrink:0;margin-top:5px;}
+      @media (max-width: 768px) {
+        .stat-row { grid-template-columns: 1fr 1fr !important; }
+        .horizon-grid { grid-template-columns: 1fr !important; }
+        .two-col { grid-template-columns: 1fr !important; }
+        .rounds-grid { grid-template-columns: 1fr 1fr !important; }
+        .slide-nav { flex-wrap: nowrap !important; overflow-x: auto !important; }
+        .ops-item { min-width: 220px !important; }
+        .ops-track { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding-bottom: 10px !important; }
+      }
 </style>
 
 <div class="deck">

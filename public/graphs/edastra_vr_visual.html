@@ -111,6 +111,14 @@
 .cap-t{flex:1;height:6px;background:#C8E6F7;border-radius:99px;overflow:hidden;}
 .cap-f{height:6px;border-radius:99px;}
 .cap-v{font-size:17px;min-width:90px;text-align:right;}
+      @media (max-width: 768px) {
+        .device-grid { grid-template-columns: 1fr !important; }
+        .phase-strip { flex-direction: column !important; border: 1px solid var(--sky); }
+        .ph { border-right: none !important; border-bottom: 1px solid var(--white) !important; }
+        .ph:last-child { border-bottom: none !important; }
+        .dev-row { flex-direction: column !important; align-items: flex-start !important; padding: 6px 0 !important; }
+        .dev-v { margin-top: 2px !important; }
+      }
 </style>
 
 <div class="d">
