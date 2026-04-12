@@ -324,4 +324,32 @@
   * {
     scrollbar-width: none !important;
   }
+
+  /* ── Risks & Mitigations Table Fix ── */
+  #sl-risks > div:nth-of-type(5) {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+  }
+  .risk-row {
+    min-width: 600px !important;
+  }
+
+  /* ── 5 CR Check Table Fix ── */
+  #sl-validation > div:nth-of-type(5) {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+  }
+  .val-row {
+    min-width: 600px !important;
+  }
+  #sl-validation > div:nth-of-type(5) > div:first-child {
+    min-width: 600px !important;
+  }
+  #sl-validation > div:nth-of-type(5) > div:first-child > div:not(:first-child),
+  .val-row > div:not(:first-child) {
+    text-align: right !important;
+    justify-self: end !important;
+  }
 }
