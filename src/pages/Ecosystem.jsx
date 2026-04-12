@@ -1,4 +1,5 @@
 import React from 'react'
+import LazyYouTube from '../components/LazyYouTube'
 
 const Ecosystem = () => {
   const features = [
@@ -30,19 +31,12 @@ const Ecosystem = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left: Video */}
           <div className="lg:sticky lg:top-24">
-            <div
-              className="relative w-full overflow-hidden rounded-lg border border-[#C8E6F7] shadow-xl"
-              style={{ paddingTop: "177.78%" }}
-            >
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/wFHR2_ag1uk"
-                title="Edastra Ecosystem"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            <LazyYouTube 
+              videoId="wFHR2_ag1uk" 
+              title="Edastra Ecosystem" 
+              className="rounded-lg border border-[#C8E6F7] shadow-xl"
+              containerStyle={{ paddingTop: "177.78%" }}
+            />
           </div>
 
           {/* Right: Feature Cards */}
@@ -57,16 +51,16 @@ const Ecosystem = () => {
                     <img 
                       src={
                         feature.title.toLowerCase().includes("analytics")
-                          ? "/images/test_icon.png"
+                          ? "/images/test_icon.webp"
                           : feature.title.toLowerCase().includes("curriculum")
-                          ? "/images/book_icon.png"
+                          ? "/images/book_icon.webp"
                           : feature.title.toUpperCase().includes("4K")
-                          ? "/images/4k_icon.png"
+                          ? "/images/4k_icon.webp"
                           : feature.title.toLowerCase().includes("scholarship") 
-                          ? "/images/scholarship_icon.png" 
+                          ? "/images/scholarship_icon.webp" 
                           : feature.title.toUpperCase().includes("VR") 
-                          ? "/images/vr_icon.png" 
-                          : "/images/AI_icon.png"
+                          ? "/images/vr_icon.webp" 
+                          : "/images/AI_icon.webp"
                       } 
                       alt={
                         feature.title.toLowerCase().includes("analytics")

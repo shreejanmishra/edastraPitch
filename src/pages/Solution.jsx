@@ -12,7 +12,7 @@ const Solution = () => {
           <div className="grid lg:grid-cols-2 gap-8 items-start">
             <div className="lg:sticky lg:top-24">
               <img
-                src="/images/page_3_img_2.png"
+                src="/images/page_3_img_2.webp"
                 alt="Solution Features — Scholarship, 4K Library, VR, OTT, Storytelling"
                 className="w-full rounded-lg border border-[#C8E6F7] shadow-xl"
               />
@@ -21,7 +21,7 @@ const Solution = () => {
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/scholarship_icon.png" alt="Scholarship" className="w-12 h-12" />
+                  <img src="/images/scholarship_icon.webp" alt="Scholarship" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-xl text-[#103A5A] mb-2">
@@ -36,7 +36,7 @@ const Solution = () => {
 
               <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/4k_icon.png" alt="4K" className="w-12 h-12" />
+                  <img src="/images/4k_icon.webp" alt="4K" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-xl text-[#103A5A] mb-2">
@@ -51,7 +51,7 @@ const Solution = () => {
 
               <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/vr_icon.png" alt="VR" className="w-12 h-12" />
+                  <img src="/images/vr_icon.webp" alt="VR" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-xl text-[#103A5A] mb-2">
@@ -66,7 +66,7 @@ const Solution = () => {
 
               <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/family_icon.png" alt="Family" className="w-12 h-12" />
+                  <img src="/images/family_icon.webp" alt="Family" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-xl text-[#103A5A] mb-2">
@@ -81,7 +81,7 @@ const Solution = () => {
 
               <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/book_icon.png" alt="Storytelling" className="w-12 h-12" />
+                  <img src="/images/book_icon.webp" alt="Storytelling" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-xl text-[#103A5A] mb-2">
@@ -278,7 +278,7 @@ const Solution = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/book_icon.png" alt="Book" className="w-12 h-12" />
+                  <img src="/images/book_icon.webp" alt="Book" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
@@ -292,7 +292,7 @@ const Solution = () => {
 
               <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/brain_icon.png" alt="Brain" className="w-12 h-12" />
+                  <img src="/images/brain_icon.webp" alt="Brain" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
@@ -306,7 +306,7 @@ const Solution = () => {
 
               <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/career_icon.png" alt="Career" className="w-12 h-12" />
+                  <img src="/images/career_icon.webp" alt="Career" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
@@ -320,7 +320,7 @@ const Solution = () => {
 
               <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/family_icon.png" alt="Family" className="w-12 h-12" />
+                  <img src="/images/family_icon.webp" alt="Family" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
@@ -334,7 +334,7 @@ const Solution = () => {
 
               <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/AI_icon.png" alt="AI" className="w-12 h-12" />
+                  <img src="/images/AI_icon.webp" alt="AI" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
@@ -348,7 +348,7 @@ const Solution = () => {
 
               <div className="bg-white p-5 rounded-lg shadow-sm border border-[#C8E6F7] hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center gap-4">
                 <div className="flex-shrink-0">
-                  <img src="/images/subscription_icon.png" alt="Subscription" className="w-12 h-12" />
+                  <img src="/images/subscription_icon.webp" alt="Subscription" className="w-12 h-12" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-[#103A5A] mb-2 leading-tight">
@@ -367,4 +367,4 @@ const Solution = () => {
   );
 };
 
-export default Solution;
+export default React.memo(Solution);

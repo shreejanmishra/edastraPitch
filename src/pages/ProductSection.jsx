@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import SubNav from "../components/SubNav";
-import BetaApp from "./BetaApp";
-import Preschool from "./Preschool";
-import TenthBoard from "./TenthBoard";
-import Scholarships from "./Scholarships";
-import VRExperience from "./VRExperience";
+
+const BetaApp = React.lazy(() => import("./BetaApp"));
+const Preschool = React.lazy(() => import("./Preschool"));
+const TenthBoard = React.lazy(() => import("./TenthBoard"));
+const Scholarships = React.lazy(() => import("./Scholarships"));
+const VRExperience = React.lazy(() => import("./VRExperience"));
 
 const ProductSection = () => {
   const subNavItems = [
@@ -19,21 +20,23 @@ const ProductSection = () => {
     <div className="flex relative">
       <SubNav items={subNavItems} />
       <div className="ml-0 pt-14 lg:pt-0 lg:ml-64 w-full">
-        <div id="betaapp">
-          <BetaApp />
-        </div>
-        <div id="preschool">
-          <Preschool />
-        </div>
-        <div id="10th-board">
-          <TenthBoard />
-        </div>
-        <div id="scholarships">
-          <Scholarships />
-        </div>
-        <div id="vr">
-          <VRExperience />
-        </div>
+        <Suspense fallback={null}>
+          <div id="betaapp">
+            <BetaApp />
+          </div>
+          <div id="preschool">
+            <Preschool />
+          </div>
+          <div id="10th-board">
+            <TenthBoard />
+          </div>
+          <div id="scholarships">
+            <Scholarships />
+          </div>
+          <div id="vr">
+            <VRExperience />
+          </div>
+        </Suspense>
       </div>
     </div>
   );

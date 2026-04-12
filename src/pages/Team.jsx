@@ -6,19 +6,19 @@ const Team = () => {
       name: "Ankita Kumar",
       role: "CEO & Co-Founder",
       bio: "Founder and technology builder with expertise in scalable digital platforms, data-driven systems, and product architecture. Combines strong technical execution with strategic product vision to build platforms designed for global scale and operational efficiency.",
-      image: "/images/CEO.jpeg",
+      image: "/images/CEO.webp",
     },
     {
       name: "Nav Sharma",
       role: "Creative Director & Co-Founder",
       bio: "Media and storytelling specialist with expertise in digital video production and content platforms. Experienced in crafting compelling visual narratives and building high-quality media pipelines, with a focus on creating immersive edutainment experiences at scale.",
-      image: "/images/creativeDirector.jpg",
+      image: "/images/creativeDirector.webp",
     },
     {
       name: "Shreejan Mishra",
       role: "Founding Engineer & Co-Founder",
       bio: "Fullstack engineer with 4 years of proven experience, specializing in scalable, high-performance web platforms built with React.js, Node.js, and Express.js. AI-Native Engineer with expertise in rapid building and scaling of products.",
-      image: "/images/FoundingEngineer.jpg",
+      image: "/images/FoundingEngineer.webp",
     },
   ];
 
@@ -26,22 +26,22 @@ const Team = () => {
     {
       name: "Atif Kader",
       role: "Marketing Head",
-      image: "/images/marketing.png",
+      image: "/images/marketing.webp",
     },
     {
       name: "Satyam Gupta",
       role: "Back End Founding Engineer",
-      image: "/images/Backend.png",
+      image: "/images/Backend.webp",
     },
     {
       name: "Riya Sharma",
       role: "Children Psychologist",
-      image: "/images/childPsychologist.png",
+      image: "/images/childPsychologist.webp",
     },
     {
       name: "Rajat Shah",
       role: "Finance & Compliance Partner",
-      image: "/images/financial.jpg",
+      image: "/images/financial.webp",
     },
   ];
 

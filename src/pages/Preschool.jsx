@@ -1,4 +1,5 @@
 import React from "react";
+import LazyYouTube from "../components/LazyYouTube";
 
 const Preschool = () => {
   return (
@@ -10,33 +11,19 @@ const Preschool = () => {
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column: Visuals (Sticky) */}
           <div className="lg:sticky lg:top-24 flex flex-col space-y-6">
-            <div
-              className="relative w-full overflow-hidden rounded-lg border border-[#C8E6F7] shadow-xl"
-              style={{ paddingTop: "56.25%" }}
-            >
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/1rV9uoSKBSI"
-                title="Product Demonstration"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            <LazyYouTube 
+              videoId="1rV9uoSKBSI"
+              title="Product Demonstration"
+              className="rounded-lg border border-[#C8E6F7] shadow-xl"
+              containerStyle={{ paddingTop: "56.25%" }}
+            />
 
-            <div
-              className="relative w-full overflow-hidden rounded-lg border border-[#C8E6F7] shadow-xl"
-              style={{ paddingTop: "56.25%" }}
-            >
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/fnvynAIQe9k"
-                title="Preschool Content Example"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            <LazyYouTube 
+              videoId="fnvynAIQe9k"
+              title="Preschool Content Example"
+              className="rounded-lg border border-[#C8E6F7] shadow-xl"
+              containerStyle={{ paddingTop: "56.25%" }}
+            />
           </div>
 
           {/* Right Column: Features Cards */}
@@ -44,7 +31,7 @@ const Preschool = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/india_icon.png"
+                  src="/images/india_icon.webp"
                   alt="India"
                   className="w-12 h-12"
                 />
@@ -60,7 +47,7 @@ const Preschool = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/indian_icon.png"
+                  src="/images/indian_icon.webp"
                   alt="India"
                   className="w-12 h-12"
                 />
@@ -78,7 +65,7 @@ const Preschool = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/child_icon.png"
+                  src="/images/child_icon.webp"
                   alt="Child"
                   className="w-12 h-12"
                 />
@@ -93,7 +80,7 @@ const Preschool = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/moviescript_icon.png"
+                  src="/images/moviescript_icon.webp"
                   alt="Movie Script"
                   className="w-12 h-12"
                 />
@@ -110,7 +97,7 @@ const Preschool = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/cdn_icon.png"
+                  src="/images/cdn_icon.webp"
                   alt="CDN"
                   className="w-12 h-12"
                 />

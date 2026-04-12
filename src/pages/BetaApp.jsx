@@ -10,7 +10,7 @@ const BetaApp = () => {
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           <div className="lg:sticky lg:top-24">
             <img
-              src="/images/beta_app.png"
+              src="/images/beta_app.webp"
               alt="Edastra Prototype App Interface"
               className="w-full rounded-lg border border-[#C8E6F7] shadow-xl object-cover hover:shadow-2xl transition-shadow duration-300"
             />
@@ -30,7 +30,7 @@ const BetaApp = () => {
             <div className="bg-white p-8 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/prototype_icon.png"
+                  src="/images/prototype_icon.webp"
                   alt="Prototype"
                   className="w-12 h-12"
                 />
@@ -47,7 +47,7 @@ const BetaApp = () => {
             <div className="bg-white p-8 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/under_construction_icon.png"
+                  src="/images/under_construction_icon.webp"
                   alt="Under Construction"
                   className="w-12 h-12"
                 />
@@ -81,7 +81,7 @@ const BetaApp = () => {
             <div className="bg-white p-8 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/android_icon.png"
+                  src="/images/android_icon.webp"
                   alt="Android"
                   className="w-12 h-12"
                 />

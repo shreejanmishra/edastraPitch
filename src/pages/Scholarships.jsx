@@ -9,12 +9,12 @@ const Scholarships = () => {
           {/* Left Column: Visuals (Sticky) */}
           <div className="lg:sticky lg:top-24 space-y-8">
             <img
-              src="/images/scholarship.png"
+              src="/images/scholarship.webp"
               alt="Scholarship"
               className="w-full rounded-lg border border-[#C8E6F7] shadow-xl hover:shadow-2xl transition-shadow duration-300"
             />
             <img
-              src="/images/scholarship_test.png"
+              src="/images/scholarship_test.webp"
               alt="Scholarship Test"
               className="w-full rounded-lg border border-[#C8E6F7] shadow-xl hover:shadow-2xl transition-shadow duration-300"
             />
@@ -25,7 +25,7 @@ const Scholarships = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/1st_icon.png"
+                  src="/images/1st_icon.webp"
                   alt="First"
                   className="w-12 h-12"
                 />
@@ -41,7 +41,7 @@ const Scholarships = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/mission_icon.png"
+                  src="/images/mission_icon.webp"
                   alt="Mission"
                   className="w-12 h-12"
                 />
@@ -59,7 +59,7 @@ const Scholarships = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/dollar_icon.png"
+                  src="/images/dollar_icon.webp"
                   alt="Dollar"
                   className="w-12 h-12"
                 />
@@ -76,7 +76,7 @@ const Scholarships = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/power_icon.png"
+                  src="/images/power_icon.webp"
                   alt="Power"
                   className="w-12 h-12"
                 />
@@ -93,7 +93,7 @@ const Scholarships = () => {
             <div className="bg-white p-6 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
                 <img
-                  src="/images/scholarship_icon.png"
+                  src="/images/scholarship_icon.webp"
                   alt="Scholarship"
                   className="w-12 h-12"
                 />
