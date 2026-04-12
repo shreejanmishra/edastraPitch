@@ -29,7 +29,7 @@ const Market = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">Market Size</h3>
             <img
-              src="/images/page_4_img_1.png"
+              src="/images/page_4_img_1.webp"
               alt="Market Opportunity"
               className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
@@ -37,7 +37,7 @@ const Market = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4 text-primary">Competition Analysis</h3>
             <img
-              src="/images/page_15_img_1.png"
+              src="/images/page_15_img_1.webp"
               alt="Competition"
               className="w-full rounded-lg border border-primary/20 shadow-xl"
             />

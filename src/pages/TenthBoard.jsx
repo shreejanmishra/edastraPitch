@@ -9,7 +9,7 @@ const TenthBoard = () => {
           {/* Left Column: Visuals (Sticky) */}
           <div className="lg:sticky lg:top-24">
             <img
-              src="/images/school_2.png"
+              src="/images/school_2.webp"
               alt="10th Board - Teenager Content"
               className="w-full rounded-lg border border-[#C8E6F7] shadow-xl hover:shadow-2xl transition-shadow duration-300"
             />
@@ -19,7 +19,7 @@ const TenthBoard = () => {
           <div className="grid grid-cols-1 gap-4">
             <div className="bg-white p-5 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
-                <img src="/images/book_icon.png" alt="Book" className="w-12 h-12" />
+                <img src="/images/book_icon.webp" alt="Book" className="w-12 h-12" />
               </div>
               <div className="flex-1">
                 <h4 className="font-bold text-xl text-[#103A5A] mb-2 leading-tight">
@@ -33,7 +33,7 @@ const TenthBoard = () => {
 
             <div className="bg-white p-5 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
-                <img src="/images/brain_icon.png" alt="Brain" className="w-12 h-12" />
+                <img src="/images/brain_icon.webp" alt="Brain" className="w-12 h-12" />
               </div>
               <div className="flex-1">
                 <h4 className="font-bold text-xl text-[#103A5A] mb-2 leading-tight">
@@ -47,7 +47,7 @@ const TenthBoard = () => {
 
             <div className="bg-white p-5 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
-                <img src="/images/career_icon.png" alt="Career" className="w-12 h-12" />
+                <img src="/images/career_icon.webp" alt="Career" className="w-12 h-12" />
               </div>
               <div className="flex-1">
                 <h4 className="font-bold text-xl text-[#103A5A] mb-2 leading-tight">
@@ -61,7 +61,7 @@ const TenthBoard = () => {
 
             <div className="bg-white p-5 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
-                <img src="/images/family_icon.png" alt="Family" className="w-12 h-12" />
+                <img src="/images/family_icon.webp" alt="Family" className="w-12 h-12" />
               </div>
               <div className="flex-1">
                 <h4 className="font-bold text-xl text-[#103A5A] mb-2 leading-tight">
@@ -75,7 +75,7 @@ const TenthBoard = () => {
 
             <div className="bg-white p-5 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
-                <img src="/images/AI_icon.png" alt="AI" className="w-12 h-12" />
+                <img src="/images/AI_icon.webp" alt="AI" className="w-12 h-12" />
               </div>
               <div className="flex-1">
                 <h4 className="font-bold text-xl text-[#103A5A] mb-2 leading-tight">
@@ -89,7 +89,7 @@ const TenthBoard = () => {
 
             <div className="bg-white p-5 rounded-lg shadow border border-[#C8E6F7] hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-4">
               <div className="flex-shrink-0">
-                <img src="/images/subscription_icon.png" alt="Subscription" className="w-12 h-12" />
+                <img src="/images/subscription_icon.webp" alt="Subscription" className="w-12 h-12" />
               </div>
               <div className="flex-1">
                 <h4 className="font-bold text-xl text-[#103A5A] mb-2 leading-tight">

@@ -27,7 +27,7 @@ const Navbar = () => {
             className="flex items-center gap-3 text-2xl font-bold text-primary hover:text-primary-light transition-all group"
           >
             <img
-              src="/edastraBrandIcon.png"
+              src="/edastraBrandIcon.webp"
               alt="Edastra Logo"
               className="h-8 w-8 transition-all group-hover:drop-shadow-[0_0_20px_rgba(16,58,90,0.9)]"
             />

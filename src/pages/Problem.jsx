@@ -20,7 +20,7 @@ const Problem = () => {
           {/* Left: Image */}
           <div className="flex items-center justify-center">
             <img
-              src="/images/page_2_img_1.png"
+              src="/images/page_2_img_1.webp"
               alt="Problem Statement"
               className="w-full rounded-lg border border-primary/20 shadow-xl"
             />
@@ -48,4 +48,4 @@ const Problem = () => {
   );
 };
 
-export default Problem;
+export default React.memo(Problem);
