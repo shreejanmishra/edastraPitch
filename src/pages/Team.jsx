@@ -71,7 +71,7 @@ const Team = () => {
                   </span>
                 </div>
               )}
-              <h3 className="text-xl font-bold mb-2 text-white">
+              <h3 className="text-xl font-bold mb-2 text-primary">
                 {member.name}
               </h3>
               <p className="text-primary font-semibold mb-4">{member.role}</p>
@@ -105,7 +105,7 @@ const Team = () => {
                   </span>
                 </div>
               )}
-              <h3 className="text-lg font-bold mb-2 text-white">
+              <h3 className="text-lg font-bold mb-2 text-primary">
                 {member.name}
               </h3>
               <p className="text-primary font-semibold text-sm">
